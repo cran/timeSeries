@@ -14,29 +14,18 @@
 
 
 ################################################################################
-# METHOD:                   SUBSETTING METHODS ON DATA:
-#  tail.timeSeries           Returns the tail of a 'timeSeries' object
+# S4 METHODS:               PRINT AND PLOT FUNCTIONS:
+#  getDataPart,timeSeries    Summarizes a 'timeSeries' object
 ################################################################################
 
-setMethod("tail",
-          "timeSeries",
-    function(x, n = 6, recordIDs = FALSE, ...)
-{   # A function implemented by Diethelm Wuertz
+# this makes getDataPart a bit faster than default function
+setMethod("getDataPart", "timeSeries",
+          function(object)
+      {
+         value <- object
+         attributes(value) <- NULL
+         attr(value, "dim") <- attr(object, "dim")
+         object <- value
 
-    # Description:
-    #   Returns the tail of a 'timeSeries' object
-
-    # Arguments:
-    #   x - a 'timeSeries' object.
-
-    # Value:
-    #   Returns the tail of an object of class 'timeSeries'.
-
-    # FUNCTION:
-
-    # Tail:
-    if (recordIDs & dim(x)[1] == dim(x@recordIDs)[1])
-        cbind(tail.matrix(x, n = n, ...), tail(x@recordIDs, n = n, ...))
-    else
-        tail.matrix(x, n = n, ...)
-})
+         object
+      })
