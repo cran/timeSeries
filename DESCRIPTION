@@ -1,5 +1,5 @@
 Package: timeSeries
-Version: 280.77
+Version: 280.78
 Date: 1997 - 2008
 Title: Rmetrics - Financial Time Series Objects
 Author: Diethelm Wuertz and Yohan Chalabi
@@ -14,4 +14,4 @@ LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: Fri Oct 24 12:02:09 2008; yankee
+Packaged: Mon Oct 27 15:25:07 2008; yankee
