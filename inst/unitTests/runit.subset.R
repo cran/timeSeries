@@ -31,100 +31,144 @@ test.subset <-
 function()
 {
 
-ts <- dummySeries()
-mat <- as.matrix(ts)
 
-# we want the same subset-ting rules as for a matrix
-# but we always print result in vertical style !
+    ### DW Not this script will again fail on 2010-01-01
 
-# ------------------------------------------------------------------------------
-# index
+    ts <- dummySeries()
+    mat <- as.matrix(ts)
 
-ts[seq(4),2]
-mat[seq(4),2]
+    # we want the same subset-ting rules as for a matrix
+    # but we always print result in vertical style !
 
-ts[rep(FALSE, 3), 1]
-mat[rep(FALSE, 3), 1]
+    # --------------------------------------------------------------------------
+    # index
 
-ts[FALSE, 1]
-mat[FALSE, 1]
+    checkIdentical(
+                   ts[],
+                   ts)
 
-ts[rep(TRUE), 2]
-mat[rep(TRUE), 2]
+    checkIdentical(
+                   ts[""],
+                   mat[""]) # should be NA
 
-ts["2008-01-01", 1]
-mat["2008-01-01", 1]
+    checkIdentical(
+                   as.matrix(ts[seq(4),2]),
+                   mat[seq(4),2,drop=FALSE])
 
-ts[seq(4),]
-mat[seq(4),]
+    checkIdentical(
+                   as.matrix(ts[rep(FALSE, 3), 1]),
+                   mat[rep(FALSE, 3), 1,drop=FALSE])
 
-ts[rep(FALSE, 3), ]
-mat[rep(FALSE, 3), ]
+    checkIdentical(
+                   as.matrix(ts[FALSE, 1]),
+                   mat[FALSE, 1, drop = FALSE])
 
-ts[FALSE, ]
-mat[FALSE, ]
+    checkIdentical(
+                   as.matrix(ts[rep(TRUE), 2]),
+                   mat[rep(TRUE), 2, drop=FALSE])
 
-ts[rep(TRUE), ]
-mat[rep(TRUE), ]
+    charvec <- as.character(timeCalendar()[1:3])
+    checkIdentical(
+                   as.matrix(ts[charvec, 1]),
+                   mat[charvec, 1, drop = FALSE])
 
-ts["2008-01-01", ]
-mat["2008-01-01", ]
+    checkIdentical(
+                   as.matrix(ts[seq(4),]),
+                   mat[seq(4),,drop=FALSE])
 
-ts[,2]
-mat[,2]
+    checkIdentical(
+                   as.matrix(ts[rep(FALSE, 3), ]),
+                   mat[rep(FALSE, 3), ,drop=FALSE])
 
-ts[2,FALSE]
-mat[2,FALSE]
+    checkIdentical(
+                   as.matrix(ts[FALSE, ]),
+                   mat[FALSE, ,drop=FALSE])
 
-# prefer to have an empty timeSeries instead of empty data with row names
-ts[,FALSE]
-mat[,FALSE]
+    checkIdentical(
+                   as.matrix(ts[rep(TRUE), ]),
+                   mat[rep(TRUE), ,drop=FALSE ])
 
-ts[,TRUE ]
-mat[,TRUE ]
+    checkIdentical(
+                   as.matrix(ts["2009-01-01", ]),
+                   mat["2009-01-01", ,drop=FALSE])
 
-ts[, "TS.1"]
-mat[, "TS.1"]
+    checkIdentical(
+                   as.matrix(ts[,2]),
+                   mat[,2,drop=FALSE])
+
+    checkIdentical(
+                   as.matrix(ts[2,FALSE]),
+                   mat[2,FALSE, drop=FALSE])
+
+    # prefer to have an empty timeSeries instead of empty data with row names
+    checkIdentical(
+                   as.matrix(ts[,FALSE]),
+                   mat[,FALSE, drop = FALSE])
+
+    checkIdentical(
+                   as.matrix(ts[,TRUE ]),
+                   mat[,TRUE ,drop=FALSE])
+
+    checkIdentical(
+                   as.matrix(ts[, "TS.1"]),
+                   mat[, "TS.1", drop = FALSE])
 
 
-# ------------------------------------------------------------------------------
-# timeDate
+    # --------------------------------------------------------------------------
+    # timeDate
 
-ts[timeCalendar()[1:5], 2]
-ts[timeCalendar()[1:5], ]
+    checkIdentical(
+                   ts[timeCalendar()[1:5], 2],
+                   ts[1:5,2])
 
-# ------------------------------------------------------------------------------
-# logical matrix and timeSeries
+    checkIdentical(
+                   ts[timeCalendar()[1:5], ],
+                   ts[1:5,])
 
-i <- ts < 0.4
+    # --------------------------------------------------------------------------
+    # logical matrix and timeSeries
 
-checkException(ts[series(i), ])
-checkException(ts[i, ])
-checkException(mat[series(i), ]) # it fails as expected
+    i <- ts < 0.4
 
-ts[series(i)[,1], ]
-ts[i[,1], ]
-mat[series(i)[,1], ]
+    checkException(ts[series(i), ])
+    checkException(ts[i, ])
+    checkException(mat[series(i), ]) # it fails as expected
 
-ts[series(i)[,1],1]
-ts[i[,1],1]
-mat[series(i)[,1],1]
+    checkIdentical(
+                   as.matrix(ts[series(i)[,1], ]),
+                   mat[series(i)[,1], , drop=FALSE])
 
-# this should fail
-checkException(ts[series(i), 2], silent = TRUE)
-checkException(ts[i, 2], silent = TRUE)
-checkException(ts[series(i), 1], silent = TRUE)
+    checkIdentical(
+                   as.matrix(ts[i[,1], ]),
+                   mat[series(i)[,1], , drop=FALSE])
 
-checkException(ts[series(i),1])
-checkException(ts[i,1])
-checkException(mat[series(i),1])
+    checkIdentical(
+                   as.matrix(ts[series(i)[,1],1]),
+                   mat[series(i)[,1],1,drop=FALSE])
 
-checkException(ts[series(i),])
-checkException(mat[series(i),])
+    checkIdentical(
+                   as.matrix(ts[i[,1],1]),
+                   mat[series(i)[,1],1,drop=FALSE])
 
-ts[series(i)]
-ts[i]
-mat[series(i)]
+    # this should fail
+    checkException(ts[series(i), 2], silent = TRUE)
+    checkException(ts[i, 2], silent = TRUE)
+    checkException(ts[series(i), 1], silent = TRUE)
+
+    checkException(ts[series(i),1])
+    checkException(ts[i,1])
+    checkException(mat[series(i),1])
+
+    checkException(ts[series(i),])
+    checkException(mat[series(i),])
+
+    checkIdentical(
+                    ts[series(i)],
+                    mat[series(i)])
+
+    checkIdentical(
+                   ts[i],
+                   mat[series(i)])
 
 }
 
