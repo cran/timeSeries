@@ -47,9 +47,8 @@ function()
                    ts[],
                    ts)
 
-    checkIdentical(
-                   ts[""],
-                   mat[""]) # should be NA
+    checkTrue(suppressWarnings(is.na(ts[""])))
+    checkTrue(is.na(mat[""]))
 
     checkIdentical(
                    as.matrix(ts[seq(4),2]),
@@ -130,9 +129,9 @@ function()
 
     i <- ts < 0.4
 
-    checkException(ts[series(i), ])
-    checkException(ts[i, ])
-    checkException(mat[series(i), ]) # it fails as expected
+    checkException(ts[series(i), ], silent = TRUE)
+    checkException(ts[i, ], silent = TRUE)
+    checkException(mat[series(i), ], silent = TRUE) # it fails as expected
 
     checkIdentical(
                    as.matrix(ts[series(i)[,1], ]),
@@ -155,12 +154,12 @@ function()
     checkException(ts[i, 2], silent = TRUE)
     checkException(ts[series(i), 1], silent = TRUE)
 
-    checkException(ts[series(i),1])
-    checkException(ts[i,1])
-    checkException(mat[series(i),1])
+    checkException(ts[series(i),1], silent = TRUE)
+    checkException(ts[i,1], silent = TRUE)
+    checkException(mat[series(i),1], silent = TRUE)
 
-    checkException(ts[series(i),])
-    checkException(mat[series(i),])
+    checkException(ts[series(i),], silent = TRUE)
+    checkException(mat[series(i),], silent = TRUE)
 
     checkIdentical(
                     ts[series(i)],
@@ -169,6 +168,34 @@ function()
     checkIdentical(
                    ts[i],
                    mat[series(i)])
+
+
+    # --------------------------------------------------------------------------
+    # $,timeSeries method
+    df <- as.data.frame(ts)
+
+    checkIdentical(
+                   ts$TS.,
+                   df$TS.)
+
+    checkIdentical(
+                   ts$TS.1,
+                   df$TS.1)
+
+    checkIdentical(
+                   ts$a,
+                   df$a)
+
+    colnames(ts) <- c("aa", "bb")
+    colnames(df) <- c("aa", "bb")
+
+    checkIdentical(
+                   ts$a,
+                   df$a)
+
+    checkIdentical(
+                   ts$b,
+                   df$b)
 
 }
 

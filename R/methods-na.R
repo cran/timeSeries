@@ -15,7 +15,7 @@
 
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
-#  na.omit.timeSeries        Handles missing values in objects
+#  na.omit,timeSeries        Handles missing values in objects
 #  .naOmitMatrix             Internal function called from na.omit.timeSeries
 # OLD FUNCTIONS:            DESCRIPTION:
 #  removeNA                  Remove NAs from a matrix object
@@ -31,7 +31,7 @@ setMethod("na.omit", "timeSeries",
     # Description
     #    Handles NAs in timeSeries objects
 
-    # FUNTION:
+    # FUNCTION:
 
     # Check Arguments:
     method <- match.arg(method)
@@ -40,32 +40,70 @@ setMethod("na.omit", "timeSeries",
     # Skip ?
     if (method == "s") return(object)
 
-    # Handle NAs in data matrix:
-    x <- .naOmitMatrix(as.matrix(object), method, interp)
+    # Handle NAs:
+    if (method == "r") {
+        # Remove NAs:
+        object <- stats:::na.omit.default(object)
+    } else if (method == "z") {
+        # Substitute NAs by Zero's:
+        object[is.na(object)] <- 0
+    } else if (substr(method, 1, 1) == "i") {
+        # Interpolate:
+        interp = match.arg(interp)
+        f = 0
+        if (interp == "before") {
+            interp = "constant"
+            f = 0
+        }
+        if (interp == "after") {
+            interp = "constant"
+            f = 1
+        }
+        n = nrow(object)
+        for (i in 1:ncol(object)) {
+            y = object[, i]
+            idy = (1:n)[!is.na(y)]
+            y = approx(idy, y[idy], 1:n, method = interp, f = f)$y
+            object[, i] = y
+        }
+        modID = FALSE
+        if (method == "ir") {
+            # Remove Start and End NAs:
+            object = stats:::na.omit.default(object)
+        } else if (method == "iz") {
+            # Set Start and End NAs to Zero:
+            object[is.na(object)] = 0
+        } else if (method == "ie") {
+            n = nrow(object)
+            for (k in 1:ncol(object)) {
+                y  = object[, k]
+                if (NA %in% y) {
+                    start = sum(cumprod(is.na(y)))
+                    if (start > 0) for (i in start:1) y[i] = y[i+1]
+                    end = n+1 - sum(cumprod(rev(is.na(y))))
+                    if (end <= n) for (i in end:n) y[i] = y[i-1]
+                    object[, k] = y
+                }
+            }
+        }
+    }
 
     # Handle recordIDs ...
     recordIDs <- object@recordIDs
     modID <- c(r = TRUE, z = FALSE, ir = TRUE, iz = FALSE, ie = FALSE)
     if(modID[method] > 0 && sum(dim(recordIDs)) > 0 ) {
-        index <- attr(x, "n.action")
+        index <- attr(object, "n.action")
         recordIDs <- recordIDs[index, ]
     }
 
     # Return Value:
-    timeSeries(data = x,
-               charvec = rownames(x),
-               units = colnames(x),
-               format = object@format,
-               zone = object@FinCenter,
-               FinCenter = object@FinCenter,
-               recordIDs = recordIDs,
-               title = object@title,
-               documentation = object@documentation)
+    object
 })
 
+# until UseMethod dispatches S4 methods in 'base' functions
+na.omit.timeSeries <- function(object, ...) timeSeries::na.omit(object, ...)
 
 # ------------------------------------------------------------------------------
-
 
 .naOmitMatrix <-
     function(object, method = c("r", "s", "z", "ir", "iz", "ie"),
@@ -150,7 +188,7 @@ interp = c("before", "linear", "after"))
 
 removeNA =
 function (x, ...)
-{   # A function implemented by Diethelm Wuertz
+{   # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
     # Description:
     #   Remove NA's from objects which can be transformed to a matrix
@@ -163,9 +201,9 @@ function (x, ...)
     # Convert to Matrix:
     if (class(x) == "timeSeries") {
         TS = TRUE
-        positions = x@positions
-        FinCenter = x@FinCenter
-        units = x@units
+        # positions = time(x)
+        FinCenter = finCenter(x)
+        units = colnames(x)
         x = series(x)
     } else {
         TS = FALSE
@@ -210,9 +248,9 @@ function(x, type = c("zeros", "mean", "median"), ...)
     # Convert to Matrix:
     if (class(x) == "timeSeries") {
         TS = TRUE
-        positions = x@positions
-        FinCenter = x@FinCenter
-        units = x@units
+        positions = time(x)
+        FinCenter = finCenter(x)
+        units = colnames(x)
         ans = series(x)
     } else {
         TS = FALSE
@@ -274,9 +312,9 @@ function(x, method = c("linear", "before", "after"), ...)
     # Convert to Matrix:
     if (class(x) == "timeSeries") {
         TS = TRUE
-        positions = x@positions
-        FinCenter = x@FinCenter
-        units = x@units
+        positions = time(x)
+        FinCenter = finCenter(x)
+        units = colnames(x)
         x = series(x)
     } else {
         TS = FALSE

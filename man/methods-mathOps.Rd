@@ -2,11 +2,14 @@
 
 \alias{math}
 
-\alias{Ops,timeSeries,timeSeries-method}
-\alias{Ops,array,timeSeries-method}
-\alias{Ops,timeSeries,array-method}
-\alias{Ops,timeSeries,vector-method}
 \alias{Ops,vector,timeSeries-method}
+\alias{Ops,array,timeSeries-method}
+\alias{Ops,ts,timeSeries-method}
+\alias{Ops,timeSeries,vector-method}
+\alias{Ops,timeSeries,array-method}
+\alias{Ops,timeSeries,ts-method}
+\alias{Ops,timeSeries,timeSeries-method}
+
 \alias{-,timeSeries,missing-method}
 \alias{+,timeSeries,missing-method}
 \alias{cummax,timeSeries-method}
@@ -27,6 +30,11 @@
 \alias{scale,timeSeries-method}
 
 \alias{quantile,timeSeries-method}
+
+\alias{diff.timeSeries}
+\alias{scale.timeSeries}
+
+\alias{quantile.timeSeries}
 
 
 \title{Mathematical Time Series Operations}

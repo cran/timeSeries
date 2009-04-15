@@ -15,54 +15,124 @@
 
 ################################################################################
 # S4 METHOD:                MATHEMATICAL OPERATIONS ON DATA:
-#  Compare,timeSeries        Returns group 'Compare' for a 'timeSeries' object
 #  Ops,timeSeries            Returns group 'Ops' for a 'timeSeries' object
-#  Math,timeSeries           Returns group Math for a 'timeSeries' object
-#  Math2,timeSeries          Returns group Math2 for a 'timeSeries' object
-#  Summary,timeSeries        Returns group Summary for a 'timeSeries' object
 #  diff,timeSeries           Differences a 'timeSeries' object
 #  scale,timeSeries          Centers and/or scales a 'timeSeries' object
 #  quantile,timeSeries       Returns quantiles of an univariate 'timeSeries'
 ################################################################################
 
+# ------------------------------------------------------------------------------
+# Ops
+
+setMethod("Ops", c("vector", "timeSeries"),
+          function(e1, e2)
+      {
+          lattrs <- attributes(e2)
+          e2 <- getDataPart(e2)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e2))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
+setMethod("Ops", c("array", "timeSeries"),
+          function(e1, e2)
+      {
+          e1 <- as.vector(e1)
+          lattrs <- attributes(e2)
+          e2 <- getDataPart(e2)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e2))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
+setMethod("Ops", c("ts", "timeSeries"),
+          function(e1, e2)
+      {
+          e1 <- as(e1, "matrix")
+          lattrs <- attributes(e2)
+          e2 <- getDataPart(e2)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e2))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
+setMethod("Ops", c("timeSeries", "vector"),
+          function(e1, e2)
+      {
+          lattrs <- attributes(e1)
+          e1 <- getDataPart(e1)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e1))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
+setMethod("Ops", c("timeSeries", "array"),
+          function(e1, e2)
+      {
+          lattrs <- attributes(e1)
+          e1 <- getDataPart(e1)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e1))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
+setMethod("Ops", c("timeSeries", "ts"),
+          function(e1, e2)
+      {
+          lattrs <- attributes(e1)
+          e1 <- getDataPart(e1)
+          e2 <- as(e2, "matrix")
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e1))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
+      })
+
 setMethod("Ops", c("timeSeries", "timeSeries"),
           function(e1, e2)
       {
-
-          test = as.integer((e1@format == "counts") + (e2@format == "counts"))
-          switch(as.character(test),
-                 # convert series y to FinCenter of series x
-                 "0" = {
-                     if (finCenter(e1) != finCenter(e2)) {
-                         finCenter(e2) <- finCenter(e1)
-                         warning("FinCenter changed to ",
-                                 finCenter(e2), call. = FALSE)}
-                 },
-                 # if one of the two series is  signal series, the other
-                 # series is converted to a signal series
-                 "1" = {
-                     e1 <- timeSeries(e1, format = "counts");
-                     e2 <- timeSeries(e2, format = "counts")
-                 })
-
+          # check if conformable arrays
+          if (!identical(dim(e1), dim(e2)))
+              stop("non-conformable arrays")
           # check if positions are identical
-          if (!identical(time(e1), time(e2)))
+          if (!identical(e1@positions, e2@positions))
               stop("positions slot do not match")
-
-          series(e1) <- callGeneric(as(e1, "matrix"), as(e2, "matrix"))
-          e1@recordIDs <- data.frame(e1@recordIDs, e2@recordIDs)
-
-          # should construct new timeSeries with name combines of the others ...
-
-          e1
+          # save recordIDs
+          recordIDs <- data.frame(e1@recordIDs, e2@recordIDs)
+          lattrs <- attributes(e1)
+          e1 <- getDataPart(e1)
+          e2 <- getDataPart(e2)
+          value <- callGeneric(e1, e2)
+          if (identical(dim(value), dim(e1))) {
+              attributes(value) <- lattrs
+              value <- asS4(value, TRUE)
+          }
+          value
       })
 
 # ------------------------------------------------------------------------------
 
-setMethod("cummax", "timeSeries", function(x) callGeneric(as(x, "matrix")))
-setMethod("cummin", "timeSeries", function(x) callGeneric(as(x, "matrix")))
-setMethod("cumprod", "timeSeries", function(x) callGeneric(as(x, "matrix")))
-setMethod("cumsum", "timeSeries", function(x) callGeneric(as(x, "matrix")))
+setMethod("cummax", "timeSeries", function(x) callGeneric(getDataPart(x)))
+setMethod("cummin", "timeSeries", function(x) callGeneric(getDataPart(x)))
+setMethod("cumprod", "timeSeries", function(x) callGeneric(getDataPart(x)))
+setMethod("cumsum", "timeSeries", function(x) callGeneric(getDataPart(x)))
 
 # ------------------------------------------------------------------------------
 
@@ -91,7 +161,7 @@ setMethod("diff", "timeSeries",
           # FUNCTION:
 
           # Convert:
-          y = as.matrix(x)
+          y = getDataPart(x) # as.matrix(x)
 
           # Check NAs:
           # if (any(is.na(y))) stop("NAs are not allowed in time series")
@@ -99,16 +169,22 @@ setMethod("diff", "timeSeries",
           # Difference:
           z = diff(y, lag = lag, difference = diff)
 
+          diffNums = dim(y)[1] - dim(z)[1]
+
           # Trim:
           if (!trim) {
-              diffNums = dim(y)[1] - dim(z)[1]
               zpad = matrix(0*y[1:diffNums, ] + pad, nrow = diffNums)
-              rownames(zpad) = rownames(y)[1:diffNums]
               z = rbind(zpad, z)
           }
 
+          pos <-
+              if (!trim)
+                  x@positions
+              else
+                  x@positions[-(1:diffNums)]
+
           # Record IDs:
-          df = x@recordIDs
+          df <- x@recordIDs
           if (trim) {
               if (sum(dim(df)) > 0) {
                   TRIM = dim(df)[1] - dim(z)[1]
@@ -117,15 +193,16 @@ setMethod("diff", "timeSeries",
           }
 
           # Return Value:
-          timeSeries(data = z, charvec = rownames(z), units = colnames(z),
+          timeSeries(data = z, charvec = pos, units = colnames(z),
                      format = x@format, zone = x@FinCenter,
                      FinCenter = x@FinCenter, recordIDs = df,
                      title = x@title, documentation = x@documentation)
       })
 
+# until UseMethod dispatches S4 methods in 'base' functions
+diff.timeSeries <- function(x, ...) timeSeries::diff(x, ...)
 
 # ------------------------------------------------------------------------------
-
 
 setMethod("scale", "timeSeries",
           function(x, center = TRUE, scale = TRUE)
@@ -139,10 +216,11 @@ setMethod("scale", "timeSeries",
     # FUNCTION:
 
     # Scale:
-    series(x) = scale(x = series(x), center = center, scale = scale)
-
-    # Return Value:
-    x
+    setDataPart(x, scale(x = getDataPart(x), center = center, scale = scale))
 })
+
+# until UseMethod dispatches S4 methods in 'base' functions
+scale.timeSeries <- function (x, center = TRUE, scale = TRUE)
+    timeSeries::scale(x, center = center, scale = scale)
 
 ################################################################################

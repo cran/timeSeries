@@ -1,10 +1,7 @@
-\name{fSeries-package}
+\name{timeSeries-package}
 
 
-\alias{fSeries-package}
-
-
-\alias{fSeries}
+\alias{timeSeries-package}
 
 
 \docType{package}
@@ -23,12 +20,12 @@
 \details{
 
     \tabular{ll}{
-        Package:    \tab fSeries\cr
+        Package:    \tab timeSeries\cr
         Type:       \tab Package\cr
-        Version:    \tab 270.73.1\cr
-        Date:       \tab 2008\cr
-        License:    \tab GPL Version 2 or later\cr
-        Copyright:  \tab (c) 1999-2008 Diethelm Wuertz and Rmetrics Foundation\cr
+%         Version:    \tab 270.73.1\cr
+%         Date:       \tab 2008\cr
+%         License:    \tab GPL Version 2 or later\cr
+%         Copyright:  \tab (c) 1999-2008 Diethelm Wuertz and Rmetrics Foundation\cr
         URL:        \tab \url{http://www.rmetrics.org}
     }
     

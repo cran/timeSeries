@@ -12,41 +12,26 @@
 #  A copy of the GNU General Public License is available at
 #  ../../COPYING
 
-
 ################################################################################
 
+.First.lib <- function(libname, pkgname){
+    if(!is.numeric(getRmetricsOptions("max.print")))
+	setRmetricsOptions(max.print = 100) #-> show() of large matrices
 
-.First.lib =
-function(lib, pkg)
-{
-
-###     # Startup Mesage and Desription:
-###     MSG <- if(getRversion() >= "2.5") packageStartupMessage else message
-###     dsc <- packageDescription(pkg)
-###     if(interactive() || getOption("verbose")) {
-###         # not in test scripts
-###         MSG(sprintf("Rmetrics Package %s (%s) loaded.", pkg, dsc$Version))
-###     }
-
-    # see ?cbind2
-    # Currently, a call 'methods:::bind_activation(TRUE)'
-    methods:::bind_activation(TRUE)
+    # YC: This should really go in methods package. keep it here for
+    # the time being. (R -2.9.0)
+    setOldClass("difftime")
 }
+
+# ------------------------------------------------------------------------------
 
 .onLoad <- function(libname, pkgname) {
+    if(!is.numeric(getRmetricsOptions("max.print")))
+	setRmetricsOptions(max.print = 100) #-> show() of large matrices
 
-    # see ?cbind2
-    # Currently, a call 'methods:::bind_activation(TRUE)'
-    methods:::bind_activation(TRUE)
-
-    if(is.null(getOption("max.print")))
-	options(max.print = 10000)#-> show() of large matrices
+    # YC: This should really go in methods package. keep it here for
+    # the time being. (R -2.9.0)
+    setOldClass("difftime")
 }
 
-.onUnload <- function(libpath) methods:::bind_activation(FALSE)
-
-if(!exists("Sys.setenv", mode = "function")) # pre R-2.5.0, use "old form"
-    Sys.setenv <- Sys.putenv
-
 ################################################################################
-

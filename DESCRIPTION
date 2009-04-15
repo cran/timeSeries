@@ -1,11 +1,12 @@
 Package: timeSeries
-Version: 290.80
-Date: 1997 - 2008
+Version: 290.81
+Revision: 4053
+Date: 2009-04-15
 Title: Rmetrics - Financial Time Series Objects
 Author: Diethelm Wuertz and Yohan Chalabi
 Depends: R (>= 2.6.0), graphics, grDevices, methods, stats, utils,
-        timeDate
-Suggests: robustbase
+        timeDate (>= 290.84)
+Suggests: robustbase, RUnit
 Maintainer: Rmetrics Core Team <Rmetrics-core@r-project.org>
 Description: Environment for teaching "Financial Engineering and
         Computational Finance"
@@ -16,4 +17,6 @@ LazyLoad: yes
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: Tue Feb  3 22:26:04 2009; yankee
+Packaged: 2009-04-15 17:34:36 UTC; yankee
+Repository: CRAN
+Date/Publication: 2009-04-16 07:02:12

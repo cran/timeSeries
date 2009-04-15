@@ -1,4 +1,4 @@
-#
+
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2 of the License, or
@@ -15,96 +15,105 @@
 
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
-#  cbind.timeSeries          Binds columns of two 'timeSeries' objects
-#  rbind.timeSeries          Binds rows of two 'timeSeries' objects
+#  cbind,timeSeries          Binds columns of two 'timeSeries' objects
+#  rbind,timeSeries          Binds rows of two 'timeSeries' objects
 ################################################################################
 
-setMethod("cbind2",
-          c("timeSeries", "timeSeries"),
-          function(x, y)
-      {
-          # A function implemented by Diethelm Wuertz and Yohan Chalabi
+cbind.timeSeries <- function(..., deparse.level = 1)
+{
+    # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
-          # Description:
-          #   Merges two 'timeSeries' objects
+    dots <- list(...)
 
-          # Arguments:
-          #   x, y - 'timeSeries' objects
+    # remove NULL from dots args
+    if (any(t <- unlist(lapply(dots, is.null))))
+        dots[t] <- NULL
 
-          # Value:
-          #   Returns a S4 object of class 'timeSeries'.
+    # coerce to timeSeries object if not a timeSeries
+    if (any(t <- !unlist(lapply(dots, inherits, "timeSeries"))))
+        dots[t] <- lapply(dots[t], as.timeSeries)
 
-          # FUNCTION:
+    # get names of arguments if any
+    units <- unlist(lapply(dots, colnames))
+    if (length(t <- as.logical((nchar(nm <- names(units))))))
+        units[t] <- nm[t]
 
-          test = as.integer((x@format == "counts") + (y@format == "counts"))
-          switch(as.character(test),
-                 # convert series y to FinCenter of series x
-                 "0" = { FinCenter <- finCenter(y) <- finCenter(x) },
-                 # if one of the two series are signal series, the other
-                 # series is converted to a signal series
-                 "1" = { x <- timeSeries(x, format = "counts");
-                       y <- timeSeries(y, format = "counts") })
+    # change colnames if they are the same
+    if (length(unique(units)) != length(units)) {
+        for (name in unique(units)) {
+            pos <- grep(name, units)
+            if (length(pos) != 1)
+                units[pos] <- paste(units[pos], seq(pos), sep = ".")
+        }
+    }
 
-          ###  # YC: unnecessary if c(time(x), time(y)) is used in
-          ###  # next statement
+    # FIXME : data.frame
 
-          ###  # check if x and y have same date format,
-          ###  # if not convert to the most extended one
-          ###  if (y@format != x@format) {
-          ###      if (nchar(y@format) > nchar(x@format)) {
-          ###          x@positions <- format(time(x), format = y@format)
-          ###          rownames(x) <- x@positions
-          ###          x@format <- y@format
-          ###      } else {
-          ###          y@positions <- format(time(y), format = x@format)
-          ###          rownames(y) <- y@positions
-          ###          y@format <- x@format
-          ###      }
-          ###  }
+    # FIXME
+    if (any(unlist(lapply(dots, function(ts) ts@format == "counts")))) {
+        if (diff(range((unlist(lapply(dots, nrow))))))
+            stop("number of rows must match")
+        data <- as.matrix(as.data.frame(lapply(dots, getDataPart)))
+        return(timeSeries(data=data, units = units))
+    }
 
-          # Manipulate in matrix form:
-          positions <- as.character(c(time(x), time(y)))
-          LENGTH <- nrow(x)
-          DUP1 <- duplicated(positions)[1:LENGTH]
-          DUP2 <- duplicated(positions)[-(1:LENGTH)]
-          # YC : avoid troubles with different format in @positions
-          M1 <- getDataPart(x)
-          M2 <- getDataPart(y)
-          rownames(M1) <- positions[1:LENGTH]
-          rownames(M2) <- positions[-(1:LENGTH)]
-          dim1 <- dim(M1)
-          dim2 <- dim(M2)
-          X1 <- matrix(rep(NA, times = dim1[1]*dim2[2]), ncol = dim2[2])
-          X2 <- matrix(rep(NA, times = dim2[1]*dim1[2]), ncol = dim1[2])
-          # YC : Does not seem to be necessary
-          # colnames(X1) <- colnames(M2)
-          NC <- (dim1 + dim2)[2]+1
-          Z <- rbind(cbind(M1, X1, DUP1), cbind(X2, M2, DUP2))
-          Z <- Z[order(rownames(Z)), ]
-          NC1 <- dim1[2]+1
-          IDX <- (1:(dim1+dim2)[1])[Z[, NC] == 1]
-          Z[IDX-1, NC1:(NC-1)] <- Z[IDX, NC1:(NC-1)]
-          Z <- Z[!Z[, NC], -NC]
+    # ensure that data is sorted
+    dots <- lapply(dots, sort)
 
-          # FIXME : what about @recordIDs ?
+    # get list of timestamps
+    tds <- lapply(dots, slot, "positions")
 
-          units <- c(colnames(x), colnames(y))
-          # change colnames if there are the same
-          if (length(unique(units)) != length(units)) {
-              for (name in unique(units)) {
-                  pos <- grep(name, units)
-                  if (length(pos) != 1)
-                      units[pos] <- paste(units[pos], seq(pos), sep = ".")
-              }
-          }
+    # fast version when timeSeries have identical timestamps
+    if (all(sapply(tds, identical, tds[[1]])))
+    {
+        td <- tds[[1]]
+        data <- array(unlist(dots), dim=c(length(td), sum(sapply(dots, ncol))))
+        timeSeries(data = data, charvec = td, units = units, zone = "GMT",
+                       FinCenter = finCenter(dots[[1]]))
+    } else {
+        # aligned timestamps
+        td <- sort(unique(unlist(tds)))
 
-          # Create time series:
-          timeSeries( data = Z, charvec = rownames(Z), zone =
-              finCenter(x), FinCenter = finCenter(x), units = units)
-      })
+        fun <- function(ts, td, ref) {
+            mm <- matrix(NA, ncol = ncol(ts), nrow = length(ref))
+            mm[findInterval(td, ref),] <- getDataPart(ts)
+            mm}
+        data <- mapply(fun, ts = dots, td = tds, MoreArgs = list(ref=td),
+                       SIMPLIFY = FALSE)
+        data <- array(unlist(data), dim=c(length(td), sum(sapply(dots, ncol))))
+
+        # note that new timeSeries get FinCenter of first entry of args
+        timeSeries(data = data, charvec = td, units = units, zone = "GMT",
+                   FinCenter = finCenter(dots[[1]]))
+    }
+}
 
 # ------------------------------------------------------------------------------
 
+## # YC:
+## # Note that since 2.9.0 S3 methods can not be defined for S4 classes
+## # which extends an object like matrix. Therefore we turn all S3
+## # generics to S4 generics for backward compatibility
+
+## # Note that since 2.8.0 it is possible to define methods for functions
+## # with dots ...
+
+## if (getRversion() < "2.9.0") {
+##     cbind.timeSeries <-
+##         function(..., deparse.level = 1)
+##             .cbind.timeSeries(..., deparse.level = deparse.level)
+## } else {
+##     setGeneric("cbind", signature = "...") #-> creates warning but
+##                                            # cannot avoid it with
+##                                            # current dotsMethods scheme
+##     setMethod("cbind", "timeSeries", function(..., deparse.level = 1)
+##               .cbind.timeSeries(..., deparse.level = deparse.level))
+## }
+
+# ------------------------------------------------------------------------------
+
+setMethod("cbind2", c("timeSeries", "timeSeries"),
+          function(x, y) cbind(x, y))
 setMethod("cbind2", c("timeSeries", "ANY"),
           function(x,y) callGeneric(x, as(y, "timeSeries")))
 setMethod("cbind2", c("ANY", "timeSeries"),
@@ -113,57 +122,73 @@ setMethod("cbind2", c("timeSeries", "missing"), function(x,y) x)
 
 # ------------------------------------------------------------------------------
 
-setMethod("rbind2", c("timeSeries", "timeSeries"),
-          function(x, y)
-      {
-          # A function implemented by Diethelm Wuertz and Yohan Chalabi
+rbind.timeSeries <- function(..., deparse.level = 1)
+{
+    # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
-          # Check Arguments:
-          stopifnot(dim(x)[2] == dim(y)[2])
+    # Check Arguments:
+    dots <- list(...)
 
-          test = as.integer((x@format == "counts") + (y@format == "counts"))
-          switch(as.character(test),
-                 # convert series y to FinCenter of series x
-                 "0" = { FinCenter <- finCenter(y) <- finCenter(x) },
-                 # if one of the two series are signal series, the other
-                 # series is converted to a signal series
-                 "1" = { x <- timeSeries(x, format = "counts");
-                       y <- timeSeries(y, format = "counts") })
+    # remove NULL from dots args
+    if (any(t <- unlist(lapply(dots, is.null))))
+        dots[t] <- NULL
 
-          ###  # check if x and y have same date format,
-          ###  # if not convert to the most extended one
-          ###  if (y@format != x@format) {
-          ###      if (nchar(y@format) > nchar(x@format)) {
-          ###          x@positions <- format(time(x), format = y@format)
-          ###          rownames(x) <- x@positions
-          ###          x@format <- y@format
-          ###      } else {
-          ###          y@positions <- format(time(y), format = x@format)
-          ###          rownames(y) <- y@positions
-          ###          y@format <- x@format
-          ###      }
-          ###  }
+    # coerce to timeSeries object if not a timeSeries
+    if (any(t <- !unlist(lapply(dots, inherits, "timeSeries"))))
+        dots[t] <- lapply(dots[t], as.timeSeries)
 
-          # Bind:
-          positions <- as.character(c(time(x), time(y)))
-          data <- rbind(getDataPart(x), getDataPart(y))
-          # YC : Does not seem necessary
-          # if (x@format == "counts") positions <- as.numeric(positions)
-          recordIDs <- as.data.frame(rbind(x@recordIDs, y@recordIDs))
+    if (diff(range((unlist(lapply(dots, ncol))))))
+        stop("number of columns must match")
 
-          # Order series
-          order <- order(positions)
-          data <- data[order,,drop=FALSE]
-          positions <- positions[order]
-          recordIDs <- recordIDs[order,,drop=FALSE]
-          units <- paste(colnames(x), colnames(y), sep = "_")
+    # get names of arguments if any otherwise use colnames
+    units <- unlist(lapply(dots, colnames))
+    if (length(t <- as.logical((nchar(nm <- names(units))))))
+        units[t] <- nm[t]
+    units <- structure(units, dim = c(ncol(dots[[1]]), length(dots)))
+    units <- apply(units, 1, paste, collapse = "_")
 
-          timeSeries(data = data, charvec = positions, zone =
-                     finCenter(x), FinCenter = finCenter(x), units = units)
-      })
+    # FIXME : data.frame
+
+    # Bind:
+    # data <- base::rbind(...) # no because S3 method dispatch done in C level
+    data <- do.call(base::rbind, lapply(dots, getDataPart))
+
+    if (any(unlist(lapply(dots, function(ts) ts@format == "counts")))) {
+        return(timeSeries(data=data, units = units))
+    }
+
+    tds <- unlist(lapply(dots, slot, "positions"))
+    ans <- timeSeries(data = data, charvec = tds, zone = "GMT",
+                      FinCenter = finCenter(dots[[1]]), units = units)
+    sort(ans)
+}
 
 # ------------------------------------------------------------------------------
 
+## # YC:
+## # Note that since 2.9.0 S3 methods can not be defined for S4 classes
+## # which extends an object like matrix. Therefore we turn all S3
+## # generics to S4 generics for backward compatibility
+
+## # Note that since 2.8.0 it is possible to define methods for functions
+## # with dots ...
+
+## if (getRversion() < "2.9.0") {
+##     rbind.timeSeries <-
+##         function(..., deparse.level = 1)
+##             .rbind.timeSeries(..., deparse.level = deparse.level)
+## } else {
+##     setGeneric("rbind", signature = "...") #-> creates warning but
+##                                            # cannot avoid it with
+##                                            # current dotsMethods scheme
+##     setMethod("rbind", "timeSeries", function(..., deparse.level = 1)
+##               .rbind.timeSeries(..., deparse.level = deparse.level))
+## }
+
+# ------------------------------------------------------------------------------
+
+setMethod("rbind2", c("timeSeries", "timeSeries"),
+          function(x, y) rbind(x, y))
 setMethod("rbind2", c("timeSeries", "ANY"),
           function(x,y) callGeneric(x, as(y, "timeSeries")))
 setMethod("rbind2", c("ANY", "timeSeries"),

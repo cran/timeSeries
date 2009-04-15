@@ -20,8 +20,6 @@
 #  time<-                    Modifies positions of a 'timeSeries' object
 # METHOD:                   POSITION HANDLING:
 #  time,timeSeries           extracs time positions from a 'timeSeries'
-#  index.timeSeries          extracs index positions from a 'timeSeries'
-#  index<-.timeSeries        modifies index positions from a 'timeSeries'
 #  sample,timeSeries         Resamples a 'timeSeries' object in time
 #  sort,timeSeries           Sorts reverts a 'timeSeries' object in time
 #  rev,timeSeries            Reverts a 'timeSeries' object in time
@@ -47,22 +45,10 @@ function(object)
 
     # .Deprecated("time", package = "timeSeries")
 
-    # Create 'timeDate' Object:
-    ans <-
-        if (object@format == "counts") {
-            as.integer(object@positions)
-        } else {
-            timeDate(charvec = object@positions, format = object@format,
-                     zone = object@FinCenter, FinCenter = object@FinCenter)
-        }
-
-    # Return Value:
-    ans
+    time(object)
 }
 
-
 # ------------------------------------------------------------------------------
-
 
 "newPositions<-" =
 function(object, value)
@@ -71,30 +57,29 @@ function(object, value)
     # .Deprecated("time<-", "timeSeries")
 
     # FUNCTION:
-    ans = timeSeries(object, value)
+    rownames(object) <- value
 
     # Return Value:
-    ans
+    object
 }
 
 # ------------------------------------------------------------------------------
 
-## if (!exists("time<-", mode = "function"))
-"time<-" <- function(x, value) UseMethod("time<-")
+`time<-` <- function(x, value) UseMethod("time<-")
 
-# ------------------------------------------------------------------------------
-"time<-.timeSeries" <-
-    function(x, value)
+# to avoid conflict with zoo package
+`time<-.timeSeries` <- function(x, value)
 {
-    stopifnot(is.timeSeries(x))
-
-    # FUNCTION:
-    ans = timeSeries(x, value)
-
-    # Return Value:
-    ans
-
+    rownames(x) <- value
+    x
 }
+
+## setMethod("time<-", "timeSeries", function(x, value)
+##       {
+##           rownames(x) <- value
+##           # Return
+##           x
+##       })
 
 ################################################################################
 # METHOD:                   POSITION HANDLING:
@@ -108,7 +93,7 @@ function(object, value)
 setMethod("time" ,
           "timeSeries",
           function(x, ...)
-      {   # A function implemented by Diethelm Wuertz
+      {   # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
           # Description:
           #   Extracs time positions from a 'timeSeries'
@@ -121,41 +106,15 @@ setMethod("time" ,
 
           # FUNCTION:
 
-          # Get Positions:
-          ans <-
-              if (x@format == "counts") {
-                  as.numeric(x@positions)
-              } else {
-                  ## YC : do not use x@format because it is the input
-                  ## format and not output format. Should it be
-                  ## changed?
-                  timeDate(charvec = x@positions, # format = x@format,
-                           zone = x@FinCenter, FinCenter = x@FinCenter)
-              }
-
-          # Return Value:
-          ans
+          if (length(x@positions)>0)
+              timeDate(x@positions, zone = "GMT",
+                       FinCenter = x@FinCenter)
+          else
+              seq.int(NROW(x))
       })
 
-# ------------------------------------------------------------------------------
-
-# temporary fix until we have a name space and avoid problems with
-# function index in package "zoo"
-
-## if (!exists("index", mode = "function"))
-##     index <- function(x, ...) UseMethod("index")
-
-## index.timeSeries <- function(x, ...) time.timeSeries(x, ...)
-
-## if (!exists("index<-", mode = "function"))
-##     "index<-" <- function(x, value) UseMethod("index<-")
-
-## "index<-.timeSeries" <- function(x, value) time.timeSeries(x, value)
-
-## setMethod("index", "timeSeries",
-##           function(x, ...) time.timeSeries(x, ...))
-## setMethod("index<-", "timeSeries",
-##           function(x,value) "time<-.timeSeries"(x, value))
+# until UseMethod dispatches S4 methods in 'base' functions
+time.timeSeries <- function(x, ...) timeSeries::time(x, ...)
 
 # ------------------------------------------------------------------------------
 
@@ -182,27 +141,52 @@ setMethod("sort",
 
     # FUNCTION:
 
-    # Data:
-    POS <- x@positions
-    # YC: as.integer is important because order(c(" 1", " 2", "10"))
-    # YC: gives different results depending on local settings
-    index <-
-        if (x@format == "counts")
-            order(as.integer(POS), decreasing = decreasing)
-        else
-            order(POS, decreasing = decreasing)
+    # check if really necessary to sort x
+    # important in order to improve efficiency
+    if (!decreasing && !is.unsorted(x)) return(x)
 
-    # Return Value:
-    x[index, ]
-
+    if (length(x@positions)>0)
+        x[order(x@positions, decreasing = decreasing), ]
+    else
+        x
 })
+
+# until UseMethod dispatches S4 methods in 'base' functions
+sort.timeSeries <- function(x, decreasing = FALSE, ...)
+    timeSeries::sort(x, decreasing = decreasing, ...)
 
 # ------------------------------------------------------------------------------
 
 setMethod("rev", "timeSeries", function(x) x[NROW(x):1,])
-setMethod("start" , "timeSeries", function(x, ...) time(sort(x)[1,]))
+
+# until UseMethod dispatches S4 methods in 'base' functions
+rev.timeSeries <- function(x) timeSeries::rev(x)
+
+# ------------------------------------------------------------------------------
+
+setMethod("start" , "timeSeries", function(x, ...)
+{
+    if (length(x@positions)>0)
+        timeDate(min(x@positions), zone = x@FinCenter, FinCenter = x@FinCenter)
+    else
+        NULL
+})
+
+# until UseMethod dispatches S4 methods in 'base' functions
+start.timeSeries <- function(x, ...) timeSeries::start(x, ...)
+
+# ------------------------------------------------------------------------------
+
 setMethod("end" , "timeSeries", function(x, ...)
-    time(sort(x, decreasing = TRUE)[1,]))
+    {
+    if (length(x@positions)>0)
+        timeDate(max(x@positions), zone = x@FinCenter, FinCenter = x@FinCenter)
+    else
+        NULL
+})
+
+# until UseMethod dispatches S4 methods in 'base' functions
+end.timeSeries <- function(x, ...) timeSeries::end(x, ...)
 
 ################################################################################
 
