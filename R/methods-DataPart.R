@@ -15,17 +15,53 @@
 
 ################################################################################
 # S4 METHODS:               PRINT AND PLOT FUNCTIONS:
-#  getDataPart,timeSeries    Summarizes a 'timeSeries' object
+#  getDataPart,timeSeries
+#  setDataPart,timeSeries
+
 ################################################################################
 
 # this makes getDataPart a bit faster than default function
-setMethod("getDataPart", "timeSeries",
+setMethod("getDataPart", "timeSeries", #"signalSeries",
           function(object)
       {
-         value <- object
-         attributes(value) <- NULL
-         attr(value, "dim") <- attr(object, "dim")
-         object <- value
-
-         object
+          lattrs <- list(dim = dim(object),
+                         dimnames = list(NULL, object@units))
+          attributes(object) <- lattrs
+          object
       })
+
+# ------------------------------------------------------------------------------
+
+# this makes setDataPart a bit faster than default function
+
+if (getRversion() < "2.8.0") {
+    setMethod("setDataPart", "timeSeries",
+              function(object, value)
+          {
+              value <- as(value, "matrix")
+
+              supplied <- attributes(object)
+              valueAttrs <- attributes(value)
+
+              supplied[names(valueAttrs)] <- valueAttrs
+              attributes(value) <- supplied
+
+              asS4(value, TRUE)
+          })
+} else {
+    setMethod("setDataPart", "timeSeries",
+              function(object, value, check = TRUE)
+          {
+              if (check) value <- as(value, "matrix")
+
+              supplied <- attributes(object)
+              valueAttrs <- attributes(value)
+
+              supplied[names(valueAttrs)] <- valueAttrs
+              attributes(value) <- supplied
+
+              asS4(value, TRUE)
+          })
+}
+
+################################################################################

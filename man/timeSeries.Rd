@@ -6,6 +6,17 @@
 \alias{TimeSeriesClass}
 
 \alias{timeSeries}
+\alias{timeSeries,ANY,ANY-method}
+\alias{timeSeries,ANY,missing-method}
+\alias{timeSeries,ANY,timeDate-method}
+\alias{timeSeries,matrix,ANY-method}
+\alias{timeSeries,matrix,missing-method}
+\alias{timeSeries,matrix,timeDate-method}
+\alias{timeSeries,missing,ANY-method}
+\alias{timeSeries,missing,missing-method}
+\alias{timeSeries,missing,timeDate-method}
+\alias{timeSeries,matrix,numeric-method}
+
 \alias{index_timeSeries}
 \alias{timeSeries-class}
 \alias{index_timeSeries-class}
@@ -43,7 +54,7 @@ timeSeries(data, charvec, units = NULL, format = NULL, zone = "",
     documentation = NULL, \dots)
        
 readSeries(file, header = TRUE, sep = ";", zone = "", 
-    FinCenter = "", title = NULL, documentation = NULL, \dots)
+    FinCenter = "",  \dots)
 
 seriesData(object)
 }
@@ -52,10 +63,11 @@ seriesData(object)
 \arguments{
 
     \item{charvec}{
-        a character vector of dates and times.
+        a character vector of dates and times or any objects which can
+        be coerced to a \code{timeDate} object.
         }
     \item{data}{
-        a \code{data.frame} or a \code{matrix} object of numeric data.
+        a \code{matrix} object or any objects which can be coereced to a matrix.
         }
     \item{documentation}{
         optional documentation string, or a vector of character strings.
@@ -209,6 +221,15 @@ seriesData(object)
    from
    to
    applySeries(tsRet, from, to, FUN = sum)
+
+## create large timeSeries objects with different 'charvec' object classes
+   # charvec is a 'timeDate' object
+   head(timeSeries(1:1e6L, timeSequence(length.out = 1e6L, by = "sec")))
+   head(timeSeries(1:1e6L, seq(Sys.timeDate(), length.out = 1e6L, by = "sec")))
+   # 'charvec' is a 'POSIXt' object
+   head(timeSeries(1:1e6L, seq(Sys.time(), length.out = 1e6L, by = "sec")))
+   # 'charvec' is a 'numeric' object
+   head(timeSeries(1:1e6L, 1:1e6L))
 }
 
 

@@ -47,12 +47,31 @@ is.timeSeries <-
 
 # ------------------------------------------------------------------------------
 
+is.signalSeries <- function(x) !as.logical(length(x@positions))
+
+# ------------------------------------------------------------------------------
+
 # YC : Note if is.na returns a timeSeries objects then we have problem
 # with the function quantile...
 setMethod("is.na", "timeSeries", function(x)
     setDataPart(x, is.na(getDataPart(x))))
 
-setMethod("quantile", "timeSeries", function(x, ...)
-          callGeneric(as(x, "matrix"), ...))
+# ------------------------------------------------------------------------------
+## YC: quantile works thanks to inheritance from 'matrix'
+## setMethod("quantile", "timeSeries", function(x, ...)
+##           callGeneric(x = getDataPart(x), ...))
+
+## # until UseMethod dispatches S4 methods in 'base' functions
+## quatile.timeSeries <- function(x, ...) timeSeries::quantile(x, ...)
+
+# ------------------------------------------------------------------------------
+
+if (getRversion() < "2.8.0") {
+    setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE)
+              callGeneric(x@positions, na.rm = na.rm))
+} else {
+    setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE, strictly = FALSE)
+              callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+}
 
 ################################################################################

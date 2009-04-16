@@ -30,8 +30,11 @@ setMethod("show", "timeSeries",
 
     # FUNCTION:
 
-    # Unlike print the argument for show is 'object'.
-    data <- as.matrix(object)
+    if (ptest <- (is.numeric(max <- getRmetricsOptions("max.print")) &&
+                  ((omitted <- NROW(object) - max) > 0)))
+        object <- object[seq.int(max),]
+
+    data <- as(object, "matrix")
     recordIDs <- object@recordIDs
     FinCenter <- finCenter(object)
 
@@ -39,21 +42,23 @@ setMethod("show", "timeSeries",
     cat(FinCenter, "\n", sep = "")
     if (!prod(dim(recordIDs))) {
         if (dim(data)[1] == dim(recordIDs)[1]) {
-            print(cbind(data, as.matrix(recordIDs)), quote = FALSE)
+            callGeneric(cbind(data, as.matrix(recordIDs))) #, quote = FALSE)
         } else {
-            print(data)
+            callGeneric(data)
         }
     } else {
-        print(data)
+        callGeneric(data)
     }
 
+    if (ptest)
+        cat(gettextf("...\n[ reached getRmetricsOptions('max.print') -- omitted %i rows ]\n", omitted))
+
     # Return Value:
-    invisible(object)
+    invisible(NULL) # as specified in ?show
 })
 
 
 # ------------------------------------------------------------------------------
-
 
 .print.timeSeries <-
     function(x, FinCenter = NULL, format = NULL,
@@ -118,4 +123,3 @@ setMethod("print", "timeSeries", .print.timeSeries)
 
 
 ################################################################################
-

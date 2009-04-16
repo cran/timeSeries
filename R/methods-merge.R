@@ -14,57 +14,37 @@
 
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
-#  merge.timeSeries          Merges two 'timeSeries' objects
+#  merge,timeSeries          Merges two 'timeSeries' objects
 
 setMethod("merge", c("timeSeries", "timeSeries"),
     function(x, y, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
-    test = as.integer((x@format == "counts") + (y@format == "counts"))
-    switch(as.character(test),
-           # convert series y to FinCenter of series x
-           "0" = { FinCenter <- finCenter(y) <- finCenter(x) },
-           # if one of the two series are signal series, the other
-           # series is converted to a signal series
-           "1" = { x <- timeSeries(x, format = "counts");
-                       y <- timeSeries(y, format = "counts") })
-
-    # check if x and y have same date format,
-    # if not convert to the most extended one
-    if (y@format != x@format) {
-        if (nchar(y@format) > nchar(x@format)) {
-            x@positions <- format(time(x), format = y@format)
-            rownames(x) <- x@positions
-            x@format <- y@format
-        } else {
-            y@positions <- format(time(y), format = x@format)
-            rownames(y) <- y@positions
-                  y@format <- x@format
-        }
+    if (is.signalSeries(x) | is.signalSeries(y)) {
+        data <- merge(getDataPart(x), getDataPart(x))
+        return(timeSeries(data = data, units = colnames(data)))
     }
 
     # Convert to Data Frame:
-    df.x = data.frame(positions = x@positions, series(x))
-    rownames(df.x) = 1:length(x@positions)
-    df.y = data.frame(positions = y@positions, series(y))
-    rownames(df.y) = length(x@positions) + (1:length(y@positions))
+    df.x <- data.frame(as.numeric(time(x), "sec"), getDataPart(x))
+    names(df.x) <- c("positions", colnames(x))
+    df.y <- data.frame(as.numeric(time(y), "sec"), getDataPart(y))
+    names(df.y) <- c("positions", colnames(y))
 
     # Merge as Data Frame:
-    df = merge(df.x, df.y, all = TRUE)
-    data = matrix(as.numeric(as.matrix(df[, -1])), ncol = NCOL(df)-1)
-    colnames(data) = colnames(df)[-1]
-    rownames(data) = format(df[,1])
-
-    # Compose and sort the timeSeries:
-    ans <- timeSeries(data = data, charvec = as.character(df[,1]),
-                      zone = finCenter(x), FinCenter = finCenter(x), ...)
-    ans <- sort(ans)
+    df <- merge(df.x, df.y, all = TRUE)
+    data <- as.matrix(df[,-1])
+    units <- names(df)[-1]
+    charvec <- as.numeric(df[,1])
 
     # Return Value:
-    ans
+    timeSeries(data = data, charvec = charvec, units = units,
+               zone = "GMT", FinCenter = finCenter(x))
 })
 
+# until UseMethod dispatches S4 methods in 'base' functions
+merge.timeSeries <- function(x, y, ...) timeSeries::merge(x, y, ...)
 
 # ------------------------------------------------------------------------------
 
@@ -75,4 +55,3 @@ setMethod("merge", c("ANY", "timeSeries"),
 setMethod("merge", c("timeSeries", "missing"), function(x,y, ...) x)
 
 ################################################################################
-

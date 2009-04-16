@@ -11,18 +11,26 @@
 % % \alias{index<-}
 
 \alias{time,timeSeries-method}
+\alias{time.timeSeries}
+
 \alias{time<-.timeSeries}
 
 % \alias{index.timeSeries}
 % \alias{index<-.timeSeries}
 
 \alias{sample,timeSeries-method}
+
 \alias{sort,timeSeries-method}
+\alias{sort.timeSeries}
+
 \alias{rev,timeSeries-method}
+\alias{rev.timeSeries}
 
 \alias{start,timeSeries-method}
-\alias{end,timeSeries-method}
+\alias{start.timeSeries}
 
+\alias{end,timeSeries-method}
+\alias{end.timeSeries}
 
 \description{
     
@@ -77,15 +85,16 @@
 
 \arguments{
 
-    \item{method}{ 
-        [alignDailySeries] - \cr
-        the method to be used for the alignment. A character string, one
-        of \code{"before"}, use the data from the row whose position is
-        just before the unmatched position, or \code{"after"}, use the 
-        data from the row whose position is just after the unmatched 
-        position, or \code{"linear"}, interpolate linearly between 
-        \code{"before"} and \code{"after"}. 
-        }      
+%     \item{method}{ 
+%         [alignDailySeries] - \cr
+%         the method to be used for the alignment. A character string, one
+%         of \code{"before"}, use the data from the row whose position is
+%         just before the unmatched position, or \code{"after"}, use the 
+%         data from the row whose position is just after the unmatched 
+%         position, or \code{"linear"}, interpolate linearly between 
+%         \code{"before"} and \code{"after"}. 
+%       }
+      
     \item{value}{
         a valid value for the component of \code{time(x)}.
         }

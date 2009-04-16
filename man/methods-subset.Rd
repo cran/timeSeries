@@ -3,49 +3,52 @@
 
 \alias{TimeSeriesSubsettings}
 
-% \alias{[,timeSeries,missing,missing,ANY-method} 
-% \alias{[,timeSeries,missing,index,missing-method} 
-% \alias{[,timeSeries,missing,index,logical-method} 
-% \alias{[,timeSeries,index,missing,missing-method} 
-% \alias{[,timeSeries,index,missing,logical-method} 
-% \alias{[,timeSeries,index,index,missing-method} 
-% \alias{[,timeSeries,index,index,logical-method} 
-% \alias{[,timeSeries,ANY,ANY,ANY-method} 
-% \alias{[,timeSeries,timeSeries,missing,missing-method} 
-% \alias{[,timeSeries,timeSeries,missing,logical-method} 
-% \alias{[,timeSeries,timeDate,missing,missing-method} 
-% \alias{[,timeSeries,timeDate,index,missing-method} 
-% \alias{[,timeSeries,timeDate,index,logical-method} 
-
+\alias{[,timeSeries,ANY,index_timeSeries-method}
+\alias{[,timeSeries,character,character-method}
+\alias{[,timeSeries,character,index_timeSeries-method}
+\alias{[,timeSeries,character,missing-method}
+\alias{[,timeSeries,index_timeSeries,character-method}
 \alias{[,timeSeries,index_timeSeries,index_timeSeries-method}
 \alias{[,timeSeries,index_timeSeries,missing-method}
-\alias{[,timeSeries,missing,index_timeSeries-method}
-\alias{[,timeSeries,timeDate,index_timeSeries-method}
-\alias{[,timeSeries,timeDate,missing-method}
 \alias{[,timeSeries,matrix,index_timeSeries-method}
 \alias{[,timeSeries,matrix,missing-method}
+\alias{[,timeSeries,missing,character-method}
+\alias{[,timeSeries,missing,index_timeSeries-method}
+\alias{[,timeSeries,missing,missing-method}
+\alias{[,timeSeries,timeDate,character-method}
+\alias{[,timeSeries,timeDate,index_timeSeries-method}
+\alias{[,timeSeries,timeDate,missing-method}
 \alias{[,timeSeries,timeSeries,index_timeSeries-method}
 \alias{[,timeSeries,timeSeries,missing-method}
-\alias{[,timeSeries,missing,missing-method}
-\alias{[,timeSeries,ANY,ANY-method}
 
-\alias{[<-,timeSeries,index_timeSeries,index_timeSeries-method}
-\alias{[<-,timeSeries,index_timeSeries,missing-method}
-\alias{[<-,timeSeries,missing,index_timeSeries-method}
+\alias{$,timeSeries,ANY-method}
+\alias{$,timeSeries,character-method}
+
 \alias{[<-,timeSeries,timeDate,index_timeSeries-method}
 \alias{[<-,timeSeries,timeDate,missing-method}
-\alias{[<-,timeSeries,matrix,index_timeSeries-method}
-\alias{[<-,timeSeries,matrix,missing-method}
 \alias{[<-,timeSeries,timeSeries,index_timeSeries-method}
 \alias{[<-,timeSeries,timeSeries,missing-method}
-\alias{[<-,timeSeries,missing,missing-method}
-\alias{[<-,timeSeries,ANY,ANY-method}
+\alias{[<-,timeSeries,character,character-method}
+\alias{[<-,timeSeries,character,index_timeSeries-method}
+\alias{[<-,timeSeries,character,missing-method}
+\alias{[<-,timeSeries,index_timeSeries,character-method}
+\alias{[<-,timeSeries,matrix,character-method}
+\alias{[<-,timeSeries,timeDate,character-method}
+\alias{[<-,timeSeries,timeSeries,character-method}
 
+\alias{[<-,timeSeries,character,ANY-method}
+\alias{[<-,timeSeries,timeDate,ANY-method}
+
+
+\alias{window,timeSeries-method}
+\alias{cut,timeSeries-method}
+\alias{head,timeSeries-method}
+\alias{tail,timeSeries-method}
 
 \alias{window.timeSeries}
 \alias{cut.timeSeries}
-\alias{head,timeSeries-method}
-\alias{tail,timeSeries-method}
+\alias{head.timeSeries}
+\alias{tail.timeSeries}
 
 \alias{outlier}
 \alias{outlier,timeSeries-method}
@@ -76,14 +79,14 @@
 % \method{[}{timeSeries}(x, i, j, drop)
 % \method{[}{timeSeries}(x, i, j) <- value
 
-\method{window}{timeSeries}(x, start, end, \dots)
+\S4method{window}{timeSeries}(x, start, end, \dots)
 
 \S4method{head}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
 \S4method{tail}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
 
 \S4method{outlier}{timeSeries}(x, sd = 10, complement = TRUE, \dots)
 
-\method{cut}{timeSeries}(x, from, to, \dots)
+\S4method{cut}{timeSeries}(x, from, to, \dots)
 }
 
 
@@ -158,8 +161,8 @@
        
 ## head - 
    head(tS)
+
 }
 
 
 \keyword{chron}
-

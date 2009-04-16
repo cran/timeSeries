@@ -15,7 +15,7 @@
 
 ################################################################################
 # METHOD:                   SUBSETTING METHODS ON DATA:
-#  tail.timeSeries           Returns the tail of a 'timeSeries' object
+#  tail,timeSeries           Returns the tail of a 'timeSeries' object
 ################################################################################
 
 setMethod("tail",
@@ -36,7 +36,11 @@ setMethod("tail",
 
     # Tail:
     if (recordIDs & dim(x)[1] == dim(x@recordIDs)[1])
-        cbind(tail.matrix(x, n = n, ...), tail(x@recordIDs, n = n, ...))
+        cbind(tail.matrix(x, n = n, addrownums = FALSE, ...),
+              tail(x@recordIDs, n = n, addrownums = FALSE, ...))
     else
-        tail.matrix(x, n = n, ...)
+        tail.matrix(x, n = n, addrownums = FALSE, ...)
 })
+
+# until UseMethod dispatches S4 methods in 'base' functions
+tail.timeSeries <- function(x, ...) timeSeries::tail(x, ...)

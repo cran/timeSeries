@@ -3,17 +3,21 @@
 
 \title{Time Series Columns and Rows}
 
-
 \alias{dim,timeSeries-method}
+\alias{dim<-,timeSeries-method}
+
 \alias{dimnames,timeSeries-method}
+\alias{dimnames<-,timeSeries,list-method}
 
 \alias{colnames<-,timeSeries-method}
+\alias{colnames,timeSeries-method}
+
+\alias{rownames,timeSeries-method}
 \alias{rownames<-,timeSeries,timeDate-method}
 \alias{rownames<-,timeSeries,ANY-method}
 
-\alias{dimnames<-,timeSeries,list-method}
-
-% \alias{is.array.timeSeries}
+\alias{names,timeSeries-method}
+\alias{names<-,timeSeries-method}
 
 
 \description{
