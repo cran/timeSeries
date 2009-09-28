@@ -14,26 +14,17 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - Diethelm Wuertz, GPL, wuertz@phys.ethz.ch
-#   2008 - Rmetrics Foundation, GPL, <Rmetrics-core@r-project.org>
-#   www.rmetrics.org
-# Copyrights and Authors for code used from R's base packages, from
-#   contributed R-packages, and/or other sources is mentioned at the
-#   places  where used.
-
 
 ################################################################################
 
 
-test.colCum =
-function()
+test.colCum <-
+    function()
 {
     # RUnit Test:
 
     # Signal Series
-    ts = dummySeries(format = "counts")
+    ts <- dummySeries(format = "counts")
     colCumsums(ts)
     colCummaxs(ts)
     colCummins(ts)
@@ -41,12 +32,28 @@ function()
     colCumreturns(ts)
 
     # Time Series:
-    ts = dummySeries()
+    ts <- dummySeries()
     colCumsums(ts)
     colCummaxs(ts)
     colCummins(ts)
     colCumprods(ts)
     colCumreturns(ts)
+
+    # check that timeSeries with one row still works ...
+    t <- ts[1,]
+
+    checkTrue(is(colCumsums(t), "timeSeries"))
+    checkTrue(is(colCummaxs(t), "timeSeries"))
+    checkTrue(is(colCummins(t), "timeSeries"))
+    checkTrue(is(colCumprods(t), "timeSeries"))
+    checkTrue(is(colCumreturns(t), "timeSeries"))
+
+    checkEquals(nrow(colCumsums(t)), 1)
+    checkEquals(nrow(colCummaxs(t)), 1)
+    checkEquals(nrow(colCummins(t)), 1)
+    checkEquals(nrow(colCumprods(t)), 1)
+    checkEquals(nrow(colCumreturns(t)), 1)
+
 }
 
 

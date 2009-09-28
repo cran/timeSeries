@@ -14,7 +14,9 @@
 
 ################################################################################
 
-.old2newTimeSeries <- function(x)
+
+.old2newTimeSeries <- 
+function(x)
 {
 
     # version 1
@@ -54,13 +56,16 @@
     x
 }
 
+
 # ------------------------------------------------------------------------------
+
 
 ## # Example
 ## library(timeSeries)
 ## setwd("~/r/fPortfolio/data")
 ## rda <- dir()
 ## sapply(rda, .old2newRda, suffix = "")
+
 
 .old2newRda <- function(file, suffix = "_new")
 {
@@ -82,4 +87,6 @@
     invisible(TRUE)
 }
 
+
 ################################################################################
+
