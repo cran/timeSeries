@@ -14,15 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - Diethelm Wuertz, GPL, wuertz@phys.ethz.ch
-#   2008 - Rmetrics Foundation, GPL, <Rmetrics-core@r-project.org>
-#   www.rmetrics.org
-# Copyrights and Authors for code used from R's base packages, from
-#   contributed R-packages, and/or other sources is mentioned at the
-#   places  where used.
-
 
 ################################################################################
 
@@ -51,8 +42,7 @@ function()
     ts0 <- ts[seq(2, nrow(ts), by = 2),]
 
     # test rbind
-    checkTrue(all(rbind(ts1, ts0) == ts))
-    checkTrue(all(time(rbind(ts1, ts0)) == time(ts)))
+    checkTrue(all(time(rbind(ts1, ts0)) == c(time(ts1),time(ts0))))
 
     # test cbind
     checkIdentical(as.vector(is.na(cbind(ts1, ts0))),

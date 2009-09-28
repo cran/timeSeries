@@ -14,19 +14,19 @@
 
 
 ################################################################################
-# S4 METHOD:                MATHEMATICAL OPERATIONS ON DATA:
+# FUNCTION:                 DESCRIPTION:
 #  Ops,timeSeries            Returns group 'Ops' for a 'timeSeries' object
-#  diff,timeSeries           Differences a 'timeSeries' object
-#  scale,timeSeries          Centers and/or scales a 'timeSeries' object
-#  quantile,timeSeries       Returns quantiles of an univariate 'timeSeries'
+#  cummax                    Returns cumulated maxima
+#  cummin                    Returns cumulated minima
+#  cumprod                   Returns cumulated products
+#  cumsum                    Returns cumulated sums
+#  quantile,timeSeries       Sample qunatile of a timeSeries object
 ################################################################################
 
-# ------------------------------------------------------------------------------
-# Ops
 
 setMethod("Ops", c("vector", "timeSeries"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           lattrs <- attributes(e2)
           e2 <- getDataPart(e2)
           value <- callGeneric(e1, e2)
@@ -35,11 +35,16 @@ setMethod("Ops", c("vector", "timeSeries"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("array", "timeSeries"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           e1 <- as.vector(e1)
           lattrs <- attributes(e2)
           e2 <- getDataPart(e2)
@@ -49,11 +54,16 @@ setMethod("Ops", c("array", "timeSeries"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("ts", "timeSeries"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           e1 <- as(e1, "matrix")
           lattrs <- attributes(e2)
           e2 <- getDataPart(e2)
@@ -63,11 +73,16 @@ setMethod("Ops", c("ts", "timeSeries"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("timeSeries", "vector"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           lattrs <- attributes(e1)
           e1 <- getDataPart(e1)
           value <- callGeneric(e1, e2)
@@ -76,11 +91,16 @@ setMethod("Ops", c("timeSeries", "vector"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("timeSeries", "array"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           lattrs <- attributes(e1)
           e1 <- getDataPart(e1)
           value <- callGeneric(e1, e2)
@@ -89,11 +109,16 @@ setMethod("Ops", c("timeSeries", "array"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("timeSeries", "ts"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           lattrs <- attributes(e1)
           e1 <- getDataPart(e1)
           e2 <- as(e2, "matrix")
@@ -103,11 +128,16 @@ setMethod("Ops", c("timeSeries", "ts"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
+
+# ------------------------------------------------------------------------------
+
 
 setMethod("Ops", c("timeSeries", "timeSeries"),
-          function(e1, e2)
-      {
+    function(e1, e2)
+    {
           # check if conformable arrays
           if (!identical(dim(e1), dim(e2)))
               stop("non-conformable arrays")
@@ -125,102 +155,43 @@ setMethod("Ops", c("timeSeries", "timeSeries"),
               value <- asS4(value, TRUE)
           }
           value
-      })
+    }
+)
+
 
 # ------------------------------------------------------------------------------
 
-setMethod("cummax", "timeSeries", function(x) callGeneric(getDataPart(x)))
-setMethod("cummin", "timeSeries", function(x) callGeneric(getDataPart(x)))
-setMethod("cumprod", "timeSeries", function(x) callGeneric(getDataPart(x)))
-setMethod("cumsum", "timeSeries", function(x) callGeneric(getDataPart(x)))
+
+setMethod("cummax", "timeSeries",
+    function(x) callGeneric(getDataPart(x)))
+
 
 # ------------------------------------------------------------------------------
 
-setMethod("diff", "timeSeries",
-          function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
-      {   # A function implemented by Diethelm Wuertz
-          # Modified by Yohan Chalabi
 
-          # Description:
-          #   Difference 'timeSeries' objects.
+setMethod("cummin", "timeSeries",
+    function(x) callGeneric(getDataPart(x)))
 
-          # Arguments:
-          #   x - a 'timeSeries' object.
-          #   lag - an integer indicating which lag to use.
-          #       By default 1.
-          #   diff - an integer indicating the order of the difference.
-          #       By default 1.
-          #   trim - a logical. Should NAs at the beginning of the
-          #       series be removed?
-          #   pad - a umeric value with which NAs should be replaced
-          #       at the beginning of the series.
-
-          # Value:
-          #   Returns a differenced object of class 'timeSeries'.
-
-          # FUNCTION:
-
-          # Convert:
-          y = getDataPart(x) # as.matrix(x)
-
-          # Check NAs:
-          # if (any(is.na(y))) stop("NAs are not allowed in time series")
-
-          # Difference:
-          z = diff(y, lag = lag, difference = diff)
-
-          diffNums = dim(y)[1] - dim(z)[1]
-
-          # Trim:
-          if (!trim) {
-              zpad = matrix(0*y[1:diffNums, ] + pad, nrow = diffNums)
-              z = rbind(zpad, z)
-          }
-
-          pos <-
-              if (!trim)
-                  x@positions
-              else
-                  x@positions[-(1:diffNums)]
-
-          # Record IDs:
-          df <- x@recordIDs
-          if (trim) {
-              if (sum(dim(df)) > 0) {
-                  TRIM = dim(df)[1] - dim(z)[1]
-                  df = df[-(1:TRIM), ]
-              }
-          }
-
-          # Return Value:
-          timeSeries(data = z, charvec = pos, units = colnames(z),
-                     format = x@format, zone = x@FinCenter,
-                     FinCenter = x@FinCenter, recordIDs = df,
-                     title = x@title, documentation = x@documentation)
-      })
-
-# until UseMethod dispatches S4 methods in 'base' functions
-diff.timeSeries <- function(x, ...) timeSeries::diff(x, ...)
 
 # ------------------------------------------------------------------------------
 
-setMethod("scale", "timeSeries",
-          function(x, center = TRUE, scale = TRUE)
-{   # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
-    # Description:
-    #   Centers and/or scales a 'timeSeries' object.
+setMethod("cumprod", "timeSeries",
+    function(x) callGeneric(getDataPart(x)))
 
-    # Arguments:
 
-    # FUNCTION:
+# ------------------------------------------------------------------------------
 
-    # Scale:
-    setDataPart(x, scale(x = getDataPart(x), center = center, scale = scale))
-})
 
-# until UseMethod dispatches S4 methods in 'base' functions
-scale.timeSeries <- function (x, center = TRUE, scale = TRUE)
-    timeSeries::scale(x, center = center, scale = scale)
+setMethod("cumsum", "timeSeries",
+    function(x) callGeneric(getDataPart(x)))
+
+
+# ------------------------------------------------------------------------------
+
+
+setMethod("quantile", "timeSeries", function(x, ...)
+          callGeneric(as.vector(x), ...))
 
 ################################################################################
+
