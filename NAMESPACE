@@ -143,7 +143,6 @@ S3method("window", "timeSeries")
 ################################################
 
 export(
-    ".runlengths",
     ".aggregate.timeSeries",
     "alignDailySeries",
     ".align.timeSeries",
@@ -187,6 +186,7 @@ export(
     "fapply",
     ".fapply",
     ".findIndex",
+    ".getArgs",
     "getReturns",
     "hclustColnames",
     ".head.timeSeries",
@@ -228,6 +228,7 @@ export(
     ".rollmin.timeSeries",
     "rollMonthlySeries",
     "rollMonthlyWindows",
+    "runlengths",
     "sampleColnames",
     ".scale.timeSeries",
     "seriesData",
