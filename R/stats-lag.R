@@ -25,14 +25,20 @@ setMethod("lag" , "timeSeries",
     # A function implemented by Diethelm Wuertz
 
     # Description:
-    #   Lags 'timeSeries' objects.
+    #   Lags a 'timeSeries' object.
 
     # Arguments:
     #   x - a 'timeSeries' object.
-    #   k - an integer indicating which lag to use.
-    #       By default 1.
-    #   trim - a logical. Should NAs at the befinning of the
-    #       series be removed?
+    #   k - an integer indicating which lag to use. By default 1.
+    #       Note, negative lags are to data in the future.
+    #   trim - a logical. Should NAs at the beginning of the
+    #       series be removed? By default FALSE.
+    #   units -
+    #   ... -
+
+    # Details:
+    #   The arguments differ in the following way from the function
+    #   stats::lag - lag(x, k = 1, ...)
 
     # Value:
     #   Returns a lagged object of class 'timeSeries'.
@@ -90,7 +96,15 @@ setMethod("lag" , "timeSeries",
     }
 
     # Augment Colnames:
-    a <- if (is.null(units)) colnames(x) else units
+    cn <- colnames(x)
+    a <-
+        if (is.null(units))
+            # ensure that colnames is replicated according to the length
+            # of lag indexes.
+            as.vector(matrix(cn, nrow = length(k), ncol = length(cn), byrow = TRUE))
+        else
+            units
+
     kcols <- rep(k, times = ncol(y))
     b <- paste("[", kcols, "]", sep="")
     ab <- paste(a, b, sep = "")
@@ -98,8 +112,8 @@ setMethod("lag" , "timeSeries",
 
     # Return Value:
     timeSeries(data = z, charvec = pos, units = units,
-               format = x@format, FinCenter = x@FinCenter, recordIDs = df,
-               title = x@title, documentation = x@documentation)
+        format = x@format, FinCenter = x@FinCenter, recordIDs = df,
+        title = x@title, documentation = x@documentation)
 
 })
 

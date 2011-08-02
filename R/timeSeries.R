@@ -16,6 +16,7 @@
 # FUNCTION:                 DESCRIPTION:
 #  .signalSeries             Creates a signal series from scratch
 #  .timeSeries               Creates a time series from scratch
+# METHODS:
 #  timeSeries,ANY,ANY
 #  timeSeries,matrix,missing
 #  timeSeries,matrix,timeDate
@@ -278,9 +279,15 @@ setMethod("timeSeries", signature(data = "matrix", charvec = "numeric"),
         FinCenter = "", recordIDs = data.frame(), title = NULL,
         documentation = NULL, ...)
     {
+        if (any(!c(zone, FinCenter) %in% "")) {
+            td <- timeDate(charvec, zone = zone, FinCenter = FinCenter)
+            charvec <- as.numeric(td, "sec")
+            FinCenter <- finCenter(td)
+        }
         .timeSeries(data = data,
             charvec = charvec,
             units = units,
+            FinCenter = FinCenter,
             recordIDs = recordIDs,
             title = title,
             documentation = documentation, ...)
