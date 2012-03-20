@@ -18,12 +18,17 @@
 #  time,timeSeries           Extracs time positions from a 'timeSeries'
 #  time<-                    Defines S3 UseMethod
 #  time<-.timeSeries         ... to avoid problems with zoo
+# FUNCTION:                 DESCRIPTION:
+#  getTime                   Get time slot from a 'timeSeries'  
+#  setTime<-                 Set new time slot to a 'timeSeries'
+# DEPRECATED:               DESCRIPTION:
 #  seriesPositions           Deprecated, use time
 #  newPositions<-            Deprecated, use time<-
 ################################################################################
 
 
-.time.timeSeries <- function(x, ...)
+.time.timeSeries <- 
+    function(x, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
@@ -45,9 +50,11 @@
         seq.int(NROW(x))
 }
 
-setMethod("time", "timeSeries",
-          function(x, ...) .time.timeSeries(x, ...))
 
+setMethod("time", "timeSeries",
+    function(x, ...) .time.timeSeries(x, ...))
+
+          
 # until UseMethod dispatches S4 methods in 'base' functions
 time.timeSeries <- function(x, ...) .time.timeSeries(x, ...)
 
@@ -68,28 +75,78 @@ function(x, value)
 `time<-.timeSeries` <-
 function(x, value)
 {
+    # A function implemented by Yohan Chalabi
+    
     # Note:
-    #   to avoid conflict with zoo package
+    #   To avoid conflict with zoo package.
 
-    # Assign Rownames
+    # FUNCTION:
+    
+    # Assign Rownames:
     rownames(x) <- value
+    
+    # Return Value:
     x
 }
-
-
-## setMethod("time<-", "timeSeries", function(x, value)
-##       {
-##           rownames(x) <- value
-##           # Return
-##           x
-##       })
 
 
 # ------------------------------------------------------------------------------
 
 
+# setMethod("time<-", "timeSeries", function(x, value)
+#       {
+#           rownames(x) <- value
+#           # Return
+#           x
+#       })
+
+
+###############################################################################
+
+
+getTime <- 
+    function(x)
+{
+    # Description:
+    #   Get time slot from a 'timeSeries' object.
+    
+    # Arguments:
+    #   x - a 'timeSeries' object
+    
+    # FUNCTION:
+    
+    # Return Value:
+    time(x)    
+}
+
+
+# ------------------------------------------------------------------------------
+
+
+"setTime<-" <-
+    function(x, value)
+{
+    # Description:
+    #   Set time slot to a 'timeSeries' object.
+
+    # Arguments:
+    #   x - a 'timeSeries' object
+    
+    # FUNCTION:
+    
+    # Assign Time Slot:
+    time(x) <- value
+    
+    # Return Value:
+    x    
+}
+
+
+###############################################################################
+
+
 seriesPositions <-
-function(object)
+    function(object)
 {
     # A function implemented by Diethelm Wuertz
 
@@ -106,7 +163,7 @@ function(object)
     # FUNCTION:
 
     # Deprecated:
-    .Deprecated("time", package = "timeSeries")
+    .Deprecated(new = "time", package = "timeSeries")
 
     # Return Value:
     time(object)
@@ -117,13 +174,13 @@ function(object)
 
 
 "newPositions<-" <-
-function(object, value)
+    function(object, value)
 {   # A function implemented by Diethelm Wuertz
 
     # FUNCTION:
 
     # Deprecated:
-    .Deprecated("time<-", "timeSeries")
+    .Deprecated(new = "time<-", package = "timeSeries")
 
     # Assign Rownames:
     rownames(object) <- value
