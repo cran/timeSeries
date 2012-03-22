@@ -1,6 +1,6 @@
-509ed302351d3459ee6474b6da53053f *ChangeLog
-1947d17f376bdfd510a374c4d1c2d2c2 *DESCRIPTION
-cb732306d7f65dc8d5d045b440d91985 *NAMESPACE
+0fcb070f5f546b5ac7708ac995cf3b6b *ChangeLog
+e63fcaf393f90d4b79aa5f04b4d90c31 *DESCRIPTION
+66ef515797290a1c361cc351d79841a7 *NAMESPACE
 ebc257531e5df7b8c51f923c1ce2d1f9 *R/AllClass.R
 986ff4a7732a0be3985408bd195f6134 *R/AllGeneric.R
 347cdf20d4b2289ee4e0d28422729462 *R/aaa-Deprecated.R
@@ -36,7 +36,7 @@ c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
 542f896dd39d377ccc9b91242d2cf02a *R/methods-is.R
 3a96c3147a7123dca20426eb23a32bc6 *R/methods-mathOps.R
-bc5bbfa9fc0db85e058beb85975a0634 *R/methods-plot.R
+528fc1767dcf958332dc10f93d5663ee *R/methods-plot.R
 313a83baf9d2a2ff221fb09c78bc819e *R/methods-show.R
 4e252059ec665d2650267d3fc8b8a098 *R/statistics-colCumsums.R
 92117bad84cd47d95a11bc5fb88d7e25 *R/statistics-colSums.R
@@ -60,12 +60,11 @@ b6b29df5a4e9370f07e51a740ac84719 *R/timeSeries-isRegular.R
 b2e3d7f9c02b8015fc85de16e26ecaa6 *R/timeSeries-readSeries.R
 184369cd20ebaf4cc05464ef17aa00f4 *R/timeSeries-signalCounts.R
 3497ade73292c5dec2652335dd984588 *R/timeSeries-slotFinCenter.R
-7a7a1606de1a12b31081f9c600f81f41 *R/timeSeries-slotSeries.R
+21fb8e437c058c8b89d48ff52a297b4e *R/timeSeries-slotSeries.R
 dc9e173fa59128f80b21225e3999ffa5 *R/timeSeries-slotTime.R
 8db0473b89e630ae6290a6f168db1c8b *R/timeSeries-slotUnits.R
 ea15aeb6e86b03bd63e4029a103bcd25 *R/timeSeries.R
 4f24ad3daf9dfd14c6f3b3ca847cb0a1 *R/utils-description.R
-25c5bf2dd75736486f8ac28d6f5bc2c5 *R/utils-getArgs.R
 d345cd583c4d6403b4d45687578922a2 *R/utils-head.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
@@ -175,7 +174,7 @@ ecf919bd976dc902a6b1a2b71123aae5 *man/timeSeries-deprecated.Rd
 a78785a2a8c31a4c0c30084e2770364e *man/timeSeries-isUnivariate.Rd
 7a4d6aeca69153eb4add1859fcf64957 *man/timeSeries-readSeries.Rd
 fce0eaf91526a05e95f91f8d61b0d886 *man/timeSeries-slotFinCenter.Rd
-7c8869e8d3ad1d320211d1a5d86ad29f *man/timeSeries-slotSeries.Rd
+4a6b746ba998d773bae0f6b7fa8d11be *man/timeSeries-slotSeries.Rd
 a3412d4c660ec641da23dd153eab09c2 *man/timeSeries-slotTime.Rd
 0797db59edfb3b472970776aa3d23c1e *man/timeSeries-slotUnits.Rd
 403069f480d6ab385534b133085b12d8 *man/timeSeries.Rd
