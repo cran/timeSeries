@@ -1,5 +1,5 @@
-0fcb070f5f546b5ac7708ac995cf3b6b *ChangeLog
-e63fcaf393f90d4b79aa5f04b4d90c31 *DESCRIPTION
+c0105783e362441b684f0a81dad09096 *ChangeLog
+7fd47d63023c912c906eff923d9ee477 *DESCRIPTION
 66ef515797290a1c361cc351d79841a7 *NAMESPACE
 ebc257531e5df7b8c51f923c1ce2d1f9 *R/AllClass.R
 986ff4a7732a0be3985408bd195f6134 *R/AllGeneric.R
@@ -17,7 +17,7 @@ d0b2a4ed49f3ab4bd71aaf5c8ba933eb *R/base-scale.R
 8b2ece5fb392489978d20cad444b84b3 *R/base-sort.R
 3b5d882044aea7a06318630483a58903 *R/base-start.R
 ab4f46c1ea8a7f3c5a1c246b743e5264 *R/base-subset.R
-5200cb8b20a28ef0227b65681765bfdf *R/base-subsetting.R
+668a0499be18f2991b18b43e7e7be9cf *R/base-subsetting.R
 787d5636b21ee586692fa57b10271810 *R/base-t.R
 d41d8cd98f00b204e9800998ecf8427e *R/data-examples.R
 0332216b8979a790975086317ca9f3ce *R/fin-align.R
