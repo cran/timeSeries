@@ -1,10 +1,10 @@
-c0105783e362441b684f0a81dad09096 *ChangeLog
-7fd47d63023c912c906eff923d9ee477 *DESCRIPTION
+0150fe4c5e6cce90c4a1298ef8d30e6b *ChangeLog
+49de4e5711fdbe1dd25f2b82fae6b217 *DESCRIPTION
 66ef515797290a1c361cc351d79841a7 *NAMESPACE
 ebc257531e5df7b8c51f923c1ce2d1f9 *R/AllClass.R
 986ff4a7732a0be3985408bd195f6134 *R/AllGeneric.R
 347cdf20d4b2289ee4e0d28422729462 *R/aaa-Deprecated.R
-946295e8926883d48d646975492786e9 *R/base-apply.R
+ea6df6f4e86075afa23b71770d562840 *R/base-apply.R
 28f9eba9e78f7336f2883a45a93cfead *R/base-attach.R
 de266f28352a206c4e5d3a8eb779b97a *R/base-cbind.R
 2eeca7a21c26761502206062612fb560 *R/base-diff.R
@@ -42,7 +42,7 @@ c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 92117bad84cd47d95a11bc5fb88d7e25 *R/statistics-colSums.R
 88a7e055e296e25f9c7d45f6bfae9ced *R/statistics-orderColnames.R
 97d48f32243b61df5214da1acb00006d *R/statistics-orderStatistics.R
-a3388b141a127886fe0cbe9014c4f318 *R/statistics-rollMean.R
+4e7187c17a34e389652ea79585e69bd2 *R/statistics-rollMean.R
 2127cd77fff199b213284e448c4af346 *R/statistics-rowCumsums.R
 4b889c1bf19dd81e71872eb621feeecf *R/statistics-smoothLowess.R
 05e5a8eb2db8d2e6ff0f8719e8b6ef46 *R/stats-aggregate.R
@@ -68,7 +68,7 @@ ea15aeb6e86b03bd63e4029a103bcd25 *R/timeSeries.R
 d345cd583c4d6403b4d45687578922a2 *R/utils-head.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
-2020089f208eb8e57e7ae5304704da70 *R/zzz.R
+e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
