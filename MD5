@@ -1,5 +1,5 @@
-0150fe4c5e6cce90c4a1298ef8d30e6b *ChangeLog
-49de4e5711fdbe1dd25f2b82fae6b217 *DESCRIPTION
+cf3f989c24c9afd694949ebcef28fae6 *ChangeLog
+f1f33bb49f37bb7dfa2fd45dc835820d *DESCRIPTION
 66ef515797290a1c361cc351d79841a7 *NAMESPACE
 ebc257531e5df7b8c51f923c1ce2d1f9 *R/AllClass.R
 986ff4a7732a0be3985408bd195f6134 *R/AllGeneric.R
@@ -35,7 +35,7 @@ b4c64e66d5c802e514d38c08044dc7cb *R/fin-runlengths.R
 c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
 542f896dd39d377ccc9b91242d2cf02a *R/methods-is.R
-3a96c3147a7123dca20426eb23a32bc6 *R/methods-mathOps.R
+0460cf41cccd7c62e0aefe2b482db7fc *R/methods-mathOps.R
 528fc1767dcf958332dc10f93d5663ee *R/methods-plot.R
 313a83baf9d2a2ff221fb09c78bc819e *R/methods-show.R
 4e252059ec665d2650267d3fc8b8a098 *R/statistics-colCumsums.R
