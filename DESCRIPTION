@@ -1,7 +1,7 @@
 Package: timeSeries
-Version: 3000.96
-Revision: 5459
-Date: 2013-03-15
+Version: 3010.97
+Revision: 5475
+Date: 2013-03-25
 Title: Rmetrics - Financial Time Series Objects
 Author: Diethelm Wuertz and Yohan Chalabi
 Depends: R (>= 2.10), graphics, grDevices, methods, stats, utils,
@@ -16,7 +16,7 @@ Note: Several parts are still preliminary and may be changed in the
 LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
-Packaged: 2013-03-15 14:16:36 UTC; yankee
+Packaged: 2013-03-25 13:46:51 UTC; yankee
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-03-15 18:03:35
+Date/Publication: 2013-05-01 07:38:09
