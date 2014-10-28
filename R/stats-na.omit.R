@@ -50,14 +50,21 @@
     #   Spline interpolation like in zoo is not yet supported.
 
     # Arguments:
-    #   object - an object of class timeSeries
-    #   method -
-    #   interp -
-    #   ... -
+    #   object - an object of class 'timeSeries'
+    #   method - how to handle NAs
+    #   interp - how to interpolate NAs
+    #   ... - arguments passed to function approx()
 
     # FUNCTION:
 
     # Check Arguments:
+    stopifnot(is.timeSeries(object))
+      
+    # Extract Title and Documentation:
+    Title <- object@title
+    Documentation <- object@documentation
+      
+    # Settings:
     method <- match.arg(method)
     interp <- match.arg(interp)
 
@@ -67,7 +74,9 @@
     # Handle NAs:
     if (method == "r") {
         # Remove NAs:
-        object <- stats:::na.omit.default(object)
+        # DW:
+        # object <- stats:::na.omit.default(object)
+        object <- as.timeSeries(na.omit(series(object)))
     } else if (method == "z") {
         # Substitute NAs by Zero's:
         object[is.na(object)] <- 0
@@ -96,7 +105,9 @@
         modID = FALSE
         if (method == "ir") {
             # Remove Start and End NAs:
-            object = stats:::na.omit.default(object)
+            # DW:
+            # object <- stats:::na.omit.default(object)
+            object <- as.timeSeries(na.omit(series(object)))
         } else if (method == "iz") {
             # Set Start and End NAs to Zero:
             object[is.na(object)] = 0
@@ -122,6 +133,10 @@
         index <- attr(object, "n.action")
         recordIDs <- recordIDs[index, ]
     }
+      
+    # Preserve Title and Documentation:
+    object@title <- Title
+    object@documentation <- Documentation 
 
     # Return Value:
     object
@@ -157,16 +172,16 @@ na.omit.timeSeries <- function(object, ...) .na.omit.timeSeries(object, ...)
     stopifnot (is.matrix(x))
 
     # Match Arguments:
-    method = match.arg(method)
-    interp = match.arg(interp)
+    method <- match.arg(method)
+    interp <- match.arg(interp)
 
     # Handle NAs:
     if (method == "r") {
         # Remove NAs:
-        x = na.omit(x)
+        x <- na.omit(x)
     } else if (method == "z") {
         # Substitute NAs by Zero's:
-        x[is.na(x)] = 0
+        x[is.na(x)] <- 0
     } else if (substr(method, 1, 1) == "i") {
         # Interpolate:
         interp = match.arg(interp)

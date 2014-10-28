@@ -29,10 +29,10 @@
 # ------------------------------------------------------------------------------
 
 
-.align.timeSeries <- function(x, by = "1d", offset = "0s",
-                              method = c("before", "after", "interp", "fillNA",
-                              "fmm", "periodic", "natural", "monoH.FC"),
-                              include.weekends = FALSE, ...)
+.align.timeSeries <- 
+  function(x, by = "1d", offset = "0s", 
+    method = c("before", "after", "interp", "fillNA", "fmm", "periodic", 
+      "natural", "monoH.FC"), include.weekends = FALSE, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
@@ -41,6 +41,8 @@
 
     # Arguments:
     #   x - an object of class "timeSeries".
+    #   by - 
+    #   offset -
     #   method -
     #       "before" - use the data from the row whose position is
     #           just before the unmatched position;
@@ -67,16 +69,20 @@
     #   setMethod("align", "timeDate",
 
     # FUNCTION:
+    
+    # Settings:
+    Title <- x@title
+    Documentation <- x@documentation
 
+    # Check for Signal Series:
     if (x@format == "counts")
         stop(as.character(match.call())[1],
              " is for time series and not for signal series.")
 
     # check if series sorted
-    if (is.unsorted(x))
-        x <- sort(x)
+    if (is.unsorted(x)) x <- sort(x)
 
-    # adjustment:
+    # Adjustment:
     Method <- match.arg(method)
     fun <- switch(Method,
 
@@ -124,6 +130,10 @@
 
     # Remove Weekends:
     if(!include.weekends) ans <- ans[isWeekday(td2), ]
+    
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
 
     # Return Value:
     ans
@@ -131,7 +141,9 @@
 
 # ------------------------------------------------------------------------------
 
+
 setMethod("align", "timeSeries", .align.timeSeries)
+
 
 ################################################################################
 

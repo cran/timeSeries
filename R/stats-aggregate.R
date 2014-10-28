@@ -16,13 +16,16 @@
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
 #  aggregate,timeSeries      Aggregates a 'timeSeries' object
+# FUNCTION:                 DESCRIPTION:
+#  daily2monthly             Aggregates a daily to monthly 'timeSeries' object
+#  daily2weekly              Aggregates a daily to weekly 'timeSeries' object
 ################################################################################
 
 
 .aggregate.timeSeries <- 
     function(x, by, FUN, ...)
 {
-    # A function implemented by Yohan Chalabi and  Diethelm Wuertz
+    # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
     # Description:
     #   Aggregates a 'timeSeries' object
@@ -62,6 +65,10 @@
     if (!((inherits(by, "timeDate") && x@format != "counts") ||
           (is.numeric(by) && x@format == "counts")))
         stop("'by' should be of the same class as 'time(x)'", call.=FALSE)
+      
+    # Extract Title and Documentation:
+    Title <- x@title
+    Documentation <- x@documentation
 
     # Make sure that x is sorted:
     if (is.unsorted(x))
@@ -78,9 +85,15 @@
     data <- matrix(apply(getDataPart(x), 2, tapply, INDEX, FUN), ncol=ncol(x))
     rownames(data) <- as.character(by[unique(na.omit(INDEX))])
     colnames(data) <- colnames(x)
+    ans <- timeSeries(data, ...)
 
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
+      
     # Return Value:
-    timeSeries(data, ...)
+    ans
+    
 }
 
 
@@ -93,4 +106,84 @@ aggregate.timeSeries <- function(x, ...) .aggregate.timeSeries(x, ...)
 
 
 ################################################################################
+
+
+daily2monthly <-
+  function (x, init = FALSE) 
+{
+    # A function implemented by Diethelm Wuertz
+    
+    # Description:
+    #    Converts daily to monthly series   
+    
+    # Arguments:
+    #    x - daily time series
+    #    init - should the index series converted to a wealth series
+    
+    # FUNCTION:
+    
+    # Save Colnames:
+    colNames <- colnames(x)
+    
+    # Fill to end of Month:
+    Time <- unique(sort(timeLastDayInMonth(time(x))))
+    x.endOfMonth <- x[nrow(x), ]
+    time(x.endOfMonth) <- rev(Time)[1]
+    x <- rbind(x, x.endOfMonth)
+    x <- alignDailySeries(x, include.weekends=TRUE)
+    
+    # Cut Properly on end of Month:
+    today <- timeDate(Sys.Date())
+    first <- timeFirstDayInMonth(today)
+    x <- x[time(x) < first, ]
+    Time <- unique(sort(timeLastDayInMonth(time(x))))
+    
+    # Align Properly:
+    mSeries <- alignDailySeries(x, include.weekends=TRUE)
+    mSeries <- mSeries[Time, ]
+    
+    # Optionally Initialize:
+    if (init) 
+        for (i in 1:ncol(mSeries)) mSeries[, i] <- mSeries[, 
+            i]/as.vector(mSeries[1, i])
+    colnames(mSeries) <- colNames
+    
+    # Return Value:
+    mSeries
+}
+
+
+# -----------------------------------------------------------------------------
+
+
+daily2weekly <- 
+  function(x, startOn="Tue", init=FALSE) 
+{
+    # A function implemented by Diethelm Wuertz
+    
+    # Description:
+    #    Converts daily to weekly series   
+    
+    # Arguments:
+    #    x - daily time series
+    #    init - should the index series converted to a wealth series
+    
+    # FUNCTION:
+    
+    # Convert Series:
+    mSeries <- alignDailySeries(x, include.weekends = TRUE)
+    start <- which(dayOfWeek(time(mSeries[1:7, ])) == startOn)
+    mSeries <- mSeries[seq(start, nrow(mSeries), by = 7), ]
+    
+    # Wealth Initialization:
+    if (init) for (i in 1:ncol(mSeries)) 
+        mSeries[, i] <- mSeries[, i]/as.vector(mSeries[1, i])
+    
+    # Return Value:
+    mSeries
+}
+
+
+###############################################################################
+
 

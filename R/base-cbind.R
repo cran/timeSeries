@@ -15,8 +15,13 @@
 
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
-#  cbind.timeSeries          Binds columns of two 'timeSeries' objects
-#  rbind.timeSeries          Binds rows of two 'timeSeries' objects
+#                            Generic functions defined in {base}
+#  cbind.timeSeries          Combines two 'timeSeries' objects by column
+#  rbind.timeSeries          Combines two 'timeSeries' objects by row
+################################################################################
+#                            Generic functions defined in {methods}
+#  cbind2.timeSeries         Combines two objects by column
+#  rbind2.timeSeries         Combines two objects by row
 ################################################################################
 
 
@@ -26,13 +31,37 @@ function(..., deparse.level = 1)
     # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
     # Description:
-
+    #     Binds columns of two 'timeSeries' objects
+  
     # Arguments:
+    #   ...
+    #   deparse.level
 
     # FUNCTION:
 
     # Columnwise bind:
     dots <- list(...)
+  
+    # Preserve the title of the first ... element
+    # counter <- NULL
+    # for (i in 1:length(dots)) counter <- c(counter, is.timeSeries(dots[[i]]))
+    # Index <- which(counter[1])
+    Title <- "" #dots[[Index]]@title
+  
+    # Compose Attributes - Documentation :
+    Attributes <- list()
+  
+    for (i in 1:length(dots)) 
+    {
+      if (class(dots[[i]]) == "timeSeries") 
+      {
+        nextAttributes <- getAttributes(dots[[i]])
+        Attributes <- .appendList(Attributes, nextAttributes) 
+      }
+    }
+      
+    Documentation <- as.character(date())
+    attr(Documentation, "Attributes") <- Attributes
 
     # remove NULL from dots args
     if (any(t <- unlist(lapply(dots, is.null))))
@@ -42,8 +71,9 @@ function(..., deparse.level = 1)
     vecIdx <- sapply(dots, function(obj)
                      (!inherits(obj, "timeSeries") && prod(dim(obj)) == 1))
     if (any(vecIdx))
-        dots[vecIdx] <- lapply(dots[vecIdx], function(vec)
-                               as.timeSeries(rep(as.vector(vec), len = NROW(dots[[1]]))))
+        dots[vecIdx] <- lapply(
+          dots[vecIdx], function(vec)
+          as.timeSeries(rep(as.vector(vec), len = NROW(dots[[1]]))))
 
     # coerce to timeSeries object if not a timeSeries
     if (any(t <- !unlist(lapply(dots, inherits, "timeSeries"))))
@@ -74,7 +104,7 @@ function(..., deparse.level = 1)
     tds <- lapply(dots, slot, "positions")
     rec <- lapply(dots, slot, "recordIDs")
 
-    # fast version when timeSeries have identical timestamps
+    # Fast version when timeSeries have identical timestamps
     # or with signal series
     if (any(co <- unlist(lapply(dots, function(ts) ts@format == "counts"))) ||
         (any(!co) & all(sapply(tds[!co], identical, tds[!co][[1]]))))
@@ -91,11 +121,11 @@ function(..., deparse.level = 1)
                 do.call(cbind, rec[recIdx])
             else
                 data.frame()
-        timeSeries(data = data, charvec = td, units = units, zone = "GMT",
+        ans <- timeSeries(data = data, charvec = td, units = units, zone = "GMT",
                    FinCenter = FinCenter,
                    recordIDs = recordIDs)
     } else {
-        # aligned timestamps
+        # Aligned timestamps:
         td <- sort(unique(unlist(tds)))
         fun <- function(ts, td, ref) {
             mm <- matrix(NA, ncol = ncol(ts), nrow = length(ref))
@@ -114,12 +144,21 @@ function(..., deparse.level = 1)
         }
 
         # note that new timeSeries get FinCenter of first entry of args
-        timeSeries(data = data, charvec = td, units = units,
+        ans <- timeSeries(data = data, charvec = td, units = units,
                    zone = FinCenter, FinCenter = FinCenter)
     }
+  
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
+  
+    # Return Value:
+    ans
 }
 
+
 # ------------------------------------------------------------------------------
+
 
 ## # YC:
 ## # Note that since 2.9.0 S3 methods can not be defined for S4 classes
@@ -170,15 +209,37 @@ function(..., deparse.level = 1)
     # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
     # Description:
+    #     Binds rows of two 'timeSeries' objects
 
     # Arguments:
+    #   ...
+    #   deparse.level
 
     # FUNCTION:
 
-    # Columnwise bind:
-
     # Row bind:
     dots <- list(...)
+  
+    # Preserve the title of the first ... element
+    # counter <- NULL
+    # for (i in 1:length(dots)) counter <- c(counter, is.timeSeries(dots[[i]]))
+    # Index <- which(counter[1])
+    Title <- "" # dots[[Index]]@title
+  
+    # Compose Attributes - Documentation :
+    Attributes <- list()
+  
+    for (i in 1:length(dots)) 
+    {
+      if (class(dots[[i]]) == "timeSeries") 
+      {
+        nextAttributes <- getAttributes(dots[[i]])
+        Attributes <- .appendList(Attributes, nextAttributes) 
+      }
+    }
+      
+    Documentation <- as.character(date())
+    attr(Documentation, "Attributes") <- Attributes
 
     # Remove NULL from dots args
     if (any(t <- unlist(lapply(dots, is.null))))
@@ -222,8 +283,11 @@ function(..., deparse.level = 1)
                       FinCenter = finCenter(dots[[1]]), units = units,
                       recordIDs = recordIDs)
 
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
+  
     # Return Value:
-    # sort(ans)
     ans
 }
 

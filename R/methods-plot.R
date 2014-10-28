@@ -57,8 +57,22 @@
 
     # FUNCTION:
 
-    # Check Missing
+    # Check Missing:
     if (missing(y)) y <- NULL
+      
+    # Check for "pretty' and "chic":
+    if (is.character(at)) {
+        if (at[1] == "pretty" || at[1] == "chic") {
+          return(.xtplot.timeSeries(
+            x=x, y=y, FinCenter = FinCenter, 
+            plot.type = plot.type,
+            format = format, at = at, 
+            widths = widths, heights = heights,
+            panel = panel, yax.flip = yax.flip,
+            mar.multi = mar.multi, oma.multi = oma.multi, ...)
+            )
+         } 
+    }
 
     # Labels:
     xlabel <- if (!missing(x)) deparse(substitute(x))
@@ -92,7 +106,8 @@ setMethod("plot", "timeSeries",
                            plot.type = plot.type,
                            format = format, at = at,
                            widths = widths, heights = heights,
-                           xy.labels=xy.labels, xy.lines=xy.lines, panel = panel, nc = nc, yax.flip = yax.flip,
+                           xy.labels=xy.labels, xy.lines=xy.lines, 
+                           panel = panel, nc = nc, yax.flip = yax.flip,
                            mar.multi = mar.multi,
                            oma.multi = oma.multi, axes = axes, ...))
 
@@ -370,7 +385,7 @@ pretty.timeSeries <-
     #    Returns a sequence of equally spaced round values.
 
     # Details:
-    #    Computes a sequence of about n+1 equally spaced ‘round’
+    #    Computes a sequence of about n+1 equally spaced ?round?
     #    values which cover the range of the values in x.
     #    The values are chosen so that they are 1, 2 or 5 times
     #    a power of 10.

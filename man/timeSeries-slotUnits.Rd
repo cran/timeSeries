@@ -2,6 +2,7 @@
 
 
 \alias{getUnits}
+\alias{getUnits.default}
 \alias{setUnits<-}
 
 
@@ -25,11 +26,10 @@ setUnits(x) <- value
 \arguments{
 
     \item{x}{
-        a \code{timeSeries} object.
+        a 'timeSeries' object.
         }
     \item{value}{
-        a \code{vector}, a \code{data.frame} or a \code{matrix} object of
-        numeric data. 
+        a \code{vector} of unit names.
         }
 }
 

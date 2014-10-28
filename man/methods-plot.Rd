@@ -13,9 +13,7 @@
 
 \description{
 
-    Plot 'timeSeries' objects and add lines and points to an already
-    existing chart or graph.
-
+    Plots 'timeSeries' objects and add lines and points. 
 }
 
 
@@ -31,14 +29,64 @@
 \S4method{points}{timeSeries}(x, FinCenter = NULL, \dots)
 
 \method{pretty}{timeSeries}(x, n=5, min.n=n\%/\%3, shrink.sml=0.75,
-    high.u.bias=1.5, u5.bias=0.5+1.5*high.u.bias,
-    eps.correct=0, \dots)
+    high.u.bias=1.5, u5.bias=0.5+1.5*high.u.bias, eps.correct=0, \dots)
+}
+
+
+\details{
+
+    The original plotting function \code{plot} was build along R's
+    plotting function \code{plot.ts} with an additional argument
+    to tailor the position marks at user defined position 
+    specified by the argument \code{at}. We call this style or
+    theme "ts".
+    
+    With Verison R 3.1 we have inroduced two new additionol
+    plotting themes called "pretty" and "chick". They are becoming
+    active when we set \code{at="pretty"} or \code{at="chic"}.
+    
+    Plot style or theme "pretty" is an extension of our original 
+    plotting function.
+    
+    Plot style or theme "chic" an implementation along the contributed 
+    packages \code{xts} and \code{PerformanceAnalytics} from the Chicago
+    finance group members. "Chicago" gave the name to call the
+    them \code{"chic"}.
+    
+    For both themes, "pretty" and "chic" additional arguments are passed 
+    through the \code{\dots} arguments. These are:
+    
+    
+    \tabular{lll}{
+    \code{Argument:}  \tab Default: \tab Description: \cr
+    \code{type}       \tab "l"  \tab types pf plot \cr
+    \code{col}        \tab 1    \tab colors for lines and points \cr
+    \code{pch}        \tab 20   \tab plot symbol \cr
+    \code{cex}        \tab 1    \tab character and symbol scales \cr
+    \code{lty}        \tab 1    \tab line types \cr
+    \code{lwd}        \tab 2    \tab line widths \cr
+    \code{cex.axes}   \tab 1    \tab scale of axes \cr
+    \code{cex.lab}    \tab 1    \tab scale of labels \cr
+    \code{cex.pch}    \tab 1    \tab scale of plot symbols \cr
+    \code{}           \tab      \tab \cr
+    \code{grid}       \tab TRUE \tab should grid lines plotted? \cr
+    \code{frame.plot} \tab TRUE \tab should b box around the plot? \cr
+    \code{axes}       \tab TRUE \tab should be axes drawn on the plot? \cr
+    \code{ann}        \tab TRUE \tab should default annotations appear? }
+    
+    Concerning the plot elements, the length of these vectors has
+    to be the same as the number of columns in the time series to
+    be plotted. If their length is only one, then tey are repeated.
+    
+    There is an almost 70 pages vignette added to the package, with
+    dozens of examples of tailored plots. Have a look in it.
+
 }
 
 
 \arguments{
 
-    \item{x,y }{
+    \item{x, y }{
         objects of class \code{timeSeries}.
         }
     \item{FinCenter}{
@@ -55,8 +103,11 @@
     \item{at}{
         a \code{timeDate} object setting the plot label positions.
         If \code{at=pretty(x)}, the postitions are generated automatized
-        calling the function \code{pretty}. Former default option
-        \code{at="auto"} selects 6 equal spaced time label positions.
+        calling the function \code{pretty}. Default option \code{at="auto"} 
+        selects 6 equal spaced time label positions. For the new plot
+        themes set at="pretty" or at="chic". In this case additional
+        arguments can be passed through the \code{\dots} arguments,
+        see details.
         }
     \item{widths, heights}{
         widths and heights for individual graphs, see \code{layout}.
@@ -94,37 +145,39 @@
         }
     \item{n}{
         an integer giving the desired number of intervals.
-    }
+        }
     \item{min.n}{
         a nonnegative integer giving the minimal
         number of intervals.
-    }
+        }
     \item{shrink.sml}{
         a positive numeric by a which a default
         scale is shrunk in the case when range(x) is
         very small.
-    }
+        }
     \item{high.u.bias}{
         a non-negative numeric, typically > 1.
         Larger high.u.bias values favor larger units.
-    }
+        }
     \item{u5.bias}{
         a non-negative numeric multiplier favoring
         factor 5 over 2.
-    }
+        }
     \item{eps.correct}{
        an integer code, one of {0,1,2}. If
        non-0, a correction is made at the boundaries.
-    }
+       }
     \item{\dots}{
        additional graphical arguments, see \code{plot}, \code{plot.default}
        and \code{par}.
-    }
+       }
 }
 
 
 \value{
-    a plot or plot elements of an object of class \code{timeSeries}.
+
+   Displays  a plot or plot elements of an object of class 'timeSeries'.
+    
 }
 
 

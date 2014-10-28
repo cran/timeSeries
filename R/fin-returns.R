@@ -17,6 +17,8 @@
 # FUNCTION:                 DESCRIPTION:
 #  returns,ANY               Computes returns from a 'matrix' object
 #  returns,timeSeries        Computes returns from a 'timeSeries' object
+# FUNCTION:                 DESCRIPTION:
+#  returns0                  Compute untrimmed returns
 # OLD FUNCTIONS:            KEEP THESE FUNCTIONS FOR COMPATIBILITY:
 #  returnSeries              Deprecated, use returns()
 #  getReturns                Deprecated, use returns()
@@ -68,53 +70,85 @@ setMethod("returns", "ANY",
 )
 
 
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 
 setMethod("returns", "timeSeries",
-    function(x,
-        method = c("continuous", "discrete", "compound", "simple"),
-        percentage = FALSE, na.rm = TRUE, trim = TRUE, ...)
-    {
-        # A function implemented by Diethelm Wuertz and Yohan Chalabi
+  function(x,
+      method = c("continuous", "discrete", "compound", "simple"),
+      percentage = FALSE, na.rm = TRUE, trim = TRUE, ...)
+  {
+      # A function implemented by Diethelm Wuertz and Yohan Chalabi
+  
+      # Description:
+      #   Returns the returns of an object of class 'timeSeries'
+  
+      # Arguments:
+      #   x - an object of class 'timeSeries'
+      #   method -
+      #   percentage -
+      #   na.rm -
+      #   trim - 
+  
+      # FUNCTION:
+  
+      # Check Arguments:
+      stopifnot(is.timeSeries(x))
     
-        # Description:
-        #   Returns the returns of an object of class 'timeSeries'
+      # Extract Title and Documentation:
+      Title <- x@title
+      Documentation <- x@documentation
     
-        # Arguments:
-        #   x - an object of class 'timeSeries'
-        #   method -
-        #   percentage -
-        #   na.rm -
-        #   trim - 
+      # Make sure that series is ordered:
+      x <- sort(x)
+  
+      # Get Returns:
+      if (na.rm) x <- na.omit(x, ...)
+      series(x) <- returns(as(x, "matrix"), method, percentage)
+      if (trim) x <- na.omit(x, "r")
+  
+      # Preserve Title and Documentation:
+      x@title <- Title
+      x@documentation <- Documentation
     
-        # FUNCTION:
-    
-        # Make sure that series is ordered
-        x <- sort(x)
-    
-        # Get Returns:
-        if (na.rm) x <- na.omit(x, ...)
-        series(x) <- returns(as(x, "matrix"), method, percentage)
-        if (trim) x <- na.omit(x, "r")
-    
-        # Return Value:
-        x
-    }
+      # Return Value:
+      x
+  }
 )
 
 
-# ------------------------------------------------------------------------------
+###############################################################################
+
+
+returns0 <- 
+  function(x, ...) 
+{
+  # A function implemented by Diethelm Wuertz
+  
+  # Description:
+  #   Returns the untrimmed returns of an object of class 'timeSeries'
+
+  # Arguments:
+  #   x - an object of class 'timeSeries' 
+
+  # FUNCTION:
+
+  # Compute Untrimmed Returns:
+  x <- returns(x = x, trim = FALSE)
+  x[1, ] <-0
+    
+  # Return Value:
+  x 
+}
+
+###############################################################################
+# DEPRECATED:
 
 
 returnSeries <-
-function(...)
+  function(...)
 {
     # A function implemented by Diethelm Wuertz
-
-    # Description:
-
-    # Arguments:
 
     # FUNCTION:
     # .Deprecated("returns", "timeSeries")
@@ -123,19 +157,16 @@ function(...)
 }
 
 
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 
 getReturns <-  
-function(...)
+  function(...)
 {
     # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes returns
-    
-    # Arguments:
-    #   ... - passed to function returns
     
     # FUNCTION:
     # .Deprecated("returns", "timeSeries")
@@ -145,5 +176,5 @@ function(...)
 }
 
 
-################################################################################
+###############################################################################
 

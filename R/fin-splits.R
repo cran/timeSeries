@@ -21,21 +21,32 @@
 
 
 # DW:
-# We should call this function no loger outlier, much better woud be
-# splits() since thefunction tries to detect splits by large outliers.
+# We should call this function no longer outlier, much better woud be
+# splits() since the function tries to detect splits by large outliers.
 # For outlier detection we should use better methods than just the sd().
 
 
 # ------------------------------------------------------------------------------
 
 
+splits <- 
+  function(x, sd = 3, complement = TRUE, ...)
+{
+    # Return Value:
+    outlier(x=x, sd=sd, complement=complement, ...)
+}
+
+
+# ------------------------------------------------------------------------------
+
+
 setMethod("outlier", "ANY",
-    function(x, sd = 5, complement = TRUE, ...)
+    function(x, sd = 3, complement = TRUE, ...)
 {
     # A function implemented by Diethelm Wuertz
 
     # Description:
-    #   Returns outliers
+    #   Returns outlier splits
 
     # Arguments:
     #   x - a numeric vector
@@ -54,14 +65,25 @@ setMethod("outlier", "ANY",
 
     # FUNCTION:
 
+    # Check arguments:
+    stopifnot(is.timeSeries(x))
+      
+    # Extract Title and Documentation:
+    Title <- x@title
+    Documentation <- x@documentation
+      
     # Find Outliers:
-    SD = sd * sd(x)
+    SD <- sd * sd(x)
     if (complement) {
-        ans  = x[x <= SD]
+        ans  <- x[x <= SD]
     } else {
-        ans = x[x > SD]
-        names(ans) = as.character(which(x > SD))
+        ans <- x[x > SD]
+        names(ans) <- as.character(which(x > SD))
     }
+      
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
 
     # Return Value:
     ans
@@ -72,7 +94,7 @@ setMethod("outlier", "ANY",
 
 
 setMethod("outlier", "timeSeries",
-    function(x, sd = 10, complement = TRUE, ...)
+    function(x, sd = 3, complement = TRUE, ...)
 {   
     # A function implemented by Diethelm Wuertz
 
@@ -81,7 +103,7 @@ setMethod("outlier", "timeSeries",
 
     # Arguments:
     #   x - an object of class 'timeSeries'.
-    #   sd - a numeric value of standard deviations, e.g. 10
+    #   sd - a numeric value of standard deviations, e.g. 5
     #       means that values larger or smaller tahn ten
     #       times the standard deviation of the series will
     #       be removed.

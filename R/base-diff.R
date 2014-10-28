@@ -13,20 +13,20 @@
 #  ../../COPYING
 
 
-################################################################################
+###############################################################################
 # FUNCTION:                 DESCRIPTION:
 #  diff,timeSeries           Differences a 'timeSeries' object
-################################################################################
+###############################################################################
 
 
 .diff.timeSeries <-
-function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
+  function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
 {
     # A function implemented by Diethelm Wuertz
     # Modified by Yohan Chalabi
 
     # Description:
-    #   Difference 'timeSeries' objects.
+    #   Differences 'timeSeries' objects.
 
     # Arguments:
     #   x - a 'timeSeries' object.
@@ -43,24 +43,28 @@ function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
     #   Returns a differenced object of class 'timeSeries'.
 
     # FUNCTION:
+  
+    # Ceck Arguments:
+    stopifnot(is.timeSeries(x))
+      
+    # Extract Title and Documentation:
+    Title <- x@title
+    Documentation <- x@documentation
 
     # Convert:
-    y = getDataPart(x) # as.matrix(x)
+    y <- getDataPart(x) # as.matrix(x)
 
     # Check NAs:
     # if (any(is.na(y))) stop("NAs are not allowed in time series")
 
     # Difference:
-    z = diff(y, lag = lag, difference = diff)
-
+    z <- diff(y, lag = lag, difference = diff)
     diffNums = dim(y)[1] - dim(z)[1]
 
-    # Trim:
+    # Trim Positions:
     if (!trim) {
-        zpad = matrix(0*y[1:diffNums, ] + pad, nrow = diffNums)
-        z = rbind(zpad, z)
-    }
-
+        zpad <- matrix(0*y[1:diffNums, ] + pad, nrow = diffNums)
+        z <- rbind(zpad, z) }
     pos <-
         if (!trim)
             x@positions
@@ -74,22 +78,34 @@ function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
         rownames(df) <- seq.int(NROW(df))
     }
 
-
-    # Return Value:
-    timeSeries(data = z, charvec = pos, units = colnames(z),
+    # Diff Result:
+    ans <- timeSeries(data = z, charvec = pos, units = colnames(z),
                format = x@format, zone = x@FinCenter,
-               FinCenter = x@FinCenter, recordIDs = df,
-               title = x@title, documentation = x@documentation)
+               FinCenter = x@FinCenter, recordIDs = df)
+  
+    # Preserve Title and Documentation:
+    ans@title <- Title
+    ans@documentation <- Documentation
+  
+    # Return Value:
+    ans
 }
+
+
+# -----------------------------------------------------------------------------
 
 
 setMethod("diff", "timeSeries",
           function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
-          .diff.timeSeries(x, lag, diff, trim, pad, ...))
+          .diff.timeSeries(x, lag, diff, trim, pad, ...)
+          ##x <- getDataPart(x)
+          ##callGeneric()
+          )
+
 
 # until UseMethod dispatches S4 methods in 'base' functions
 diff.timeSeries <- function(x, ...) .diff.timeSeries(x, ...)
 
 
-################################################################################
+###############################################################################
 
