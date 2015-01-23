@@ -1,5 +1,5 @@
 172d68c7dfe9c8b25779a21371ee947e *ChangeLog
-889dfc2d50a4c6103a74113bb2535dac *DESCRIPTION
+6016a34263c2ac36959416d6cf0052db *DESCRIPTION
 78dd5a88107ec317c1c01ab05fbfad4c *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
@@ -37,12 +37,12 @@ c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
 542f896dd39d377ccc9b91242d2cf02a *R/methods-is.R
 e8c0ab735915b5fcd9fe02b459b00fc5 *R/methods-mathOps.R
-37bfa6ee1fd63350ceefd7c1ef603a94 *R/methods-plot.R
-06d74393892e37ccbfd2d3f9b2712323 *R/methods-plot2.R
+f0d67abbc0f53ebae292c8362f622caf *R/methods-plot.R
+a5f41f60726b9ccd9d05768d43eee84f *R/methods-plot2.R
 313a83baf9d2a2ff221fb09c78bc819e *R/methods-show.R
 4e252059ec665d2650267d3fc8b8a098 *R/statistics-colCumsums.R
 20cc18c6b8815e6fda5f68be71ba4523 *R/statistics-colSums.R
-fde0e8a0b2100a1ab97b889cd8091370 *R/statistics-orderColnames.R
+628cf16ba73fea29c0ab4d0f9ba050ff *R/statistics-orderColnames.R
 97d48f32243b61df5214da1acb00006d *R/statistics-orderStatistics.R
 4e7187c17a34e389652ea79585e69bd2 *R/statistics-rollMean.R
 2127cd77fff199b213284e448c4af346 *R/statistics-rowCumsums.R
@@ -72,7 +72,7 @@ d345cd583c4d6403b4d45687578922a2 *R/utils-head.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
-c1407b83f032a4f24daeb41c1d34865d *build/vignette.rds
+def7e4cbea5057a2972c453abe7eca2b *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
@@ -82,7 +82,7 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 68b329da9893e34099c7d8ad5cb9c940 *inst/THANKS
 c2293bfcc37bdba3cadd80364140019f *inst/doc/timeSeriesPlot.R
 3eec6b8570ccd25a7b386a17cfa8edc6 *inst/doc/timeSeriesPlot.Rnw
-79f34593d247ba0ed6d715c7a5549faf *inst/doc/timeSeriesPlot.pdf
+5f43f98d42bd23b62786d1b47f60fee6 *inst/doc/timeSeriesPlot.pdf
 0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 aff0877ae746813721c68f5dce737e5f *inst/extensionsTests/alignWrappers.R
@@ -90,7 +90,7 @@ aff0877ae746813721c68f5dce737e5f *inst/extensionsTests/alignWrappers.R
 30e3c046e97879e7293ce8cf5397b165 *inst/extensionsTests/chicPlots.R
 df134f2efe48f0a98c3728ffa6227404 *inst/extensionsTests/endpointsWrappers.R
 6ff348d414cad9dba24940f24d066584 *inst/extensionsTests/xtsWrappers.R
-d90ef228922a0262007e1e0d57d51960 *inst/unitTests/Makefile
+c6df0a8aafc7cfa9f914919f7f043ff3 *inst/unitTests/Makefile
 89dc29af114e6a2a3c80a502b4f4c95b *inst/unitTests/runTests.R
 63d0f736e1454c6745cb7aad063ef759 *inst/unitTests/runit.NA.R
 94ab54bfea1b4edec5a3b5f04167d42b *inst/unitTests/runit.Omit.R
@@ -170,7 +170,7 @@ bbf01aa4dc627329aabdbff94687975a *man/methods-show.Rd
 da7db95577645a1b362d399bd7bf7c72 *man/methods-stats.Rd
 699c2c2f02a41c219fe1e756397d94c2 *man/statistics-colCumsums.Rd
 c9a1c2942c562105850fa9e469d88b2a *man/statistics-colSums.Rd
-93435dbbbc5ec02a84111ac7364e976e *man/statistics-orderColnames.Rd
+458a0c9baf46d3b06a6f25b8b823f159 *man/statistics-orderColnames.Rd
 5939d663a63cda2f0cdb1acdab754e63 *man/statistics-orderStatistics.Rd
 99d24ae42af6303597243a7a8d1451eb *man/statistics-rollMean.Rd
 62060fd02cc11cc9bd9e6fd184ab4289 *man/statistics-rowCumsums.Rd
