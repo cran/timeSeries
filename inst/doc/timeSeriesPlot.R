@@ -1,7 +1,13 @@
 ### R code from vignette source 'timeSeriesPlot.Rnw'
 
 ###################################################
-### code chunk number 1: library
+### code chunk number 1: environment
+###################################################
+Sys.setlocale("LC_ALL", "C")
+
+
+###################################################
+### code chunk number 2: library
 ###################################################
 require(timeSeries)
 require(xts)
@@ -14,21 +20,21 @@ tS6 <- 100 * cumulated(LPP2005REC[, 1:6])   # Swiss and Foreign Market Indexes
 
 
 ###################################################
-### code chunk number 2: univariateSingle
+### code chunk number 3: univariateSingle
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS1) 
 
 
 ###################################################
-### code chunk number 3: univariateSinglePlot
+### code chunk number 4: univariateSinglePlot
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS1) 
 
 
 ###################################################
-### code chunk number 4: univariateSingle2
+### code chunk number 5: univariateSingle2
 ###################################################
 require(PerformanceAnalytics)
 par(mfrow=c(3, 1))
@@ -38,7 +44,7 @@ plot(tS1)
 
 
 ###################################################
-### code chunk number 5: univariateSingle2Plot
+### code chunk number 6: univariateSingle2Plot
 ###################################################
 require(PerformanceAnalytics)
 par(mfrow=c(3, 1))
@@ -48,21 +54,21 @@ plot(tS1)
 
 
 ###################################################
-### code chunk number 6: multivariateSingle
+### code chunk number 7: multivariateSingle
 ###################################################
 par(mfrow=c(1, 1))             
 plot(tS3, plot.type="s")   
 
 
 ###################################################
-### code chunk number 7: multivariateSinglePlot
+### code chunk number 8: multivariateSinglePlot
 ###################################################
 par(mfrow=c(1, 1))             
 plot(tS3, plot.type="s")   
 
 
 ###################################################
-### code chunk number 8: multivariateSingle2
+### code chunk number 9: multivariateSingle2
 ###################################################
 par(mfrow=c(2, 1))       
 require(PerformanceAnalytics)
@@ -71,7 +77,7 @@ plot(tS3, plot.type="s")
 
 
 ###################################################
-### code chunk number 9: multivariateSingle2Plot
+### code chunk number 10: multivariateSingle2Plot
 ###################################################
 par(mfrow=c(2, 1))       
 require(PerformanceAnalytics)
@@ -80,49 +86,49 @@ plot(tS3, plot.type="s")
 
 
 ###################################################
-### code chunk number 10: oneColMultiple
+### code chunk number 11: oneColMultiple
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m")  
 
 
 ###################################################
-### code chunk number 11: oneColMultiplePlot
+### code chunk number 12: oneColMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m")  
 
 
 ###################################################
-### code chunk number 12: twoColMultiple
+### code chunk number 13: twoColMultiple
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS6, plot.type="m")  
 
 
 ###################################################
-### code chunk number 13: twoColMultiplePlot
+### code chunk number 14: twoColMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS6, plot.type="m")  
 
 
 ###################################################
-### code chunk number 14: gapMultiple
+### code chunk number 15: gapMultiple
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS3, plot.type="m", mar=c(gap=0.3, 5.1, gap=0.3, 2.1)) 
 
 
 ###################################################
-### code chunk number 15: gapMultiplePlot
+### code chunk number 16: gapMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))
 plot(tS3, plot.type="m", mar=c(gap=0.3, 5.1, gap=0.3, 2.1)) 
 
 
 ###################################################
-### code chunk number 16: combineSingle
+### code chunk number 17: combineSingle
 ###################################################
 par(mfrow=c(2, 1))
 par(mar = c(bottom=1.5, 5.1, top=4, 2.1))
@@ -132,7 +138,7 @@ plot(tS2[, 2])
 
 
 ###################################################
-### code chunk number 17: combineSinglePlot
+### code chunk number 18: combineSinglePlot
 ###################################################
 par(mfrow=c(2, 1))
 par(mar = c(bottom=1.5, 5.1, top=4, 2.1))
@@ -142,7 +148,7 @@ plot(tS2[, 2])
 
 
 ###################################################
-### code chunk number 18: layoutSingle
+### code chunk number 19: layoutSingle
 ###################################################
 nf <- layout(mat=matrix(c(1, 1, 2, 3), byrow = TRUE, nrow=2))
 par(mar = c(bottom=2, 5.1, top=3, 2.1))
@@ -154,7 +160,7 @@ plot(tS3[, 3])
 
 
 ###################################################
-### code chunk number 19: layoutSinglePlot
+### code chunk number 20: layoutSinglePlot
 ###################################################
 nf <- layout(mat=matrix(c(1, 1, 2, 3), byrow = TRUE, nrow=2))
 par(mar = c(bottom=2, 5.1, top=3, 2.1))
@@ -166,7 +172,7 @@ plot(tS3[, 3])
 
 
 ###################################################
-### code chunk number 20: layout2Single
+### code chunk number 21: layout2Single
 ###################################################
 nf <- layout(mat=matrix(c(1, 1, 2, 3), byrow=TRUE, nrow=2), heights=c(2.5,1))
 par(mar = c(bottom=2, 5.1, top=3, 2.1))
@@ -178,7 +184,7 @@ plot(tS3[, 3])
 
 
 ###################################################
-### code chunk number 21: layout2SinglePlot
+### code chunk number 22: layout2SinglePlot
 ###################################################
 nf <- layout(mat=matrix(c(1, 1, 2, 3), byrow=TRUE, nrow=2), heights=c(2.5,1))
 par(mar = c(bottom=2, 5.1, top=3, 2.1))
@@ -190,21 +196,21 @@ plot(tS3[, 3])
 
 
 ###################################################
-### code chunk number 22: scatter
+### code chunk number 23: scatter
 ###################################################
 par(mfrow=c(1,1))
 plot(tS2[, 1], tS2[, 2])
 
 
 ###################################################
-### code chunk number 23: scatterPlot
+### code chunk number 24: scatterPlot
 ###################################################
 par(mfrow=c(1,1))
 plot(tS2[, 1], tS2[, 2])
 
 
 ###################################################
-### code chunk number 24: pretty
+### code chunk number 25: pretty
 ###################################################
 par(mfcol = c(2, 1))
 plot(tS1, at = "pretty")
@@ -212,7 +218,7 @@ plot(tS1, at = "chic")
 
 
 ###################################################
-### code chunk number 25: prettyPlot
+### code chunk number 26: prettyPlot
 ###################################################
 par(mfcol = c(2, 1))
 plot(tS1, at = "pretty")
@@ -220,7 +226,7 @@ plot(tS1, at = "chic")
 
 
 ###################################################
-### code chunk number 26: chicUnivariateSingle
+### code chunk number 27: chicUnivariateSingle
 ###################################################
 par(mfcol=c(2, 1))
 plot(tS3, plot.type="s", at="pretty")
@@ -228,7 +234,7 @@ plot(tS3, plot.type="s", at="chic")
 
 
 ###################################################
-### code chunk number 27: chicUnivariateSinglePlot
+### code chunk number 28: chicUnivariateSinglePlot
 ###################################################
 par(mfcol=c(2, 1))
 plot(tS3, plot.type="s", at="pretty")
@@ -236,7 +242,7 @@ plot(tS3, plot.type="s", at="chic")
 
 
 ###################################################
-### code chunk number 28: minorTicks
+### code chunk number 29: minorTicks
 ###################################################
 par(mfrow=c(3, 1))                
 plot(tS1, minor.ticks="day", at="pretty")
@@ -245,7 +251,7 @@ plot(tS1, minor.ticks="month", at="pretty")
 
 
 ###################################################
-### code chunk number 29: minorTicksPlot
+### code chunk number 30: minorTicksPlot
 ###################################################
 par(mfrow=c(3, 1))                
 plot(tS1, minor.ticks="day", at="pretty")
@@ -254,35 +260,35 @@ plot(tS1, minor.ticks="month", at="pretty")
 
 
 ###################################################
-### code chunk number 30: chicOneColMultiple
+### code chunk number 31: chicOneColMultiple
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m", at="pretty")
 
 
 ###################################################
-### code chunk number 31: chicOneColMultiplePlot
+### code chunk number 32: chicOneColMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m", at="pretty")
 
 
 ###################################################
-### code chunk number 32: chicTwoColMultiple
+### code chunk number 33: chicTwoColMultiple
 ###################################################
 par(mfrow=c(1, 1)) 
 plot(tS6, plot.type="m", at="chic")  
 
 
 ###################################################
-### code chunk number 33: chicTwoColMultiplePlot
+### code chunk number 34: chicTwoColMultiplePlot
 ###################################################
 par(mfrow=c(1, 1)) 
 plot(tS6, plot.type="m", at="chic")  
 
 
 ###################################################
-### code chunk number 34: tailoredAxis
+### code chunk number 35: tailoredAxis
 ###################################################
 par(mfrow=c(2, 1))
 at <- paste0("200", c("6-01", "6-04", "6-07", "6-10", "7-01", "7-04"), "-01")
@@ -291,7 +297,7 @@ plot(tS3, plot.type="s", format="%b/%y", at=at)
 
 
 ###################################################
-### code chunk number 35: tailoredAxisPlot
+### code chunk number 36: tailoredAxisPlot
 ###################################################
 par(mfrow=c(2, 1))
 at <- paste0("200", c("6-01", "6-04", "6-07", "6-10", "7-01", "7-04"), "-01")
@@ -300,7 +306,7 @@ plot(tS3, plot.type="s", format="%b/%y", at=at)
 
 
 ###################################################
-### code chunk number 36: annSingle
+### code chunk number 37: annSingle
 ###################################################
 par(mfrow=c(2, 2))
 plot(tS1, ann=FALSE)                
@@ -309,7 +315,7 @@ plot(tS6, plot.type="s", ann=FALSE, at="pretty")
 
 
 ###################################################
-### code chunk number 37: annSinglePlot
+### code chunk number 38: annSinglePlot
 ###################################################
 par(mfrow=c(2, 2))
 plot(tS1, ann=FALSE)                
@@ -318,7 +324,7 @@ plot(tS6, plot.type="s", ann=FALSE, at="pretty")
 
 
 ###################################################
-### code chunk number 38: titleSingle
+### code chunk number 39: titleSingle
 ###################################################
 par(mfrow=c(2, 2))
 plot(tS1); title(main = "Index") 
@@ -328,7 +334,7 @@ plot(tS6, plot.type="s"); title(main = "Index", xlab = "Date")
 
 
 ###################################################
-### code chunk number 39: titleSinglePlot
+### code chunk number 40: titleSinglePlot
 ###################################################
 par(mfrow=c(2, 2))
 plot(tS1); title(main = "Index") 
@@ -338,7 +344,7 @@ plot(tS6, plot.type="s"); title(main = "Index", xlab = "Date")
 
 
 ###################################################
-### code chunk number 40: axisFontSize
+### code chunk number 41: axisFontSize
 ###################################################
 par(mfrow=c(3, 1))
 plot(tS3, at="chic", plot.type="s", cex.axis=0.75)                            
@@ -347,7 +353,7 @@ plot(tS3, at="chic", plot.type="s", cex.axis=1.25)
 
 
 ###################################################
-### code chunk number 41: axisFontSizePlot
+### code chunk number 42: axisFontSizePlot
 ###################################################
 par(mfrow=c(3, 1))
 plot(tS3, at="chic", plot.type="s", cex.axis=0.75)                            
@@ -356,49 +362,49 @@ plot(tS3, at="chic", plot.type="s", cex.axis=1.25)
 
 
 ###################################################
-### code chunk number 42: flipAxisOne
+### code chunk number 43: flipAxisOne
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m", yax.flip = TRUE)                                    
 
 
 ###################################################
-### code chunk number 43: flipAxisOnePlot
+### code chunk number 44: flipAxisOnePlot
 ###################################################
 par(mfrow=c(1, 1))                
 plot(tS3, plot.type="m", yax.flip = TRUE)                                    
 
 
 ###################################################
-### code chunk number 44: typeMultiple
+### code chunk number 45: typeMultiple
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", type=c("l", "p", "h"), at="pretty")
 
 
 ###################################################
-### code chunk number 45: typeMultiplePlot
+### code chunk number 46: typeMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", type=c("l", "p", "h"), at="pretty")
 
 
 ###################################################
-### code chunk number 46: colorNamesMultiple
+### code chunk number 47: colorNamesMultiple
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=c("blue", "orange", "darkgreen"))
 
 
 ###################################################
-### code chunk number 47: colorNamesMultiplePlot
+### code chunk number 48: colorNamesMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=c("blue", "orange", "darkgreen"))
 
 
 ###################################################
-### code chunk number 48: palettesMultiple
+### code chunk number 49: palettesMultiple
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS6, plot.type="s", col=heat.colors(n=6, alpha = 1), 
@@ -406,7 +412,7 @@ plot(tS6, plot.type="s", col=heat.colors(n=6, alpha = 1),
 
 
 ###################################################
-### code chunk number 49: palettesMultiplePlot
+### code chunk number 50: palettesMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS6, plot.type="s", col=heat.colors(n=6, alpha = 1), 
@@ -414,35 +420,35 @@ plot(tS6, plot.type="s", col=heat.colors(n=6, alpha = 1),
 
 
 ###################################################
-### code chunk number 50: ltyMultiple
+### code chunk number 51: ltyMultiple
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=1, lty=1:3, at="chic")
 
 
 ###################################################
-### code chunk number 51: ltyMultiplePlot
+### code chunk number 52: ltyMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=1, lty=1:3, at="chic")
 
 
 ###################################################
-### code chunk number 52: lwdMultiple
+### code chunk number 53: lwdMultiple
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=1, lwd=3:1, at="chic")
 
 
 ###################################################
-### code chunk number 53: lwdMultiplePlot
+### code chunk number 54: lwdMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))                                                
 plot(tS3, plot.type="m", col=1, lwd=3:1, at="chic")
 
 
 ###################################################
-### code chunk number 54: symbolsSizeMultiple
+### code chunk number 55: symbolsSizeMultiple
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", type="p", 
@@ -450,7 +456,7 @@ plot(tS3, plot.type="s", type="p",
 
 
 ###################################################
-### code chunk number 55: symbolsSizeMultiplePlot
+### code chunk number 56: symbolsSizeMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", type="p", 
@@ -458,21 +464,21 @@ plot(tS3, plot.type="s", type="p",
 
 
 ###################################################
-### code chunk number 56: gridSingle
+### code chunk number 57: gridSingle
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", grid=FALSE)
 
 
 ###################################################
-### code chunk number 57: gridSinglePlot
+### code chunk number 58: gridSinglePlot
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", grid=FALSE)
 
 
 ###################################################
-### code chunk number 58: noBoxSingle
+### code chunk number 59: noBoxSingle
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", frame.plot=FALSE, grid=FALSE)
@@ -482,14 +488,14 @@ grid(NA, NULL, col = "darkgrey") # hgrid
 
 
 ###################################################
-### code chunk number 59: gridSinglePlot
+### code chunk number 60: gridSinglePlot
 ###################################################
 par(mfrow=c(1, 1))    
 plot(tS3, plot.type="s", grid=FALSE)
 
 
 ###################################################
-### code chunk number 60: horizMultiple
+### code chunk number 61: horizMultiple
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -500,7 +506,7 @@ plot(returns(tS3), plot.type="m", col = .colorwheelPalette(3),
 
 
 ###################################################
-### code chunk number 61: horizMultiplePlot
+### code chunk number 62: horizMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -511,7 +517,7 @@ plot(returns(tS3), plot.type="m", col = .colorwheelPalette(3),
 
 
 ###################################################
-### code chunk number 62: rugMultiple
+### code chunk number 63: rugMultiple
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -522,7 +528,7 @@ plot(returns(tS6), plot.type="m", col = .colorwheelPalette(6),
 
 
 ###################################################
-### code chunk number 63: rugMultiplePlot
+### code chunk number 64: rugMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -533,7 +539,7 @@ plot(returns(tS6), plot.type="m", col = .colorwheelPalette(6),
 
 
 ###################################################
-### code chunk number 64: emaMultiple
+### code chunk number 65: emaMultiple
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -544,7 +550,7 @@ plot(tS3, plot.type="m", col = .colorwheelPalette(3), panel=lines2,
 
 
 ###################################################
-### code chunk number 65: emaMultiplePlot
+### code chunk number 66: emaMultiplePlot
 ###################################################
 par(mfrow=c(1, 1))
 lines2 <- function(X, Y, type, xlab, ylab, col, pch, lty, lwd, cex) {
@@ -555,7 +561,7 @@ plot(tS3, plot.type="m", col = .colorwheelPalette(3), panel=lines2,
 
 
 ###################################################
-### code chunk number 66: margins
+### code chunk number 67: margins
 ###################################################
 # Plot:
 # - oma stands for 'Outer Margin Area'
@@ -598,7 +604,7 @@ box("outer", col="orange")
 
 
 ###################################################
-### code chunk number 67: marginsPlot
+### code chunk number 68: marginsPlot
 ###################################################
 # Plot:
 # - oma stands for 'Outer Margin Area'
@@ -641,7 +647,7 @@ box("outer", col="orange")
 
 
 ###################################################
-### code chunk number 68: prettyAppendix
+### code chunk number 69: prettyAppendix
 ###################################################
 FORMAT <- tS1@format
 FORMAT
@@ -652,7 +658,7 @@ LABELS
 
 
 ###################################################
-### code chunk number 69: axTicks
+### code chunk number 70: axTicks
 ###################################################
 axTicksByTime <-
 function (x, ticks.on = "auto", k = 1, labels = TRUE, format.labels = TRUE, 
@@ -705,7 +711,7 @@ function (x, ticks.on = "auto", k = 1, labels = TRUE, format.labels = TRUE,
 
 
 ###################################################
-### code chunk number 70: axTicks2
+### code chunk number 71: axTicks2
 ###################################################
 ticks <- axTicksByTime(as.xts(tS1))
 ticks

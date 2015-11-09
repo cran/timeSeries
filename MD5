@@ -1,6 +1,6 @@
-172d68c7dfe9c8b25779a21371ee947e *ChangeLog
-6016a34263c2ac36959416d6cf0052db *DESCRIPTION
-78dd5a88107ec317c1c01ab05fbfad4c *NAMESPACE
+558180eefa6c8e3217702d7c911143f2 *ChangeLog
+b96d70b738adc8d5dea53a561ca623dc *DESCRIPTION
+4fe323609ee6d1278bac3bd06f8e5f36 *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
 347cdf20d4b2289ee4e0d28422729462 *R/aaa-Deprecated.R
@@ -11,7 +11,7 @@ bf75c1900d359d9c90290da4c2425131 *R/base-cbind.R
 5d65fb056c9343690527697a20a7dc6e *R/base-diff.R
 f7bfa27eb8ad29fb4833629df4cb2db3 *R/base-dim.R
 cc83c20cec8f9f513caa7382f9b6ec58 *R/base-merge.R
-3d9b9c4496fccfc026754895d72fb912 *R/base-rank.R
+6ed798fb2f8a96ddca7221d2efc6d377 *R/base-rank.R
 64d35f5496dc0c4190aed8482d1ab8a3 *R/base-rev.R
 a4ab768410837ac64ea14dab3f463fe7 *R/base-sample.R
 9469dcf517fc0cf345f186de3a21ab52 *R/base-scale.R
@@ -72,7 +72,7 @@ d345cd583c4d6403b4d45687578922a2 *R/utils-head.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
-def7e4cbea5057a2972c453abe7eca2b *build/vignette.rds
+1a16502389a461db7dc9de0ffa16ea1e *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
@@ -80,9 +80,9 @@ b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
 29ddc76d19a7435c4101fdbd13ec0146 *inst/COPYRIGHTS
 df11bf613071e8b06eaeeccab8e9faac *inst/README
 68b329da9893e34099c7d8ad5cb9c940 *inst/THANKS
-c2293bfcc37bdba3cadd80364140019f *inst/doc/timeSeriesPlot.R
-3eec6b8570ccd25a7b386a17cfa8edc6 *inst/doc/timeSeriesPlot.Rnw
-5f43f98d42bd23b62786d1b47f60fee6 *inst/doc/timeSeriesPlot.pdf
+0c711050dac267c8360c6223150e6f65 *inst/doc/timeSeriesPlot.R
+618f03bbb6cb368076660795995056a9 *inst/doc/timeSeriesPlot.Rnw
+677c8def6192447be6cf3a3a87b891a2 *inst/doc/timeSeriesPlot.pdf
 0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 aff0877ae746813721c68f5dce737e5f *inst/extensionsTests/alignWrappers.R
@@ -138,7 +138,7 @@ d75ae564861660dc81bc084f1653fa9d *man/base-attach.Rd
 3d4a2f0bbfc5f506a49efc98cd256b89 *man/base-diff.Rd
 f195b5a72a03bda73799466c6c6d986e *man/base-dim.Rd
 675054910e7ea90e392d3bd42fd1a420 *man/base-merge.Rd
-136f08f962242b9244cf6c58463067a5 *man/base-rank.Rd
+b8923b6844ca9ba5901e1b9a0ce9f122 *man/base-rank.Rd
 cb0ebfd5e54c1c1715018119d8a96dc6 *man/base-rev.Rd
 9aff98951a26c78039a0460ac86c0687 *man/base-sample.Rd
 a116ae421f883f17bf73aaa0c3303d6b *man/base-scale.Rd
@@ -203,4 +203,4 @@ c1f351531201d1c5a99319debe31a159 *vignettes/colorPalettes1Fig.pdf
 61bf91e727aa32ae300c067888d136e1 *vignettes/colorTableFig.pdf
 efb5d1677a5e3f01559bf066ec86cc1a *vignettes/colorwheel.pdf
 3c2c1851329140ae3c375a6da33bd27c *vignettes/symbolTableFig.pdf
-3eec6b8570ccd25a7b386a17cfa8edc6 *vignettes/timeSeriesPlot.Rnw
+618f03bbb6cb368076660795995056a9 *vignettes/timeSeriesPlot.Rnw
