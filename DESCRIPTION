@@ -1,7 +1,7 @@
 Package: timeSeries
 Title: Rmetrics - Financial Time Series Objects
-Date: 2015-11-09
-Version: 3022.101
+Date: 2015-12-11
+Version: 3022.101.1
 Author: Rmetrics Core Team,
 	Diethelm Wuertz [aut],
 	Tobias Setz [cre],
@@ -20,6 +20,6 @@ LazyData: yes
 License: GPL (>= 2)
 URL: http://www.rmetrics.org
 NeedsCompilation: no
-Packaged: 2015-11-09 14:13:05 UTC; Tobi
+Packaged: 2015-12-11 09:55:46 UTC; ripley
 Repository: CRAN
-Date/Publication: 2015-11-09 17:16:10
+Date/Publication: 2015-12-11 11:03:17

@@ -1,5 +1,5 @@
 558180eefa6c8e3217702d7c911143f2 *ChangeLog
-b96d70b738adc8d5dea53a561ca623dc *DESCRIPTION
+9d3878c619af95e1b281e93cc4284e6a *DESCRIPTION
 4fe323609ee6d1278bac3bd06f8e5f36 *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
@@ -15,7 +15,7 @@ cc83c20cec8f9f513caa7382f9b6ec58 *R/base-merge.R
 64d35f5496dc0c4190aed8482d1ab8a3 *R/base-rev.R
 a4ab768410837ac64ea14dab3f463fe7 *R/base-sample.R
 9469dcf517fc0cf345f186de3a21ab52 *R/base-scale.R
-8b2ece5fb392489978d20cad444b84b3 *R/base-sort.R
+d9f2f8ff41432b93ec19171b0ae608db *R/base-sort.R
 3b5d882044aea7a06318630483a58903 *R/base-start.R
 668a0499be18f2991b18b43e7e7be9cf *R/base-subsetting.R
 787d5636b21ee586692fa57b10271810 *R/base-t.R
@@ -35,7 +35,7 @@ f2dc2572b00b06518008493859833ed3 *R/fin-runlengths.R
 71580b37ec7a5f795a8fc6aeaa55d4f4 *R/fin-wealth.R
 c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
-542f896dd39d377ccc9b91242d2cf02a *R/methods-is.R
+5504e2527ed48e4cc603a6de05040946 *R/methods-is.R
 e8c0ab735915b5fcd9fe02b459b00fc5 *R/methods-mathOps.R
 f0d67abbc0f53ebae292c8362f622caf *R/methods-plot.R
 a5f41f60726b9ccd9d05768d43eee84f *R/methods-plot2.R

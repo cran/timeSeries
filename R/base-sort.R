@@ -36,7 +36,8 @@
 
     # check if really necessary to sort x
     # important in order to improve efficiency
-    if (!decreasing && !is.unsorted(x)) return(x)
+    ## NB: is.unsorted can return NA
+    if (!decreasing && !isTRUE(is.unsorted(x@positions))) return(x)
 
     if (length(x@positions)>0)
         x[order(x@positions, decreasing = decreasing), ]

@@ -70,16 +70,17 @@ setMethod("is.na", "timeSeries", function(x)
 
 # ------------------------------------------------------------------------------
 
-
-if (getRversion() < "2.8.0") 
-{
-    setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE)
-        callGeneric(x@positions, na.rm = na.rm))
+if(getRversion() >= "3.3.0") {
+## unfortunately this will give NA if the data part contains NA,
+## since is.unsorted checks for NAs before dispatch
+    setMethod("is.unsorted", "timeSeries", function(x, strictly = FALSE)
+        callGeneric(x@positions, strictly = strictly))
 } else {
-    setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE, strictly = FALSE)
+    setMethod("is.unsorted", "timeSeries",
+               function(x, na.rm = FALSE, strictly = FALSE)
          callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
-}
 
+}
 
 ################################################################################
 
