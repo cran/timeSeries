@@ -70,17 +70,15 @@ setMethod("is.na", "timeSeries", function(x)
 
 # ------------------------------------------------------------------------------
 
-if(getRversion() >= "3.3.0") {
-## unfortunately this will give NA if the data part contains NA,
-## since is.unsorted checks for NAs before dispatch
-    setMethod("is.unsorted", "timeSeries", function(x, strictly = FALSE)
-        callGeneric(x@positions, strictly = strictly))
-} else {
-    setMethod("is.unsorted", "timeSeries",
-               function(x, na.rm = FALSE, strictly = FALSE)
-         callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+# something like this would be needed if is.unsorted again became an internal generic
+#if(getRversion() >= "3.3.0") {
+#    setGeneric("is.unsorted", signature = "x", useAsDefault = base::is.unsorted)
+#}
 
-}
+setMethod("is.unsorted", "timeSeries",
+           function(x, na.rm = FALSE, strictly = FALSE)
+           callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+
 
 ################################################################################
 

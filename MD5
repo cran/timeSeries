@@ -1,5 +1,5 @@
 558180eefa6c8e3217702d7c911143f2 *ChangeLog
-9d3878c619af95e1b281e93cc4284e6a *DESCRIPTION
+e7d734b2b9ed799cfd84ece729062d29 *DESCRIPTION
 4fe323609ee6d1278bac3bd06f8e5f36 *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
@@ -35,7 +35,7 @@ f2dc2572b00b06518008493859833ed3 *R/fin-runlengths.R
 71580b37ec7a5f795a8fc6aeaa55d4f4 *R/fin-wealth.R
 c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
-5504e2527ed48e4cc603a6de05040946 *R/methods-is.R
+87157daaf0b0542b0f3ac7b1eca3b043 *R/methods-is.R
 e8c0ab735915b5fcd9fe02b459b00fc5 *R/methods-mathOps.R
 f0d67abbc0f53ebae292c8362f622caf *R/methods-plot.R
 a5f41f60726b9ccd9d05768d43eee84f *R/methods-plot2.R
