@@ -1,6 +1,6 @@
 558180eefa6c8e3217702d7c911143f2 *ChangeLog
-e7d734b2b9ed799cfd84ece729062d29 *DESCRIPTION
-4fe323609ee6d1278bac3bd06f8e5f36 *NAMESPACE
+9bef10cbb5090b11ef10363059ef569c *DESCRIPTION
+43d5e1841d0f5ac89f9804a5b3bc68ef *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
 347cdf20d4b2289ee4e0d28422729462 *R/aaa-Deprecated.R
@@ -15,7 +15,7 @@ cc83c20cec8f9f513caa7382f9b6ec58 *R/base-merge.R
 64d35f5496dc0c4190aed8482d1ab8a3 *R/base-rev.R
 a4ab768410837ac64ea14dab3f463fe7 *R/base-sample.R
 9469dcf517fc0cf345f186de3a21ab52 *R/base-scale.R
-d9f2f8ff41432b93ec19171b0ae608db *R/base-sort.R
+317c51b7ef70876cf954798a9aa48927 *R/base-sort.R
 3b5d882044aea7a06318630483a58903 *R/base-start.R
 668a0499be18f2991b18b43e7e7be9cf *R/base-subsetting.R
 787d5636b21ee586692fa57b10271810 *R/base-t.R
@@ -35,10 +35,10 @@ f2dc2572b00b06518008493859833ed3 *R/fin-runlengths.R
 71580b37ec7a5f795a8fc6aeaa55d4f4 *R/fin-wealth.R
 c05c98f89b4f32fc376dee43082fd71a *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
-87157daaf0b0542b0f3ac7b1eca3b043 *R/methods-is.R
-e8c0ab735915b5fcd9fe02b459b00fc5 *R/methods-mathOps.R
-f0d67abbc0f53ebae292c8362f622caf *R/methods-plot.R
-a5f41f60726b9ccd9d05768d43eee84f *R/methods-plot2.R
+69108175e36952516e5fe3b75cfc0a25 *R/methods-is.R
+1efba2bcd9ba4c471c7c169737d23dd6 *R/methods-mathOps.R
+8786edbd804748a049a1f5b5698ed5fa *R/methods-plot.R
+4d654b07cec2e3d45f7efc43e41c6048 *R/methods-plot2.R
 313a83baf9d2a2ff221fb09c78bc819e *R/methods-show.R
 4e252059ec665d2650267d3fc8b8a098 *R/statistics-colCumsums.R
 20cc18c6b8815e6fda5f68be71ba4523 *R/statistics-colSums.R
@@ -72,7 +72,7 @@ d345cd583c4d6403b4d45687578922a2 *R/utils-head.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
-1a16502389a461db7dc9de0ffa16ea1e *build/vignette.rds
+1c61eaa49a2847b865dc2eb8538b085b *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
@@ -82,7 +82,7 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 68b329da9893e34099c7d8ad5cb9c940 *inst/THANKS
 0c711050dac267c8360c6223150e6f65 *inst/doc/timeSeriesPlot.R
 618f03bbb6cb368076660795995056a9 *inst/doc/timeSeriesPlot.Rnw
-677c8def6192447be6cf3a3a87b891a2 *inst/doc/timeSeriesPlot.pdf
+249d79670a1c1536f134e26571cf1e39 *inst/doc/timeSeriesPlot.pdf
 0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 aff0877ae746813721c68f5dce737e5f *inst/extensionsTests/alignWrappers.R
@@ -164,7 +164,7 @@ daebb82776472c426440dc7c7a948662 *man/fin-turnpoints.Rd
 6a2463fb908d48fb480a29cf245a002e *man/methods-base.Rd
 03b5db3608a32b1871bc0e69d59bbb49 *man/methods-comment.Rd
 6161d1e313a72c00546838ba1e274bf9 *man/methods-is.Rd
-90f6b4698d478dbac21274def4e98a36 *man/methods-mathOps.Rd
+089ec1cb847b6aa57b80e43344297164 *man/methods-mathOps.Rd
 2489ac779b0700d07d925510ba68eba1 *man/methods-plot.Rd
 bbf01aa4dc627329aabdbff94687975a *man/methods-show.Rd
 da7db95577645a1b362d399bd7bf7c72 *man/methods-stats.Rd

@@ -20,40 +20,40 @@
 
 
 is.timeSeries <-
-    function (x)
-{
+  function (x)
+  {
     # A function implemented by Diethelm Wuertz
-
+    
     # Description:
     #   Tests for a 'timeSeries' object.
-
+    
     # Arguments:
     #   object - a 'timeSeries' object to be tested.
-
+    
     # Value:
     #   Returns 'TRUE' or 'FALSE' depending on whether its
     #   argument is of 'timeSeries' type or not.
-
+    
     # Changes:
     #
-
+    
     # FUNCTION:
-
+    
     # Check:
     ans <- is(x, "timeSeries")
-
+    
     # Return Value:
     ans
-}
+  }
 
 # ------------------------------------------------------------------------------
 
 
 is.signalSeries <-
-    function(x)
-{
+  function(x)
+  {
     !as.logical(length(x@positions))
-}
+  }
 
 
 # ------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ is.signalSeries <-
 
 
 setMethod("is.na", "timeSeries", function(x)
-    setDataPart(x, is.na(getDataPart(x))))
+  setDataPart(x, is.na(getDataPart(x))))
 
 
 # ------------------------------------------------------------------------------
@@ -76,8 +76,17 @@ setMethod("is.na", "timeSeries", function(x)
 #}
 
 setMethod("is.unsorted", "timeSeries",
-           function(x, na.rm = FALSE, strictly = FALSE)
-           callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+          function(x, na.rm = FALSE, strictly = FALSE)
+            callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+
+# if (getRversion() < "2.8.0") 
+# {
+#   setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE)
+#     callGeneric(x@positions, na.rm = na.rm))
+# } else {
+#   setMethod("is.unsorted", "timeSeries", function(x, na.rm = FALSE, strictly = FALSE)
+#     callGeneric(x@positions, na.rm = na.rm, strictly = strictly))
+# }
 
 
 ################################################################################
