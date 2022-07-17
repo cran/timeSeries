@@ -114,7 +114,7 @@
         }
     \item{xy.labels}{
         logical, indicating if \code{text()} labels should be used for an
-        x-y plot, \_or\_ character, supplying a vector of labels to be
+        x-y plot, _or_ character, supplying a vector of labels to be
         used.  The default is to label for up to 150 points, and not
         for more.
         }

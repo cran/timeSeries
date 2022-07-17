@@ -1,29 +1,31 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Date: 2020-01-24
-Version: 3062.100
+Date: 2022-07-15
+Version: 4021.104
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
-	   , person("Tobias", "Setz", role = "cre", email = "tobias.setz@live.com")
-	   , person("Yohan", "Chalabi", role = "ctb")
+	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
+	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Martin","Maechler", role="ctb", email="maechler@stat.math.ethz.ch", comment = c(ORCID = "0000-0002-8685-9910"))
-	   )
+	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
+                    role = c("cre"), email = "georgi.boshnakov@manchester.ac.uk") )
 Description: 'S4' classes and various tools for financial time series:
   Basic functions such as scaling and sorting, subsetting,
   mathematical operations and statistical functions.
-Depends: R (>= 2.10), graphics, grDevices, stats, methods, utils,
-        timeDate (>= 2150.95)
+Depends: R (>= 2.10), timeDate (>= 2150.95)
+Imports: graphics, grDevices, stats, utils, methods
 Suggests: RUnit, robustbase, xts, PerformanceAnalytics, fTrading
 LazyData: yes
 License: GPL (>= 2)
 URL:
         https://r-forge.r-project.org/scm/viewvc.php/pkg/timeSeries/?root=rmetrics,
-        http://www.rmetrics.org
+        https://www.rmetrics.org
 NeedsCompilation: no
-Packaged: 2020-01-24 13:51:15 UTC; maechler
+Packaged: 2022-07-15 10:00:43 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
-  Tobias Setz [cre],
-  Yohan Chalabi [ctb],
-  Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>)
-Maintainer: Tobias Setz <tobias.setz@live.com>
+  Tobias Setz [aut],
+  Yohan Chalabi [aut],
+  Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
+  Georgi N. Boshnakov [cre]
+Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2020-01-24 17:35:15 UTC
+Date/Publication: 2022-07-17 02:20:02 UTC

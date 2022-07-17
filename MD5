@@ -1,6 +1,6 @@
-655dcc268ec612659050ace08950239c *ChangeLog
-28597f3e94a234edce497511c0d706bb *DESCRIPTION
-6ab386909ab2d2628960456511d83d51 *NAMESPACE
+9f330f8ac6b1e920655b80353c8658c3 *ChangeLog
+d59f1865fdde956d720e0ac056eb4d2d *DESCRIPTION
+c20adf493a0a5abe8ffba4e038581868 *NAMESPACE
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 527aae7078f17503b2cdecadb9f425a3 *R/AllGeneric.R
 347cdf20d4b2289ee4e0d28422729462 *R/aaa-Deprecated.R
@@ -73,7 +73,7 @@ f8e881deb5ac18be0f2ad0f638701f78 *R/timeSeries-slotDocumentation.R
 c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
-b27c91bdc41c37985d6d1826e5b5f3d4 *build/vignette.rds
+9b029e65164f3f4d516b2c7c42735fad *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 b59874b3fc70b45400dc76a7774bd34c *data/USDCHF.rda
@@ -83,8 +83,8 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 68b329da9893e34099c7d8ad5cb9c940 *inst/THANKS
 26f1e7c7b1bfa86789532fed789ad211 *inst/doc/timeSeriesPlot.R
 618f03bbb6cb368076660795995056a9 *inst/doc/timeSeriesPlot.Rnw
-289498d99f5b91a9675c9f0ee3be32ef *inst/doc/timeSeriesPlot.pdf
-b29c7222e33395ee90566ab95a9ac277 *inst/doc/timeSeriesRefCard.pdf
+747012f643d62d593f3d5ce437580861 *inst/doc/timeSeriesPlot.pdf
+0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 aff0877ae746813721c68f5dce737e5f *inst/extensionsTests/alignWrappers.R
 3c5f9513a1dd434ad7681ce52c25496a *inst/extensionsTests/attributesExtension.R
@@ -132,7 +132,7 @@ d33bd4274e713eb2d401b53feb7c9461 *inst/unitTests/runit.signalCounts.R
 ae94687a209d31a2a430a8a72f759483 *inst/unitTests/runit.subset.R
 8c98a57d8736b0515851139c13a08036 *inst/unitTests/runit.time.R
 31c51655d159665b6391203a329965ea *inst/unitTests/runit.timeSeries.R
-6248adf1d0d955fa3e004f0b28f3434a *man/00timeSeries-package.Rd
+012b47d6fdc76c4de2bf2937721515a8 *man/00timeSeries-package.Rd
 32d10029eec44fc9a457e2d6173c6bc5 *man/base-apply.Rd
 d75ae564861660dc81bc084f1653fa9d *man/base-attach.Rd
 1048bd46490c6b2029b61c71bc0f7fdd *man/base-cbind.Rd
@@ -166,7 +166,7 @@ daebb82776472c426440dc7c7a948662 *man/fin-turnpoints.Rd
 03b5db3608a32b1871bc0e69d59bbb49 *man/methods-comment.Rd
 6161d1e313a72c00546838ba1e274bf9 *man/methods-is.Rd
 089ec1cb847b6aa57b80e43344297164 *man/methods-mathOps.Rd
-2489ac779b0700d07d925510ba68eba1 *man/methods-plot.Rd
+f7251193dab2ed83c82daa4f2863938b *man/methods-plot.Rd
 bbf01aa4dc627329aabdbff94687975a *man/methods-show.Rd
 da7db95577645a1b362d399bd7bf7c72 *man/methods-stats.Rd
 699c2c2f02a41c219fe1e756397d94c2 *man/statistics-colCumsums.Rd
