@@ -24,11 +24,11 @@ function()
     # RUnit Test:
 
     # Signal Series:
-    tS = dummySeries(format = "counts")   # problem with Fincenter
+    tS = dummyMonthlySeries(format = "counts")   # problem with Fincenter
     cumulated(tS)
 
     # timeDate Series:
-    tS = dummySeries()
+    tS = dummyMonthlySeries()
     cumulated(tS)
 }
 

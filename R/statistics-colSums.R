@@ -141,20 +141,21 @@ colQuantiles <-
 ################################################################################
 # DEPRECATED:
 
-
-colAvgs <- 
-  function(x, ...) 
-{ 
-    # FUNCTION:
-    
-    colMeans(x, ...) 
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-colStdevs <- 
+## GNB: removed on 2022-10-07
+#
+# colAvgs <- 
+#   function(x, ...) 
+# { 
+#     # FUNCTION:
+#     
+#     colMeans(x, ...) 
+# }
+# 
+# 
+# # ------------------------------------------------------------------------------
+# 
+# 
+colStdevs <-             # TODO: comment out when the function is removed.
   function(x, ...) 
 { 
     # FUNCTION:

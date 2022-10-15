@@ -1,9 +1,5 @@
-\name{bind}
+\name{cbind}
 
-
-\title{Bind two timeSeries objects}
-
-%\alias{merge}
 \alias{cbind}
 \alias{rbind}
 \alias{cbind2}
@@ -17,6 +13,7 @@
 
 % \alias{c.timeSeries}
 
+%\alias{merge}
 %\alias{merge,ANY,timeSeries-method}
 %\alias{merge,timeSeries,ANY-method}
 %\alias{merge,timeSeries,missing-method}
@@ -32,54 +29,88 @@
 \alias{cbind2,timeSeries,ANY-method}
 \alias{cbind2,timeSeries,missing-method}
 \alias{cbind2,timeSeries,timeSeries-method}
+
 \alias{rbind2,ANY,timeSeries-method}
 \alias{rbind2,timeSeries,ANY-method}
 \alias{rbind2,timeSeries,missing-method}
 \alias{rbind2,timeSeries,timeSeries-method}
 
 
+\title{Bind \code{"timeSeries"} objects by column or row}
+
 \description{
   
-    Binds two 'timeSeries' objects either by column or by row.        
+  Binds \code{"timeSeries"} objects either by column or by row.
   
 }
 
-
-% \usage{
 % \S4method{merge}{timeSeries,timeSeries}(x, y, ...)
-% \S4method{cbind2}{timeSeries,timeSeries}(x, y)
-% \S4method{rbind2}{timeSeries,timeSeries}(x, y)
-% \S4method{cbind2}{timeSeries,timeSeries}(x, y)
-% }
+\usage{
+\method{cbind}{timeSeries}(\dots, deparse.level = 1)
+\method{rbind}{timeSeries}(\dots, deparse.level = 1)
 
+\S4method{cbind2}{timeSeries,ANY}(x, y)
+## other methods for 'cbind2' with the same arguments, see Details
 
-% \arguments{
+\S4method{rbind2}{timeSeries,ANY}(x, y)
+## other methods for 'rbind2' with the same arguments, see Details
+}
+
+\arguments{
   
-% %   \item{units}{
-% %     an optional character string, which allows to overwrite the 
-% %     current column names of a \code{timeSeries} object. By default 
-% %     \code{NULL} which means that the column names are selected
-% %     automatically.
-% %   }
+  % \item{units}{
+  %   an optional character string, which allows to overwrite the 
+  %   current column names of a \code{timeSeries} object. By default 
+  %   \code{NULL} which means that the column names are selected
+  %   automatically.
+  % }
 
-%   \item{x, y}{
-%     two objects of class \code{timeSeries}.
-%   }
+  \item{x, y}{
+    objects, at least one of whom is of class \code{"timeSeries"}.
+  }
 
-% %   \item{\dots}{
-% %     arguments passed to returned timeSeries object.
-% %   }
+  \item{\dots}{
+    further arguments to bind.
+  }
 
-% }
+  \item{deparse.level}{
+    see the documentation of \code{base::cbind}.
+  }
+}
 
+\details{
+
+  These functions bind the objects by row \code{rXXX} or column
+  (\code{cXXX}.
+
+  \code{cbind} and \code{rbind} are S3 generics, so the
+  \code{"timeSeries"} methods describe here are called only when the
+  first argument is \code{"timeSeries"}.
+
+  \code{cbind2} and \code{rbind2} are S4 generics which dispatch on the
+  first two arguments. The \code{"timeSeries"} methods for these are
+  invoked whenever at least one of the first two arguments is of class
+  \code{"timeSeries"}.
+  
+  All functions can be called with more than two arguments. After the
+  first two are merged, the result is merged with the third, and so on.
+  
+}
 
 \value{
-
-  returns a S4 object of class \code{timeDate}. 
-  
+  an object of class \code{"timeSeries"}
 }
 
+\seealso{
+  \code{\link{merge}} for another way to merge \code{"timeSeries"}
+  object column-wise.
+  
+  \code{\link[base]{rbind}} and \code{\link[base]{cbind}} from base R,
 
+  \code{\link[methods]{rbind2}} and \code{\link[methods]{cbind2}} from
+  package \code{"methods"},
+  
+}
 \examples{
 ## Load Microsoft Data Set -
    x <- MSFT[1:12, ]

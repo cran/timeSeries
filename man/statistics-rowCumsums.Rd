@@ -1,18 +1,16 @@
 \name{rowCum}
-
-
-\title{Cumulated Column Statistics}
-
-
 \alias{rowCum}
 \alias{rowCumsums}
 \alias{rowCumsums,ANY-method}
 \alias{rowCumsums,timeSeries-method}
 
 
+\title{Cumulative  column and row statistics}
+
+
 \description{
 
-    Compute cumulative row Statistics.
+    Compute cumulative column and row statistics.
 
 }
 

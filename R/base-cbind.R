@@ -161,7 +161,7 @@ function(..., deparse.level = 1)
 
 
 ## # YC:
-## # Note that since 2.9.0 S3 methods can not be defined for S4 classes
+## # Note that since 2.9.0 S3 methods can not be defined for an S4 class
 ## # which extends an object like matrix. Therefore we turn all S3
 ## # generics to S4 generics for backward compatibility
 

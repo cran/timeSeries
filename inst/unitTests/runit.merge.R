@@ -38,9 +38,9 @@ function()
     merge(x, y)
 
 
-    x <- dummySeries()[,1]
+    x <- dummyMonthlySeries()[,1]
     x
-    y <- dummySeries()
+    y <- dummyMonthlySeries()
     y
     merge(x, y)
 

@@ -1,9 +1,3 @@
-2022-07-15 GB
-	* DESCRIPTION: new maintainer, Georgi Boshnakov; new version 4021.104
-	(`104` obtained by looking at the published CRAN versions);
-	moved package `methods` to `Imports`.
-	* methods-plot.Rd:117: fixed CRAN NOTE `Escaped LaTeX specials: \_ \_`.
-
 2020-01-24  Martin Maechler  <maechler@stat.math.ethz.ch>
 
 	* DESCRIPTION (Version): 3062.100 ;  using Authors@R

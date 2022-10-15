@@ -1,19 +1,18 @@
 \name{rollMean}                     
-                                    
-                                    
-\title{Rolling Statistics}
-
+\alias{rollMean}
 
 \alias{rollStats}
-\alias{rollMean}
 \alias{rollMin}
 \alias{rollMax}
 \alias{rollMedian}
 
+                                    
+\title{Rolling statistics}
 
 \description{
     
-    Computes rolling mean, min, max and median for a 'timeSeries' object.      
+    Computes rolling mean, min, max and median for a \code{"timeSeries"}
+    object.
     
 }
     
@@ -36,7 +35,7 @@ rollMedian(x, k, na.pad = FALSE,
 \arguments{
 
     \item{x}{
-        an uni- or multivariate 'timeSeries' object.
+        an uni- or multivariate \code{"timeSeries"} object.
         }
     \item{k}{
         an integer width of the rolling window. Must be odd for 
@@ -64,7 +63,7 @@ rollMedian(x, k, na.pad = FALSE,
 
 \value{
 
-    returns an object of class 'timeSeries'.
+  an object of class \code{"timeSeries"}.
         
 }
 

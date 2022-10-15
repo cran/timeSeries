@@ -1,6 +1,5 @@
 \name{periodical}
 
-
 \alias{endOfPeriod}
                                     
 \alias{endOfPeriodSeries}
@@ -8,30 +7,15 @@
 \alias{endOfPeriodBenchmarks}
 
 
-\title{End-of-Period Series, Stats, and Benchmarks}
+\title{End-of-Period series, stats, and benchmarks}
 
 
 \description{
 
-    Computes perodical statistics back to a given period.
+    Computes periodical statistics back to a given period.
     
 }
 
-
-\details{
-    
-    The function \code{endOfPeriodSeries} returns series back 
-    to a given period.\cr
-    The function \code{endOfPeriodStats} returns statistics back 
-    to a given period.\cr
-    The function \code{endOfPeriodBenchmarks} returns benchmarks 
-    back to a given period.
-    
-    \code{x} must be end of month data. Note you can create such 
-    series using for example the functions: \code{align},
-    \code{alignDailySeries}, \code{daily2monthly}.
-
-}
 
 \usage{
 
@@ -49,21 +33,50 @@ endOfPeriodBenchmarks(x, benchmark = ncol(x),
 
 \arguments{
 
-    \item{x}{
-        an end-of-month recorded multivariate 'timeSeries' object. 
-        One of the columns holds the benchmark series specified
-        by the argument \code{benchmark}, By defauklt this is the
-        last column of \code{x}.
-        } 
-    \item{nYearsBack}{
-        a period string. How long back should the series
-        be treated? Options include values from 1 year to 10 years,
-        and year-to-date: "1y", "2y", "3y", "5y", "10y", "YTD". 
-        }
-    \item{benchmark}{
-        an integer giving the position of the benchmar series in
-        \code{x}.
-        }
+  \item{x}{
+
+    an end-of-month recorded multivariate \code{"timeSeries"} object.
+    One of the columns holds the benchmark series specified by argument
+    \code{benchmark},
+	
+  } 
+  \item{nYearsBack}{
+
+    a period string. How long back should the series be treated? Options
+    include values from 1 year to 10 years, and year-to-date: "1y",
+    "2y", "3y", "5y", "10y", "YTD".
+
+  }
+  \item{benchmark}{
+	  
+    an integer giving the position of the benchmark series in
+    \code{x}. By default this is the last column of \code{x}.
+
+  }
+}
+
+\details{
+    
+  \code{endOfPeriodSeries} returns series back to a given period.
+
+  \code{endOfPeriodStats} returns statistics back to a given period.
+
+  \code{endOfPeriodBenchmarks} returns benchmarks back to a given
+  period.
+    
+  \code{x} must be end of month data. Such series can be created using
+  functions like \code{align}, \code{alignDailySeries},
+  \code{daily2monthly}.
+
+}
+
+\value{
+
+  for \code{endOfPeriodStats}, a data frame;
+
+  for \code{endOfPeriodBenchmarks} - currently \code{NULL} (invisibly),
+  the function is unfinished.
+
 }
 
  

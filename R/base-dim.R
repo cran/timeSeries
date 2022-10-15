@@ -108,7 +108,7 @@
 setMethod("dim", "timeSeries", function(x) attr(x, "dim"))
 
 # This should make functions like
-# model.response(model.frame(dummySeries() ~1)) work
+# model.response(model.frame(dummyMonthlySeries() ~1)) work
 
 
 setReplaceMethod("dim", "timeSeries",

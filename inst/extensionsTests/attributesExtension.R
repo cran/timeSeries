@@ -311,7 +311,7 @@ getAttributes <-
   function(obj, value)
 {
   # Example:
-  #   obj <- dummySeries(); getAttributes(obj)
+  #   obj <- dummyMonthlySeries(); getAttributes(obj)
   #   setAttributes(obj) <- list(mat=matrix(1:4, ncol=2)); getAttributes(obj)
   #   getAttributes(obj)$mat[[1]]
     

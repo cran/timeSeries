@@ -1,7 +1,7 @@
 \name{attributes}
 
 
-\title{Get and Set Optional Attributes of a 'timeSeries'}
+\title{Get and set optional attributes of a 'timeSeries'}
 
 
 \alias{attributes}
@@ -14,7 +14,7 @@
 \description{
 
     Extracts or assigns optional attributes from or to a 
-    \code{timeSeries} object.
+    \code{"timeSeries"} object.
     
 }
 
@@ -64,8 +64,9 @@ object.
 
 
 \examples{
-## Create an artificial timeSeries Object - 
-   tS <- dummySeries()
+\dontshow{set.seed(1234)}
+## Create an artificial 'timeSeries' Object - 
+   tS <- dummyMonthlySeries()
    tS
 
 ## Get Optional Attributes -
@@ -81,4 +82,3 @@ object.
 
 
 \keyword{programming}
-

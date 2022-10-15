@@ -154,7 +154,9 @@ endOfPeriodStats <-
 
 # ------------------------------------------------------------------------------
 
-
+## 2022-10-09 :TODO: GNB: this function is unfinished and returns NULL.
+##            It should be removed or completed.
+##            I don't know what it is supposed to do.
 endOfPeriodBenchmarks <- 
     function(x, benchmark = ncol(x),
     nYearsBack = c("1y", "2y", "3y", "5y", "10y", "YTD"))
@@ -199,7 +201,8 @@ endOfPeriodBenchmarks <-
         stats <- rbind(stats, stats1)
     }
 
-    # Return Value:
+    # Return Value: 
+    ## GNB: stats? 
     invisible()
 }
 

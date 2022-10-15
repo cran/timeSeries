@@ -3,11 +3,11 @@
 \alias{comment,timeSeries-method}
 \alias{comment<-,timeSeries-method}
 
-\title{comment for timeSeries objects}
+\title{Get and set comments for 'timeSeries' objects}
 
 
 \description{
-    Print or assign new comment to a \code{timeSeries} object.
+  Get or assign new comment to a \code{timeSeries} object.
 }
 
 
@@ -20,18 +20,24 @@
 
 \arguments{
   
-    \item{x}{
-        a \code{timeSeries} object.
-        }
-    \item{value}{
-        a character string - the comment.
-    }
-    
+  \item{x}{
+    a \code{timeSeries} object.
+  }
+  \item{value}{
+    a character vector, the comment.
+  }
+  
 }
 
+\details{
+
+  Objects from class \code{"timeSeries"} have a slot for documentation.
+  These functions get and change its contents.
+
+}
 
 \examples{
-## Get Description from timeSeries -
+## Get description from a 'timeSeries' -
    comment(LPP2005REC)
    
 ## Add User to comment -

@@ -286,13 +286,13 @@ getAttributes <- function(obj) {
 
 
 
-obj1 <- dummySeries()
+obj1 <- dummyMonthlySeries()
 getAttributes(obj1)
 setAttributes(obj1) <- list(series="obj1")
 getAttributes(obj1)
 
 
-obj2 <- dummySeries()
+obj2 <- dummyMonthlySeries()
 getAttributes(obj2)
 setAttributes(obj2) <- list(series="obj2")
 getAttributes(obj2)

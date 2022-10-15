@@ -1,11 +1,10 @@
 \name{drawdowns}
-
-
-\title{Calculations of Drawdowns}
-
-
 \alias{drawdowns}
+
 \alias{drawdownsStats}
+
+
+\title{Calculations of drawdowns}
 
 
 \description{
@@ -26,7 +25,7 @@ drawdownsStats(x, \dots)
 \arguments{
 
     \item{x}{
-        a 'timeSeries' object of financial returns.  
+        a \code{"timeSeries"} object of financial returns.  
         Note, drawdowns can be calculated from an uni- or multivariate 
         time deries object, statistics can only be computed from an
         univariate time series object.
@@ -40,25 +39,24 @@ drawdownsStats(x, \dots)
 
 \value{
 
-    \code{drawdowns}\cr
-    returns an object of class 'timeSeries'.
+    for \code{drawdowns}, an object of class \code{timeSeries}.\cr\cr
     
-    \code{drawdownsStats}\cr
-    returns an object of class 'data.frame' with the following entries:\cr 
-    \code{"drawdown"} - the depth of the drawdown, \cr 
-    \code{"from"} - the start date, \cr  
-    \code{"trough"} - the trough period, \cr 
-    \code{"to"} - the end date, \cr 
-    \code{"length"} - the length in number of records, \cr 
-    \code{"peaktrough"} - the peak trough, and , \cr 
-    \code{"recovery"} - the recovery length in number of records.
+    for \code{drawdownsStats} an object of class \code{"data.frame"}
+    with the following entries:
+    \item{"drawdown"}{the depth of the drawdown, } 
+    \item{"from"}{the start date, }  
+    \item{"trough"}{the trough period, } 
+    \item{"to"}{the end date, } 
+    \item{"length"}{the length in number of records, } 
+    \item{"peaktrough"}{the peak trough, and } 
+    \item{"recovery"}{the recovery length in number of records.}
         
 }
 
     
 \details{
 
-    The code in the core of the function \code{drawdownsStats} was 
+    The code in the core of the function \code{drawdownsStats}
     was borrowed from the package \code{PerformanceAnalytics} 
     authored by Peter Carl and Sankalp Upadhyay.
     

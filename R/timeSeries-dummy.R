@@ -25,8 +25,7 @@
 # dummyMonthlySeries() to have the same naming conventions like in the
 # case of the dummy daily series.
 
-
-dummySeries <- 
+dummyMonthlySeries <-
   function(...)
 {
     # A function implemented by Diethelm Wuertz
@@ -43,7 +42,10 @@ dummySeries <-
     timeSeries(matrix(runif(24), ncol = 2), as.character(timeCalendar()), ...)
 }
 
-    
+dummySeries <-   function(...) { # GNB
+    .Deprecated("dummyMonthlySeries")
+    dummyMonthlySeries(...)
+}
 # ------------------------------------------------------------------------------
 
 
@@ -84,4 +86,3 @@ dummyDailySeries <-
 
 
 ################################################################################
-

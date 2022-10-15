@@ -37,7 +37,7 @@
 #     mar.multi = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1),
 #     oma.multi = c(6, 0, 5, 0), axes = TRUE, ...)
 
-#  x=dummySeries();  y = NULL; FinCenter = NULL;  plot.type = "s"    
+#  x=dummyMonthlySeries();  y = NULL; FinCenter = NULL;  plot.type = "s"    
 #  format = "auto"; at = "pretty"; panel = lines; yax.flip = FALSE
 #  mar.multi = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1)
 #  oma.multi = c(7.75, 1.1, 6.1, 1.1)

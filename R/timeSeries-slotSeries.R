@@ -73,9 +73,23 @@ setMethod("series<-", signature(x = "timeSeries", value = "ANY"),
 
 
 # ------------------------------------------------------------------------------
-
-
-setMethod("series<-", signature(x = "timeSeries", value = "matrix"),
+## 2022-10-08 GNB: the bodies of `series<-` and `coredata<-` are iddentical.
+##                 Define thie body separately to make this clear,
+##                 Then use this body in both definitions.
+##
+##   TODO: In principle, we could just not define 'coredata<-' generic and do:
+##
+##       "coredata<-" <- "series<-"
+##
+##       but this doesn't seem desirable since 'coredata<-' may be exported by other
+##       packages, too (e.g., zoo). Maybe, do it the other way round: define the methods for
+##       'coredata<-' and do
+## 
+##       "series<-" <- "coredata<-"
+##
+##       This may have the analogous problem since other packages may rely on a generic
+##       'series<-'. Admittedly , this is far less likely.
+.series_assign <-
     function(x, value)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -137,11 +151,14 @@ setMethod("series<-", signature(x = "timeSeries", value = "matrix"),
         recordIDs = recordIDs,
         title = title)
 }
-)
 
+
+
+setMethod("series<-", signature(x = "timeSeries", value = "matrix"),
+          .series_assign )
 
 ################################################################################
-# COREDATA SYNONYME
+# COREDATA SYNONYM
 
 
 setMethod("coredata", "timeSeries", 
@@ -185,68 +202,7 @@ setMethod("coredata<-", signature(x = "timeSeries", value = "ANY"),
 
 
 setMethod("coredata<-", signature(x = "timeSeries", value = "matrix"),
-    function(x, value)
-{
-    # A function implemented by Diethelm Wuertz and Yohan Chalabi
-
-    # Description:
-    #    Assign the series Data to a timeSeries object.
-
-    # Arguments:
-    #   object - a 'timeSeries' object
-
-    # Value:
-    #    Assign to be assign as series Data of a timeSeries.
-
-    # FUNCTION:
-
-    # if value same dimension as time series
-    # we we can assign the value directly to @.Data
-    # This can speed up math Ops significantly
-    if (identical(dim(x), dim(value))) {
-        x@.Data <- value
-        if (!is.null(cn <- colnames(value)))
-            colnames(x) <- cn
-        return(x)
-    }
-
-    if (is.null(charvec <- rownames(value)))
-        charvec <- rownames(x)
-    if (is.null(units <- colnames(value)))
-        units <- colnames(value)
-
-    # now that we have charvec and units, better to remove
-    # dimnames of value to avoid problems
-    attr(value, "dimnames") <- NULL
-
-    if (!identical(length(units), NCOL(value)))
-        units <- NULL
-
-    # if now same dim , drop charvec and returns .signalSeries
-    if (!identical(length(charvec), NROW(value)))
-        return(.signalSeries(value, units))
-
-    format <- x@format
-    zone <- FinCenter <- finCenter(x)
-    title <- x@title
-    documentation <- x@documentation
-    recordIDs <-
-        if (identical(NROW(x), NROW(value)))
-            x@recordIDs
-        else
-            data.frame()
-
-    # Return Value:
-    timeSeries(data = value,
-        charvec = charvec,
-        units = units,
-        format = format,
-        zone = zone,
-        FinCenter = FinCenter,
-        recordIDs = recordIDs,
-        title = title)
-})
-
+          .series_assign )
 
 ################################################################################
 
@@ -330,34 +286,34 @@ setMethod("coredata<-", signature(x = "timeSeries", value = "matrix"),
 # DEPRECATED
 
 
-seriesData <-
-function(object)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #    Returns the series Data of an ordered data object.
-
-    # Arguments:
-    #   object - a 'timeSeries' object
-
-    # Value:
-    #    Returns an object of class 'matrix'.
-
-    # FUNCTION:
-
-    # Test:
-    stopifnot(inherits(object, "timeSeries"))
-
-    # Deprecated
-    .Deprecated(new = "series", package = "timeSeries")
-
-    # Get Data Slot:
-    ans <- as.matrix(object)
-
-    # Return Value:
-    ans
-}
+## seriesData <-
+## function(object)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # Description:
+##     #    Returns the series Data of an ordered data object.
+## 
+##     # Arguments:
+##     #   object - a 'timeSeries' object
+## 
+##     # Value:
+##     #    Returns an object of class 'matrix'.
+## 
+##     # FUNCTION:
+## 
+##     # Test:
+##     stopifnot(inherits(object, "timeSeries"))
+## 
+##     # Deprecated
+##     .Deprecated(new = "series", package = "timeSeries")
+## 
+##     # Get Data Slot:
+##     ans <- as.matrix(object)
+## 
+##     # Return Value:
+##     ans
+## }
 
 
 ################################################################################

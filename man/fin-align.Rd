@@ -7,12 +7,12 @@
 \alias{align,timeSeries-method}
 
 
-\title{timeSeries Class, Functions and Methods}
+\title{Align a 'timeSeries' object to equidistant time stamps}
 
 
 \description{
 
-    Aligns a 'timeSeries' Object.
+  Aligns a \code{"timeSeries"} object to equidistant time stamps.
 
 }
 
@@ -20,9 +20,8 @@
 \usage{
 \S4method{align}{timeSeries}(x, by = "1d", offset = "0s",
     method = c("before", "after", "interp", "fillNA",
-    "fmm", "periodic", "natural", "monoH.FC"),
+               "fmm", "periodic", "natural", "monoH.FC"),
     include.weekends = FALSE, ...)
-
 }
 
 \arguments{
@@ -31,29 +30,31 @@
         an object of class \code{timeSeries}.
         }
     \item{by}{
-        a character string denoting the period
+        a character string denoting the period.
         }
     \item{offset}{
-        a character string denoting the offset
+        a character string denoting the offset.
         }
     \item{method}{
         a character string denoting the alignment approach.
         }
     \item{include.weekends}{
-        a logical flag, should weekend be included.
+        a logical flag, should weekends be included.
         }
     \item{\ldots}{
-        Further arguments to be passed to the interpolating function.
+        further arguments to be passed to the interpolating function.
         }
 }
 
+\details{
 
-\value{
-
-    Returns an aligned S4 'timeSeries' object.
-
+  :TODO:
+  
 }
 
+\value{
+  a \code{"timeSeries"} object.
+}
 
 \examples{
 ## Use MSFT and Compute Sample Size -

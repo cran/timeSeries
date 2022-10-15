@@ -27,8 +27,10 @@
 #  newPositions<-            Deprecated, use time<-
 ################################################################################
 
-
-.time.timeSeries <- 
+## GNB: swapped the definitions of .time.timeSeries and time.timeSeries
+##      in preparation to drop the former
+##   .time.timeSeries <- 
+time.timeSeries <- 
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -53,11 +55,17 @@
 
 
 setMethod("time", "timeSeries",
-    function(x, ...) .time.timeSeries(x, ...))
+    function(x, ...) time.timeSeries(x, ...))
 
           
-# until UseMethod dispatches S4 methods in 'base' functions
-time.timeSeries <- function(x, ...) .time.timeSeries(x, ...)
+## GNB: swapped the definitions of .time.timeSeries and time.timeSeries
+##      and deprecated .time.timeSeries
+.time.timeSeries <- function(x, ...) {
+    # Deprecated:
+    .Deprecated(new = "time", package = "timeSeries")
+    
+    time.timeSeries(x, ...)
+}
 
 
 # ------------------------------------------------------------------------------
@@ -147,50 +155,50 @@ getTime <-
 # DEPRECATED
 
 
-seriesPositions <-
-    function(object)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Extracts the positions of a 'timeSeries' objects and
-    #   converts them to a 'timeDate' object.
-
-    # Arguments:
-    #   object - a 'timeSeries' object
-
-    # Value:
-    #   Returns 'timeSeries' positions as 'timeDate' objects.
-
-    # FUNCTION:
-
-    # Deprecated:
-    .Deprecated(new = "time", package = "timeSeries")
-
-    # Return Value:
-    time(object)
-}
+## seriesPositions <-
+##     function(object)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # Description:
+##     #   Extracts the positions of a 'timeSeries' objects and
+##     #   converts them to a 'timeDate' object.
+## 
+##     # Arguments:
+##     #   object - a 'timeSeries' object
+## 
+##     # Value:
+##     #   Returns 'timeSeries' positions as 'timeDate' objects.
+## 
+##     # FUNCTION:
+## 
+##     # Deprecated:
+##     .Deprecated(new = "time", package = "timeSeries")
+## 
+##     # Return Value:
+##     time(object)
+## }
 
 
 # ------------------------------------------------------------------------------
 # Deprecated:
 
 
-"newPositions<-" <-
-    function(object, value)
-{   # A function implemented by Diethelm Wuertz
-
-    # FUNCTION:
-
-    # Deprecated:
-    .Deprecated(new = "time<-", package = "timeSeries")
-
-    # Assign Rownames:
-    rownames(object) <- value
-
-    # Return Value:
-    object
-}
+## "newPositions<-" <-
+##     function(object, value)
+## {   # A function implemented by Diethelm Wuertz
+## 
+##     # FUNCTION:
+## 
+##     # Deprecated:
+##     .Deprecated(new = "time<-", package = "timeSeries")
+## 
+##     # Assign Rownames:
+##     rownames(object) <- value
+## 
+##     # Return Value:
+##     object
+## }
 
 
 ################################################################################

@@ -1,0 +1,159 @@
+url: https://geobosh.github.io/timeSeriesDoc/
+
+template:
+  bootstrap: 5
+  
+search:
+  exclude: ['news/index.html']
+
+reference:
+  - title: "Overview of package timeSeries"
+    contents:
+      - "timeSeries-package"
+      - TimeSeriesData
+  - title: "Create 'timeSeries' objects"
+    contents:
+      - timeSeries
+      - as.timeSeries
+      - as.matrix
+      - as.ts
+      - as.data.frame
+      - readSeries
+      - dummyMonthlySeries
+      - dummyDailySeries
+      - alignDailySeries
+      - rollDailySeries
+  - title: "Manipulate 'timeSeries' objects"
+    contents:
+      - series
+      - "series<-"
+      - getFinCenter
+      - "setFinCenter<-"
+      - finCenter
+      - "finCenter<-"
+      - time
+      - "time<-"
+      - getUnits
+      - "setUnits<-"
+      - start
+      - end
+      - getAttributes
+      - "setAttributes<-"
+      - comment
+      - "comment<-"
+      - na.contiguous
+      - na.omit
+      - removeNA
+      - substituteNA
+      - interpNA
+      - orderColnames
+      - sortColnames
+      - sampleColnames
+      - statsColnames
+      - pcaColnames
+      - hclustColnames
+  - title: "Predicates for 'timeSeries' objects"
+    contents:
+      - is.timeSeries
+      - is.signalSeries
+      - isUnivariate
+      - isMultivariate
+      - isDaily
+      - isMonthly
+      - isQuarterly
+      - isRegular
+  - title: "Subsetting 'timeSeries'"
+    contents:
+      - TimeSeriesSubsettings
+      - window
+  - title: "Transform 'timeSeries' objects"
+    contents:
+      - scale
+      - diff
+      - lag
+      - sort
+      - rev
+      - runlengths
+      - durations
+      - rank
+      - sample
+      - math
+  - title: "Transform and smooth 'timeSeries' objects"
+    contents:
+      - filter
+      - smoothLowess
+      - smoothSpline
+      - smoothSupsmu
+      - aggregate
+      - daily2monthly
+      - daily2weekly
+  - title: "Financial computations on 'timeSeries' objects"
+    contents:
+      - returns
+      - returns0
+      - cumulated
+      - drawdowns
+      - drawdownsStats
+      - splits
+      - spreads
+      - midquotes
+      - midquoteSeries
+      - spreadSeries
+      - index2wealth
+  - title: "Compute statistics on timeSeries objects"
+    contents:
+      - fapply
+      - applySeries
+      - cov
+      - cor
+      - colStats
+      - colSds
+      - colVars
+      - colSkewness
+      - colKurtosis
+      - colMaxs
+      - colMins
+      - colProds
+      - colQuantiles
+      - turns
+      - turnsStats
+      - orderStatistics
+      - rollStats
+      - rollMean
+      - rollMin
+      - rollMax
+      - rollMedian
+      - rowCumsums
+  - title: "Combine time series"
+    contents:
+      - cbind
+      - rbind
+      - cbind2
+      - rbind2
+      - merge
+      - align
+  - title: "Further 'timeSeries methods for base R Functions"
+    contents:
+      - t
+      - plot
+      - lines
+      - points
+      - pretty
+      - "print-methods"
+      - str
+  - title: "Base Time Series Functions"
+    contents:
+      - countMonthlyRecords
+      - rollMonthlyWindows
+      - rollMonthlySeries
+      - endOfPeriodSeries
+      - endOfPeriodStats
+      - endOfPeriodBenchmarks
+  - title: "Other"
+    contents:
+      - "timeSeries-class"
+      - dimnames
+      - DataPart
+      - description
+      - attach
+      - model.frame

@@ -20,7 +20,7 @@
 ################################################################################
 
 
-.start.timeSeries <- function(x, ...)
+start.timeSeries <- function(x, ...)
 {
     # Description:
     #   Extracts start date of a 'timeSeries' object
@@ -34,16 +34,16 @@
         NULL
 }
 
-setMethod("start" , "timeSeries", function(x, ...) .start.timeSeries(x, ...))
+setMethod("start" , "timeSeries", start.timeSeries)
 
-# until UseMethod dispatches S4 methods in 'base' functions
-start.timeSeries <- function(x, ...) .start.timeSeries(x, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## start.timeSeries <- function(x, ...) .start.timeSeries(x, ...)
 
 
 # ------------------------------------------------------------------------------
 
 
-.end.timeSeries <- function(x, ...)
+end.timeSeries <- function(x, ...)
 {
     # Description:
     #   Extracts start date of a 'timeSeries' object
@@ -57,10 +57,10 @@ start.timeSeries <- function(x, ...) .start.timeSeries(x, ...)
         NULL
 }
 
-setMethod("end", "timeSeries", function(x, ...) .end.timeSeries(x, ...))
+setMethod("end", "timeSeries", function(x, ...) end.timeSeries(x, ...))
 
-# until UseMethod dispatches S4 methods in 'base' functions
-end.timeSeries <- function(x, ...) .end.timeSeries(x, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## end.timeSeries <- function(x, ...) .end.timeSeries(x, ...)
 
 
 ################################################################################

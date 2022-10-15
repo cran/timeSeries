@@ -1,21 +1,23 @@
 \name{aggregate-methods}
+\alias{aggregate-methods}
 
 \docType{methods}
 
 \alias{aggregate}
 \alias{aggregate.timeSeries}
-\alias{aggregate-methods}
 \alias{aggregate,timeSeries-method}
 
 \alias{daily2weekly}
 \alias{daily2monthly}
 
 
-\title{timeSeries Class, Functions and Methods}
+\title{Aggregate time series}
 
 \description{
     
-    Aggregates a 'timeSeries' Object.      
+    Aggregate a \code{"timeSeries"} object over general periods.  There
+    also functions for the common cases of changing daily to weekly and
+    daily to monthly.
     
 }
 
@@ -27,11 +29,11 @@
     
     In addition there are two tailored function for simple
     usage: Function \code{daily2monthly} and \code{daily2weekly}
-    which allow to aggregate 'timeSeries' objects from daily
+    which allow to aggregate \code{"timeSeries"} objects from daily
     to monthly or weekly levels, respectively.
     
     In the case of the function \code{daily2weekly} one can 
-    explicitely the starting day of the week, the default
+    explicitly set the starting day of the week, the default
     value is Tuesday, \code{startOn="Tue"}.
 }
 
@@ -46,40 +48,42 @@ daily2weekly(x, startOn="Tue", init=FALSE)
 
 \arguments{
   
-    \item{x}{
-        an object of class 'timeSeries'.
-        } 
-    \item{by}{
-        a sequence of \code{timeDate} objects denoting the aggregation
-        period.
-        }
-    \item{FUN}{
-        the function to be applied.
-        }               
-    \item{startOn}{
-        a string value, specifying the day of week as a three
-        letter abbreviation. Weekly aggregated data records
-        are then fixed to the weekdays given by the argument
-        \code{startOn}.}
-    \item{init}{
-        a logical value, if set to \code{TRUE} then the time 
-        series will be indexed to 1 for its first value. By 
-        default init is set to \code{FALSE}.
-        }
-    \item{\dots}{
-        arguments passed to other methods.
-        }
-       
+  \item{x}{
+    an object of class \code{"timeSeries"}.
+  } 
+  \item{by}{
+    a sequence of \code{timeDate} objects denoting the aggregation
+    period.
+  }
+  \item{FUN}{
+    the function to be applied.
+  }               
+  \item{startOn}{
+
+    a character string, specifying the day of week as a three letter
+    abbreviation. Weekly aggregated data records are then fixed to the
+    weekdays given by the argument \code{startOn}.
+  }
+  \item{init}{
+
+    a logical value, if set to \code{TRUE} then the time series will be
+    indexed to 1 for its first value. By default init is set to
+    \code{FALSE}.
+
+  }
+  \item{\dots}{
+    arguments passed to other methods.
+  }
 }
 
 
 \value{
 
     \code{aggregate} returns an aggregated S4 object of class 
-    \code{timeSeries}.
+    \code{timeSeries}.\cr
     
     \code{daily2monthly} returns an aggregated monthly object
-    of class \code{timeSeries}.
+    of class \code{timeSeries}.\cr
 
     \code{daily2weekly} returns an aggregated weekly object
     of class \code{timeSeries} starting on the specified day

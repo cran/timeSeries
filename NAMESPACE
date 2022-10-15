@@ -172,7 +172,10 @@ exportMethods("$",
               "t",
               "tail",
               "time",
-              "window" )
+              "window"
+
+              # , summary # GNB
+              )
 
 ################################################
 ## S3 classes
@@ -214,6 +217,11 @@ S3method("time", "timeSeries")
 S3method("time<-", "timeSeries")
 S3method("window", "timeSeries")
 
+## new
+S3method("summary", timeSeries) 
+S3method("print", timeSeries_summary) 
+
+
 ################################################
 ## functions
 ################################################
@@ -249,64 +257,67 @@ export(
 
 
 export(
-    ".DollarNames.timeSeries",
-    ".aggregate.timeSeries",
-    ".align.timeSeries",
-    ".applySeries",
-    ".as.data.frame.timeSeries",
-    ".as.list.timeSeries",
-    ".as.matrix.timeSeries",
-    ".as.ts.timeSeries",
-    ".cut.timeSeries",
-    ".description",
-    #".diff.timeSeries",
-    ".dollar_assign",
-    ".end.timeSeries",
-    ".extract.turnpointsPastecs",
-    ".fapply",
-    ".findIndex",
-    ".head.timeSeries",
-    ".isOHLC",
-    ".isOHLCV",
-    ".lines.timeSeries",
-    ".lowessSmoother",
-    ".merge.timeSeries",
-    ".na.omit.timeSeries",
-    ".naOmitMatrix",
-    ".old2newRda",
-    ".old2newTimeSeries",
-    ".plot.timeSeries",
-    ".plot.turnpointsPastecs",
-    ".points.timeSeries",
-    ".print.timeSeries",
-    ".rev.timeSeries",
-    ".rollmax.timeSeries",
-    ".rollmean.timeSeries",
-    ".rollmedian.timeSeries",
-    ".rollmin.timeSeries",
-    ".scale.timeSeries",
-    ".signalCounts",
-    ".signalSeries",
-    ".sort.timeSeries",
-    ".splineSmoother",
-    ".start.timeSeries",
-    ".str.timeSeries",
-    ".subset_timeSeries",
-    ".summary.turnpointsPastecs",
-    ".supsmuSmoother",
-    ".tail.timeSeries",
-    ".time.timeSeries",
-    ".timeSeries",
-    ".turnpoints2",
-    ".turnpointsPastecs",
-    ".turnpointsSeries",
-    ".turnpointsStats",
-    ".validity_timeSeries",
-    ".window.timeSeries",
+    ".DollarNames.timeSeries", # the 'timeSeries' method for utils::.DollarNames
+
+    ".align.timeSeries", # fPortfolio/R/backtest-Plots.R, line 517, rev. 6295
+    ##                     #  changed to align(Data) in rev. 6296
+    ##                     # nevertheless, keeping it for now as it is not clear 
+    ##                     # when a new version will be pulished.
+    ##                     # TODO: remove it eventually!
+    ### ".aggregate.timeSeries",
+    ### ".as.data.frame.timeSeries",
+    ### ".as.list.timeSeries",
+    ### ".as.matrix.timeSeries",
+    ### ".as.ts.timeSeries",
+    ### ".cut.timeSeries",
+    ### ".description",
+    ### #".diff.timeSeries",
+    ### ".dollar_assign",
+    ### ".end.timeSeries",
+    ### ".extract.turnpointsPastecs",
+    ### ".findIndex",
+    ### ".head.timeSeries",
+    ### ".isOHLC",
+    ### ".isOHLCV",
+    ### ".lines.timeSeries",
+    ### ".lowessSmoother",
+    ### ".merge.timeSeries",
+    ### ".na.omit.timeSeries",
+    ### ".naOmitMatrix",
+    ### ".old2newRda",
+    ### ".old2newTimeSeries",
+    ### ".plot.timeSeries",
+    ### ".plot.turnpointsPastecs",
+    ### ".points.timeSeries",
+    ### ".print.timeSeries",
+    ### ".rev.timeSeries",
+    ### ".rollmax.timeSeries",
+    ### ".rollmean.timeSeries",
+    ### ".rollmedian.timeSeries",
+    ### ".rollmin.timeSeries",
+    ### ".scale.timeSeries",
+    ### ".signalCounts",
+    ### ".signalSeries",
+    ### ".sort.timeSeries",
+    ### ".splineSmoother",
+    ### ".start.timeSeries",
+    ### ".str.timeSeries",
+    ### ".subset_timeSeries",
+    ### ".summary.turnpointsPastecs",
+    ### ".supsmuSmoother",
+    ### ".tail.timeSeries",
+    ### ".time.timeSeries",
+    ### ".timeSeries",
+    ### ".turnpoints2",
+    ### ".turnpointsPastecs",
+    ### ".turnpointsSeries",
+    ### ".turnpointsStats",
+    ### ".validity_timeSeries",
+    ### ".window.timeSeries",
     "alignDailySeries",
     "applySeries",
     "as.timeSeries",
-    "colAvgs",
+    # "colAvgs",
     "colKurtosis",
     "colMaxs",
     "colMins",
@@ -315,7 +326,11 @@ export(
     "colSds",
     "colSkewness",
     "colStats",
-    "colStdevs",
+    "colStdevs",   # still in fAssets::assetsRiskReturnPlot
+    ##                  I corrected the devel version.
+    ##                     # nevertheless, keeping it for now as it is not clear 
+    ##                     # when a new version will be pulished.
+    ##                     # TODO: remove it eventually!
     "colVars",
     "countMonthlyRecords",
     "cumulated",
@@ -323,12 +338,17 @@ export(
     "drawdowns",
     "drawdownsStats",
     "dummyDailySeries",
-    "dummySeries",
+    "dummyMonthlySeries",  # replacement for "dummySeries"
+    "dummySeries", # deprecated, TDO: remove after some time
     "durationSeries",
     "durations",
     "fapply",
     "getFinCenter",
-    "getReturns",
+    "getReturns", # several uses in the tests in 'fTrading' TODO: check before submission
+    ##               I corrected the devel version.
+    ##                     # nevertheless, keeping it for now as it is not clear 
+    ##                     # when a new version will be pulished.
+    ##                     # TODO: remove it eventually!
     "getTime",
     "getUnits",
 	"getUnits.default",
@@ -338,16 +358,16 @@ export(
     "is.timeSeries",
     "isMultivariate",
     "isUnivariate",
-    "midquoteSeries",
+    ## "midquoteSeries",
     "midquotes",
-    "newPositions<-",
+    ## "newPositions<-",
         ".ohlcDailyPlot",
     "orderColnames",
     "orderStatistics",
     "pcaColnames",
     "readSeries",
     "removeNA",
-    "returnSeries",
+    ## "returnSeries",
     "rollDailySeries",
     "rollMax",
     "rollMean",
@@ -358,8 +378,8 @@ export(
     "rollStats",
     "runlengths",
     "sampleColnames",
-    "seriesData",
-    "seriesPositions",
+    ## "seriesData",
+    ## "seriesPositions",
     "setFinCenter<-",
     "setTime<-",
     "setUnits<-",
@@ -367,7 +387,7 @@ export(
     "smoothSpline",
     "smoothSupsmu",
     "sortColnames",
-    "spreadSeries",
+    ## "spreadSeries",
     "spreads",
     "statsColnames",
     "substituteNA",

@@ -1,15 +1,14 @@
 \name{orderColnames}
-
-
-\title{Reorder Column Names of a Time Series}
-
-
 \alias{orderColnames}
+
 \alias{sortColnames}
 \alias{sampleColnames}
 \alias{statsColnames}
 \alias{pcaColnames}
 \alias{hclustColnames}
+
+
+\title{Reorder column names of a time series}
 
 
 \description{
@@ -41,6 +40,11 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
 
 \arguments{
         
+    \item{x}{
+        an object of class \code{timesSeries} or any other rectangular 
+        object which can be transformed by the function \code{as.matrix}
+        into a numeric matrix. 
+        }
     \item{FUN}{ 
         a character string indicating which statistical function 
         should be applied. By default statistical ordering operates 
@@ -56,11 +60,6 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
         a logical flag which indicates if robust correlations
         should be used.
         }
-    \item{x}{
-        an object of class \code{timesSeries} or any other rectangular 
-        object which can be transformed by the function \code{as.matrix}
-        into a numeric matrix. 
-        }
     \item{\dots}{
         further arguments to be passed, see details.
         }
@@ -70,16 +69,20 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
 
 \details{
 
+  These functions reorder the column names of a \code{"timeSeries"}
+  object according to some statistical measure.
+  
+
     \bold{Statistically Motivated Rearrangement} 
     
     The function \code{statsColnames} rearranges the column names
     according to a statical measure. These measure must operate on the
-    columns of the time series and return a vector of values which
-    can be sorted. Typical functions ar those listed in in help
-    page \code{colStats} but one can also crete his own
-    functions which compute for example risk or any other statistical
-    measure. The \code{\dots} argument allows to pass additional
-    arguments to the underlying function \code{FUN}.\cr
+    columns of the time series and return a vector of values which can
+    be sorted. Typical functions ar those listed in help page
+    \code{colStats} but custom functions can be used that compute for
+    example risk or any other statistical measure. The \code{\dots}
+    argument allows to pass additional arguments to the underlying
+    function \code{FUN}.
     
     \bold{PCA Ordering of the Correlation Matrix} 
     
@@ -90,7 +93,7 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
     the function \code{covMcd} from contributed R package
     \code{robustbase}. The \code{\dots} argument allows to pass 
     additional arguments to the two underlying functions \code{cor} 
-    or \code{covMcd}. E.g. adding \code{method="kendall"} 
+    or \code{covMcd}. E.g., adding \code{method="kendall"} 
     to the argument list calculates Kendall's rank correlations
     instead the default which calculates Person's correlations.\cr
     
@@ -105,7 +108,7 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
 
 \value{
 
-    returns a vector of character string, the rearranged column names.
+  a character string or vector, the rearranged column names
         
 }
 

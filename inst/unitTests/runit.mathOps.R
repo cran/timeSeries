@@ -23,14 +23,14 @@ function()
 {
     # RUnit Test:
 
-    tS = dummySeries(format = "counts")
+    tS = dummyMonthlySeries(format = "counts")
     tS
     tS - 2
     log(abs(tS))
     diff(tS)
     scale(tS)
 
-    tS = dummySeries()
+    tS = dummyMonthlySeries()
     tS
     tS - 2
     log(abs(tS))

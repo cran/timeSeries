@@ -24,14 +24,14 @@ function()
     # RUnit Test:
 
     # Signal Series:
-    tS = sort(sample(dummySeries())[1:6, ])
+    tS = sort(sample(dummyMonthlySeries())[1:6, ])
     tS
     durations(tS)
     durations(tS, trim = TRUE)
     durations(tS, trim = TRUE)/(24*3600)
 
     # Time Series:
-    tS = sort(sample(dummySeries(format = "counts"))[1:6, ])
+    tS = sort(sample(dummyMonthlySeries(format = "counts"))[1:6, ])
     tS
     # BUG !!!
     # durations(tS)

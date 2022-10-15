@@ -24,7 +24,7 @@ function()
     # RUnit Test:
 
 
-    tS = dummySeries(units = c("Bid", "Ask"))
+    tS = dummyMonthlySeries(units = c("Bid", "Ask"))
     head(tS)
     midquotes(tS)
     spreads(tS)

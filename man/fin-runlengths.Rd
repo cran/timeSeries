@@ -1,7 +1,7 @@
 \name{runlengths}
 
 
-\title{Runlengths of a Time Series}
+\title{Runlengths of a time series}
 
 
 \alias{runlengths}
@@ -9,7 +9,7 @@
 
 \description{
     
-    Computes runlengths of an univariate 'timeSeries' object.
+    Computes runlengths of an univariate \code{"timeSeries"} object.
        
 }
 
@@ -22,7 +22,7 @@ runlengths(x, \dots)
 \arguments{
 
     \item{x}{
-        an univariate time series of class 'timeSeries'.
+        an univariate time series of class \code{"timeSeries"}.
         }
     \item{\dots}{
         arguments to be passed.
@@ -33,7 +33,7 @@ runlengths(x, \dots)
 
 \value{
 
-    returns an object of class \code{timeSeries}.
+  an object of class \code{timeSeries}.
         
 }
     

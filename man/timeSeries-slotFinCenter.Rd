@@ -1,50 +1,54 @@
 \name{finCenter}
+\alias{finCenter}
 
-
-\title{Get and Set Financial Center of a 'timeSeries'}
-
-
-\alias{getFinCenter}  
-\alias{setFinCenter<-}
 
 \alias{finCenter,timeSeries-method}
 \alias{finCenter<-,timeSeries-method}
 
+\alias{getFinCenter}  
+\alias{setFinCenter<-}
+
+
+
+\title{Get and set Financial center of a 'timeSeries'}
 
 \description{
 
-    Print or assign new financial center to a 'timeSeries' object.
+  Get or assign a financial center to a \code{"timeSeries"} object.
     
 }
 
 
 \usage{
-getFinCenter(x)         
-setFinCenter(x) <- value
-
 \S4method{finCenter}{timeSeries}(x)
 \S4method{finCenter}{timeSeries}(x) <- value
+
+getFinCenter(x)         
+setFinCenter(x) <- value
 }
 
 
 \arguments{
   
-    \item{x}{
-        a 'timeSeries' object.
-        }
-    \item{value}{
-        a character with the the location of the financial center named 
-        as "continent/city".
-        }
+  \item{x}{
+    a \code{"timeSeries"} object.
+  }
+  \item{value}{
+    a character with the the location of the financial center named 
+    as \code{"continent/city"}.
+  }
 }
 
 
-\seealso{listFinCenter}
+\seealso{
+  \code{\link[timeDate]{listFinCenter}} and \code{\link[timeDate]{finCenter}}
+  in package \code{"timeDate"}
+}
 
 
 \examples{
-## An artificial timeSeries Object - 
-   tS <- dummySeries()
+## An artificial 'timeSeries' Object - 
+   tS <- dummyMonthlySeries()
    tS
 
 ## Print Financial Center -

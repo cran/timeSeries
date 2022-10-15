@@ -1,5 +1,4 @@
 \name{math}
-
 \alias{math}
 
 \alias{Ops,vector,timeSeries-method}
@@ -26,16 +25,14 @@
 \alias{\%*\%,timeSeries,ANY-method}
 \alias{\%*\%,ANY,timeSeries-method}
 
-%\alias{diff.timeSeries}
-%\alias{scale.timeSeries}
-\alias{quantile.timeSeries}
+%\alias{quantile.timeSeries}
 \alias{quantile,timeSeries-method}
-\alias{median.timeSeries}
+
+%\alias{median.timeSeries}
 \alias{median,timeSeries-method}
 
 
-\title{Mathematical Time Series Operations}
-
+\title{Mathematical time series operations}
 
 \description{
   
@@ -44,6 +41,60 @@
   
 }
 
+\usage{
+% \S4method{Ops}{timeSeries}(e1, e2)
+% \S4method{Math}{timeSeries}(x, ...)
+% \S4method{Math2}{timeSeries}(x, digits)
+% \S4method{Summary}{timeSeries}(x, ..., na.rm = FALSE)
+\S4method{quantile}{timeSeries}(x, \dots)
+%\S4method{median}{timeSeries}(x, na.rm = FALSE, \dots)
+}
+
+
+\arguments{
+  \item{x}{
+    an object of class \code{timeSeries}.
+  }
+  %  \item{center, scale}{ 
+  %    [scale] - \cr
+  %    either a logical value or a numeric vector of length equal to
+  %    the number of columns of \code{x}.
+  %  }
+  %  \item{diff}{
+  %    an integer indicating the order of the difference. By default 1.
+  %  }
+    
+  %   \item{digits} {
+  %     number of digits to be used in 'round' or 'signif'.
+  %   }
+    
+  %   \item{e1, e2}{
+  %     [Ops] - \cr   
+  %     two objects of class \code{timeSeries}.
+  %   }
+    
+  %  \item{lag}{   
+  %    an integer indicating which lag to use. By default 1.
+  %  }
+
+  % \item{na.rm}{
+  %   a logical value: should missing values be removed?
+  % }
+
+  %  \item{pad}{
+  %    [diffSeries] - \cr
+  %    which value should get the padded values? By default \code{NA}.
+  %    Another choice often used would be zero.
+  %  } 
+  %  \item{trim}{
+  %    a logical value. By default \code{TRUE}, the first missing 
+  %    observation in the return series will be removed. 
+  %  }
+  \item{\dots}{
+    arguments to be passed.
+  }
+  
+}
 
 \details{
 
@@ -61,63 +112,6 @@
 }
 
 
-\usage{
-% \S4method{Ops}{timeSeries}(e1, e2)
-% \S4method{Math}{timeSeries}(x, ...)
-% \S4method{Math2}{timeSeries}(x, digits)
-% \S4method{Summary}{timeSeries}(x, ..., na.rm = FALSE)
-% \S4method{diff}{timeSeries}(x, lag = 1, diff = 1, trim = FALSE, pad = NA, \dots)
-% \S4method{scale}{timeSeries}(x, center = TRUE, scale = TRUE)
-\S4method{quantile}{timeSeries}(x, \dots)
-}
-
-
-\arguments{
-%  \item{center, scale}{ 
-%    [scale] - \cr
-%    either a logical value or a numeric vector of length equal to
-%    the number of columns of \code{x}.
-%  }
-%  \item{diff}{
-%    an integer indicating the order of the difference. By default 1.
-%  }
-  
-%   \item{digits} {
-%     number of digits to be used in 'round' or 'signif'.
-%   }
-  
-%   \item{e1, e2}{
-%     [Ops] - \cr   
-%     two objects of class \code{timeSeries}.
-%   }
-  
-%  \item{lag}{   
-%    an integer indicating which lag to use. By default 1.
-%  }
-
-%   \item{na.rm}{
-%     logical: should missing values be removed?
-%   }
-
-%  \item{pad}{
-%    [diffSeries] - \cr
-%    which value should get the padded values? By default \code{NA}.
-%    Another choice often used would be zero.
-%  } 
-%  \item{trim}{
-%    a logical value. By default \code{TRUE}, the first missing 
-%    observation in the return series will be removed. 
-%  }
-  \item{x}{
-    an object of class \code{timeSeries}.
-  }
-  \item{\dots}{
-    arguments to be passed.
-  }
-  
-}
-
-
 \value{
 
     Returns the value from a mathematical or logical operation 
@@ -128,7 +122,7 @@
 
 
 \examples{
-## Create an Artificial timeSeries Object - 
+## Create an Artificial 'timeSeries' Object - 
    setRmetricsOptions(myFinCenter = "GMT")
    charvec = timeCalendar()
    set.seed(4711)

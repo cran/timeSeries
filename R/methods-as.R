@@ -319,16 +319,16 @@ setAs("timeSeries", "data.frame", function(from) as.data.frame(from))
 
     # Example:
     #
-    #   x = dummySeries(); as.ts(x)
+    #   x = dummyMonthlySeries(); as.ts(x)
     #
     #   x = timeSeries(seq(12), timeSequence(by = "month", length.out = 12))
     #   as.ts(x)
     #
-    #   x = dummySeries()[c(3,6,9,12),]; as.ts(x)
-    #   x = dummySeries()[c(2,5,8,11),]; as.ts(x)
-    #   x = dummySeries()[c(1,4,7,10),]; as.ts(x)
+    #   x = dummyMonthlySeries()[c(3,6,9,12),]; as.ts(x)
+    #   x = dummyMonthlySeries()[c(2,5,8,11),]; as.ts(x)
+    #   x = dummyMonthlySeries()[c(1,4,7,10),]; as.ts(x)
     #
-    #   x = dummySeries()[c(4,7,10,1),]; as.ts(x)
+    #   x = dummyMonthlySeries()[c(4,7,10,1),]; as.ts(x)
 
 
     # Changes:

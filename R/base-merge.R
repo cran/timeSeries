@@ -87,7 +87,7 @@ function(x, y, ...)
 # ------------------------------------------------------------------------------'
 
 
-.merge.timeSeries <- function(x, y, ...)
+merge.timeSeries <- function(x, y, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
@@ -152,10 +152,11 @@ function(x, y, ...)
 
 
 setMethod("merge", c("timeSeries", "timeSeries"),
-          function(x, y, ...) .merge.timeSeries(x, y, ...))
+          ## function(x, y, ...) merge.timeSeries(x, y, ...))
+          merge.timeSeries)
 
-# until UseMethod dispatches S4 methods in 'base' functions
-merge.timeSeries <- function(x, y, ...) .merge.timeSeries(x, y, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## merge.timeSeries <- function(x, y, ...) .merge.timeSeries(x, y, ...)
 
 
 # ------------------------------------------------------------------------------

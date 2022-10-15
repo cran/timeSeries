@@ -27,7 +27,7 @@ function()
     is(timeSeries(), "timeSeries")
 
     # Series
-    ts = dummySeries()
+    ts = dummyMonthlySeries()
     x = timeSeries:::.signalSeries(as.matrix(ts))
     y = timeSeries:::.timeSeries(as.matrix(ts), as.numeric(time(ts), "sec"))
 

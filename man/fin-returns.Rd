@@ -1,10 +1,6 @@
 \name{returns}
-
-
-\title{Financial Returns}
-
-
 \alias{returns}
+
 \alias{returns,ANY-method}
 \alias{returns,timeSeries-method}
 
@@ -13,6 +9,8 @@
 \alias{returnSeries}
 \alias{getReturns}
 
+
+\title{Financial returns}
 
 \description{
     
@@ -31,8 +29,6 @@ returns0(x, \dots)
     "compound", "simple"), percentage = FALSE, na.rm = TRUE, 
     trim = TRUE, \dots) 
 
-getReturns(\dots)
-returnSeries(\dots)
 }
 
 
@@ -48,11 +44,11 @@ returnSeries(\dots)
     \item{method}{
         a character string. Which method should be used to compute
         the returns, "continuous", "discrete", or "compound", "simple".
-        The second pair of methods is a synonyme for the first two
+        The second pair of methods is a synonym for the first two
         methods.
         }    
     \item{na.rm}{
-        a logical value. Should NAs be removed? By Default \code{TRUE}.
+        a logical value. Should NAs be removed? By default \code{TRUE}.
         }    
     \item{trim}{
         a logical value. Should the time series be trimmed? By Default 
@@ -69,7 +65,7 @@ returnSeries(\dots)
 
     all functions return an object of class \code{timeSeries}.
     
-    \code{returns0} returns am untrimmed series with the first
+    \code{returns0} returns an untrimmed series with the first
     row of returns set to zero(s).
         
 }
@@ -77,10 +73,10 @@ returnSeries(\dots)
 
 \note{
 
-    The functions \code{returnSeries}, \code{getReturns}, 
-    are synonymes for the function \code{returns}. We do
-    not recommend to use these functions.
-
+    The functions \code{returnSeries}, \code{getReturns} are no longer
+    exported and will be removed in the near future. They are synonyms
+    for the function \code{returns} and their use was discouraged for
+    many years. Just use \code{returns}.
 }
     
 

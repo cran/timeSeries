@@ -15,11 +15,11 @@
 
 ###############################################################################
 # FUNCTION:                 DESCRIPTION:
-#  diff,timeSeries           Differences a 'timeSeries' object
+#  diff.timeSeries           Differences a 'timeSeries' object
 ###############################################################################
 
 
-.diff.timeSeries <-
+diff.timeSeries <-
   function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -97,15 +97,14 @@
 
 setMethod("diff", "timeSeries",
           function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
-          .diff.timeSeries(x, lag, diff, trim, pad, ...)
+              diff.timeSeries(x, lag, diff, trim, pad, ...)
           ##x <- getDataPart(x)
           ##callGeneric()
           )
 
 
-# until UseMethod dispatches S4 methods in 'base' functions
-diff.timeSeries <- function(x, ...) .diff.timeSeries(x, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## diff.timeSeries <- function(x, ...) .diff.timeSeries(x, ...)
 
 
 ###############################################################################
-

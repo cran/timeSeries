@@ -17,7 +17,7 @@
 # FUNCTION:              DESCRIPTION:
 #  applySeries           Applies a function to blocks of a 'timeSeries'
 #  fapply                Applies a function to 'timeSeries' windows
-# DEPRECATED:            DESCRIPTION:
+# DEPRECATED: (now removed)  DESCRIPTION:
 #  .applySeries           Applies a function to blocks of a 'timeSeries'
 #  .fapply                Applies a function to 'timeSeries' windows
 ################################################################################
@@ -165,186 +165,187 @@ function(x, from, to, FUN, ...)
 ################################################################################
 # *** OLD ***
 # Check if it is still used somewhere ...
+# 2022-10-07 GNB : apparently not, commenting out
 
-
-.applySeries <-
-    function (x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
-    FUN = colMeans, units = NULL, ...)
-{
-    # Old/Alternative Version
-
-    # Chreck for 'timeSeries' Object:
-    stopifnot(is.timeSeries(x),
-              is(from, "timeDate") || is.null(from),
-              is(to,   "timeDate") || is.null(to))
-
-    # Allow for colMeans:
-    if (substitute(FUN) == "colMeans") FUN = "colAvgs"
-
-    # Monthly and Quarterly from and to:
-    if (is.null(from) & is.null(to)) {
-        by = match.arg(by)
-        if (by == "monthly") {
-            from = unique(timeFirstDayInMonth(time(x)))
-            to = unique(timeLastDayInMonth(time(x)))
-        }
-        else if (by == "quarterly") {
-            from = unique(timeFirstDayInQuarter(time(x)))
-            to = unique(timeLastDayInQuarter(time(x)))
-        }
-        from@FinCenter = to@FinCenter = x@FinCenter
-    }
-
-    # Start Cutting Process:
-    fun = match.fun(FUN)
-    cutted = NULL
-    i = 1
-
-    # Find First Interval which is not empty:
-    while (is.null(cutted)) {
-        cutted = cut(x, from[i], to[i])
-        if (!is.null(cutted)) {
-            # Non empty Interval:
-            ans = fun(cutted, ...)
-        }
-        i = i + 1
-    }
-    # Continue up to the end:
-    for (j in seq_len(length(from))) {
-        cutted = cut(x, from[j], to[j])
-        if (!is.null(cutted)) {
-            # Non empty Interval:
-            newAns = fun(cutted, ...)
-            ans = rbind(ans, newAns)
-        }
-    }
-
-    # Return Value:
-    ans
-}
+# .applySeries <-
+#     function (x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
+#     FUN = colMeans, units = NULL, ...)
+# {
+#     # Old/Alternative Version
+# 
+#     # Chreck for 'timeSeries' Object:
+#     stopifnot(is.timeSeries(x),
+#               is(from, "timeDate") || is.null(from),
+#               is(to,   "timeDate") || is.null(to))
+# 
+#     # Allow for colMeans:
+#     if (substitute(FUN) == "colMeans") FUN = "colAvgs"
+# 
+#     # Monthly and Quarterly from and to:
+#     if (is.null(from) & is.null(to)) {
+#         by = match.arg(by)
+#         if (by == "monthly") {
+#             from = unique(timeFirstDayInMonth(time(x)))
+#             to = unique(timeLastDayInMonth(time(x)))
+#         }
+#         else if (by == "quarterly") {
+#             from = unique(timeFirstDayInQuarter(time(x)))
+#             to = unique(timeLastDayInQuarter(time(x)))
+#         }
+#         from@FinCenter = to@FinCenter = x@FinCenter
+#     }
+# 
+#     # Start Cutting Process:
+#     fun = match.fun(FUN)
+#     cutted = NULL
+#     i = 1
+# 
+#     # Find First Interval which is not empty:
+#     while (is.null(cutted)) {
+#         cutted = cut(x, from[i], to[i])
+#         if (!is.null(cutted)) {
+#             # Non empty Interval:
+#             ans = fun(cutted, ...)
+#         }
+#         i = i + 1
+#     }
+#     # Continue up to the end:
+#     for (j in seq_len(length(from))) {
+#         cutted = cut(x, from[j], to[j])
+#         if (!is.null(cutted)) {
+#             # Non empty Interval:
+#             newAns = fun(cutted, ...)
+#             ans = rbind(ans, newAns)
+#         }
+#     }
+# 
+#     # Return Value:
+#     ans
+# }
 
 
 ################################################################################
 # *** OLD ***
 # Check if it is still used somewhere ...
 
-
-.fapply <-
-function(x, from, to, FUN, ...)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Applies a function to 'timeSeries' windows
-
-    # Details:
-    #   This function can be used to aggregate and coursen a
-    #   'timeSeries' object.
-
-    # Arguments:
-    #   x - a 'timeSeries' object to be aggregated
-    #   from, to - two 'timeDate' position vectors which size the blocks
-    #   FUN - function to be applied, by default 'colMeans'
-
-    # Value:
-    #   Returns a S4 object of class 'timeSeries' if FUN returns
-    #   a time series object, otherwise a list, where the entries
-    #   for each window is the output of the function FUN.
-
-    # Notes:
-    #   The size of the 'moving' window and the selection of an
-    #   'adj'-acent endpoint are not needed, all the information
-    #   is kept in the 'from' and 'to' position vectors.
-
-    # FUNCTION:
-
-    # Check object:
-    if (!inherits(x, "timeSeries")) stop("s is not a timeSeries object")
-
-    # Monthly and Quarterly from and to:
-    if (is.null(from) & is.null(to)) {
-        if (by[1] == "monthly") {
-            # Use monthly blocks:
-            from = unique(timeFirstDayInMonth(time(x)))
-            to = unique(timeLastDayInMonth(time(x)))
-        } else if (by[1] == "quarterly") {
-            from = unique(timeFirstDayInQuarter(time(x)))
-            to = unique(timeLastDayInQuarter(time(x)))
-        } else {
-            stop("by must be eiter monthly or quarterly")
-        }
-        from@FinCenter = to@FinCenter = x@FinCenter
-    }
-
-    # Column Names:
-    colNames = units
-
-    # Function:
-    fun = match.fun(FUN)
-
-    # Blocks:
-    j.pos = as.POSIXct(time(x))
-    j.from = as.POSIXct(from)
-    j.to = as.POSIXct(to)
-
-    # Iterate:
-    y = series(x)
-    pos = time(x)
-    rowNames = rownames(x)
-
-    # Compute for the first window ...
-    i = 1
-    test = (j.pos >= j.from[i] & j.pos <= j.to[i])
-    # make sure that cutted is a matrix ...
-    cutted = as.matrix(y[test, ])
-    ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
-    ans = fun(cutted, ...)
-
-    if (is.timeSeries(ans)) {
-        ## DW can this happen - check ?
-        rowBind = ans
-        for (i in 2L:length(from)) {
-            test = (j.pos >= j.from[1] & j.pos <= j.to[1])
-            # make sure that cutted is a matrix ...
-            cutted = as.matrix(y[test, ])
-            ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
-            ans = fun(cutted, ...)
-            rowBind = rbind(rowBind, ans)
-        }
-        rownames(rowBind) = as.character(to)
-        if (is.null(colNames)) {
-            units = x@units
-        } else {
-            units = colNames
-        }
-        # Return Value:
-        ans = timeSeries(data = rowBind, charvec = as.character(to),
-            units = units, format = format, zone = x@zone, FinCenter =
-            x@FinCenter, recordIDs = x@recordIDs, title = x@title,
-            documentation = x@documentation, ...)
-        return(ans)
-    } else {
-        listBind = list()
-        ## DW [] -> [[]]
-        listBind[[1]] = ans
-        for (i in 2L:length(from)) {
-            test = (j.pos >= j.from[i] & j.pos <= j.to[i])
-            # make sure that cutted is a matrix ...
-            cutted = as.matrix(y[test, ])
-            ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
-            ans = fun(cutted, ...)
-            ## DW [] -> [[]]
-            listBind[[i]] = ans
-        }
-        # Return Value:
-        ans = listBind
-        attr(ans, "control") <- list(x = x, from = from, to = to)
-        return(invisible(ans))
-    }
-
-    # Return Value:
-    return()
-}
+## removed by GNB
+##
+## .fapply <-
+## function(x, from, to, FUN, ...)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # Description:
+##     #   Applies a function to 'timeSeries' windows
+## 
+##     # Details:
+##     #   This function can be used to aggregate and coursen a
+##     #   'timeSeries' object.
+## 
+##     # Arguments:
+##     #   x - a 'timeSeries' object to be aggregated
+##     #   from, to - two 'timeDate' position vectors which size the blocks
+##     #   FUN - function to be applied, by default 'colMeans'
+## 
+##     # Value:
+##     #   Returns a S4 object of class 'timeSeries' if FUN returns
+##     #   a time series object, otherwise a list, where the entries
+##     #   for each window is the output of the function FUN.
+## 
+##     # Notes:
+##     #   The size of the 'moving' window and the selection of an
+##     #   'adj'-acent endpoint are not needed, all the information
+##     #   is kept in the 'from' and 'to' position vectors.
+## 
+##     # FUNCTION:
+## 
+##     # Check object:
+##     if (!inherits(x, "timeSeries")) stop("s is not a timeSeries object")
+## 
+##     # Monthly and Quarterly from and to:
+##     if (is.null(from) & is.null(to)) {
+##         if (by[1] == "monthly") {
+##             # Use monthly blocks:
+##             from = unique(timeFirstDayInMonth(time(x)))
+##             to = unique(timeLastDayInMonth(time(x)))
+##         } else if (by[1] == "quarterly") {
+##             from = unique(timeFirstDayInQuarter(time(x)))
+##             to = unique(timeLastDayInQuarter(time(x)))
+##         } else {
+##             stop("by must be eiter monthly or quarterly")
+##         }
+##         from@FinCenter = to@FinCenter = x@FinCenter
+##     }
+## 
+##     # Column Names:
+##     colNames = units
+## 
+##     # Function:
+##     fun = match.fun(FUN)
+## 
+##     # Blocks:
+##     j.pos = as.POSIXct(time(x))
+##     j.from = as.POSIXct(from)
+##     j.to = as.POSIXct(to)
+## 
+##     # Iterate:
+##     y = series(x)
+##     pos = time(x)
+##     rowNames = rownames(x)
+## 
+##     # Compute for the first window ...
+##     i = 1
+##     test = (j.pos >= j.from[i] & j.pos <= j.to[i])
+##     # make sure that cutted is a matrix ...
+##     cutted = as.matrix(y[test, ])
+##     ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
+##     ans = fun(cutted, ...)
+## 
+##     if (is.timeSeries(ans)) {
+##         ## DW can this happen - check ?
+##         rowBind = ans
+##         for (i in 2L:length(from)) {
+##             test = (j.pos >= j.from[1] & j.pos <= j.to[1])
+##             # make sure that cutted is a matrix ...
+##             cutted = as.matrix(y[test, ])
+##             ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
+##             ans = fun(cutted, ...)
+##             rowBind = rbind(rowBind, ans)
+##         }
+##         rownames(rowBind) = as.character(to)
+##         if (is.null(colNames)) {
+##             units = x@units
+##         } else {
+##             units = colNames
+##         }
+##         # Return Value:
+##         ans = timeSeries(data = rowBind, charvec = as.character(to),
+##             units = units, format = format, zone = x@zone, FinCenter =
+##             x@FinCenter, recordIDs = x@recordIDs, title = x@title,
+##             documentation = x@documentation, ...)
+##         return(ans)
+##     } else {
+##         listBind = list()
+##         ## DW [] -> [[]]
+##         listBind[[1]] = ans
+##         for (i in 2L:length(from)) {
+##             test = (j.pos >= j.from[i] & j.pos <= j.to[i])
+##             # make sure that cutted is a matrix ...
+##             cutted = as.matrix(y[test, ])
+##             ### if (sum(test)>0) rownames(cutted) <- rowNames[test]
+##             ans = fun(cutted, ...)
+##             ## DW [] -> [[]]
+##             listBind[[i]] = ans
+##         }
+##         # Return Value:
+##         ans = listBind
+##         attr(ans, "control") <- list(x = x, from = from, to = to)
+##         return(invisible(ans))
+##     }
+## 
+##     # Return Value:
+##     return()
+## }
 
 
 ################################################################################

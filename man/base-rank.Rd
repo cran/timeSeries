@@ -1,7 +1,7 @@
 \name{rank}
 
 
-\title{Sample Ranks of a Time Series}
+\title{Sample ranks of a time series}
 
 
 \alias{rank,timeSeries-method}
@@ -12,25 +12,6 @@
     Returns the sample ranks of the values of a 
     'timeSeries' object.
       
-}
-
-
-\details{
-
-    If all components are different (and no NAs), the ranks are well 
-    defined, with values in \code{seq_len(x)}. With some values equal 
-    (called ???ties???), the argument ties.method determines the result at 
-    the corresponding indices. The \code{"first"} method results in a 
-    permutation with increasing values at each index set of ties. The 
-    \code{"random"} method puts these in random order whereas the 
-    default, \code{"average"}, replaces them by their mean, and 
-    \code{"max"} and \code{"min"} replaces them by their maximum 
-    and minimum respectively, the latter being the typical sports 
-    ranking.
-
-    NA values are never considered to be equal: for \code{na.last = TRUE}
-    and \code{na.last = FALSE} they are given distinct ranks in the order 
-    in which they occur in \code{x}.
 }
 
 
@@ -56,11 +37,27 @@
        
 }
 
+\details{
+
+    If all components are different (and no \code{NA}s), the ranks are well 
+    defined, with values in \code{seq_len(x)}. With some values equal 
+    (called ???ties???), argument \code{ties.method} determines the result at 
+    the corresponding indices. The \code{"first"} method results in a 
+    permutation with increasing values at each index set of ties. The 
+    \code{"random"} method puts these in random order whereas the 
+    default, \code{"average"}, replaces them by their mean, and 
+    \code{"max"} and \code{"min"} replaces them by their maximum 
+    and minimum respectively, the latter being the typical sports 
+    ranking.
+
+    NA values are never considered to be equal: for \code{na.last = TRUE}
+    and \code{na.last = FALSE} they are given distinct ranks in the order 
+    in which they occur in \code{x}.
+}
+
 
 \value{
-
-    returns the ranks of a \code{timeSeries} object.
-        
+  a \code{"timeSeries"} object
 }
 
 

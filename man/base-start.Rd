@@ -8,12 +8,12 @@
 \alias{end.timeSeries}                   
                                     
                                     
-\title{Start and End of a 'timeSeries'}
+\title{Start and end of a 'timeSeries'}
 
 
 \description{
 
-    Returns start and/or end time stamps of a 'timeSeries' object.
+  Returns start or end time stamp of a \code{"timeSeries"} object.
     
 }
 
@@ -29,7 +29,7 @@
 \arguments{
 
     \item{x}{
-        an uni- or multivariate \code{timeSeries} object.
+        an uni- or multivariate \code{"timeSeries"} object.
         }
     \item{\dots}{
         optional arguments passed to other methods.
@@ -39,14 +39,15 @@
 
 \value{
 
-    returns a \code{timeSeries} object.
+  a \code{"timeSeries"} object
            
 }
 
 
 \examples{   
-## Create Dummy timeSeries -    
-   tS <- dummySeries()[, 1]
+\dontshow{set.seed(1234)}
+## Create Dummy \code{"timeSeries"} -    
+   tS <- dummyMonthlySeries()[, 1]
    tS
    
 ## Return Start and end Time Stamp -

@@ -1,16 +1,14 @@
 \name{sort}  
 
-
 \alias{sort,timeSeries-method}
 \alias{sort.timeSeries}                 
                                     
                                     
-\title{Sorting a 'timeSeries' by Time Stamps}
-
+\title{Sort a 'timeSeries' by time stamps}
 
 \description{
 
-    Sorts a 'timeSeries' object with respect to its time stamps.
+  Sort a \code{"timeSeries"} object with respect to its time stamps.
     
 }
 
@@ -19,7 +17,7 @@
 
     Sorts a time series either in increasing or decreasing time 
     stamp order. Internally the function \code{order} from R's
-    base packahe is used. \code{order} generates a permutation 
+    base package is used. \code{order} generates a permutation 
     which rearranges the time stamps in ascending or descending 
     order.
     
@@ -51,8 +49,7 @@
 
 \value{
 
-    Returns a sorted 'timeSeries' object, which can be
-    increasing or decreasing in time.
+  a \code{"timeSeries"} object
            
 }
 
@@ -61,6 +58,7 @@
 ## Monthly Calendar Series -    
    x <- daily2monthly(LPP2005REC[, 1:2])[3:14, ]
    
+\dontshow{set.seed(1234)}
 ## Resample the Series with respect to the time stamps -    
    resampled <- sample(x)
    resampled

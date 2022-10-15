@@ -1,141 +1,134 @@
 \name{as}
-
-
-\title{timeSeries Class, Coercion and Transformation}
-
-
 \alias{as}
+
 \alias{as.timeSeries}
 \alias{as.timeSeries.default}
-\alias{as.timeSeries.ts} 
 \alias{as.timeSeries.data.frame} 
 \alias{as.timeSeries.character}
+\alias{as.timeSeries.ts} 
 \alias{as.timeSeries.zoo} 
 
-\alias{as.ts,timeSeries-method}
+\alias{as.matrix,timeSeries-method}
 \alias{as.data.frame,timeSeries-method}
 \alias{as.list,timeSeries-method}
-\alias{as.matrix,timeSeries-method}
+\alias{as.ts,timeSeries-method}
 
-\alias{as.ts.timeSeries}
+% S3 versions of the above
+\alias{as.matrix.timeSeries}
 \alias{as.data.frame.timeSeries}
 \alias{as.list.timeSeries}
-\alias{as.matrix.timeSeries}
+\alias{as.ts.timeSeries}
 
+% for as(x, "class") where x is the 1st element of the signature
 \alias{coerce,ANY,timeSeries-method}
-\alias{coerce,ts,timeSeries-method}
 \alias{coerce,data.frame,timeSeries-method}
 \alias{coerce,character,timeSeries-method}
-\alias{coerce,ANY,timeSeries-method}
+\alias{coerce,ts,timeSeries-method}
 
-\alias{coerce,timeSeries,tse-method}
+% for as(x, "class") where x is timeSeries
+\alias{coerce,timeSeries,matrix-method}
 \alias{coerce,timeSeries,data.frame-method}
 \alias{coerce,timeSeries,list-method}
-\alias{coerce,timeSeries,matrix-method}
 \alias{coerce,timeSeries,ts-method}
+\alias{coerce,timeSeries,tse-method}
 
+
+
+\title{Coercion and transformation to/from class 'timeSeries'}
 
 \description{
   
-    Functions and methods dealing with the coercion of
-    'timeSeries' objects.       
-}
+  Functions and methods dealing with the coercion between \code{"timeSeries"}
+  and other classes.
 
-
-\details{
-    
-    Functions to create 'timeSeries' objects from other objects:
-    
-    \tabular{ll}{
-    \code{as.timeSeries} \tab Generic to convert an object to a 'timeSeries', \cr
-    \code{as.timeSeries.default} \tab Returns the unchanged  object, \cr
-    \code{as.timeSeries.numeric} \tab Converts from a numeric vector, \cr 
-    \code{as.timeSseries.data.frame} \tab Converts from a numeric vector, \cr 
-    \code{as.timeSeries.matrix} \tab Converts from a matrix, \cr 
-    \code{as.timeSeries.ts} \tab Converts from an object of class 'ts', \cr
-    \code{as.timeSeries.character} \tab Converts from a named demo file, \cr  
-    \code{as.timeSeries.zoo} \tab Converts an object of class zoo. }
-    
-    Functions to transform 'timeSeries' objects into other objects: 
-    
-    \tabular{ll}{
-    % \code{as.vector.timeSeries} \tab Coerces a 'timeSeries' to a vector, \cr 
-    % \code{as.numeric.timeSeries} \tab Coerces a 'timeSeries' to numeric, \cr 
-    \code{as.matrix.timeSeries} \tab Coerces a 'timeSeries' to a matrix, \cr 
-    \code{as.data.frame.timeSeries} \tab Coerces a 'timeSeries' to a data.frame, \cr  
-    \code{as.ts.timeSeries} \tab S3: Coerces a 'timeSeries' to a 'ts' object. \cr
-    \code{as.ts.timeSeries} \tab S3: Coerces a 'timeSeries' to a 'logical' object. } 
-  
 }
 
 
 \usage{
-\method{as.timeSeries}{default}(x, \dots)
-\method{as.timeSeries}{ts}(x, \dots) 
-\method{as.timeSeries}{data.frame}(x, \dots) 
-\method{as.timeSeries}{character}(x, \dots) 
-\method{as.timeSeries}{zoo}(x, \dots) 
+## convert to 'timeSeries'
+as.timeSeries(x, \dots)
 
+## convert from 'timeSeries' to other classes
 \S4method{as.matrix}{timeSeries}(x, \dots)
 \S4method{as.ts}{timeSeries}(x, \dots)
 \S4method{as.data.frame}{timeSeries}(x, row.names = NULL, optional = FALSE, \dots)
-\S4method{as.ts}{timeSeries}(x, \dots)
+\S4method{as.list}{timeSeries}(x, \dots)
 }
 
 
 \arguments{
 
-    \item{optional}{
-        A logical value. If \code{TRUE}, setting row names and converting
-        column names (to syntactic names) is optional.
-    }
+    \item{x}{ 
+        the object to be converted, see Section \sQuote{Details} for the
+        special case when \code{class(x)} is \code{"character"}.
+    } 
     \item{row.names}{
         \code{NULL} or a character vector giving the row names for the
         data frame. Missing values are not allowed.
     }
-    \item{x}{ 
-        an object which is coerced according to the generic function.
-    } 
+    \item{optional}{
+        a logical value. If \code{TRUE}, setting row names and converting
+        column names (to syntactic names) is optional.
+    }
     \item{\dots}{
         arguments passed to other methods.
     }
   
 }
 
+\details{
+    
+  Functions to create \code{"timeSeries"} objects from other objects and
+  to convert \code{"timeSeries"} objects to other classes.
+
+  \code{as.timeSeries} is a generic function to convert an object to
+  \code{"timeSeries"}.  There are specialised methods for the following
+  classes: \code{"ts"}, \code{"data.frame"}, \code{"character"}, and
+  \code{"zoo"}. The default method is equivalent to calling
+  \code{"timeSeries()"}, so \code{x} can be of any type that
+  \code{"timeSeries()"} accepts.
+  
+  The \code{character} method of \code{as.timeSeries} is special, in
+  that its contents are parsed and evaluated, then \code{as.timeSeries}
+  is called on the returned value (passing also the \code{"..."}
+  arguments. Care is needed to avoid infinite recursion here since
+  currently the code doesn't guard against it.
+  
+}
 
 \value{
     
-    Function \code{as.timeSeries}
-    returns a S4 object of class 'timeSeries'.\cr
+  for \code{as.timeSeries}, an object of class \code{"timeSeries"}. \cr
     
-    Functions \code{as.numeric},
-    \code{as.data.frame},
-    \code{as.matrix},
-    \code{as.ts}
-    return depending on the generic function a numeric vector, a 
-    data frame, a matrix, or an object of class \code{ts}.
+  for \code{as.numeric}, \code{as.data.frame}, \code{as.matrix},
+  \code{as.ts}, \code{as.list} -  a numeric vector, a data frame, a
+  matrix, an object of class \code{ts}, or a \code{"list"},
+  respectively.
   
 }
 
+\seealso{
+  \code{\link{timeSeries}},
+  class \code{\linkS4class{timeSeries}}
+}
 
 \examples{
-## Create an Artificial timeSeries Object - 
-   setRmetricsOptions(myFinCenter = "GMT")
-   charvec <- timeCalendar()
-   data <- matrix(rnorm(12))
-   TS <- timeSeries(data, charvec, units = "RAND")
-   TS
+## Create an Artificial 'timeSeries' Object
+setRmetricsOptions(myFinCenter = "GMT")
+charvec <- timeCalendar()
+data <- matrix(rnorm(12))
+TS <- timeSeries(data, charvec, units = "RAND")
+TS
 
-## Coerce to Vector - 
-   as.vector(TS)
+## Coerce to Vector
+as.vector(TS)
    
-## Coerce to Matrix - 
-   as.matrix(TS)
+## Coerce to Matrix
+as.matrix(TS)
   
-## Coerce to Data Frame - 
-   as.data.frame(TS)
+## Coerce to Data Frame
+as.data.frame(TS)
 }
 
-
 \keyword{chron}
-
+\keyword{ts}

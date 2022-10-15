@@ -1,6 +1,4 @@
 \name{monthly}
-
-
 \alias{monthly}
 
 \alias{countMonthlyRecords}
@@ -8,26 +6,28 @@
 \alias{rollMonthlySeries}
 
 
-\title{Special Monthly Series}
+\title{Special monthly series}
 
 
 \description{
     
     Functions and methods dealing with special monthly 
-    'timeSeries' objects.      
+    \code{"timeSeries"} objects.      
 }
 
 
 \details{
   
-    The function \code{countMonthlyRecords} computes a 'timeSeries' 
-    that holds the number of monthly counts of the records.
+    \code{countMonthlyRecords} computes a \code{"timeSeries"} that holds
+    the number of monthly counts of the records.
     
-    The function \code{rollMonthlyWindows} computes start and end 
-    dates for rolling time windows.
+    \code{rollMonthlyWindows} computes start and end dates for rolling
+    time windows.
     
-    The function \code{rollMonthlySeries} computes a static over
-    rolling periods defined by the function \code{rollMonthlyWindows}.
+    \code{rollMonthlySeries} computes the statistics defined by the
+    function \code{FUN} over a rolling window, internally computed by
+    the function \code{rollMonthlyWindows}.  Note, the periods may be
+    overlapping, may be dense, or even may have gaps.
 
 }
 
@@ -42,52 +42,43 @@ rollMonthlySeries(x, period = "12m", by = "1m", FUN, \dots)
 
 \arguments{
 
-    \item{x}{
-        a 'timeSeries' object.
-        }  
-    \item{period}{
-        a character string specifying the rollling period composed by 
-        the length of the period and its unit. As examples: \code{"3m"} 
-        represents quarterly shifts, and \code{"6m"}, ]code{"12m"}, and
-        \code{"24m"} semi-annual, annual and bi-annual shifts. To 
-        determine the proper start of the series is in the responsibility
-        of the user.
-        } 
-    \item{by}{
-        a character string specifying the rolling shift composed by 
-        the length of the shift and its unit. As examples:  \code{"1m"} 
-        represents monthly shifts, \code{"3m"} represents quarterly 
-        shifts, and \code{"6m"} semi-annual shifts. To determine the
-        proper start of the series is in the responsibility of the
-        user.
-        }
-    \item{FUN}{ 
-        the function for the statistic to be applied. For example
-        in the case of aggregation use\code{colAvgs}.
-        }
-    \item{\dots}{
-        arguments passed to the function \code{FUN}.
-        }
+  \item{x}{
+    a \code{"timeSeries"} object.
+  }  
+  \item{period,by}{
+
+    character strings specifying the rollling period composed by the
+    length of the period and its unit. Examples: \code{"3m"}
+    \code{"6m"}, \code{"12m"}, and \code{"24m"} represent quarterly,
+    semi-annual, annual and bi-annual shifts, respectively.  It is the
+    responsibility of the user.  to determine proper start of the series
+
+  } 
+
+  \item{FUN}{
+    
+    the function for the statistic to be applied. For example,
+    \code{colMean} in the case of aggregation.
+
+  }
+  \item{\dots}{
+    arguments passed to the function \code{FUN}.
+  }
 
 }
 
 
 \value{
 
-    The function \code{countMonthlyRecords} returns a 'timeSeries' 
-    object.
+  for \code{countMonthlyRecords} and \code{rollMonthlySeries}, a
+  \code{"timeSeries"} object.\cr\cr
     
-    The function \code{rollMonthlyWindows} returns a list with two
-    named 'tomeDate' entries: \code{$from} and \code{to}. An attribute
-    \code{"control"} is added which keeps the \code{start} and
-    \code{end} dates of the series. 
+  for \code{rollMonthlyWindows}, a list with attribute
+  \code{"control"} keeping the \code{start} and \code{end} dates of the
+  series. The components of the list are:
+  \item{from}{an object from class \code{"timeDate"}.}
+  \item{to}{an object from class \code{"timeDate"}.}
     
-    The function \code{rollMonthlySeries} computes the statistics
-    defined by the function \code{FUN} over a rolling window
-    internally computed by the function \code{rollMonthlyWindows}.
-    Note, the periods may be overlapping, may be dense, or even
-    may have gaps.
-        
 }
 
 

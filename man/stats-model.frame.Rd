@@ -1,7 +1,7 @@
 \name{model.frame}
 
 
-\title{Model Frames for Time Series Objects}
+\title{Model frames for time series objects}
 
 
 \alias{model.frame}
@@ -9,7 +9,7 @@
 
 \description{
     
-    Allow to work with model frames for 'timeSeries' objects.               
+    Allow to work with model frames for \code{"timeSeries"} objects.               
 }
 
 
@@ -47,7 +47,7 @@
     needed to use \code{formula} and any \code{...} arguments. In contrast 
     to this the method returns an object of class \code{timeSeries} when 
     the argument data was not a \code{data.frame} but also an object of 
-    class 'timeSeries'.
+    class \code{"timeSeries"}.
     
 }
 

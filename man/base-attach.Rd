@@ -1,16 +1,15 @@
 \name{attach}
-  
-
-\title{Attach a timSeries to the search path}
-
-
 \alias{attach}
 \alias{attach,timeSeries-method}
 
 
+\title{Attach a 'timeSeries' to the search path}
+
+
+
 \description{
     
-    Attaches a 'timeSeries' object to the search path.
+  Attaches a \code{"timeSeries"} object to the search path.
     
 }
 
@@ -23,8 +22,9 @@
 
 \note{
 
-    Note, the function \code{detach} from the \code{base} package can be
-    used to detach the attached objects.
+  The function \code{detach} from the \code{base} package can be used to
+  detach the attached objects.
+
 }
 
 
@@ -49,7 +49,7 @@
         }
     \item{what}{
         [attach] - \cr
-        database to be attached. This may currently be a timeSeries object,
+        database to be attached. This may currently be a \code{"timeSeries"} object,
         a data.frame or a list or a R data file created with save or NULL 
         or an environment. 
         See for details \code{help(attach, package=base)}.
@@ -75,7 +75,7 @@
    range <- High - Low
    range
    
-## Convert Vector to a timeSeries Object -
+## Convert Vector to a \code{"timeSeries"} Object -
    timeSeries(data=range, charvec=time(x), units="Range")
    
 ## Detach the series from the search path -

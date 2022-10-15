@@ -1,7 +1,7 @@
 \name{time}
 
 
-\title{Get and Set Time stamps of a 'timeSeries'}
+\title{Get and set time stamps of a 'timeSeries'}
 
 
 \alias{time}
@@ -11,9 +11,6 @@
 \alias{time.timeSeries}
 
 \alias{time<-.timeSeries}
-
-\alias{sample,timeSeries-method}
-
 
 \alias{getTime}  
 \alias{setTime<-}
@@ -28,37 +25,49 @@
 
 
 \usage{
-getTime(x)         
-setTime(x) <- value
-
 \S4method{time}{timeSeries}(x, \dots)
 \method{time}{timeSeries}(x) <- value
+
+getTime(x)         
+setTime(x) <- value
 }
 
 
 \arguments{
 
-    \item{value}{
-        a valid value for the component of \code{time(x)}.
-        }
-    \item{x}{
-        an object of class \code{timeSeries}.
-        } 
-    \item{\dots}{
-        optional arguments passed to other methods.
-        }
+  \item{value}{
+    a valid value for the time component of \code{x}.
+  }
+  \item{x}{
+    an object of class \code{timeSeries}.
+  } 
+  \item{\dots}{
+    optional arguments passed to other methods.
+  }
 }
 
+\details{
+  
+  \code{time} and \code{time<-} are generic functions with methods for
+  class \code{"timeSeries"}. They get and set the time component of the
+  object. 
+
+  \code{getTime} and \code{setTime} are non-generic alternatives are
+  non-generic wrappers of \code{time} and \code{time<-}, respectively. 
+
+}
 
 \value{
 
-    Returns a 'timeDate' object.
+  for \code{time} and \code{getTime}, a 'timeDate' object,
+
+  for \code{time<-} and and \code{setTime}, the modified 'timeSeries' object.
            
 }
 
 
 \examples{   
-## Create Dummy timeSeries -      
+## Create Dummy 'timeSeries' -      
    X <- timeSeries(matrix(rnorm(24), 12), timeCalendar())
    
 ## Return Series Positions -

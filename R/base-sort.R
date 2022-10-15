@@ -19,7 +19,7 @@
 ################################################################################
 
 
-.sort.timeSeries <- function (x, decreasing = FALSE, ...)
+sort.timeSeries <- function (x, decreasing = FALSE, ...)
 {
   # A function implemented by Diethelm Wuertz and Yohan Chalabi
   
@@ -45,11 +45,11 @@
 }
 
 setMethod("sort", "timeSeries", function (x, decreasing = FALSE, ...)
-  .sort.timeSeries(x, decreasing = decreasing, ...))
+    sort.timeSeries(x, decreasing = decreasing, ...))
 
-# until UseMethod dispatches S4 methods in 'base' functions
-sort.timeSeries <- function(x, decreasing = FALSE, ...)
-  .sort.timeSeries(x, decreasing = decreasing, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## sort.timeSeries <- function(x, decreasing = FALSE, ...)
+##   .sort.timeSeries(x, decreasing = decreasing, ...)
 
 ################################################################################
 

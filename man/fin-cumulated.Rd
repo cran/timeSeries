@@ -1,16 +1,14 @@
 \name{cumulated}
-
-
-\title{Cumulated Time Series from Returns}
-
-
 \alias{cumulated}
 \alias{cumulated.default}
 
 
+\title{Cumulated time series from returns}
+
+
 \description{
     
-    Computes a cumulated financial 'timeSeries', 
+    Computes a cumulated financial \code{"timeSeries"}, 
     e.g. prices or indexes, from financial returns.
 
 }
@@ -57,7 +55,7 @@ cumulated(x, \dots)
 
 \value{
 
-    Returns a 'timeSeries' object of the same class as
+    Returns a \code{"timeSeries"} object of the same class as
     the input argument \code{x}.
         
 }

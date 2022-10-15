@@ -1,14 +1,12 @@
 \name{orderStatistics}
-
-
-\title{order Statistics}
-
 \alias{orderStatistics}
 
 
+\title{Order statistics}
+
 \description{
     
-    Computes order statistic of a 'timeSeries'. 
+    Computes order statistics of a \code{"timeSeries"}. 
 }
 
 
@@ -20,7 +18,7 @@ orderStatistics(x)
 \arguments{
 
     \item{x}{
-        an univariate 'timeSeries' object.
+        an univariate \code{"timeSeries"} object.
         }
 
 }
@@ -28,9 +26,9 @@ orderStatistics(x)
 
 \value{
 
-    Function \code{orderStatistics} returns the order statistic of
-    an univariate 'timeSeries' object. The output is an object of
-    class 'list'.
+    Function \code{orderStatistics} returns the order statistics of
+    an univariate \code{"timeSeries"} object. The output is an object of
+    class \code{"list"}.
    
 }
 
@@ -50,4 +48,3 @@ orderStatistics(x)
 
 
 \keyword{chron}
-

@@ -1,16 +1,14 @@
 \name{isUnivariate}
-
-
-\title{Checks if a Time Series is Univariate}
-
-
 \alias{isUnivariate}
 \alias{isMultivariate}
 
 
+\title{Checks if a time series is univariate}
+
+
 \description{
     
-    Checks if a time series o bject or any other
+    Checks if a time series object or any other
     rectangular object is univariate or multivariate.       
 }
 
@@ -24,20 +22,10 @@ isMultivariate(x)
 \arguments{
    
     \item{x}{ 
-        an object of class \code{timeSeries} or any other rectangular 
+        an object of class \code{"timeSeries"} or any other rectangular 
         object.
         }
 
-}
-
-
-\value{
-
-    \code{isUnivariate}\cr
-    \code{isMultivariate}\cr
-    \cr
-    return a logical depending if the test is true or not.
-        
 }
 
 
@@ -49,6 +37,12 @@ isMultivariate(x)
 
 }
 
+\value{
+
+  a logical value
+        
+}
+
 
 \examples{
 ## Load Microsoft Data - 
@@ -56,11 +50,11 @@ isMultivariate(x)
    data(MSFT)
    Open = MSFT[, "Open"]
   
-## Is the timeSeries Univariate - 
+## Is the 'timeSeries' Univariate - 
    isUnivariate(MSFT)
    isUnivariate(Open)
 
-## Is the timeSeries Multivariate -   
+## Is the 'timeSeries' Multivariate -   
    isMultivariate(MSFT)
    isMultivariate(Open)
 }

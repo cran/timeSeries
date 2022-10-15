@@ -1,17 +1,15 @@
 \name{smooth}                     
                                     
-                                    
-\title{Smoothes Time Series Objects}
-
-
 \alias{smoothLowess}
 \alias{smoothSpline}
 \alias{smoothSupsmu}
 
+                                    
+\title{Smoothes time series objects}
 
 \description{
     
-    Smoothes a 'timeSeries' object.      
+    Smoothes a \code{"timeSeries"} object.      
     
 }
     
@@ -26,7 +24,7 @@ smoothSupsmu(x, bass = 5, \dots)
 \arguments{
 
     \item{x}{
-        an univariate 'timeSeries' object.
+        an univariate \code{"timeSeries"} object.
         }
     \item{f}{
         the lowess smoother span. This gives the proportion of 
@@ -66,8 +64,8 @@ smoothSupsmu(x, bass = 5, \dots)
 
 \value{
 
-    returns a bivariate 'timeSeries' object, the first column holds the original
-    time series data, the second the smoothed series.
+  a bivariate \code{"timeSeries"} object, the first column holds the
+  original time series data, the second the smoothed series.
         
 }
 

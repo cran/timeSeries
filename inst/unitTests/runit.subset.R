@@ -23,7 +23,7 @@ function()
 {
 
 
-    ts <- dummySeries()
+    ts <- dummyMonthlySeries()
     mat <- as.matrix(ts)
 
     # we want the same subset-ting rules as for a matrix

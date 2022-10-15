@@ -1,15 +1,14 @@
 \name{description}
-
-
 \alias{description}
 
 
-\title{Creates Date and User Information}
+\title{Creates date and user information}
 
 
 \description{
 
-    Creates and returns a data and user string.
+  Creates and returns a string containing user the datetime and the user
+  name..
     
 }
 

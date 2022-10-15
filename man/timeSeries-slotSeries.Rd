@@ -1,6 +1,5 @@
 \name{series-methods}
 
-
 \docType{methods}
 
 
@@ -22,32 +21,19 @@
 \alias{coredata<-,timeSeries,data.frame-method}
 \alias{coredata<-,timeSeries,vector-method}
 
-%\alias{getSeries}
-%\alias{getSeries.timeSeries}
-%\alias{setSeries<-}
 
 
-\title{Get and Set Data of a 'timeSeries'}
+\title{Get and set the data component of a 'timeSeries'}
 
 
 \description{
-
-    \code{series} returns the \code{@.Data} slot of a \code{timeSeries} 
-    object in \code{matrix} form. New series can also be assign to an
-    already existing \code{timeSeries}.
-    
-    \code{coredata} is a synonyme function nameing for \code{series}.
-    
+  Get and set the data component of a 'timeSeries'.
 }
 
 
 \usage{
-%\S4method{series}{timeSeries}(x)
 series(x)
 series(x) <- value
-%
-%getSeries(x)
-%setSeries(x) <- value
 }
 
 
@@ -62,12 +48,32 @@ series(x) <- value
         }
 }
 
+\details{
 
-\seealso{timeSeries()}
+  \code{series} returns the \code{@.Data} slot of a \code{timeSeries}
+  object in \code{matrix} form. 
+
+  The assignment version of \code{series} replaces the values of the
+  time series with \code{value}. The row and column names of
+  \code{value} are used if not \code{NULL}, otherwise they are left as
+  in \code{x}. The most natural use is when \code{value} has the same
+  dimensions as \code{as.matrix(x)}, but if that is not the case the
+  result is almost as if \code{value} was converted to
+  \code{"timeSeries"} directly.
+    
+  \code{coredata} and its assignment counterpart are equivalent
+  alternatives to \code{series} and its assignment part, respectively.
+
+}
+
+
+\seealso{
+  \code{\link{timeSeries}}
+}
 
 
 \examples{
-## A Dummy timeSeries Object
+## A Dummy 'timeSeries' Object
    ts <- timeSeries()
    ts
 
@@ -81,7 +87,7 @@ series(x) <- value
    ts
    
 ## Assign a New Bivariate Series - 
-   series(ts) <- rnorm(12)
+   series(ts) <- matrix(rnorm(12), ncol = 2)
    ts
 }
 

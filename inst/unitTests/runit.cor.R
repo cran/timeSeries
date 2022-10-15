@@ -24,13 +24,13 @@ function()
     # RUnit Test:
 
     # Signal Series
-    tS = dummySeries(format = "counts")
+    tS = dummyMonthlySeries(format = "counts")
     tS
     cor(tS)
     cov(tS)
 
     # timeDate Series:
-    tS = dummySeries()
+    tS = dummyMonthlySeries()
     tS
     cor(tS)
     cov(tS)

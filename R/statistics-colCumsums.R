@@ -43,6 +43,7 @@ setMethod("colCumsums", "matrix", function(x, na.rm = FALSE, ...)
           if (na.rm)
               x <- na.omit(x)
           ans <- apply(x, 2, cumsum, ...)
+          
           # special treatment when x has one row because apply returns a vector
           if (NROW(x) == 1)
               ans <- matrix(ans, nrow = 1, dimnames = dimnames(x))
@@ -52,8 +53,22 @@ setMethod("colCumsums", "matrix", function(x, na.rm = FALSE, ...)
 
 # ------------------------------------------------------------------------------
 
-setMethod("colCumsums", "timeSeries", function(x, na.rm = FALSE, ...)
-          setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...)))
+setMethod("colCumsums", "timeSeries", function(x, na.rm = FALSE, ...){
+    ## GB: split to debug #2121; was:
+    ##   setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...))
+
+    ## 2022-07-27 bug #2121
+    ##    can't delegate omitting NA to the matrix method since we need the time
+    ##    info after na.omit() here (to set the time properly
+    if(na.rm)
+        x <- na.omit(x)
+        
+    m = getDataPart(x)
+    wrk = callGeneric(m, na.rm = FALSE, ...)  # note: na.rm = FALSE
+    res <- setDataPart(x, wrk)
+
+    res
+})
 
 # ------------------------------------------------------------------------------
 
@@ -70,8 +85,22 @@ setMethod("colCummaxs", "matrix", function(x, na.rm = FALSE, ...)
 
 # ------------------------------------------------------------------------------
 
-setMethod("colCummaxs", "timeSeries", function(x, na.rm = FALSE, ...)
-          setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...)))
+setMethod("colCummaxs", "timeSeries", function(x, na.rm = FALSE, ...){
+    ## GB: split to debug #2121; was:
+    ##   setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...))
+
+    ## 2022-07-27 bug #2121
+    ##    can't delegate omitting NA to the matrix method since we need the time
+    ##    info after na.omit() here (to set the time properly
+    if(na.rm)
+        x <- na.omit(x)
+        
+    m = getDataPart(x)
+    wrk = callGeneric(m, na.rm = FALSE, ...)  # note: na.rm = FALSE
+    res <- setDataPart(x, wrk)
+
+    res
+})
 
 # ------------------------------------------------------------------------------
 
@@ -88,8 +117,22 @@ setMethod("colCummins", "matrix", function(x, na.rm = FALSE, ...)
 
 # ------------------------------------------------------------------------------
 
-setMethod("colCummins", "timeSeries", function(x, na.rm = FALSE, ...)
-          setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...)))
+setMethod("colCummins", "timeSeries", function(x, na.rm = FALSE, ...){
+    ## GB: split to debug #2121; was:
+    ##   setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...))
+
+    ## 2022-07-27 bug #2121
+    ##    can't delegate omitting NA to the matrix method since we need the time
+    ##    info after na.omit() here (to set the time properly
+    if(na.rm)
+        x <- na.omit(x)
+        
+    m = getDataPart(x)
+    wrk = callGeneric(m, na.rm = FALSE, ...)  # note: na.rm = FALSE
+    res <- setDataPart(x, wrk)
+
+    res
+})
 
 # ------------------------------------------------------------------------------
 
@@ -106,8 +149,22 @@ setMethod("colCumprods", "matrix", function(x, na.rm = FALSE, ...)
 
 # ------------------------------------------------------------------------------
 
-setMethod("colCumprods", "timeSeries", function(x, na.rm = FALSE, ...)
-          setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...)))
+setMethod("colCumprods", "timeSeries", function(x, na.rm = FALSE, ...){
+    ## GB: split to debug #2121; was:
+    ##   setDataPart(x, callGeneric(getDataPart(x), na.rm = na.rm, ...))
+
+    ## 2022-07-27 bug #2121
+    ##    can't delegate omitting NA to the matrix method since we need the time
+    ##    info after na.omit() here (to set the time properly
+    if(na.rm)
+        x <- na.omit(x)
+        
+    m = getDataPart(x)
+    wrk = callGeneric(m, na.rm = FALSE, ...)  # note: na.rm = FALSE
+    res <- setDataPart(x, wrk)
+
+    res
+})
 
 # ------------------------------------------------------------------------------
 

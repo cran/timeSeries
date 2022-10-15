@@ -24,7 +24,7 @@ function()
     Documentation <- as.character(date())
     Title <- "Dummy Series"
   
-    ts <- dummySeries()
+    ts <- dummyMonthlySeries()
     ts@documentation <- Documentation
     ts@title <- Title
   

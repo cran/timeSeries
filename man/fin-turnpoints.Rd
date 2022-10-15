@@ -1,17 +1,15 @@
 \name{turns}
-
-
-\title{Turning Points of a Time Series}
-
-
 \alias{turns}
+
 \alias{turnsStats}
 
 
+\title{Turning points of a time series}
+
 \description{
     
-    Extracts and analyzes turn points of an univariate \code{timeSeries} 
-    object.   
+    Extracts and analyzes turn points of an univariate
+    \code{"timeSeries"} object.
     
 }
     
@@ -65,29 +63,22 @@ turnsStats(x, doplot = TRUE)
 
 \value{
 
-    \code{turns}\cr
-    returns an object of class \code{timeSeries}.
-    
-    \code{turnsStats}\cr
-    returns an object of class \code{turnpoints} with the following entries:\cr 
-    \code{data} - The dataset to which the calculation is done.\cr
-    \code{n} - The number of observations.\cr
-    \code{points} - The value of the points in the series, after elimination 
-        of ex-aequos.\cr
-    \code{pos} - The position of the points on the time scale in the series 
-        (including ex-aequos).\cr
-    \code{exaequos} - Location of exaequos (1), or not (0).\cr
-    \code{nturns} - Total number of tunring points in the whole time series.\cr
-    \code{firstispeak} - Is the first turning point a peak (TRUE), or 
-        not (FALSE).\cr
-    \code{peaks} - Logical vector. Location of the peaks in the time series 
-        without ex-aequos.\cr
-    \code{pits} - Logical vector. Location of the pits in the time series 
-        without ex-aequos.\cr
-    \code{tppos} - Position of the turning points in the initial series (with 
-        ex-aequos).\cr
-    \code{proba} - Probability to find a turning point at this location.\cr 
-    \code{info} - Quantity of information associated with this point.\cr
+    for \code{turns}, an object of class \code{timeSeries}.\cr
+
+    for \code{turnsStats}, an object of class \code{turnpoints} with the
+    following entries:
+    \item{data}{The dataset to which the calculation is done.}
+    \item{n}{The number of observations.}
+    \item{points}{The value of the points in the series, after elimination of ex-aequos.}
+    \item{pos}{The position of the points on the time scale in the series (including ex-aequos).}
+    \item{exaequos}{Location of exaequos (1), or not (0).}
+    \item{nturns}{Total number of tunring points in the whole time series.}
+    \item{firstispeak}{Is the first turning point a peak (TRUE), or not (FALSE).}
+    \item{peaks}{Logical vector. Location of the peaks in the time series without ex-aequos.}
+    \item{pits}{Logical vector. Location of the pits in the time series without ex-aequos.}
+    \item{tppos}{Position of the turning points in the initial series (with ex-aequos).}
+    \item{proba}{Probability to find a turning point at this location.} 
+    \item{info}{Quantity of information associated with this point.}
        
 }
 

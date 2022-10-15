@@ -107,7 +107,7 @@ window.timeSeries <- function(x, ...) .window.timeSeries(x, ...)
 
     # FUNCTION:
 
-    # .Deprecated("window", "timeSeries")
+    .Deprecated("window", "timeSeries")
 
     stopifnot(is.timeSeries(x))
     if (x@format == "counts")

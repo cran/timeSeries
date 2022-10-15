@@ -1,13 +1,13 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Date: 2022-07-15
-Version: 4021.104
+Date: 2022-10-14
+Version: 4021.105
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
 	   , person("Yohan", "Chalabi", role = "aut")
 	   , person("Martin","Maechler", role="ctb", email="maechler@stat.math.ethz.ch", comment = c(ORCID = "0000-0002-8685-9910"))
 	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
-                    role = c("cre"), email = "georgi.boshnakov@manchester.ac.uk") )
+                    role = c("cre", "ctb"), email = "georgi.boshnakov@manchester.ac.uk") )
 Description: 'S4' classes and various tools for financial time series:
   Basic functions such as scaling and sorting, subsetting,
   mathematical operations and statistical functions.
@@ -17,15 +17,17 @@ Suggests: RUnit, robustbase, xts, PerformanceAnalytics, fTrading
 LazyData: yes
 License: GPL (>= 2)
 URL:
-        https://r-forge.r-project.org/scm/viewvc.php/pkg/timeSeries/?root=rmetrics,
-        https://www.rmetrics.org
+        https://r-forge.r-project.org/scm/viewvc.php/pkg/timeSeries/?root=rmetrics
+        (devel), https://www.rmetrics.org,
+        https://geobosh.github.io/timeSeriesDoc/ (doc)
+BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: no
-Packaged: 2022-07-15 10:00:43 UTC; georgi
+Packaged: 2022-10-15 07:08:26 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Tobias Setz [aut],
   Yohan Chalabi [aut],
   Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
-  Georgi N. Boshnakov [cre]
+  Georgi N. Boshnakov [cre, ctb]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-07-17 02:20:02 UTC
+Date/Publication: 2022-10-16 00:20:06 UTC

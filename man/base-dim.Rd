@@ -1,8 +1,6 @@
 \name{dimnames}
   
 
-\title{Time Series Columns and Rows}
-
 \alias{dim,timeSeries-method}
 \alias{dim<-,timeSeries-method}
 
@@ -20,21 +18,12 @@
 \alias{names<-,timeSeries-method}
 
 
+\title{Time series columns and rows}
+
 \description{
     
     Handling columns and rows of 'timeSeries' objects. 
     
-}
-
-
-\details{
-
-    \tabular{ll}{
-    \code{dim} \tab Returns the dimension of a 'timeSeries' object \cr
-    \code{dimnames} \tab Returns the dimension names of a 'timeSeries' object \cr
-    \code{colnames<-} \tab Assigns column names to a 'timeSeries' object \cr
-    \code{rownames<-} \tab Assigns row names to a 'timeSeries' object }
-
 }
 
 
@@ -60,6 +49,7 @@
 % }
 
 
+
 %\arguments{
 %   
 %    \item{value}{
@@ -75,10 +65,23 @@
 %       
 %}
 
+\details{
+
+    \tabular{ll}{
+    \code{dim} \tab Returns the dimension of a 'timeSeries' object \cr
+    \code{dimnames} \tab Returns the dimension names of a 'timeSeries' object \cr
+    \code{colnames<-} \tab Assigns column names to a 'timeSeries' object \cr
+    \code{rownames<-} \tab Assigns row names to a 'timeSeries' object }
+
+}
+
+
+
 
 \value{
 
-    Returns the dimensions and related numbers of a 'timeSeries' object.
+    Returns the dimensions and related properties of a \code{"timeSeries"}
+    object.
     
 }
 

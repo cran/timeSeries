@@ -1,20 +1,34 @@
 \name{scale}                     
-                                    
-                                    
-\title{scale}
+\alias{scale}                                    
+
+\alias{scale,timeSeries-method}
+
+
+\title{Center and scale 'timeSeries' objects}
 
 
 \description{
 
-   Scales a 'timeSeries' object.
+  Center and scale a \code{"timeSeries"} object.
     
 }
 
+\usage{
+\S4method{scale}{timeSeries}(x, center = TRUE, scale = TRUE)
+}
 
+\arguments{
+  \item{x}{
+    an object from class \code{"timeSeries"}.
+  }
+  \item{center, scale}{
+    a numeric vector or a logical value, see \sQuote{Details}.
+  }
+}
 \details{
 
-    \code{scale} is a function to center and/or scale the columns of a 
-    'timeSeries' object.
+    \code{scale} centers and/or scales the columns of a 
+    \code{"timeSeries"} object.
     
     The value of \code{center} determines how column centering is performed. 
     If \code{center} is a numeric vector with length equal to the number 
@@ -37,7 +51,7 @@
  
 \value{
 
-    Returns a centered and/or scaled 'timeSeries' object.
+  a centered and/or scaled \code{"timeSeries"} object
     
 }
 
@@ -55,3 +69,4 @@
 
 
 \keyword{chron}
+\keyword{ts}

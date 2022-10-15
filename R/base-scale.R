@@ -19,7 +19,7 @@
 ################################################################################
 
 
-.scale.timeSeries <- 
+scale.timeSeries <- 
   function(x, center = TRUE, scale = TRUE)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -38,12 +38,12 @@
 
 setMethod("scale", "timeSeries",
           function(x, center = TRUE, scale = TRUE)
-          .scale.timeSeries(x, center = center, scale = scale))
+              scale.timeSeries(x, center = center, scale = scale))
 
 
-# until UseMethod dispatches S4 methods in 'base' functions
-scale.timeSeries <- function (x, center = TRUE, scale = TRUE)
-    .scale.timeSeries(x, center = center, scale = scale)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## scale.timeSeries <- function (x, center = TRUE, scale = TRUE)
+##     .scale.timeSeries(x, center = center, scale = scale)
 
 
 ################################################################################

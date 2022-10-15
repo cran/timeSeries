@@ -1,16 +1,14 @@
 \name{na.contiguous}
 
-
-\title{Find Longest Contiguous Stretch of non-NAs}
-
-
 \alias{na.contiguous,timeSeries-method}
 
+
+\title{Find longest contiguous stretch of non-NAs}
 
 \description{
 
      Find the longest consecutive stretch of non-missing values in a
-     timeSeries object.  (In the event of a tie, the first such
+     \code{"timeSeries"} object.  (In the event of a tie, the first such
      stretch.)
       
 }
@@ -23,23 +21,23 @@
 
 \arguments{
   \item{object}{
-    a timeSeries object.
+    a \code{"timeSeries"} object.
   }
   \item{\dots}{
-    further arguments passed to or from other methods.
+    further arguments passed to other methods.
   }  
 }
 
 
 \value{
 
-  A timeSeries object without missing values.
+  a \code{"timeSeries"} object without missing values
   
 }
 
 
 \examples{
-## Dummy timeSeries with NAs entries
+## Dummy 'timeSeries' with NAs entries
    data <- matrix(sample(c(1:20, rep(NA,4))), ncol = 2)
    s <- timeSeries(data, timeCalendar())
    

@@ -1,16 +1,15 @@
 \name{str-methods}
-
-
-\title{timeSeries Object Structure}
-
-
 \alias{str}
+
 \alias{str,timeSeries-method}
+
+
+\title{timeSeries object structure}
 
 
 \description{
     
-    Compactly display the structure of a 'timeSeries' Object.        
+  Compactly display the structure of a \code{"timeSeries"} object.        
     
 }
 
@@ -34,7 +33,7 @@
 
 \value{
 
-    returns a str report for an object of class \code{timeSeries}.
+   a str report for an object of class \code{timeSeries}.
         
 }
 

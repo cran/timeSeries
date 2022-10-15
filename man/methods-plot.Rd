@@ -1,15 +1,15 @@
 \name{plot-methods}
 
 
-\title{Plot a Time Series}
-
-
 \alias{plot}
 \alias{plot,timeSeries-method}
 \alias{lines,timeSeries-method}
 \alias{points,timeSeries-method}
 \alias{pretty.timeSeries}
 
+
+
+\title{Plot a time series}
 
 \description{
 
@@ -42,19 +42,19 @@
     theme "ts".
     
     With Verison R 3.1 we have inroduced two new additionol
-    plotting themes called "pretty" and "chick". They are becoming
-    active when we set \code{at="pretty"} or \code{at="chic"}.
+    plotting themes called \code{"pretty"} and \code{"chick"}. They are becoming
+    active when we set \code{at = "pretty"} or \code{at = "chic"}.
     
-    Plot style or theme "pretty" is an extension of our original 
+    Plot style or theme \code{"pretty"} is an extension of our original 
     plotting function.
     
-    Plot style or theme "chic" an implementation along the contributed 
-    packages \code{xts} and \code{PerformanceAnalytics} from the Chicago
-    finance group members. "Chicago" gave the name to call the
-    them \code{"chic"}.
+    Plot style or theme \code{"chic"} is an implementation along the
+    contributed packages \code{xts} and \code{PerformanceAnalytics} from
+    the Chicago finance group members. \code{"Chicago"} gave the name to
+    call the them \code{"chic"}.
     
-    For both themes, "pretty" and "chic" additional arguments are passed 
-    through the \code{\dots} arguments. These are:
+    For both themes, \code{"pretty"} and \code{"chic"} additional
+    arguments are passed through the \code{\dots} arguments. These are:
     
     
     \tabular{lll}{
@@ -176,7 +176,8 @@
 
 \value{
 
-   Displays  a plot or plot elements of an object of class 'timeSeries'.
+  NULL (invisibly), the functions are called for the side effect of
+  producing plots
     
 }
 
