@@ -1,5 +1,8 @@
 url: https://geobosh.github.io/timeSeriesDoc/
 
+deploy:
+  install_metadata: true
+
 template:
   bootstrap: 5
   
@@ -15,9 +18,9 @@ reference:
     contents:
       - timeSeries
       - as.timeSeries
-      - as.matrix
-      - as.ts
-      - as.data.frame
+      - as.matrix.timeSeries
+      - as.ts.timeSeries
+      - as.data.frame.timeSeries
       - readSeries
       - dummyMonthlySeries
       - dummyDailySeries
@@ -30,7 +33,7 @@ reference:
       - getFinCenter
       - "setFinCenter<-"
       - finCenter
-      - "finCenter<-"
+      - "`finCenter<-`"
       - time
       - "time<-"
       - getUnits
@@ -40,7 +43,7 @@ reference:
       - getAttributes
       - "setAttributes<-"
       - comment
-      - "comment<-"
+      - "`comment<-`"
       - na.contiguous
       - na.omit
       - removeNA
@@ -58,9 +61,9 @@ reference:
       - is.signalSeries
       - isUnivariate
       - isMultivariate
-      - isDaily
-      - isMonthly
-      - isQuarterly
+      - isDaily.timeSeries
+      - isMonthly.timeSeries
+      - isQuarterly.timeSeries
       - isRegular
   - title: "Subsetting 'timeSeries'"
     contents:
@@ -70,6 +73,12 @@ reference:
     contents:
       - scale
       - diff
+      - colCum
+      - colCummaxs
+      - colCummins
+      - colCumprods
+      - colCumreturns
+      - colCumsums
       - lag
       - sort
       - rev
@@ -104,8 +113,8 @@ reference:
     contents:
       - fapply
       - applySeries
-      - cov
-      - cor
+      - "cov-methods"
+      - "cor-methods"
       - colStats
       - colSds
       - colVars
@@ -136,9 +145,9 @@ reference:
     contents:
       - t
       - plot
-      - lines
-      - points
-      - pretty
+      - "lines,timeSeries-method"
+      - "points,timeSeries-method"
+      - pretty.timeSeries
       - "print-methods"
       - str
   - title: "Base Time Series Functions"
@@ -153,7 +162,7 @@ reference:
     contents:
       - "timeSeries-class"
       - dimnames
-      - DataPart
+      - "DataPart,timeSeries-method"
       - description
       - attach
       - model.frame

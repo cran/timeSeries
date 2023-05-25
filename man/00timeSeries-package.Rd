@@ -29,8 +29,9 @@ Georgi N. Boshnakov [cre, ctb]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 }
 
-%\details{
-%}
+\details{
+  The following sections have not been updated for some time.
+}
   
 
 \section{timeSeries - S4 'timeSeries' Class}{

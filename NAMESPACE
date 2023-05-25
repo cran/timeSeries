@@ -10,8 +10,8 @@ import("methods") # , show
 importFrom("timeDate"
          , abline # the S4 generic from here, not "graphics"
          ##--- For these we provide and export methods :
-         , lines, plot, points
-         , frequency
+         , lines, plot, points # graphics
+         , frequency           # stats
          , isDaily, isMonthly, isQuarterly, isRegular
          ##---- end of generics for which we define/export methods
          , getRmetricsOptions, setRmetricsOptions
@@ -39,8 +39,8 @@ importFrom("grDevices"
 ##       --------  We should *not* additionally import them for their base packages,
 ## as we then get warnings such as
 
-##   Warning: replacing previous import ‘timeDate::lines’ by ‘graphics::lines’
-##            when loading ‘timeSeries’
+##   Warning: replacing previous import 'timeDate::lines' by 'graphics::lines'
+##            when loading 'timeSeries'
 
 ## gen.fn.:  lines     plot	points	  frequency
 ## package:  graphics  graphics	graphics  stats

@@ -107,7 +107,7 @@ applySeries(x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
 \details{
   
   The \code{"timeSeries"} method for \code{apply} extracts the core data
-  (a matrix) from \code{X} and calls \code{apply} on passing on all the
+  (a matrix) from \code{X} and calls \code{apply},  passing on all the
   remaining arguments. If the result is suitable, it converts it to
   \code{"timeSeries"}, otherwise returns it as is. \sQuote{Suitable}
   here means that it is a matrix or a vector (which is converted to a

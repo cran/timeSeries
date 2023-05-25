@@ -1,6 +1,7 @@
 \name{finCenter}
 \alias{finCenter}
 
+\alias{finCenter<-}
 
 \alias{finCenter,timeSeries-method}
 \alias{finCenter<-,timeSeries-method}

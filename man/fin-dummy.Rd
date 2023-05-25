@@ -9,11 +9,8 @@
 
 \title{Dummy time series}
 
-
 \description{
-
   Create dummy daily and monthly time series for examples and exploration.
-    
 }
 
 \usage{
@@ -22,7 +19,6 @@ dummyDailySeries(x = rnorm(365), units = NULL, zone = "",
 
 dummyMonthlySeries(\dots)
 }
-
 
 \arguments{
 
@@ -61,16 +57,16 @@ dummyMonthlySeries(\dots)
       
 }
 
-
 \value{
-
   a \code{"timeSeries"} object
-
 }
 
 \examples{
-dummyDailySeries()
-dummyMonthlySeries()
+dd <- dummyDailySeries()
+head(dd)
+tail(dd)
+
+dummyMonthlySeries(y = 2022)
 }
 \keyword{chron}
 \keyword{ts}

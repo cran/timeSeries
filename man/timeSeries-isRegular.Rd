@@ -1,13 +1,19 @@
 \name{isRegular}
 
-
 \alias{isDaily,timeSeries-method}
+\alias{isDaily.timeSeries}
+
 \alias{isMonthly,timeSeries-method}
+\alias{isMonthly.timeSeries}
+
 \alias{isQuarterly,timeSeries-method}
+\alias{isQuarterly.timeSeries}
 
 \alias{isRegular,timeSeries-method}
+\alias{isRegular.timeSeries}
 
 \alias{frequency,timeSeries-method}
+\alias{frequency.timeSeries}
 
 
 

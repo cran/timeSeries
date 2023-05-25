@@ -1,5 +1,7 @@
 \name{start}  
+\alias{start}
 
+\alias{end}
 
 \alias{start,timeSeries-method}
 \alias{start.timeSeries}
@@ -9,7 +11,6 @@
                                     
                                     
 \title{Start and end of a 'timeSeries'}
-
 
 \description{
 
@@ -28,34 +29,27 @@
 
 \arguments{
 
-    \item{x}{
-        an uni- or multivariate \code{"timeSeries"} object.
-        }
-    \item{\dots}{
-        optional arguments passed to other methods.
-        }
+  \item{x}{
+    an uni- or multivariate \code{"timeSeries"} object.
+  }
+  \item{\dots}{
+    optional arguments passed to other methods.
+  }
 }
-
 
 \value{
-
   a \code{"timeSeries"} object
-           
 }
-
 
 \examples{   
 \dontshow{set.seed(1234)}
-## Create Dummy \code{"timeSeries"} -    
+## Create a dummy \code{"timeSeries"} -    
    tS <- dummyMonthlySeries()[, 1]
    tS
    
-## Return Start and end Time Stamp -
+## Return start and end time stamp -
    c(start(tS), end(tS))
    range(time(tS))
-   
 }
 
-
 \keyword{chron}
-

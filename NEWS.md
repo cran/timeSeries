@@ -1,3 +1,7 @@
+## timeSeries 4030.106
+
+- removed UTF8 characters from NAMESPACE (fixes CRAN warning to that effect).
+
 
 ## timeSeries 4021.105
 
@@ -26,9 +30,8 @@
   The old name is still available but is deprecated.
 
 - The functions `returnSeries` and `getReturns` are no longer exported and will
-  be removed in the near future. They are synonyms for the function
-  \code{returns} and their use was discouraged for many years. Just use
-  `returns`.
+  be removed in the near future. They are synonyms for the function `returns`
+  and their use was discouraged for many years. Just use `returns`.
 
 - The functions `spreadSeries` and `midquoteSeries` are no longer exported and
   will be removed in the near future. Just use their synonyms `spreads` and

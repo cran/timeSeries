@@ -1,7 +1,6 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Date: 2022-10-14
-Version: 4021.105
+Version: 4030.106
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
 	   , person("Yohan", "Chalabi", role = "aut")
@@ -22,7 +21,7 @@ URL:
         https://geobosh.github.io/timeSeriesDoc/ (doc)
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: no
-Packaged: 2022-10-15 07:08:26 UTC; georgi
+Packaged: 2023-05-25 09:20:14 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Tobias Setz [aut],
   Yohan Chalabi [aut],
@@ -30,4 +29,4 @@ Author: Diethelm Wuertz [aut] (original code),
   Georgi N. Boshnakov [cre, ctb]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2022-10-16 00:20:06 UTC
+Date/Publication: 2023-05-25 10:30:02 UTC

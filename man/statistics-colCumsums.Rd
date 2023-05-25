@@ -1,12 +1,6 @@
 \name{colCum}
-
-
-\title{Cumulated Column Statistics}
-
-
-
-
 \alias{colCum}
+
 \alias{colCummaxs}
 \alias{colCummins}
 \alias{colCumprods}
@@ -24,10 +18,12 @@
 \alias{colCumsums,matrix-method}
 \alias{colCumsums,timeSeries-method}
 
+
+
+\title{Cumulated Column Statistics}
+
 \description{
-
     Functions to compute cumulative column statistics.
-
 }
 
 
@@ -66,8 +62,10 @@
 
 
 \value{
-    
-    all functions return an S4 object of class \code{timeSeries}.
+
+  \code{"matrix"} for the default methods of all functions,
+  
+  \code{"timeSeries"} for the  \code{"timeSeries"} methods
     
 }
 

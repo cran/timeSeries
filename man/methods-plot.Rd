@@ -2,9 +2,13 @@
 
 
 \alias{plot}
+\alias{lines}
+\alias{points}
+
 \alias{plot,timeSeries-method}
 \alias{lines,timeSeries-method}
 \alias{points,timeSeries-method}
+
 \alias{pretty.timeSeries}
 
 

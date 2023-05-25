@@ -1,4 +1,7 @@
 \name{comment}
+\alias{comment}
+
+\alias{comment<-}
 
 \alias{comment,timeSeries-method}
 \alias{comment<-,timeSeries-method}
