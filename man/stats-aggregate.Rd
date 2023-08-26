@@ -7,44 +7,18 @@
 \alias{aggregate.timeSeries}
 \alias{aggregate,timeSeries-method}
 
-\alias{daily2weekly}
-\alias{daily2monthly}
-
 
 \title{Aggregate time series}
 
 \description{
     
-    Aggregate a \code{"timeSeries"} object over general periods.  There
-    also functions for the common cases of changing daily to weekly and
-    daily to monthly.
+  Aggregate a \code{"timeSeries"} object over general periods.  
     
 }
-
-
-\details{
-
-    The function \code{aggregate} is a function which can 
-    aggregate time series on general aggregation periods.
-    
-    In addition there are two tailored function for simple
-    usage: Function \code{daily2monthly} and \code{daily2weekly}
-    which allow to aggregate \code{"timeSeries"} objects from daily
-    to monthly or weekly levels, respectively.
-    
-    In the case of the function \code{daily2weekly} one can 
-    explicitly set the starting day of the week, the default
-    value is Tuesday, \code{startOn="Tue"}.
-}
-
 
 \usage{
 \S4method{aggregate}{timeSeries}(x, by, FUN, \dots)
-
-daily2monthly(x, init=FALSE) 
-daily2weekly(x, startOn="Tue", init=FALSE)
 }
-
 
 \arguments{
   
@@ -52,45 +26,39 @@ daily2weekly(x, startOn="Tue", init=FALSE)
     an object of class \code{"timeSeries"}.
   } 
   \item{by}{
-    a sequence of \code{timeDate} objects denoting the aggregation
-    period.
+    a sequence of \code{"timeDate"} objects denoting the aggregation
+    periods, see section \sQuote{Details}.
   }
   \item{FUN}{
     the function to be applied.
   }               
-  \item{startOn}{
-
-    a character string, specifying the day of week as a three letter
-    abbreviation. Weekly aggregated data records are then fixed to the
-    weekdays given by the argument \code{startOn}.
-  }
-  \item{init}{
-
-    a logical value, if set to \code{TRUE} then the time series will be
-    indexed to 1 for its first value. By default init is set to
-    \code{FALSE}.
-
-  }
   \item{\dots}{
     arguments passed to other methods.
   }
 }
 
+\details{
 
-\value{
+  \code{aggregate} aggregates \code{x} by applying \code{FUN} on the
+  values of the time series in each of the aggregation periods,
+  specified by argument \code{by}.
 
-    \code{aggregate} returns an aggregated S4 object of class 
-    \code{timeSeries}.\cr
-    
-    \code{daily2monthly} returns an aggregated monthly object
-    of class \code{timeSeries}.\cr
+  Argument \code{by} should be of the same class as
+  \code{time(x)}. \code{by} is sorted and duplicated values are removed
+  from it. Each pair of consecutive values in \code{by} then determines
+  a period over which to apply the aggregation function \code{FUN}, see
+  \code{\link[base]{findInterval}}.
 
-    \code{daily2weekly} returns an aggregated weekly object
-    of class \code{timeSeries} starting on the specified day
-    of week.
-        
 }
 
+\value{
+  an object of class \code{"timeSeries"}
+}
+
+\seealso{
+  \code{\link{apply}},
+  \code{\link{align}}
+}
 
 \examples{
 ## Load Microsoft Data Set -
@@ -112,20 +80,7 @@ daily2weekly(x, startOn="Tue", init=FALSE)
    X <-  aggregate(x, by, mean)
    X
    isQuarterly(X)
-   
-## Aggregate daily records to end of month records -
-   X <- daily2monthly(x)
-   X
-   isMonthly(X)
-   
-## Aggregate da, ily records to end of week records -
-   X <- daily2weekly(x, startOn="Fri")
-   X
-   dayOfWeek(time(X))
-   
 }
-
 
 \keyword{methods}
 \keyword{chron}
-

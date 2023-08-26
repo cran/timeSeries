@@ -18,14 +18,11 @@
     
 }
 
-
-
 \usage{
 \S4method{start}{timeSeries}(x, \dots)
 
 \S4method{end}{timeSeries}(x, \dots)
 }
-
 
 \arguments{
 

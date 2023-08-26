@@ -2,36 +2,26 @@
 
 \alias{t,timeSeries-method}
 
+
 \title{Transpose 'timeSeries' objects}
 
-
-
-
 \description{
-     Returns the transpose of a 'timeSeries' object.
+  Returns the transpose of a \code{"timeSeries"} object.
 }
-
 
 \usage{
 \S4method{t}{timeSeries}(x)
 }
 
-
 \arguments{
-
-    \item{x}{
+  \item{x}{
     a 'timeSeries' object.
-    }
-    
+  }
 }
-
 
 \value{
-
-  a matrix object
-  
+  a matrix
 }
-
 
 \examples{
 ## Dummy 'timeSeries' with NAs entries
@@ -43,6 +33,4 @@
    t(s)
 }
 
-
 \keyword{chron}
-

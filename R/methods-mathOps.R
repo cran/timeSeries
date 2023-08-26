@@ -147,23 +147,24 @@ setMethod("Ops", c("timeSeries", "timeSeries"),
     }
 )
 
+## 2023-05-31 GNB: making these work column-wise and return 'timeSeries'
+## # ------------------------------------------------------------------------------
+## setMethod("cummax", "timeSeries",  function(x) callGeneric(getDataPart(x)))
+## setMethod("cummin", "timeSeries",  function(x) callGeneric(getDataPart(x)))
+## setMethod("cumprod", "timeSeries", function(x) callGeneric(getDataPart(x)))
+## setMethod("cumsum", "timeSeries",  function(x) callGeneric(getDataPart(x)))
+.cum_fun <- function(x, FUN){
+    wrk <- apply(getDataPart(x), 2, FUN)
+    if (NROW(x) == 1) 
+        wrk <- matrix(wrk, nrow = 1, dimnames = dimnames(x))
+    x@.Data <- wrk
+    x
+}
 
-# ------------------------------------------------------------------------------
-setMethod("cummax", "timeSeries",
-          function(x) callGeneric(getDataPart(x)))
-
-# ------------------------------------------------------------------------------
-setMethod("cummin", "timeSeries",
-          function(x) callGeneric(getDataPart(x)))
-
-# ------------------------------------------------------------------------------
-setMethod("cumprod", "timeSeries",
-          function(x) callGeneric(getDataPart(x)))
-
-# ------------------------------------------------------------------------------
-setMethod("cumsum", "timeSeries",
-          function(x) callGeneric(getDataPart(x)))
-
+setMethod("cummax", "timeSeries",  function(x) .cum_fun(x, cummax))
+setMethod("cummin", "timeSeries",  function(x) .cum_fun(x, cummin))
+setMethod("cumprod", "timeSeries", function(x) .cum_fun(x, cumprod))
+setMethod("cumsum", "timeSeries",  function(x) .cum_fun(x, cumsum))
 
 # ------------------------------------------------------------------------------
 ## setMethod("diff", "timeSeries", function(x, ...) {
@@ -184,7 +185,7 @@ setMethod("quantile", "timeSeries", function(x, ...) {
 })
 
 # ------------------------------------------------------------------------------
-setMethod("median", "timeSeries", function(x, na.rm) {
+setMethod("median", "timeSeries", function(x, na.rm, ...) {
   x <- getDataPart(x)
   callGeneric(x, na.rm=na.rm)
 })

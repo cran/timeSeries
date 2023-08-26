@@ -7,11 +7,8 @@
 \title{Difference a 'timeSeries' object}
 
 \description{
-
-    Difference a \code{"timeSeries"} object.
-    
+  Difference a \code{"timeSeries"} object.
 }
-
 
 \usage{
 \S4method{diff}{timeSeries}(x, lag = 1, diff = 1, trim = FALSE, pad = NA, \dots)

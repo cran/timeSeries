@@ -17,15 +17,64 @@ reference:
   - title: "Create 'timeSeries' objects"
     contents:
       - timeSeries
+      - readSeries
+      - dummyMonthlySeries
+      - dummyDailySeries
       - as.timeSeries
       - as.matrix.timeSeries
       - as.ts.timeSeries
       - as.data.frame.timeSeries
-      - readSeries
-      - dummyMonthlySeries
-      - dummyDailySeries
+  - title: "Explore 'timeSeries' objects"
+    contents:
+      - plot
+      - "lines,timeSeries-method"
+      - "points,timeSeries-method"
+      - pretty.timeSeries
+      - "print-methods"
+      - str
+      - is.timeSeries
+      - is.signalSeries
+      - isUnivariate
+      - isMultivariate
+      - isDaily.timeSeries
+      - isMonthly.timeSeries
+      - isQuarterly.timeSeries
+      - isRegular
+      - "is.na,timeSeries-method"
+      - "is.unsorted,timeSeries-method"
+  - title: "Subset 'timeSeries' objects"
+    desc: >
+      There are 'timeSeries' methods for subsetting operators, like '[' and
+      '[<-', as well as functions and methods which broadly perform some kind of
+      subsetting.
+    contents:
+      - window
+      - TimeSeriesSubsettings
+      - na.contiguous
+      - na.omit
+      - removeNA
+      - substituteNA
+      - interpNA
+      - endOfPeriodSeries
+      - endOfPeriodStats
+      - endOfPeriodBenchmarks
+  - title: "Aggregate and smooth 'timeSeries' objects"
+    contents:
+      - filter
+      - smoothLowess
+      - smoothSpline
+      - smoothSupsmu
+      - aggregate
+      - align
       - alignDailySeries
+      - daily2monthly
+      - daily2weekly
+      - fapply
+      - applySeries
       - rollDailySeries
+      - rollMonthlySeries
+      - countMonthlyRecords
+      - rollMonthlyWindows
   - title: "Manipulate 'timeSeries' objects"
     contents:
       - series
@@ -44,31 +93,12 @@ reference:
       - "setAttributes<-"
       - comment
       - "`comment<-`"
-      - na.contiguous
-      - na.omit
-      - removeNA
-      - substituteNA
-      - interpNA
       - orderColnames
       - sortColnames
       - sampleColnames
       - statsColnames
       - pcaColnames
       - hclustColnames
-  - title: "Predicates for 'timeSeries' objects"
-    contents:
-      - is.timeSeries
-      - is.signalSeries
-      - isUnivariate
-      - isMultivariate
-      - isDaily.timeSeries
-      - isMonthly.timeSeries
-      - isQuarterly.timeSeries
-      - isRegular
-  - title: "Subsetting 'timeSeries'"
-    contents:
-      - TimeSeriesSubsettings
-      - window
   - title: "Transform 'timeSeries' objects"
     contents:
       - scale
@@ -79,6 +109,7 @@ reference:
       - colCumprods
       - colCumreturns
       - colCumsums
+      - rowCumsums
       - lag
       - sort
       - rev
@@ -87,15 +118,6 @@ reference:
       - rank
       - sample
       - math
-  - title: "Transform and smooth 'timeSeries' objects"
-    contents:
-      - filter
-      - smoothLowess
-      - smoothSpline
-      - smoothSupsmu
-      - aggregate
-      - daily2monthly
-      - daily2weekly
   - title: "Financial computations on 'timeSeries' objects"
     contents:
       - returns
@@ -111,8 +133,6 @@ reference:
       - index2wealth
   - title: "Compute statistics on timeSeries objects"
     contents:
-      - fapply
-      - applySeries
       - "cov-methods"
       - "cor-methods"
       - colStats
@@ -132,7 +152,6 @@ reference:
       - rollMin
       - rollMax
       - rollMedian
-      - rowCumsums
   - title: "Combine time series"
     contents:
       - cbind
@@ -140,24 +159,10 @@ reference:
       - cbind2
       - rbind2
       - merge
-      - align
-  - title: "Further 'timeSeries methods for base R Functions"
+  - title: "Mathematical operations on 'timeSeries'"
     contents:
+      - math
       - t
-      - plot
-      - "lines,timeSeries-method"
-      - "points,timeSeries-method"
-      - pretty.timeSeries
-      - "print-methods"
-      - str
-  - title: "Base Time Series Functions"
-    contents:
-      - countMonthlyRecords
-      - rollMonthlyWindows
-      - rollMonthlySeries
-      - endOfPeriodSeries
-      - endOfPeriodStats
-      - endOfPeriodBenchmarks
   - title: "Other"
     contents:
       - "timeSeries-class"
@@ -165,4 +170,4 @@ reference:
       - "DataPart,timeSeries-method"
       - description
       - attach
-      - model.frame
+      - internals

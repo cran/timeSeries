@@ -32,7 +32,7 @@ To report bugs visit [Rmetrics](https://r-forge.r-project.org/projects/rmetrics/
 # Documentation
 
 You can view the documentation of `timeSeries` at
-[timeSeriesDoc](https://geobosh.github.io/timeSeriesDoc/)
+[timeSeriesDoc](https://geobosh.github.io/timeSeriesDoc/) (an web site produce with pkgdown)
 or download the
 [reference manual](https://cran.r-project.org/package=timeSeries/timeSeries.pdf)
 of the latest release from CRAN. There is also a large

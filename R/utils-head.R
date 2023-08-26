@@ -20,7 +20,7 @@
 ################################################################################
 
 
-.head.timeSeries <- 
+head.timeSeries <- 
     function(x, n = 6, recordIDs = FALSE, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -49,15 +49,9 @@
         head.matrix(x, n = n, ...)
 }
 
-
-setMethod("head", "timeSeries", function(x, n = 6, recordIDs = FALSE, ...)
-          .head.timeSeries(x, n, recordIDs, ...))
+setMethod("head", "timeSeries", head.timeSeries)
 
           
-# until UseMethod dispatches S4 methods in 'base' functions
-head.timeSeries <- function(x, ...) .head.timeSeries(x, ...)
-
-
 # ------------------------------------------------------------------------------
 
 
@@ -74,33 +68,28 @@ head.timeSeries <- function(x, ...) .head.timeSeries(x, ...)
 ##' @return
 ##'   Returns the tail of an object of class 'timeSeries'.
 ##'
-.tail.timeSeries <- function(x, n = 6, recordIDs = FALSE, ...)
-{
-    if (recordIDs & dim(x)[1] == dim(x@recordIDs)[1])
-        cbind(tail.matrix(x, n = n, addrownums = FALSE, ...),
-              tail(x@recordIDs, n = n, addrownums = FALSE, ...))
-    else
-        tail.matrix(x, n = n, addrownums = FALSE, ...)
-}
+## Martin Maechler:  if("keepnums" %in% names(formals(tail.matrix))) ## R-devel (2020-01)
+##  refactored somewhat by GNB;  *TODO:* is a similar thing needed for head.timeSeries?
+tail.timeSeries <-
+    if(getRversion() >= "4.0.0") {
+        function(x, n = 6, recordIDs = FALSE, ...) { 
+            if (recordIDs && nrow(x) == nrow(x@recordIDs))
+                cbind(tail.matrix(x, n = n, keepnums = FALSE, ...),
+                      tail(x@recordIDs, n = n, keepnums = FALSE, ...))
+            else
+                tail.matrix(x, n = n, keepnums = FALSE, ...)
+        }
+    } else {
+        function(x, n = 6, recordIDs = FALSE, ...) {
+            if (recordIDs & dim(x)[1] == dim(x@recordIDs)[1])
+                cbind(tail.matrix(x, n = n, addrownums = FALSE, ...),
+                      tail(x@recordIDs, n = n, addrownums = FALSE, ...))
+            else
+                tail.matrix(x, n = n, addrownums = FALSE, ...)
+        }
+    }
 
-## Martin Maechler:
-if("keepnums" %in% names(formals(tail.matrix))) ## R-devel (2020-01; R >= 4.0.0 in future)
-.tail.timeSeries <- function(x, n = 6, recordIDs = FALSE, ...)
-{ 
-    if (recordIDs && nrow(x) == nrow(x@recordIDs))
-        cbind(tail.matrix(x, n = n, keepnums = FALSE, ...),
-              tail(x@recordIDs, n = n, keepnums = FALSE, ...))
-    else
-        tail.matrix(x, n = n, keepnums = FALSE, ...)
-}
-
-setMethod("tail", "timeSeries", function(x, n = 6, recordIDs = FALSE, ...)
-          .tail.timeSeries(x, n, recordIDs, ...))
-
-          
-##' until UseMethod dispatches S4 methods in 'base' functions
-tail.timeSeries <- function(x, ...) .tail.timeSeries(x, ...)
+setMethod("tail", "timeSeries", tail.timeSeries)
 
 
 ################################################################################
-

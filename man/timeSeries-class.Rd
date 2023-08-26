@@ -80,7 +80,6 @@
 % \alias{cummin,timeSeries-method}
 % \alias{cumprod,timeSeries-method}
 % \alias{cumsum,timeSeries-method}
-% \alias{cut,timeSeries-method}
 % \alias{diff,timeSeries-method}
 
 % \alias{dim,timeSeries-method}
@@ -334,7 +333,6 @@ Class \code{"\linkS4class{vector}"}, by class "structure", distance 2, with expl
     \item{cummin}{\code{signature(x = "timeSeries")}: ... }
     \item{cumprod}{\code{signature(x = "timeSeries")}: ... }
     \item{cumsum}{\code{signature(x = "timeSeries")}: ... }
-    \item{cut}{\code{signature(x = "timeSeries")}: ... }
     \item{diff}{\code{signature(x = "timeSeries")}: ... }
 
     \item{dim}{\code{signature(x = "timeSeries")}: ... }

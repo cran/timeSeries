@@ -1,6 +1,5 @@
 \name{plot-methods}
 
-
 \alias{plot}
 \alias{lines}
 \alias{points}
@@ -12,14 +11,14 @@
 \alias{pretty.timeSeries}
 
 
-
-\title{Plot a time series}
+\title{Plot 'timeSeries' objects}
 
 \description{
 
-    Plots 'timeSeries' objects and add lines and points. 
+  \code{"timeSeries"} methods for \code{\link[base]{plot}},
+  \code{\link[graphics]{lines}} and \code{\link[graphics]{points}}.
+  
 }
-
 
 \usage{
 \S4method{plot}{timeSeries}(x, y, FinCenter = NULL,
@@ -36,33 +35,30 @@
     high.u.bias=1.5, u5.bias=0.5+1.5*high.u.bias, eps.correct=0, \dots)
 }
 
-
 \details{
 
-    The original plotting function \code{plot} was build along R's
-    plotting function \code{plot.ts} with an additional argument
-    to tailor the position marks at user defined position 
-    specified by the argument \code{at}. We call this style or
-    theme "ts".
+  Our original method \code{plot} was build along R's plotting function
+  \code{plot.ts} with an additional argument to tailor the position
+  marks at user defined position specified by the argument \code{at}. We
+  call this style or theme \code{"ts"}.
     
-    With Verison R 3.1 we have inroduced two new additionol
-    plotting themes called \code{"pretty"} and \code{"chick"}. They are becoming
-    active when we set \code{at = "pretty"} or \code{at = "chic"}.
+  With verson R 3.1 we have inroduced two new additional plotting themes
+  called \code{"pretty"} and \code{"chick"}. They are becoming active
+  when we set \code{at = "pretty"} or \code{at = "chic"}.
     
-    Plot style or theme \code{"pretty"} is an extension of our original 
-    plotting function.
+  Plot style or theme \code{"pretty"} is an extension of our original
+  plotting method.
     
-    Plot style or theme \code{"chic"} is an implementation along the
-    contributed packages \code{xts} and \code{PerformanceAnalytics} from
-    the Chicago finance group members. \code{"Chicago"} gave the name to
-    call the them \code{"chic"}.
+  Plot style or theme \code{"chic"} is an implementation along the
+  contributed packages \code{xts} and \code{PerformanceAnalytics} from
+  the Chicago finance group members (\code{"chic"} is an abbreviation of
+  Chicago.
     
-    For both themes, \code{"pretty"} and \code{"chic"} additional
-    arguments are passed through the \code{\dots} arguments. These are:
-    
+  For both themes, \code{"pretty"} and \code{"chic"}, additional
+  arguments are passed through the \code{\dots} arguments. These are:
     
     \tabular{lll}{
-    \code{Argument:}  \tab Default: \tab Description: \cr
+    \code{Argument}   \tab Default  \tab Description \cr
     \code{type}       \tab "l"  \tab types pf plot \cr
     \code{col}        \tab 1    \tab colors for lines and points \cr
     \code{pch}        \tab 20   \tab plot symbol \cr
@@ -78,15 +74,14 @@
     \code{axes}       \tab TRUE \tab should be axes drawn on the plot? \cr
     \code{ann}        \tab TRUE \tab should default annotations appear? }
     
-    Concerning the plot elements, the length of these vectors has
-    to be the same as the number of columns in the time series to
-    be plotted. If their length is only one, then tey are repeated.
+  Concerning the plot elements, the length of these vectors has to be
+  the same as the number of columns in the time series to be plotted. If
+  their length is only one, then they are repeated.
     
-    There is an almost 70 pages vignette added to the package, with
-    dozens of examples of tailored plots. Have a look in it.
+  There is an almost 70 pages vignette added to the package, with dozens
+  of examples of tailored plots. Have a look in it.
 
 }
-
 
 \arguments{
 
@@ -177,15 +172,19 @@
        }
 }
 
-
 \value{
 
-  NULL (invisibly), the functions are called for the side effect of
-  producing plots
+  \code{NULL} (invisibly), the functions are called for the side effect
+  of producing plots
     
 }
 
+\seealso{
+  
+  \code{vignette("timeSeriesPlot", package="timeSeries")}, which
+  provides extensive plot examples.
 
+}
 \examples{
 ## Load Swiss Pension Fund Benchmark Data -
    LPP <- LPP2005REC[1:12, 1:4]
@@ -232,6 +231,4 @@
    points(NYC, FinCenter = "GMT", pch = 19, col = "red")
 }
 
-
 \keyword{chron}
-

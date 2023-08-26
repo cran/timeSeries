@@ -60,7 +60,7 @@ is.signalSeries <-
 
 
 # YC: 
-# Note if is.na returns a timeSeries objects then we have problem
+# Note if is.na returns a timeSeries object then we have problem
 # with the function quantile...
 
 

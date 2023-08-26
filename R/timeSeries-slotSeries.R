@@ -12,7 +12,6 @@
 #  A copy of the GNU General Public License is available at
 #  ../../COPYING
 
-
 ################################################################################
 # FUNCTION:                        DESCRIPTION:
 #  series,timeSeries                Get data slot from a'timeSeries'  
@@ -22,74 +21,25 @@
 #  coredata,timeSeries              Get data slot from a'timeSeries'  
 #  coredata<-,timeSeries,ANY        Set new data slot to a 'timeSeries'  
 #  coredata<-,timeSeries,matrix     Set new data slot to a 'timeSeries'  
-# FUNCTION:                        DESCRIPTION:
-#  getSeries
-#  getSeries.default
-#  getSeries.timeSeries             Get data slot from a 'timeSeries'  
-#  setSeries<-                      Set new data slot to a 'timeSeries' 
-################################################################################
-# DEPRECATED:                      DESCRIPTION:
-#  seriesData                       Deprecated, use series
 ################################################################################
 
-
-setMethod("series", "timeSeries", 
-    function(x)
-{
-    # A function implemented by Diethelm Wuertz and Yohan Chalabi
-
-    # Description:
-    #    Returns the series Data of an ordered data object.
-
-    # Arguments:
-    #   x - a 'timeSeries' object
-
-    # Value:
-    #    Returns an object of class 'matrix'.
-
-    # FUNCTION:
-
-    # Get Data Slot:
-    ans <- as.matrix(x)
-
-    # Return Value:
-    ans
-}
-)
-
-
 # ------------------------------------------------------------------------------
-
-
-setMethod("series<-", signature(x = "timeSeries", value = "ANY"), 
-    function(x, value)
-{
-    # A function implemented by Yohan Chalabi
-    
-    # Return Value:
-    callGeneric(x, as(value, "matrix"))
-}
-)
-
-
-# ------------------------------------------------------------------------------
-## 2022-10-08 GNB: the bodies of `series<-` and `coredata<-` are iddentical.
-##                 Define thie body separately to make this clear,
-##                 Then use this body in both definitions.
+## 2022-10-08 GNB:
 ##
 ##   TODO: In principle, we could just not define 'coredata<-' generic and do:
 ##
 ##       "coredata<-" <- "series<-"
 ##
-##       but this doesn't seem desirable since 'coredata<-' may be exported by other
-##       packages, too (e.g., zoo). Maybe, do it the other way round: define the methods for
-##       'coredata<-' and do
+##       but this doesn't seem desirable since 'coredata<-' may be exported by
+##       other packages, too (e.g., zoo). Maybe, do it the other way round:
+##       define the methods for 'coredata<-' and do
 ## 
 ##       "series<-" <- "coredata<-"
 ##
-##       This may have the analogous problem since other packages may rely on a generic
-##       'series<-'. Admittedly , this is far less likely.
-.series_assign <-
+##       This may have the analogous problem since other packages may rely on a
+##       generic 'series<-'. Admittedly, this is far less likely.
+## 2023-05-27 GNB: renaming from .series_assign <-
+'coredata<-.timeSeries' <-
     function(x, value)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -105,6 +55,11 @@ setMethod("series<-", signature(x = "timeSeries", value = "ANY"),
 
     # FUNCTION:
 
+    ## 2023-05-27 GNB: added this when converted the two S4 methods into a
+    ##                 single S3 one.
+    if(class(value)[1] != "matrix")
+        value <- as.matrix(value)
+    
     # if value same dimension as time series
     # we we can assign the value directly to @.Data
     # This can speed up math Ops significantly
@@ -152,16 +107,9 @@ setMethod("series<-", signature(x = "timeSeries", value = "ANY"),
         title = title)
 }
 
+# ------------------------------------------------------------------------------
 
-
-setMethod("series<-", signature(x = "timeSeries", value = "matrix"),
-          .series_assign )
-
-################################################################################
-# COREDATA SYNONYM
-
-
-setMethod("coredata", "timeSeries", 
+setMethod("series", "timeSeries", 
     function(x)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -182,139 +130,78 @@ setMethod("coredata", "timeSeries",
 
     # Return Value:
     ans
-})
-
+}
+)
 
 # ------------------------------------------------------------------------------
 
-
-setMethod("coredata<-", signature(x = "timeSeries", value = "ANY"), 
+setMethod("series<-", signature(x = "timeSeries", value = "ANY"), 
     function(x, value)
 {
-    # A function implemented by Diethelm Wuertz and Yohan Chalabi
+    # A function implemented by Yohan Chalabi
     
     # Return Value:
     callGeneric(x, as(value, "matrix"))
-})
+}
+)
 
-
-# ------------------------------------------------------------------------------
-
-
-setMethod("coredata<-", signature(x = "timeSeries", value = "matrix"),
-          .series_assign )
+setMethod("series<-", signature(x = "timeSeries", value = "matrix"),
+          `coredata<-.timeSeries`)
 
 ################################################################################
+# COREDATA SYNONYM
 
+## GNB: replacing the S4 generic coredata and its method with an S3 method,
+##      which is exported and registered directly as a method for zoo::coredata.
+##
+##      The S4 coredata() in 'timeSeries' was not exported although is method
+##      was 'seen' by 'zoo::coredata' when zoo was attached. I suspect that that
+##      was by chance, not as a design in the S3/S4 methods handling in R. Of
+##      course, coredata() was only visible when zoo was attached (or xts which
+##      exports it).
 
-## getSeries <-
+## setMethod("coredata", "timeSeries", 
 ##     function(x)
 ## {
-##     # A function implemented by Diethelm Wuertz
-##     
-##     # Note:
-##     #   Used for getSeries methods in fPortfolio package.
-## 
-##     # FUNCTION: 
-##     
-##     # Return Value:
-##     UseMethod("getSeries")
-## }
-
-
-# ------------------------------------------------------------------------------
-
-
-## getSeries.default <- 
-##     function(x)
-## {
-##     # Description:
-##     #   Get data slot from a 'timeSeries' object
-##     
-##     # Arguments:
-##     #   x - a 'timeSeries' object
-##     
-##     # FUNCTION:
-##     
-##     # Return Value:
-##     series(x)
-## }
-
-
-# ------------------------------------------------------------------------------
-
-
-## getSeries.timeSeries <- 
-##     function(x)
-## {
-##     # Description:
-##     #   Get data slot from a 'timeSeries' object
-##     
-##     # Arguments:
-##     #   x - a 'timeSeries' object
-##     
-##     # FUNCTION:
-##     
-##     # Return Value:
-##     series(x)
-## }
-
-
-# ------------------------------------------------------------------------------
-
-
-## "setSeries<-" <-
-##     function(x, value)
-## {
-##     # Description:
-##     #   Set data slot to a 'timeSeries' object
-## 
-##     # Arguments:
-##     #   x - a 'timeSeries' object
-##     
-##     # FUNCTION:
-##     
-##     # Assign Series Slot:
-##     series(x) <- value
-##     
-##     # Return Value:
-##     x
-## }
-
-
-################################################################################
-# DEPRECATED
-
-
-## seriesData <-
-## function(object)
-## {
-##     # A function implemented by Diethelm Wuertz
+##     # A function implemented by Diethelm Wuertz and Yohan Chalabi
 ## 
 ##     # Description:
 ##     #    Returns the series Data of an ordered data object.
 ## 
 ##     # Arguments:
-##     #   object - a 'timeSeries' object
+##     #   x - a 'timeSeries' object
 ## 
 ##     # Value:
 ##     #    Returns an object of class 'matrix'.
 ## 
 ##     # FUNCTION:
 ## 
-##     # Test:
-##     stopifnot(inherits(object, "timeSeries"))
-## 
-##     # Deprecated
-##     .Deprecated(new = "series", package = "timeSeries")
-## 
 ##     # Get Data Slot:
-##     ans <- as.matrix(object)
+##     ans <- as.matrix(x)
 ## 
 ##     # Return Value:
 ##     ans
-## }
+## })
 
+coredata.timeSeries <- function(x) as.matrix(x)
 
-################################################################################
+# ------------------------------------------------------------------------------
 
+## GNB: replacing the S4 generic 'coredata<-' and its methods with an S3 method,
+##      which is exported and registered directly as a method for zoo::coredata<-.
+##
+##      Note that although the S4 methods were seen when zoo was loaded, they
+##      didn't work properly since they dispatch on two arguments, while the
+##      function is S3.
+
+## setMethod("coredata<-", signature(x = "timeSeries", value = "ANY"), 
+##     function(x, value)
+## {
+##     # A function implemented by Diethelm Wuertz and Yohan Chalabi
+##     
+##     # Return Value:
+##     callGeneric(x, as(value, "matrix"))
+## })
+## 
+## setMethod("coredata<-", signature(x = "timeSeries", value = "matrix"),
+##           .series_assign )

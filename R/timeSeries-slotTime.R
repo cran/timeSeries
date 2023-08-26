@@ -58,14 +58,14 @@ setMethod("time", "timeSeries",
     function(x, ...) time.timeSeries(x, ...))
 
           
-## GNB: swapped the definitions of .time.timeSeries and time.timeSeries
-##      and deprecated .time.timeSeries
-.time.timeSeries <- function(x, ...) {
-    # Deprecated:
-    .Deprecated(new = "time", package = "timeSeries")
-    
-    time.timeSeries(x, ...)
-}
+## ## GNB: swapped the definitions of .time.timeSeries and time.timeSeries
+## ##      and deprecated .time.timeSeries
+## .time.timeSeries <- function(x, ...) {
+##     # Deprecated:
+##     .Deprecated(new = "time", package = "timeSeries")
+##     
+##     time.timeSeries(x, ...)
+## }
 
 
 # ------------------------------------------------------------------------------
@@ -80,6 +80,14 @@ function(x, value)
 
 # ------------------------------------------------------------------------------
 
+`time<-.default` <-
+function(x, value)
+{
+    # A function implemented by Georgi Boshnakov
+
+    zoo::time(x) <- value
+    x
+}
 
 `time<-.timeSeries` <-
 function(x, value)
@@ -202,4 +210,3 @@ getTime <-
 
 
 ################################################################################
-

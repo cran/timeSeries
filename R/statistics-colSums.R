@@ -28,11 +28,6 @@
 #  colMins                   Computes minimum values in each colum
 #  colProds                  Computes product of all values in each colum
 #  colQuantiles              Computes quantiles of all values in each colum
-# DEPRECATED:               NO LONGER USED:
-#  colAvgs                   Computes sample mean by column
-#  colStdevs                 Computes sample standard deviation by column
-#  mean.timeSeries           Computes sample means by column
-#  var.timeSeries            Computes sample variance by column
 ################################################################################
 
 
@@ -136,40 +131,3 @@ colQuantiles <-
     stopifnot(length(prob) == 1)
     colStats(x, "quantile", probs = prob, ...)
 }
-
-
-################################################################################
-# DEPRECATED:
-
-## GNB: removed on 2022-10-07
-#
-# colAvgs <- 
-#   function(x, ...) 
-# { 
-#     # FUNCTION:
-#     
-#     colMeans(x, ...) 
-# }
-# 
-# 
-# # ------------------------------------------------------------------------------
-# 
-# 
-colStdevs <-             # TODO: comment out when the function is removed.
-  function(x, ...) 
-{ 
-    # FUNCTION:
-    
-    colStats(x, "sd", ...) 
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-# mean.timeSeries <- colMeans
-# var.timeSeries <- colVars
-
-
-################################################################################
-

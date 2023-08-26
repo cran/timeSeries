@@ -15,7 +15,7 @@
 
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
-#  dummySeries               Creates a dummy monthly 'timeSeries' object
+#  dummyMonthlySeries        Creates a dummy monthly 'timeSeries' object
 #  dummyDailySeries          Creates a dummy daily 'timeSeries' object
 ################################################################################
 
@@ -42,10 +42,10 @@ dummyMonthlySeries <-
     timeSeries(matrix(runif(24), ncol = 2), as.character(timeCalendar()), ...)
 }
 
-dummySeries <-   function(...) { # GNB
-    .Deprecated("dummyMonthlySeries")
-    dummyMonthlySeries(...)
-}
+## dummySeries <-   function(...) { # GNB
+##     .Deprecated("dummyMonthlySeries")
+##     dummyMonthlySeries(...)
+## }
 # ------------------------------------------------------------------------------
 
 
@@ -83,6 +83,5 @@ dummyDailySeries <-
     # Return Value:
     ans
 }
-
 
 ################################################################################

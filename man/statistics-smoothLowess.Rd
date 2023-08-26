@@ -5,62 +5,64 @@
 \alias{smoothSupsmu}
 
                                     
-\title{Smoothes time series objects}
+\title{Smooths time series objects}
 
 \description{
     
-    Smoothes a \code{"timeSeries"} object.      
+  Smooths a \code{"timeSeries"} object.      
     
 }
-    
-    
+
 \usage{
 smoothLowess(x, f = 0.5, \dots)
 smoothSpline(x, spar = NULL, \dots)
 smoothSupsmu(x, bass = 5, \dots)
 }
 
-
 \arguments{
 
-    \item{x}{
-        an univariate \code{"timeSeries"} object.
-        }
-    \item{f}{
-        the lowess smoother span. This gives the proportion of 
-        points in the plot which influence the smooth at each 
-        value. Larger values give more smoothness.
-        }
-    \item{spar}{
-        smoothing parameter, typically (but not necessarily) in 
-        (0,1]. By default \code{NULL}, i.e. the value will be
-        automatically selected.
-        }
-    \item{bass}{
-        controls the smoothness of the fitted curve. Values of 
-        up to 10 indicate increasing smoothness.
-        }
-    \item{\dots}{
-        optional arguments to be passed to the underlying smoothers.
-        }
-        
-}
+  \item{x}{
+    an univariate \code{"timeSeries"} object.
+  }
+  \item{f}{
 
+    the lowess smoother span. This gives the proportion of points in the
+    plot which influence the smooth at each value. Larger values give
+    more smoothness.
+
+  }
+  \item{spar}{
+
+    smoothing parameter, typically (but not necessarily) in (0,1]. By
+    default \code{NULL}, i.e. the value will be automatically selected.
+
+  }
+  \item{bass}{
+
+    controls the smoothness of the fitted curve. Values of up to 10
+    indicate increasing smoothness.
+
+  }
+  \item{\dots}{
+
+    optional arguments to be passed to the underlying smoothers.
+
+  }
+}
 
 \details{
 
-    The functions \code{smoothLowess}, \code{smoothSpline}, \code{smoothSupsmu}
-    allow to smooth \code{timeSerie} object. The are interfaces to the
-    function \code{lowess}, \code{supmsu}. and \code{smooth.spline} in R's
-    \code{stats} package. 
+  The functions \code{smoothLowess}, \code{smoothSpline},
+  \code{smoothSupsmu} allow to smooth \code{timeSerie} object. The are
+  interfaces to the function \code{lowess}, \code{supmsu}. and
+  \code{smooth.spline} in R's \code{stats} package.
    
-    The \code{\dots} arguments allow to pass optional arguments to the 
-    underlying \code{stats} functions and tailor the smoothing process. 
-    We refer to the manual pages of these functions for a proper setting
-    of these options.
+  The \code{\dots} arguments allow to pass optional arguments to the
+  underlying \code{stats} functions and tailor the smoothing process.
+  We refer to the manual pages of these functions for a proper setting
+  of these options.
    
 }   
-
 
 \value{
 
@@ -68,15 +70,10 @@ smoothSupsmu(x, bass = 5, \dots)
   original time series data, the second the smoothed series.
         
 }
-
-
    
 \author{
-
-    The R core team for the underlying smoother functions.
-     
+  The R core team for the underlying smoother functions.
 }
-
 
 \examples{
 ## Use Close from MSFT's Price Series  - 
@@ -103,6 +100,4 @@ smoothSupsmu(x, bass = 5, \dots)
    title(main = "Close - Spline Smoothed")
 }
 
-
 \keyword{chron}
-

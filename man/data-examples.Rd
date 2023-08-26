@@ -8,13 +8,9 @@
 
 \title{Time series data sets} 
 
-
 \description{
- 
-  Three data sets used in example files.
-  
+   Three data sets used in example files.
 }
-
 
 \details{
 

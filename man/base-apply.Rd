@@ -1,20 +1,22 @@
 \name{apply}
+\alias{apply}
 
-
-\title{Apply functions over time series periods}
+\alias{apply,timeSeries-method}
 
 \alias{fapply}
 \alias{applySeries}
-\alias{apply,timeSeries-method}
 
+\alias{rollDailySeries}
+
+
+\title{Apply functions over time windows}
 
 \description{
     
-    Applies a function to a \code{"timeSeries"} object over time periods 
-    of arbitrary positons and lengths.          
+  Applies a function to a \code{"timeSeries"} object over regular or
+  irregular time windows, possibly overlapping.
     
 }
-
 
 \usage{
 \S4method{apply}{timeSeries}(X, MARGIN, FUN, \dots, simplify = TRUE)
@@ -26,8 +28,9 @@ applySeries(x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
             zone = x@FinCenter, FinCenter = x@FinCenter, 
             recordIDs = data.frame(), title = x@title, 
             documentation = x@documentation, \dots)
-}
 
+rollDailySeries(x, period = "7d", FUN, \dots)
+}
 
 \arguments{
   
@@ -98,45 +101,73 @@ applySeries(x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
   \item{documentation}{
     optional documentation string, or a vector of character strings.
   }   
+  \item{period}{
+
+    a character string specifying the rollling period composed by the
+    length of the period and its unit, e.g. \code{"7d"} represents one
+    week.
+
+  }
   \item{\dots}{
     arguments passed to other methods.
   }
 }
 
-
 \details{
   
   The \code{"timeSeries"} method for \code{apply} extracts the core data
-  (a matrix) from \code{X} and calls \code{apply},  passing on all the
+  (a matrix) from \code{X} and calls \code{apply}, passing on all the
   remaining arguments. If the result is suitable, it converts it to
   \code{"timeSeries"}, otherwise returns it as is. \sQuote{Suitable}
   here means that it is a matrix or a vector (which is converted to a
-  matrix) and the number of observations is the same as \code{X}. 
+  matrix) and the number of observations is the same as \code{X}.
 
   Like \code{apply} applies a function to the margins of an array, the
   function \code{fapply} applies a function to the time stamps or signal
   counts of a financial (therefore the \dQuote{f} in front of the
   function name) time series of class \code{"timeSeries"}.
-    
-  The function \code{fapply} takes a \code{"timeSeries"} object as input
-  and if \code{from} and \code{to} are missing, they are set to the
-  start and end time stamps of the series as default values. The
-  function then behaves like \code{apply} on the column margin.
-    
-  Note, the function \code{fapply} can be used repetitively in the
-  following sense: If \code{from} and \code{to} are two \code{"timeDate"}
-  vectors of equal length then for each period spanned by the elements
-  of the two vectors the function \code{FUN} will be applied to each
-  period.  The resulting time stamps are the time stamps of the
-  \code{to} vector. Note, the periods can be regular or irregelar, and
-  they can even overlap.
-    
-  The function \code{fapply} calls the more general function
-  \code{applySeries} which also offers, to create automatically monthly
-  and quarterly periods.
-    
+
+  
+  \code{applySeries} takes a \code{"timeSeries"} object as input and
+  applies \code{FUN} to windows of \code{x}.  The windows are specified
+  by \code{from} and \code{to}, which need to have the same length. Then
+  \code{from[i], to[i]} specifies the \code{i}-th window.  If
+  \code{time(x)} is a \code{"timeDate"} object, then \code{from} and
+  \code{to} are converted to \code{"timeDate"} (if they are not already
+  such objects), otherwise they are converted to integers.
+
+  An alternative way to specify the window(s) on which
+  \code{applySeries} operates is with argument \code{by}. It is used
+  only if \code{from} and \code{to} are missing or \code{NULL}. \code{by
+  = "monthly"} or \code{by = "quarterly"} applies \code{FUN} to the data
+  for each year-month or year-quarter, respectively. By year-month we
+  mean that there are separate windows for the months in different
+  years.
+
+  The resulting time stamps are the time stamps of the \code{to}
+  vector. The periods can be regular or irregular, and they can even
+  overlap.
+
+  If \code{from = start(x)} and \code{to = end(x)}, then the function
+  behaves like \code{apply} on the column margin.
+
+  
+  \code{fapply} is the same as \code{applySeries} (in fact, the former
+  calls the latter), except that the defaults for \code{from} and
+  \code{to} are \code{start(x)} and \code{end(x)}, respectively. (GNB:
+  in addition, \code{fapply} throws error if \code{x} is a
+  \sQuote{signal series}.)
+
+  \code{rollDailySeries} rolls a daily 'timeSeries' on a given period.
+
 }
 
+\value{
+
+  for \code{rollDailySeries}, an object of class \code{"timeSeries"} with
+  rolling values, computed from the function \code{FUN}.
+
+}
 
 \examples{
 ## Percentual Returns of Swiss Bond Index and Performance Index - 
@@ -153,16 +184,18 @@ applySeries(x, from = NULL, to = NULL, by = c("monthly", "quarterly"),
    to <- unique(timeLastDayInQuarter(time(LPP)))
    to <- timeLastNdayInMonth(to, nday = 5)
    data.frame(from = as.character(from), to = as.character(to))
+
    applySeries(LPP, from, to, FUN = colSums)
+## Alternative Use - 
+   fapply(LPP, from, to, FUN = colSums)
    
 ## Count Trading Days per Month - 
    colCounts <- function(x) rep(NROW(x), times = NCOL(x))
    applySeries(LPP, FUN = colCounts, by = "monthly")
-   
-## Alternative Use - 
-   fapply(LPP, from, to, FUN = colSums)
+
+
+## TODO: examples for rollDailySeries()
 }
 
-
 \keyword{chron}
-
+\keyword{ts}

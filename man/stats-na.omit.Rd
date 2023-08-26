@@ -10,18 +10,17 @@
 \alias{interpNA}
 
 
-\title{Handling missing time series values}
+\title{Handle missing values in 'timeSeries' objects}
 
 \description{
     
-  Functions for handling missing values in 'timeSeries' objects 
+  Functions for handling missing values in \code{"timeSeries"} objects.
     
 }
 
-
 \usage{
 \S4method{na.omit}{timeSeries}(object, method = c("r", "s", "z", "ir", "iz", "ie"), 
-    interp = c("before", "linear", "after"), \dots)
+    interp = c("before", "linear", "after"), FUN, \dots)
 
 ## Deprecated:
 removeNA(x, \dots)
@@ -29,11 +28,16 @@ substituteNA(x, type = c("zeros", "mean", "median"), \dots)
 interpNA(x, method = c("linear", "before", "after"), \dots)
 }
 
-
 \arguments{
 
   \item{object}{ 
     an object of class \code{"timeSeries"}.
+  }
+  \item{method}{
+    for \code{na.omit}, the method of handling NAs; 
+    for \code{interpNA}, how to interpolate the matrix column
+    by column, see Section \sQuote{Details}.
+
   }
   \item{interp, type}{
     Three alternative methods are provided to remove NAs from the
@@ -43,12 +47,16 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
     \code{type="median"} replaces the missing values with the column
     median.
   }
-  \item{method}{
-    for \code{na.omit}, the method of handling NAs; 
-    for \code{interpNA}, how to interpolate the matrix column
-    by column, see Section \sQuote{Details}.
-
+  \item{FUN}{
+    a function or a name of a function, such as \code{"mean"} or
+    \code{median}. \code{FUN} is applied to the non-NA values in each
+    column to determine the replacement value. The call looks like
+    \code{FUN(coli, na.rm = TRUE)}, so \code{FUN} should have argument
+    \code{na.rm}. All arguments except \code{object} are ignored if
+    \code{FUN} is specified.
+    
   }
+  
   \item{x}{
 
     a numeric matrix, or any other object which can be transformed into
@@ -56,16 +64,16 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
     vector, it will be transformed into a one-dimensional matrix.
 
   }
+
   \item{\dots}{
     arguments to be passed to the function \code{as.matrix}.
   }
 }
 
-
 \details{
 
-    Functions for handling missing values in 'timeSeries' objects 
-    and in objects which can be transformed into a vector or a two 
+  Functions for handling missing values in \code{"timeSeries"} objects 
+  and in objects which can be transformed into a vector or a two 
     dimensional matrix.
 
 
@@ -127,15 +135,36 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
 
 \note{
 
+    When dealing with daily data sets, there exists another function
+    \code{alignDailySeries} which can handle missing data in un-aligned
+    calendrical \code{"timeSeries"} objects.
+    
     The functions \code{removeNA}, \code{substituteNA} and \code{interpNA} 
     are older implementations. Please use in all cases if possible the 
     new function \code{na.omit}.
+
+    \strong{Additional remarks by GNB:}
     
-    When dealing with daily data sets, there exists another function 
-    \code{alignDaily Series} which can handle missing data in un-aligned 
-    calendarical 'timeSeries' objects.
-    
-}   
+    \code{removeNA(x)} is equivalent to \code{na.omit(x)} or
+    \code{na.omit(x), methods = "r"}.
+
+    \code{interpNA} can be replaced by a call to \code{na.omit} with
+    argument method equal to \code{ir}, \code{iz}, or \code{ie}, and
+    argument \code{"interp"} equal to the \code{"method"} argument for
+    \code{interpNA} (note that the defaults are not the same).
+
+    \code{substituteNA(x, type = "zeros")} is equivalent to
+    \code{na.omit(x, method = "z")}. For other values of \code{type} one
+    can use argument \code{FUN}, as in \code{na.omit(x, FUN = "mean")}.
+
+    A final remark: the three deprecated functions are non-generic.
+    \code{removeNA(x)} is completely redundant as it simply calls
+    \code{na.omit}. The other two however may be useful for matrix-like
+    objects. Please inform the maintainer of the package if you use them
+    on objects other than from class \code{"timeSeries"} and wish them
+    kept in the future.
+
+}
 
 \references{
 
@@ -146,27 +175,46 @@ Troyanskaya O., Cantor M., Sherlock G., Brown P., Hastie T.,
 
 }
 
+\seealso{
+  \code{\link{alignDailySeries}}
+}
 
 \examples{
-## Create a Matrix -
-   X <- matrix(rnorm(100), ncol = 5)
+X <- matrix(rnorm(100), ncol = 5)  # Create a Matrix X
+X[3, 5] <- NA                      # Replace a Single NA Inside
+X[17, 2:4] <- c(NA, NA, NA)        # Replace Three in a Row Inside
+X[13:15, 4] <- c(NA, NA, NA)       # Replace Three in a Column Inside
+X[11:12, 5] <- c(NA, NA)           # Replace Two at the Right Border
+X[20, 1] <- NA                     # Replace One in the Lower Left Corner
+X
+Xts <- timeSeries(X)  # convert X to timeSeries Xts
+
+## Remove Rows with NAs
+na.omit(Xts)
+
+## Subsitute NA's with zeros or column means (formerly substituteNA())
+na.omit(Xts, method = "z")
+na.omit(Xts, FUN = "mean")
+na.omit(Xts, FUN = "median")
+
+## Subsitute NA's with a trimmed mean
+na.omit(Xts, FUN = function(x, na.rm) mean(x, trim = 0.10, na.rm = na.rm))
+
+## Interpolate NA's Linearily (formerly interpNA())
+na.omit(X, method = "ir", interp = "linear")
+na.omit(X, method = "iz", interp = "linear")
+na.omit(X, method = "ie", interp = "linear")
    
-## Replace a Single NA Inside - 
-   X[3, 5] <- NA
-   
-## Replace Three in a Row Inside - 
-   X[17, 2:4] <- c(NA, NA, NA)
-   
-## Replace Three in a Column Inside - 
-   X[13:15, 4] <- c(NA, NA, NA)
-   
-## Replace Two at the Right Border - 
-   X[11:12, 5] <- c(NA, NA)
-   
-## Replace One in the Lower Left Corner - 
-   X[20, 1] <- NA
-   print(X)
-     
+## Take Previous Values in a Column
+na.omit(X, method = "ir", interp = "before")
+na.omit(X, method = "iz", interp = "before")
+na.omit(X, method = "ie", interp = "before")
+
+
+## examples with X (which is a matrix, not "timeSeries"
+## (these examples are not run automatically as these functions are
+## deprecated.) 
+if(FALSE){
 ## Remove Rows with NAs - 
    removeNA(X)
    
@@ -182,7 +230,6 @@ Troyanskaya O., Cantor M., Sherlock G., Brown P., Hastie T.,
    interpNA(X, method = "before")
    # Also here, the corner value is excluded
 }
-
+}
 
 \keyword{math}
-

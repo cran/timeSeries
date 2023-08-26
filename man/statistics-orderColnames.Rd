@@ -10,7 +10,6 @@
 
 \title{Reorder column names of a time series}
 
-
 \description{
     
     Functions and methods dealing with the rearrangement
@@ -27,7 +26,6 @@
 
 }
 
-
 \usage{
 orderColnames(x, \dots)
 sortColnames(x, \dots)  
@@ -37,35 +35,44 @@ pcaColnames(x, robust = FALSE, \dots)
 hclustColnames(x, method = c("euclidean", "complete"), \dots)
 }
 
-
 \arguments{
         
-    \item{x}{
-        an object of class \code{timesSeries} or any other rectangular 
-        object which can be transformed by the function \code{as.matrix}
-        into a numeric matrix. 
-        }
-    \item{FUN}{ 
-        a character string indicating which statistical function 
-        should be applied. By default statistical ordering operates 
-        on the column means of the time series.
-        }
-    \item{method}{
-        a character string with two elements. The first determines
-        the choice of the distance measure, see \code{dist}, and the
-        second determines the choice of the agglomeration method, see
-        \code{hclust}.
-        }
-    \item{robust}{
-        a logical flag which indicates if robust correlations
-        should be used.
-        }
-    \item{\dots}{
-        further arguments to be passed, see details.
-        }
-       
-}
+  \item{x}{
 
+    an object of class \code{timesSeries} or any other rectangular
+    object which can be transformed by the function \code{as.matrix}
+    into a numeric matrix.
+
+  }
+  \item{FUN}{ 
+
+    a character string indicating which statistical function should be
+    applied. By default statistical ordering operates on the column
+    means of the time series.
+
+  }
+  \item{method}{
+
+    a character string with two elements. The first determines the
+    choice of the distance measure, see \code{\link[stats]{dist}}, and
+    the second determines the choice of the agglomeration method, see
+    \code{\link[stats]{hclust}}.
+
+  }
+  \item{robust}{
+
+    a logical flag which indicates if robust correlations should be
+    used.
+
+  }
+
+  \item{\dots}{
+    
+    further arguments to be passed to the underlying functions doing the
+    main work, see section \sQuote{Details}.
+
+  }
+}
 
 \details{
 
@@ -105,13 +112,15 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
     
 }
 
-
 \value{
 
-  a character string or vector, the rearranged column names
+  for \code{orderColnames}, an integer vector representing the
+  permutaion that will sort the column names,
+
+  for the other functions, a character vector giving the rearranged
+  column names
         
 }
-
 
 \examples{
 ## Load Swiss Pension Fund Benchmark Data -
@@ -128,6 +137,4 @@ hclustColnames(x, method = c("euclidean", "complete"), \dots)
    head(data[, hclustColnames(data)])
 }
 
-
 \keyword{chron}
-

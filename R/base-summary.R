@@ -15,11 +15,6 @@
 
 ## Author: Georgi N. Boshnakov
 
-## TODO: the method for timeDate in timeDate package needs fixing
-##       since it currently prints directly and returns the object
-##       (rather then rturning an object which has suitable print method,
-##        although there is a case for this as well)
-
 ## setMethod("summary", c(object = "timeSeries"),
 ##           function(object, alwaysNA = TRUE, ...){
 ##               start = as.character(start(object))
@@ -46,33 +41,29 @@
 ##               stats
 ##           })
 
-summary.timeSeries <- 
-    function(object, ...){
-        start = as.character(start(object))
-        end   = as.character(end(object))
-        
-        ## stats <- cbind(
-        ##     "Min." = colMins(object),
-        ##     "1st Qu." = colQuantiles(object, prob = 0.25, type = 1),
-        ##     "Median"  = colQuantiles(object, prob = 0.50, type = 1),
-        ##     "3rd Qu." = colQuantiles(object, prob = 0.75, type = 1),
-        ##     "Max."    = colMaxs(object)
-        ##     ## , check.names = FALSE
-        ## )
+summary.timeSeries <- function(object, ...) {
+    ## stats <- cbind(
+    ##     "Min." = colMins(object),
+    ##     "1st Qu." = colQuantiles(object, prob = 0.25, type = 1),
+    ##     "Median"  = colQuantiles(object, prob = 0.50, type = 1),
+    ##     "3rd Qu." = colQuantiles(object, prob = 0.75, type = 1),
+    ##     "Max."    = colMaxs(object)
+    ##     ## , check.names = FALSE
+    ## )
+    
+    stats <- summary(as.matrix(object))
+    
+    attr(stats, "start")     <- as.character(start(object))
+    attr(stats, "end")       <- as.character(end(object))  
+    attr(stats, "nobs")      <- nrow(object)
+    attr(stats, "Format")    <- object@format
+    attr(stats, "FinCenter") <- object@FinCenter
+    
+    class(stats) <- c("timeSeries_summary", class("stats"))
+    stats
+}
 
-        stats <- summary(as.matrix(object))
-
-        attr(stats, "start")     <- start
-        attr(stats, "end")       <- end
-        attr(stats, "nobs")      <- nrow(object)
-        attr(stats, "Format")    <- object@format
-        attr(stats, "FinCenter") <- object@FinCenter
-
-        class(stats) <- c("timeSeries_summary", class("stats"))
-        stats
-    }
-
-print.timeSeries_summary <- function(x, quote = FALSE, ...){
+print.timeSeries_summary <- function(x, quote = FALSE, ...) {
     cat("Start Record:", attr(x, "start")    , "\n")
     cat("End Record:  ", attr(x, "end")      , "\n")
     cat("Observations:", attr(x, "nobs")     , "\n")
@@ -91,5 +82,3 @@ print.timeSeries_summary <- function(x, quote = FALSE, ...){
 
     invisible(x)
 }
-
-

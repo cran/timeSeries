@@ -1,20 +1,8 @@
 \name{merge}                     
 \docType{methods}
 
-\alias{merge-methods}
 \alias{merge}
-
-% \alias{merge,ANY,timeSeries-method}
-% 
-% \alias{merge,timeSeries,ANY-method}
-% \alias{merge,timeSeries,missing-method}
-% \alias{merge,timeSeries,numeric-method}
-% \alias{merge,timeSeries,matrix-method}
-% \alias{merge,timeSeries,timeSeries-method}
-% 
-% \alias{merge,matrix,timeSeries-method}
-% \alias{merge,numeric,timeSeries-method}
-
+\alias{merge-methods}
 
 \alias{merge,ANY,ANY-method}
 \alias{merge,ANY,timeSeries-method}
@@ -28,13 +16,12 @@
 \alias{merge,timeSeries,timeSeries-method}
 
 
-
 \title{Merge 'timeSeries' objects}
 
 \description{
 
-    Merges several object types with \code{"timeSeries"} objects.
-    The number of rows must match.
+  Merges several object types with \code{"timeSeries"} objects.  The
+  number of rows must match.
     
 }
 
@@ -53,11 +40,8 @@ merge(x, y, \dots)
 %\details{
 %}
 
-
 \value{
-
   a \code{"timeSeries"} object
-    
 }
 
 \section{Methods}{
@@ -134,4 +118,3 @@ merge(x, y, \dots)
 \keyword{methods}
 \keyword{chron}
 \keyword{ts}
- 

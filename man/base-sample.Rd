@@ -1,10 +1,10 @@
 \name{sample}                     
 \alias{sample}
+
 \alias{sample,timeSeries-method}
                                     
                                     
 \title{Resample 'timeSeries' objects}
-
 
 \description{
 
@@ -16,7 +16,7 @@
 \usage{
 \S4method{sample}{timeSeries}(x, size, replace = FALSE, prob = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{x}{
     an object from class \code{"timeSeries"}.
@@ -48,9 +48,7 @@
 }
 
 \value{
-
-    an object from class \code{"timeSeries"}
-    
+  an object from class \code{"timeSeries"}
 }
 
 \seealso{
@@ -70,6 +68,4 @@
    is.unsorted(resampled)
 }
 
-
 \keyword{chron}
- 

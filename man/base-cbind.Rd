@@ -1,6 +1,6 @@
 \name{cbind}
-
 \alias{cbind}
+
 \alias{rbind}
 \alias{cbind2}
 \alias{rbind2}
@@ -13,18 +13,6 @@
 
 % \alias{c.timeSeries}
 
-%\alias{merge}
-%\alias{merge,ANY,timeSeries-method}
-%\alias{merge,timeSeries,ANY-method}
-%\alias{merge,timeSeries,missing-method}
-%\alias{merge,timeSeries,numeric-method}
-%\alias{merge,timeSeries,matrix-method}
-%\alias{merge,timeSeries,timeSeries-method}
-%\alias{merge,matrix,timeSeries-method}
-%\alias{merge,numeric,timeSeries-method}
-  
-%\alias{merge.timeSeries}
-
 \alias{cbind2,ANY,timeSeries-method}
 \alias{cbind2,timeSeries,ANY-method}
 \alias{cbind2,timeSeries,missing-method}
@@ -36,7 +24,7 @@
 \alias{rbind2,timeSeries,timeSeries-method}
 
 
-\title{Bind \code{"timeSeries"} objects by column or row}
+\title{Bind 'timeSeries' objects by column or row}
 
 \description{
   
@@ -58,13 +46,6 @@
 
 \arguments{
   
-  % \item{units}{
-  %   an optional character string, which allows to overwrite the 
-  %   current column names of a \code{timeSeries} object. By default 
-  %   \code{NULL} which means that the column names are selected
-  %   automatically.
-  % }
-
   \item{x, y}{
     objects, at least one of whom is of class \code{"timeSeries"}.
   }
@@ -76,6 +57,7 @@
   \item{deparse.level}{
     see the documentation of \code{base::cbind}.
   }
+
 }
 
 \details{
@@ -111,6 +93,7 @@
   package \code{"methods"},
   
 }
+
 \examples{
 ## Load Microsoft Data Set -
    x <- MSFT[1:12, ]
@@ -126,6 +109,4 @@
    Y
 }
 
-
 \keyword{chron}
-

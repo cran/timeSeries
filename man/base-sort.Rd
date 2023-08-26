@@ -1,59 +1,66 @@
 \name{sort}  
+\alias{sort}
 
 \alias{sort,timeSeries-method}
 \alias{sort.timeSeries}                 
                                     
-                                    
+\alias{is.unsorted}
+\alias{is.unsorted,timeSeries-method}
+
+
 \title{Sort a 'timeSeries' by time stamps}
 
 \description{
-
   Sort a \code{"timeSeries"} object with respect to its time stamps.
-    
 }
-
-
-\details{
-
-    Sorts a time series either in increasing or decreasing time 
-    stamp order. Internally the function \code{order} from R's
-    base package is used. \code{order} generates a permutation 
-    which rearranges the time stamps in ascending or descending 
-    order.
-    
-    To find out if the series is unsorted, the function
-    \code{is.unsorted} from R's base package can be called.
-
-}
-
 
 \usage{
 \S4method{sort}{timeSeries}(x, decreasing = FALSE, \dots)
-}
 
+\S4method{is.unsorted}{timeSeries}(x, na.rm = FALSE, strictly = FALSE)
+}
 
 \arguments{
 
-    \item{x}{
-        an uni- or multivariate \code{timeSeries} object.
-        }
-    \item{decreasing}{
-        a logical flag. Should we sort in increasing or 
-        decreasing order?  By default FALSE.
-        }
-    \item{\dots}{
-        optional arguments passed to other methods.
-        }
+  \item{x}{
+    a \code{"timeSeries"} object.
+  }
+  \item{decreasing}{
+    a logical flag. Should we sort in increasing or decreasing order?
+    By default \code{FALSE}.
+  }
+  \item{na.rm}{
+    a logical value, should missing values be removed?
+  }
+  \item{strictly}{
+    logical indicating if the check should be for strictly increasing
+    values.
+  }
+  \item{\dots}{
+    optional arguments passed to other methods.
+  }
 }
 
+\details{
+
+  Sorts a time series either in increasing or decreasing time stamp
+  order. Internally the function \code{order} from R's base package is
+  used. \code{order} generates a permutation which rearranges the time
+  stamps in ascending or descending order.
+    
+  To find out if the series is unsorted, use \code{is.unsorted}.
+
+}
 
 \value{
+  for \code{sort}, a \code{"timeSeries"} object,
 
-  a \code{"timeSeries"} object
-           
+  for the \code{is.unsorted} method, \code{TRUE} or \code{FALSE}
 }
 
-
+%\seealso{
+%  \code{\link{}}
+%}
 \examples{   
 ## Monthly Calendar Series -    
    x <- daily2monthly(LPP2005REC[, 1:2])[3:14, ]
@@ -75,6 +82,4 @@
    is.unsorted(reverted)
 }
 
-
 \keyword{chron}
-

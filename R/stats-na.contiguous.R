@@ -23,6 +23,8 @@ setMethod("na.contiguous", "timeSeries",
     function(object, ...)
 {
     # A function imlemented by Diethelm Wuertz and Yohan Chalabi
+    #     fixed by GNB for the case with tied stretches one of whom starts at 
+    #     the beginning of the series, see comments below.
       
     # Description:
     #   Finds the longest consecutive of non-missing values
@@ -30,16 +32,21 @@ setMethod("na.contiguous", "timeSeries",
     # Details:
     #     adapted stats:::na.contingous.default to timeSeries objects
     #     Yohan Chalabi
-    
-    # FUNCTION:
+    # 
+    ## FUNCTION:
     
     good <- apply(!is.na(object), 1L, all)
     if (!sum(good))
         stop("all times contain an NA")
     tt <- cumsum(!good)
+    tt <- c(0, tt)    # GNB, see my bug report to R-devel for stats::na.contiguous from
+                      # 2023-06-02 and the discussion there (see 
+                      # https://stat.ethz.ch/pipermail/r-devel/2023-June/082642.html)
+                      # The fix  is my proposed way to patch that. 
     ln <- sapply(0:max(tt), function(i) sum(tt == i))
     seg <- (seq_along(ln)[ln == max(ln)])[1L] - 1
     keep <- (tt == seg)
+    keep <- keep[-1] # GNB, see above comment
     st <- min(which(keep))
     if (!good[st])
         st <- st + 1
@@ -62,4 +69,3 @@ setMethod("na.contiguous", "timeSeries",
 
 
 ################################################################################
-

@@ -13,7 +13,7 @@
 \alias{colQuantiles} 
 
 % \alias{colAvgs}           
-\alias{colStdevs}  % TODO: comment out when the function is removed.
+\alias{colStdevs}  % removed, but leave the alias for now
 
 % \alias{mean.timeSeries}           
 % \alias{var.timeSeries}
@@ -24,26 +24,8 @@
 
 \description{
 
-    A collection and description of functions to  
-    compute column statistical properties of 
-    financial and economic time series data. 
-    \cr
-    
-    The functions are:
-    
-    \tabular{ll}{  
-    \code{colStats}\tab calculates column statistics, \cr
-    
-    \code{colSums} \tab calculates column sums, \cr
-    \code{colMeans} \tab calculates column means, \cr
-    \code{colSds} \tab calculates column standard deviations, \cr
-    \code{colVars} \tab calculates column variances, \cr 
-    \code{colSkewness} \tab calculates column skewness, \cr
-    \code{colKurtosis} \tab calculates column kurtosis, \cr
-    \code{colMaxs} \tab calculates maximum values in each column, \cr
-    \code{colMins} \tab calculates minimum values in each column, \cr
-    \code{colProds} \tab computes product of all values in each column, \cr
-    \code{colQuantiles} \tab computes quantiles of each column. }
+  A collection of functions to compute column statistical properties of
+  financial and economic time series data.
 
 }
 
@@ -61,7 +43,6 @@ colProds(x, \dots)
 colQuantiles(x, prob = 0.05, \dots)
 }
 
-% colStdevs(x, \dots)
 % colAvgs(x,  \dots)
 
 % \method{mean}{timeSeries}(x, \dots)
@@ -79,7 +60,7 @@ colQuantiles(x, prob = 0.05, \dots)
     a function name, the statistical function to be applied.
   }
   \item{prob}{
-    a numeric value in [0,1], the probability.
+    a numeric value in [0,1].
   }
   \item{\dots}{
     arguments to be passed.
@@ -87,16 +68,32 @@ colQuantiles(x, prob = 0.05, \dots)
         
 }
 
+\details{
 
-\value{
-  each function returns a numeric vector of the statistics
+    \tabular{ll}{  
+    \code{colStats}\tab calculates column statistics, \cr
+    
+    \code{colSums} \tab calculates column sums, \cr
+    \code{colMeans} \tab calculates column means, \cr
+    \code{colSds} \tab calculates column standard deviations, \cr
+    \code{colVars} \tab calculates column variances, \cr 
+    \code{colSkewness} \tab calculates column skewness, \cr
+    \code{colKurtosis} \tab calculates column kurtosis, \cr
+    \code{colMaxs} \tab calculates maximum values in each column, \cr
+    \code{colMins} \tab calculates minimum values in each column, \cr
+    \code{colProds} \tab computes product of all values in each column, \cr
+    \code{colQuantiles} \tab computes quantiles of each column. }
+
 }
 
+\value{
+  each function returns a numeric vector of the statistics, one for each
+  column
+}
 
 \seealso{
   \code{\link{rollStats}}
 }
-
 
 \examples{
 ## Simulated Return Data in Matrix Form -
@@ -108,6 +105,5 @@ colQuantiles(x, prob = 0.05, \dots)
 ## Quantiles Column by Column -
    colQuantiles(x, prob = 0.10, type = 1)  
 }
-
 
 \keyword{univar}

@@ -28,13 +28,11 @@
   \code{timeSeries} creates a \code{"timeSeries"} object from scratch.
 }
 
-
 \usage{
 timeSeries(data, charvec, units = NULL, format = NULL, zone = "", 
            FinCenter = "", recordIDs = data.frame(), title = NULL, 
            documentation = NULL, \dots)
 }
-
 
 \arguments{
 
@@ -78,13 +76,9 @@ timeSeries(data, charvec, units = NULL, format = NULL, zone = "",
   }
 }
 
-
 \value{
-
-  \code{timeSeries} returns an S4 object of class \code{"timeSeries"}.
-    
+  an S4 object of class \code{"timeSeries"}
 }
-
 
 \details{
 
@@ -118,11 +112,10 @@ timeSeries(data, charvec, units = NULL, format = NULL, zone = "",
 
 }
 
-
 % \note{
 % 
 %     These functions were written for Rmetrics users using R and Rmetrics
-%     under Microsoft's Windows operating system where timze zones, 
+%     under Microsoft's Windows operating system where time zones, 
 %     daylight saving times and holiday calendars are insuffeciently 
 %     supported. 
 %     
@@ -187,6 +180,4 @@ timeSeries(data, charvec, units = NULL, format = NULL, zone = "",
    head(timeSeries(1:1e6L, 1:1e6L))
 }
 
-
 \keyword{chron}
-

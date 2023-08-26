@@ -1,17 +1,17 @@
 \name{DataPart,timeSeries-method}
 
-
-\title{DataPart,timeSeries-method}
-
-
 \alias{getDataPart,timeSeries-method}
 \alias{setDataPart,timeSeries-method}
 
 
-\description{
-     Utilities called to implement object@.Data of \code{timeSeries} objects.
-}
+\title{DataPart,timeSeries-method}
 
+\description{
+
+  Utilities called to implement object@.Data of \code{timeSeries}
+  objects.
+
+}
 
 \examples{
 ## Load Microsoft Data -
@@ -22,6 +22,4 @@
    class(DATA)
 }
 
-
 \keyword{chron}
-

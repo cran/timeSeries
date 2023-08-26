@@ -1,6 +1,11 @@
 \name{math}
 \alias{math}
 
+\alias{Math,timeSeries-method}
+
+\alias{Math2,timeSeries-method}
+\alias{Summary,timeSeries-method}
+
 \alias{Ops,vector,timeSeries-method}
 \alias{Ops,array,timeSeries-method}
 \alias{Ops,ts,timeSeries-method}
@@ -9,21 +14,19 @@
 \alias{Ops,timeSeries,ts-method}
 \alias{Ops,timeSeries,timeSeries-method}
 
-\alias{-,timeSeries,missing-method}
-\alias{+,timeSeries,missing-method}
+
+%\alias{-,timeSeries,missing-method}
+%\alias{+,timeSeries,missing-method}
 \alias{cummax,timeSeries-method}
 \alias{cummin,timeSeries-method}
 \alias{cumprod,timeSeries-method}
 \alias{cumsum,timeSeries-method}
-\alias{Math,timeSeries-method}
-\alias{Math2,timeSeries-method}
-\alias{Summary,timeSeries-method}
 \alias{trunc,timeSeries-method}
 \alias{log,timeSeries-method}
 
-\alias{\%*\%,timeSeries,vector-method}
-\alias{\%*\%,timeSeries,ANY-method}
-\alias{\%*\%,ANY,timeSeries-method}
+%\alias{\%*\%,timeSeries,vector-method}
+%\alias{\%*\%,timeSeries,ANY-method}
+%\alias{\%*\%,ANY,timeSeries-method}
 
 %\alias{quantile.timeSeries}
 \alias{quantile,timeSeries-method}
@@ -32,22 +35,21 @@
 \alias{median,timeSeries-method}
 
 
-\title{Mathematical time series operations}
+\title{Mathematical operations on 'timeSeries'}
 
 \description{
   
-  Functions and methods dealing with mathematical 'timeSeries'
-  operations.
+  Functions and methods for mathematical operations on \code{"timeSeries"}.
   
 }
 
 \usage{
-% \S4method{Ops}{timeSeries}(e1, e2)
-% \S4method{Math}{timeSeries}(x, ...)
-% \S4method{Math2}{timeSeries}(x, digits)
-% \S4method{Summary}{timeSeries}(x, ..., na.rm = FALSE)
+\S4method{Ops}{timeSeries,timeSeries}(e1, e2)
+\S4method{Math}{timeSeries}(x)
+\S4method{Math2}{timeSeries}(x, digits)
+
 \S4method{quantile}{timeSeries}(x, \dots)
-%\S4method{median}{timeSeries}(x, na.rm = FALSE, \dots)
+\S4method{median}{timeSeries}(x, na.rm = FALSE, \dots)
 }
 
 
@@ -64,22 +66,24 @@
   %    an integer indicating the order of the difference. By default 1.
   %  }
     
-  %   \item{digits} {
-  %     number of digits to be used in 'round' or 'signif'.
-  %   }
+  \item{digits}{
+    number of digits to be used in 'round' or 'signif'.
+  }
     
-  %   \item{e1, e2}{
-  %     [Ops] - \cr   
-  %     two objects of class \code{timeSeries}.
-  %   }
+  \item{e1, e2}{
+
+    at least one of the two objects is from class \code{"timeSeries"}
+    (for the methods described on this page).
+    
+  }
     
   %  \item{lag}{   
   %    an integer indicating which lag to use. By default 1.
   %  }
 
-  % \item{na.rm}{
-  %   a logical value: should missing values be removed?
-  % }
+  \item{na.rm}{
+    a logical value: should missing values be removed?
+  }
 
   %  \item{pad}{
   %    [diffSeries] - \cr
@@ -98,28 +102,34 @@
 
 \details{
 
-  The math functions include:\cr
+  The methods for the \code{Math} and \code{Math2} groups of
+  mathematical functions return 'timeSeries' objects. Most of them work
+  element-wise on the data part of the time series with the exception of
+  \code{cummin}, \code{cummax}, \code{cumsum}, and \code{cumprod} which
+  work columnwise.
   
-  \tabular{ll}{  
-    \code{Ops-method} \tab Group 'Ops' methods for a 'timeSeries' object \cr
-    \code{Math-method} \tab Group 'Math' methods for a 'timeSeries' object \cr
-    \code{Math2-method} \tab Group 'Math2' methods for a 'timeSeries' object \cr
-    \code{Summary-method} \tab Group 'Summary' methods for a 'timeSeries' object \cr
-    %\code{diff} \tab Differences a 'timeSeries' object, \cr  
-    %\code{scale} \tab Centers and/or scales a 'timeSeries' object, \cr
-    \code{quantile} \tab Returns quantiles of an univariate 'timeSeries'. }
+  The \code{Ops} group includes mathematical operators. For the binary
+  operators methods are defined for pairs of at least one 'timeSeries'
+  object.  These work as expected on the data parts of the arguments.
+  If the operation gives a value of the same dimension as the data part
+  of the 'timeSeries' object, it replaces the original data in the
+  object.
+
+  There are also methods for \code{quantile} and \code{median}.
   
 }
-
 
 \value{
 
-    Returns the value from a mathematical or logical operation 
-    operating on objects of class 'timeSeries[], or the value 
-    computed by a mathematical function.
+  the value from a mathematical or logical operation operating on
+  objects of class \code{"timeSeries"} or the value computed by a
+  mathematical function.
   
 }
 
+\seealso{
+  \code{\link[=colCum]{colCumXXX}}
+}
 
 \examples{
 ## Create an Artificial 'timeSeries' Object - 
@@ -138,7 +148,5 @@
    OR > 0
 }
 
-
 \keyword{chron}
 \keyword{methods}
-

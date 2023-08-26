@@ -34,7 +34,6 @@
     TRUE.}
 
   }
-    
   \item{init}{
 
     for recursive filters only. Values before the start of the time
@@ -45,21 +44,21 @@
 
 \details{
 
-  \code{filter} is a generic function with default method \code{stats::filter}.
-  The method for \code{"timeSeries"} is a wrapper for the latter.
+  \code{filter} is a generic function with default method
+  \code{stats::filter}.  The method for \code{"timeSeries"} is a wrapper
+  for the latter.
 
   See \code{?stats::filter} for details about the arguments.
   
-}
-
-\seealso{
-  base R function \code{\link[stats]{filter}}
 }
 
 \value{
   a \code{"timeSeries"} object
 }
 
+\seealso{
+  base R function \code{\link[stats]{filter}}
+}
 
 \examples{
 ## Creata a dummy signal 'timeSeries' - 

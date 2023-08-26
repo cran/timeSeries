@@ -1,5 +1,4 @@
 \name{dimnames}
-  
 
 \alias{dim,timeSeries-method}
 \alias{dim<-,timeSeries-method}
@@ -18,14 +17,14 @@
 \alias{names<-,timeSeries-method}
 
 
-\title{Time series columns and rows}
+\title{Dimension and their names for 'timeSeries' objects}
 
 \description{
-    
-    Handling columns and rows of 'timeSeries' objects. 
+
+  Get and assign names, row names, column names, and dim names of
+  \code{"timeSeries"} objects.
     
 }
-
 
 % \usage{
 
@@ -48,8 +47,6 @@
 
 % }
 
-
-
 %\arguments{
 %   
 %    \item{value}{
@@ -67,24 +64,37 @@
 
 \details{
 
-    \tabular{ll}{
-    \code{dim} \tab Returns the dimension of a 'timeSeries' object \cr
-    \code{dimnames} \tab Returns the dimension names of a 'timeSeries' object \cr
-    \code{colnames<-} \tab Assigns column names to a 'timeSeries' object \cr
-    \code{rownames<-} \tab Assigns row names to a 'timeSeries' object }
+  \code{"timeSeries"} methods are available for base R functions working
+  on dimension names, including \code{dim}, \code{dimnames},
+  \code{colnames}, \code{rownames}, \code{names} and their assignment
+  variants.
+
+  \code{dim} is the dimension of the underlying data matrix.
+
+  \code{rownames} gives the datetime stamps as a character
+  vector. \code{rownames<-} sets them.
+
+  \code{colnames} gives the values of \code{x@units}. These are
+  conceptually the column names of the data matrix. \code{colnames<-}
+  sets slot \code{units} of \code{x}.
+
+  \code{dimnames} gives \code{list(rownames(x), colnames(x)}.
+  \code{dimnames<-} calls \code{rownames} and \code{colnames} on
+  \code{value[[1]]} and \code{value[[2]]}, respectively.
 
 }
 
+\note{
 
+  (GNB; todo) The \code{"dim<-"}, currently converts \code{x} to a
+  vector if \code{value} is \code{NULL}, otherwise it ignores
+  \code{value}, does nothing and returns \code{x} unchanged. This
+  behaviour should not be relied upon and may be changed in the future,
+  e.g. by issuing warning when \code{value} is not \code{NULL}. Or
+  throwing error altogether if assignment with \code{"dim<-"} is
+  attempted.
 
-
-\value{
-
-    Returns the dimensions and related properties of a \code{"timeSeries"}
-    object.
-    
 }
-
 
 \examples{
 ## Load Swiss Pension Fund Benchmark Data -
@@ -120,6 +130,4 @@
    isMultivariate(X)
 }
 
-
 \keyword{chron}
-

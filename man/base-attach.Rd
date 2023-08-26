@@ -1,11 +1,10 @@
 \name{attach}
 \alias{attach}
+
 \alias{attach,timeSeries-method}
 
 
 \title{Attach a 'timeSeries' to the search path}
-
-
 
 \description{
     
@@ -13,12 +12,10 @@
     
 }
 
-
 \usage{
 \S4method{attach}{timeSeries}(what, pos = 2, name = deparse(substitute(what)), 
     warn.conflicts = TRUE)
 }
-
 
 \note{
 
@@ -27,43 +24,42 @@
 
 }
 
-
 \arguments{
 
-    \item{name}{
-        alternative way to specify the database to be attached.
-        See for details \code{help(attach,package=base)}.
-        }
-    \item{pos}{ 
-        an integer specifying position in \code{search()} where to attach
-        the database. 
-        See for details \code{help(attach,package=base)}.
-        } 
-    \item{warn.conflicts}{  
-        a logical value. If \code{TRUE}, warnings are printed about 
-        conflicts from attaching the database, unless that database 
-        contains an object \code{.conflicts.OK}. A conflict is a 
-        function masking a function, or a non-function masking a 
-        non-function. 
-        See for details \code{help(attach,package=base)}.
-        }
-    \item{what}{
-        [attach] - \cr
-        database to be attached. This may currently be a \code{"timeSeries"} object,
-        a data.frame or a list or a R data file created with save or NULL 
-        or an environment. 
-        See for details \code{help(attach, package=base)}.
-        }
-        
-}
+  \item{name}{
 
+    alternative way to specify the database to be attached.
+    See for details \code{help(attach, package = base)}.
+
+  }
+  \item{pos}{ 
+
+    an integer specifying position in \code{search()} where to attach
+    the database.  See for details \code{help(attach, package = base)}.
+
+  } 
+  \item{warn.conflicts}{  
+
+    a logical value. If \code{TRUE}, warnings are printed about
+    conflicts from attaching the database, unless that database contains
+    an object \code{.conflicts.OK}. A conflict is a function masking a
+    function, or a non-function masking a non-function.  See for details
+    \code{help(attach, package = base)}.
+
+  }
+  \item{what}{
+
+    database to be attached. This may currently be a \code{"timeSeries"}
+    object, a data.frame, a list, an R data file created with
+    \code{save}, \code{NULL}, or an environment.  See for details
+    \code{help(attach, package = base)}.
+
+  }
+}
 
 \value{
-
-    The environment is returned invisibly with a \code{name} attribute.
-    
+  the environment, invisibly, with a \code{name} attribute
 }
-
 
 \examples{
 ## Load Microsoft Data Set - 
@@ -84,6 +80,4 @@
    cat(ans[1])
 }
 
-   
 \keyword{chron}
-

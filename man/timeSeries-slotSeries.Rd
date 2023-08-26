@@ -1,7 +1,5 @@
 \name{series-methods}
-
 \docType{methods}
-
 
 \alias{series}
 \alias{series<-}
@@ -15,27 +13,25 @@
 \alias{coredata}
 \alias{coredata<-}
 
-\alias{coredata,timeSeries-method}
-\alias{coredata<-,timeSeries,matrix-method}
-\alias{coredata<-,timeSeries,ANY-method}
-\alias{coredata<-,timeSeries,data.frame-method}
-\alias{coredata<-,timeSeries,vector-method}
-
+%\alias{coredata,timeSeries-method}
+%\alias{coredata<-,timeSeries,matrix-method}
+%\alias{coredata<-,timeSeries,ANY-method}
+%\alias{coredata<-,timeSeries,data.frame-method}
+%\alias{coredata<-,timeSeries,vector-method}
+\alias{coredata.timeSeries}
+\alias{coredata<-.timeSeries}
 
 
 \title{Get and set the data component of a 'timeSeries'}
-
 
 \description{
   Get and set the data component of a 'timeSeries'.
 }
 
-
 \usage{
 series(x)
 series(x) <- value
 }
-
 
 \arguments{
 
@@ -60,17 +56,19 @@ series(x) <- value
   dimensions as \code{as.matrix(x)}, but if that is not the case the
   result is almost as if \code{value} was converted to
   \code{"timeSeries"} directly.
-    
-  \code{coredata} and its assignment counterpart are equivalent
-  alternatives to \code{series} and its assignment part, respectively.
+
+  Methods for \code{zoo::coredata} and its assignment counterpart are
+  defined, as well. Users who wish to use them should ensure that
+  \code{zoo::coredata} is visible (e.g., by calling
+  \code{library('zoo')} or \code{library('xts')}) or employ the
+  \code{zoo::} prefix in the calls.  These methods are equivalent to
+  \code{series} and \code{`series<-`}, respectively.
 
 }
-
 
 \seealso{
   \code{\link{timeSeries}}
 }
-
 
 \examples{
 ## A Dummy 'timeSeries' Object
@@ -91,6 +89,4 @@ series(x) <- value
    ts
 }
 
-
 \keyword{programming}
-

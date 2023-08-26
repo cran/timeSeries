@@ -70,11 +70,11 @@
     Title <- x@title
     Documentation <- x@documentation
 
-    # Make sure that x is sorted:
+    # Make sure that x is sorted (by timedate):
     if (is.unsorted(x))
         x <- sort(x)
 
-    # Sort and remove double entries in by:
+    # Sort and remove duplicated entries in by:
     by <- unique(sort(by))
 
     INDEX <- findInterval(x@positions, as.numeric(by, "sec") + 1)
@@ -185,5 +185,3 @@ daily2weekly <-
 
 
 ###############################################################################
-
-

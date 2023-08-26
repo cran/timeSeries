@@ -13,13 +13,10 @@
   Get or assign new comment to a \code{timeSeries} object.
 }
 
-
 \usage{
 \S4method{comment}{timeSeries}(x)
 \S4method{comment}{timeSeries}(x) <- value
-
 }
-
 
 \arguments{
   
@@ -48,6 +45,4 @@
    comment(LPP2005REC)
 }
 
-
 \keyword{chron}
-

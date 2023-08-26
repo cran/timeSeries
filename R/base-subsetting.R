@@ -535,13 +535,17 @@ setMethod("[", signature(x = "timeSeries", i = "time_timeSeries", j = "ANY"),
 # should behave the same way as $,data.frame
 
 setMethod("$", signature(x = "timeSeries"), function (x, name) {
-
     nc <- colnames(x)
     nr <- names(x@recordIDs)
     dataIdx <- pmatch(name, nc)
     recordIDsIdx <- pmatch(name, nr)
 
-    # if none or more than one match returns NULL
+    ## if none or more than one match return NULL.
+    ##
+    ## GNB: 'more than one match' is in the sense that 'name' has a match in
+    ##      both colnames(x) and names(x@recordIDs). Note that 'name is of
+    ##      length 1, the matches are of length one and there is no problem in
+    ##      the 'if'.
     if ((is.na(dataIdx) && is.na(recordIDsIdx)) ||
         (!is.na(dataIdx) && !is.na(recordIDsIdx)))
         return(NULL)

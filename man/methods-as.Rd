@@ -34,7 +34,7 @@
 
 
 
-\title{Coercion and transformation to/from class 'timeSeries'}
+\title{Convert objects to/from class 'timeSeries'}
 
 \description{
   

@@ -56,11 +56,13 @@ endOfPeriodBenchmarks(x, benchmark = ncol(x),
 }
 
 \details{
-    
-  \code{endOfPeriodSeries} returns series back to a given period.
 
-  \code{endOfPeriodStats} returns statistics back to a given period.
+  \code{endOfPeriodSeries} extract the data for the last few years, as
+  specified by argument \code{nYearsBack}.
 
+  \code{endOfPeriodStats} computes basic exploratory statistics for the
+  last few years in the data.
+  
   \code{endOfPeriodBenchmarks} returns benchmarks back to a given
   period.
     
@@ -72,13 +74,14 @@ endOfPeriodBenchmarks(x, benchmark = ncol(x),
 
 \value{
 
-  for \code{endOfPeriodStats}, a data frame;
+  for \code{endOfPeriodSeries}, a \code{"timeSeries"},
+
+  for \code{endOfPeriodStats}, a data frame,
 
   for \code{endOfPeriodBenchmarks} - currently \code{NULL} (invisibly),
   the function is unfinished.
 
 }
-
  
 \examples{
 ## Load Series: Column 1:3 Swiss Market, Column 8 (4) Benchmark
@@ -97,6 +100,4 @@ endOfPeriodBenchmarks(x, benchmark = ncol(x),
    endOfPeriodBenchmarks(x, benchmark=4) 
 }
 
-
 \keyword{chron}
-

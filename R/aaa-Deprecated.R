@@ -20,60 +20,58 @@
 #  spreadSeries
 ################################################################################
 
-
-.description <- 
-function()
-{  
-    # Deprecated:
-    .Deprecated(new = "description", package = "timeSeries")
-    
-    # Return Value:
-    description()
-}
-    
-
-# ------------------------------------------------------------------------------
-
-
-durationSeries <- 
-function(...) 
-{
-    # Deprecated:
-    .Deprecated(new = "returns", package = "timeSeries")
-    
-    # Return Value:
-    durations(...)
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-midquoteSeries =
-function(...)
-{
-    # Deprecated:
-    .Deprecated(new = "midquotes", package = "timeSeries")
-    
-    # Return Value:
-    midquotes(...)
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-spreadSeries =
-function(...)
-{
-    # Deprecated:
-    .Deprecated(new = "spreads", package = "timeSeries")
-    
-    # Return Value:
-    spreads(...)
-}
+## removed on 2023-06-03
+##
+## .description <- 
+## function()
+## {  
+##     # Deprecated:
+##     .Deprecated(new = "description", package = "timeSeries")
+##     
+##     # Return Value:
+##     description()
+## }
+##     
+## 
+## # ------------------------------------------------------------------------------
+## 
+## 
+## durationSeries <- 
+## function(...) 
+## {
+##     # Deprecated:
+##     .Deprecated(new = "returns", package = "timeSeries")
+##     
+##     # Return Value:
+##     durations(...)
+## }
+## 
+## 
+## # ------------------------------------------------------------------------------
+## 
+## midquoteSeries =
+## function(...)
+## {
+##     # Deprecated:
+##     .Deprecated(new = "midquotes", package = "timeSeries")
+##     
+##     # Return Value:
+##     midquotes(...)
+## }
+## 
+## 
+## # ------------------------------------------------------------------------------
+## 
+## 
+## spreadSeries =
+## function(...)
+## {
+##     # Deprecated:
+##     .Deprecated(new = "spreads", package = "timeSeries")
+##     
+##     # Return Value:
+##     spreads(...)
+## }
 
 
 ################################################################################
-
-    

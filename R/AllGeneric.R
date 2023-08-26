@@ -51,10 +51,11 @@ setGeneric("series<-",
     function(x, value)
     standardGeneric("series<-"), package = "timeSeries")
 
-
-setGeneric("coredata", 
-    function(x) 
-    standardGeneric("coredata"), package = "timeSeries")
+## 2023-05-27 GNB: making non-generic, see comments in timeSeries-slotSeries.R
+## 
+## setGeneric("coredata", 
+##     function(x) 
+##     standardGeneric("coredata"), package = "timeSeries")
     
     
 setGeneric("coredata<-", 

@@ -10,15 +10,13 @@
 \alias{setFinCenter<-}
 
 
-
 \title{Get and set Financial center of a 'timeSeries'}
 
 \description{
 
   Get or assign a financial center to a \code{"timeSeries"} object.
-    
+  
 }
-
 
 \usage{
 \S4method{finCenter}{timeSeries}(x)
@@ -27,7 +25,6 @@
 getFinCenter(x)         
 setFinCenter(x) <- value
 }
-
 
 \arguments{
   
@@ -40,12 +37,10 @@ setFinCenter(x) <- value
   }
 }
 
-
 \seealso{
   \code{\link[timeDate]{listFinCenter}} and \code{\link[timeDate]{finCenter}}
   in package \code{"timeDate"}
 }
-
 
 \examples{
 ## An artificial 'timeSeries' Object - 
@@ -63,6 +58,4 @@ setFinCenter(x) <- value
    tS
 }
 
-
 \keyword{programming}
-

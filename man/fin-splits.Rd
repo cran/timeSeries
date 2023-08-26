@@ -1,23 +1,18 @@
 \name{splits}                     
+\alias{splits}
                                     
                                     
 \title{splits}
 
-
-\alias{splits}
-
-
 \description{
 
-    Searches for outlier splits in a \code{"timeSeries"} object.
+  Searches for outlier splits in a \code{"timeSeries"} object.
     
 }
-
 
 \usage{
 splits(x, sd = 3, complement = TRUE, ...)
 }
-
 
 \arguments{
 
@@ -54,6 +49,16 @@ splits(x, sd = 3, complement = TRUE, ...)
   a \code{"timeSeries"} object
 }
 
+\seealso{
+  \code{\link{returns}},
+  \code{\link{cumulated}},
+  \code{\link{drawdowns}},
+  %\code{\link{splits}},
+  \code{\link{spreads}},
+  \code{\link{midquotes}},
+  \code{\link{index2wealth}}
+}
+
 \examples{
 ## Create a Return Series with a Split - 
    data <- runif(12, -1, 1)
@@ -65,5 +70,3 @@ splits(x, sd = 3, complement = TRUE, ...)
    splits(x, sd=3, complement=TRUE)
    splits(x, sd=3, complement=FALSE)
 }
-
- 

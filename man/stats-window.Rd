@@ -4,9 +4,6 @@
 \alias{window,timeSeries-method}
 \alias{window.timeSeries}
 
-\alias{cut,timeSeries-method}
-\alias{cut.timeSeries}
-
                                     
 \title{Methods for 'window' in package 'timeSeries'}
 
@@ -18,17 +15,12 @@
 
 \usage{
 \S4method{window}{timeSeries}(x, start, end, \dots)
-
-\S4method{cut}{timeSeries}(x, from, to, \dots)
 }
 
 \arguments{
   
   \item{x}{
     an object of class \code{"timeSeries"}.
-  }
-  \item{from, to}{
-    starting date and end date, \code{to} must be after \code{from}.
   }
   \item{start, end}{
     starting date and end date, \code{end} must be after \code{start}.
@@ -41,9 +33,14 @@
 
 \details{
 
-  \code{window} Windows a piece from a \code{"timeSeries"} object,
+  \code{window} extracts the subset of the \code{"timeSeries"} object
+  \code{x} observed between the times \code{start} and \code{end}.
 
-  \code{cut} is deprecated and will be removed in the near future.
+}
+
+\seealso{
+  \code{\link[=head,timeSeries-method]{head}},
+  \code{\link{outlier}}
 }
 
 \examples{
@@ -55,6 +52,4 @@
    window(x, "2006-01-01", "2006-01-31")
 }
 
-
 \keyword{chron}
-

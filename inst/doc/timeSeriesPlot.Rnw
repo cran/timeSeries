@@ -281,7 +281,7 @@ instead of the value \texttt{"auto"} oe of the following spreads:
 \subsection*{}
 
 
-Tow other plot function implementations for \texttt{xts} time series 
+Two other plot function implementations for \texttt{xts} time series 
 objects can be found in the contributesd R packages \texttt{xts} and
 \texttt{PerformanceAnalytics}. Let us compare how they generate plot
 positions and time label formats.

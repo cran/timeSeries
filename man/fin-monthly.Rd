@@ -8,37 +8,18 @@
 
 \title{Special monthly series}
 
-
 \description{
-    
+   
     Functions and methods dealing with special monthly 
     \code{"timeSeries"} objects.      
 }
 
-
-\details{
-  
-    \code{countMonthlyRecords} computes a \code{"timeSeries"} that holds
-    the number of monthly counts of the records.
-    
-    \code{rollMonthlyWindows} computes start and end dates for rolling
-    time windows.
-    
-    \code{rollMonthlySeries} computes the statistics defined by the
-    function \code{FUN} over a rolling window, internally computed by
-    the function \code{rollMonthlyWindows}.  Note, the periods may be
-    overlapping, may be dense, or even may have gaps.
-
-}
-
-
 \usage{   
-countMonthlyRecords(x)
-
 rollMonthlyWindows(x, period = "12m", by = "1m") 
-rollMonthlySeries(x, period = "12m", by = "1m", FUN, \dots)
-}
 
+rollMonthlySeries(x, period = "12m", by = "1m", FUN, \dots)
+countMonthlyRecords(x)
+}
 
 \arguments{
 
@@ -51,7 +32,7 @@ rollMonthlySeries(x, period = "12m", by = "1m", FUN, \dots)
     length of the period and its unit. Examples: \code{"3m"}
     \code{"6m"}, \code{"12m"}, and \code{"24m"} represent quarterly,
     semi-annual, annual and bi-annual shifts, respectively.  It is the
-    responsibility of the user.  to determine proper start of the series
+    responsibility of the user to determine proper start of the series.
 
   } 
 
@@ -67,40 +48,62 @@ rollMonthlySeries(x, period = "12m", by = "1m", FUN, \dots)
 
 }
 
+\details{
+  
+  \code{rollMonthlySeries} computes the statistics defined by the
+  function \code{FUN} over rolling windows, internally computed by the
+  function \code{rollMonthlyWindows}.  Note, the periods may be
+  overlapping, may be dense, or even may have gaps.
+    
+  \code{countMonthlyRecords} computes a \code{"timeSeries"} that holds
+  the number of records for each month, see examples. The dates are set
+  to the end of the month.
+    
+  \code{rollMonthlyWindows} computes start and end dates for rolling
+  time windows. Argument \code{period} specifies the length of the
+  periods over which \code{FUN} is applied, while \code{by} gives the
+  amount by which the window is shifted. Non-overlapping windows
+  correspond to \code{by >= period}. 
+
+}
 
 \value{
 
-  for \code{countMonthlyRecords} and \code{rollMonthlySeries}, a
-  \code{"timeSeries"} object.\cr\cr
+  for \code{countMonthlyRecords} and \code{rollMonthlySeries},
+  a \code{"timeSeries"} object.
     
-  for \code{rollMonthlyWindows}, a list with attribute
-  \code{"control"} keeping the \code{start} and \code{end} dates of the
-  series. The components of the list are:
+  for \code{rollMonthlyWindows}, a list with attribute \code{"control"} keeping
+  the \code{start} and \code{end} dates of the series.
+  The components of the list are:
   \item{from}{an object from class \code{"timeDate"}.}
   \item{to}{an object from class \code{"timeDate"}.}
     
 }
 
-
 \examples{
-## Load Microsoft Daily Data Set:
-   x <- MSFT 
+## Load Microsoft Daily Data Set
+x <- MSFT 
+
+## count monthly records
+head(x)   # 3 obs. for Sep 2000
+counts <- countMonthlyRecords(x)
+counts
+
+## diy computation of the counts
+diy <- rollMonthlySeries(x[ , 1], period = "1m", by = "1m", FUN = NROW)
+
+## difference is only in some attributes (e.g. column names)
+all.equal(diy,  counts)
+
    
-## Count Monthly Records -
-   counts <- countMonthlyRecords(x)
-   counts
-   
-## Quaterly Non-Overlapping Time Periods -
-   windows <- rollMonthlyWindows(counts[-1, ], period = "3m", by = "3m") 
-   windows
-   
-## Nicely Reprint Results as a data.frame -
-   data.frame(cbind(FROM=format(windows$from), TO=format(windows$to)))
+## quaterly non-overlapping time periods -
+windows <- rollMonthlyWindows(counts[-1, ], period = "3m", by = "3m") 
+windows
+## nicely print results as a data.frame, each row is a time window
+data.frame(cbind(FROM = format(windows$from), TO = format(windows$to)))
    
 ## Compute the average number of monthly trading days per quarter -  
-   rollMonthlySeries(counts[-1, ], period = "3m", by = "3m", FUN=mean)
+rollMonthlySeries(counts[-1, ], period = "3m", by = "3m", FUN = mean)
 }
 
-
 \keyword{chron}
-

@@ -1,49 +1,47 @@
 \name{rowCum}
 \alias{rowCum}
+
 \alias{rowCumsums}
 \alias{rowCumsums,ANY-method}
 \alias{rowCumsums,timeSeries-method}
 
 
-\title{Cumulative  column and row statistics}
-
+\title{Cumulative row statistics}
 
 \description{
-
-    Compute cumulative column and row statistics.
-
+  Compute cumulative row statistics.
 }
-
 
 \usage{
 \S4method{rowCumsums}{ANY}(x, na.rm = FALSE, \dots)
 \S4method{rowCumsums}{timeSeries}(x, na.rm = FALSE, \dots)
 }
 
-
 \arguments{
   
-    \item{na.rm}{
-        a logical. Should missing values be removed?
-        }
-    \item{x}{
-        a time series, may be an object of class \code{"matrix"}
-        or \code{"timeSeries"}.
-        }
-    \item{\dots}{
-        arguments to be passed.
-        }
-        
-}
+  \item{x}{
 
+    a time series, may be an object of class \code{"matrix"} or
+    \code{"timeSeries"}.
+
+  }
+  \item{na.rm}{
+    a logical. Should missing values be removed?
+  }
+  \item{\dots}{
+    arguments to be passed.
+  }
+}
 
 \value{
-    
-    all functions return an S4 object of class \code{timeSeries}.
-    
+  for the default method, a matrix,
+  
+  for the \code{"timeSeries"} method, an S4 object of class \code{"timeSeries"}.
 }
 
-
+\seealso{
+  \code{\link[=colCum]{colCumXXX}}
+}
 
 \examples{
 ## Simulated Monthly Return Data - 
@@ -53,6 +51,4 @@
    rowCumsums(X)  
 }
 
-
 \keyword{univar}
-

@@ -1,14 +1,9 @@
 \name{timeSeries-package}
-
-
+\docType{package}
 \alias{timeSeries-package}
 
 
-\docType{package}
-
-
 \title{Utilities and tools package}
-
 
 \description{
 
@@ -20,19 +15,18 @@
 }
 
 \author{
-Diethelm Wuertz [aut] (original code),
-Tobias Setz [aut],
-Yohan Chalabi [aut],
-Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
-Georgi N. Boshnakov [cre, ctb]
-
-Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
+  Diethelm Wuertz [aut] (original code),
+  Tobias Setz [aut],
+  Yohan Chalabi [aut],
+  Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
+  Georgi N. Boshnakov [cre, aut]
+  
+  Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 }
 
 \details{
   The following sections have not been updated for some time.
 }
-  
 
 \section{timeSeries - S4 'timeSeries' Class}{
 
@@ -51,7 +45,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
   } 
    
 }
-
 
 \section{Base Time Series Functions}{
 
@@ -76,7 +69,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
   }
 }
 
-
 \section{Subsetting 'timeSeries' Objects}{
 
     % \code{.subset_} \tab Subsets \code{"timeSeries"} objects \cr
@@ -96,7 +88,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     
 }
 
-
 \section{Mathematical Operation}{
     
     \tabular{ll}{  
@@ -113,7 +104,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     \code{\link[=quantile,timeSeries-method]{quantile}} \tab Returns quantiles of an univariate \code{"timeSeries"}}
 
 }
-
 
 \section{Methods}{
 
@@ -137,7 +127,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     \code{\link[=show,timeSeries-method]{show}} \tab Prints a 'timeSeries oobject}
     
 }
-
 
 \section{Financial time series functions}{
 
@@ -167,7 +156,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     \code{\link{turnsStats}} \tab Computes turning points statistics }
 
 }
-
 
 \section{Statistics Time Series functions}{
 
@@ -204,7 +192,6 @@ Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
     \code{\link{smoothSupsmu}} \tab Smoothes a series with supsmu function \cr
     \code{\link{smoothSpline}} \tab Smoothes a series with smooth.spline function }
 }
-
 
 \section{Misc Functions}{
 

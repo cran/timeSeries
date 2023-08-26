@@ -16,8 +16,6 @@
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
 #  window,timeSeries         Extracts a piece from a 'timeSeries' object
-# DEPRECATED:               DESCRIPTION:
-#  cut,timeSeries            Extracsts a piece from a 'timeSeries' object
 ################################################################################
 
 
@@ -87,52 +85,51 @@ window.timeSeries <- function(x, ...) .window.timeSeries(x, ...)
 
 
 ###############################################################################
-
-
-.cut.timeSeries <- 
-    function (x, from, to, ...)
-{
-    # A function implemented by Diethelm Wuertz and Yohan Chalabi
-
-    # Description:
-    #   Cuts out a piece from a 'timeSeries' object.
-
-    # Arguments:
-    #   x - a 'timeSeries' object
-    #   from, to - two 'timeDate' position vectors which size the
-    #       blocks
-
-    # Value:
-    #   Returns a S4 object of class 'timeSeries'.
-
-    # FUNCTION:
-
-    .Deprecated("window", "timeSeries")
-
-    stopifnot(is.timeSeries(x))
-    if (x@format == "counts")
-        stop(as.character(match.call())[1],
-             " is for time series and not for signal series.")
-
-    from = timeDate(from)
-    to = timeDate(to)
-    Positions = time(x)
-
-    test = (Positions >= from & Positions <= to)
-    ans <- x[test,]
-
-    # Return value:
-    ans
-}
-
-
-setMethod("cut", "timeSeries",
-    function (x, from, to, ...) .cut.timeSeries(x, from, to, ...))
-
-          
-# until UseMethod dispatches S4 methods in 'base' functions
-cut.timeSeries <- function(x, ...) .cut.timeSeries(x, ...)
-
+## 2023-05-26 removed this cut method
+##          (it is not compatible with the purpose of the generic function cut)
+##
+## .cut.timeSeries <- 
+##     function (x, from, to, ...)
+## {
+##     # A function implemented by Diethelm Wuertz and Yohan Chalabi
+## 
+##     # Description:
+##     #   Cuts out a piece from a 'timeSeries' object.
+## 
+##     # Arguments:
+##     #   x - a 'timeSeries' object
+##     #   from, to - two 'timeDate' position vectors which size the
+##     #       blocks
+## 
+##     # Value:
+##     #   Returns a S4 object of class 'timeSeries'.
+## 
+##     # FUNCTION:
+## 
+##     .Deprecated("window", "timeSeries")
+## 
+##     stopifnot(is.timeSeries(x))
+##     if (x@format == "counts")
+##         stop(as.character(match.call())[1],
+##              " is for time series and not for signal series.")
+## 
+##     from = timeDate(from)
+##     to = timeDate(to)
+##     Positions = time(x)
+## 
+##     test = (Positions >= from & Positions <= to)
+##     ans <- x[test,]
+## 
+##     # Return value:
+##     ans
+## }
+## 
+## 
+## setMethod("cut", "timeSeries",
+##     function (x, from, to, ...) .cut.timeSeries(x, from, to, ...))
+## 
+##           
+## # until UseMethod dispatches S4 methods in 'base' functions
+## cut.timeSeries <- function(x, ...) .cut.timeSeries(x, ...)
 
 ################################################################################
-

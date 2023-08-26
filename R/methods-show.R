@@ -124,20 +124,20 @@ setMethod("show", "timeSeries",
         cat(finCenter(x), "\n")
         X <- getDataPart(x)
         rownames(X) = charvec
-        print(X)
+        print(X, ...)
     } else if (style == "h") {
         stopifnot(isUnivariate(x))
         # print(as.vector(x))
         ans = as.matrix(x)[,1]
         names(ans) = charvec
-        print(ans)
+        print(ans, ...)
     } else if (style == "ts") {
         freq = c(month = 12, quarter = 4)
         start(x)
         start = unlist(atoms(start(x)))
         end = unlist(atoms(end(x)))
         ts = ts(as.vector(x), start[1:2], end[1:2], freq[by])
-        print(ts)
+        print(ts, ...)
     }
 
     # Return Value:

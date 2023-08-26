@@ -1,11 +1,10 @@
 \name{str-methods}
+\alias{str-methods}
 \alias{str}
-
 \alias{str,timeSeries-method}
 
 
-\title{timeSeries object structure}
-
+\title{Display the structure of 'timeSeries' objects}
 
 \description{
     
@@ -13,30 +12,26 @@
     
 }
 
-
 \usage{
 \S4method{str}{timeSeries}(object, \dots)
 }
 
-
 \arguments{
-
-    \item{object}{  
-        an object of class \code{timeSeries}.
-        }
-    \item{\dots}{
-        arguments passed to other methods.
-        }
-
+  \item{object}{  
+    an object of class \code{timeSeries}.
+  }
+  \item{\dots}{
+    arguments passed to other methods.
+  }
 }
-
 
 \value{
 
-   a str report for an object of class \code{timeSeries}.
+  \code{NULL}, invisibly. The function is called for its side effect of
+  printing a compact representation of the structure of the
+  \code{"timeSeries"} object.
         
 }
-
 
 \examples{
 ## Load Microsoft Data Set -
@@ -48,6 +43,4 @@
    str(X)
 }
 
-
 \keyword{chron}
-

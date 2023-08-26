@@ -14,10 +14,9 @@
 
 \description{
     
-    Compute financial returns from prices or indexes.
+  Compute financial returns from prices or indexes.
        
 }
-
 
 \usage{
 returns(x, \dots)
@@ -28,57 +27,70 @@ returns0(x, \dots)
 \S4method{returns}{timeSeries}(x, method = c("continuous", "discrete", 
     "compound", "simple"), percentage = FALSE, na.rm = TRUE, 
     trim = TRUE, \dots) 
-
 }
-
 
 \arguments{
 
-    \item{x}{
-        an object of class \code{timeSeries}.
-        }
-    \item{percentage}{
-        a logical value. By default \code{FALSE}, if \code{TRUE} the 
-        series will be expressed in percentage changes.
-        }
-    \item{method}{
-        a character string. Which method should be used to compute
-        the returns, "continuous", "discrete", or "compound", "simple".
-        The second pair of methods is a synonym for the first two
-        methods.
-        }    
-    \item{na.rm}{
-        a logical value. Should NAs be removed? By default \code{TRUE}.
-        }    
-    \item{trim}{
-        a logical value. Should the time series be trimmed? By Default 
-        \code{TRUE}.
-        }    
-    \item{\dots}{
-        arguments to be passed.
-        }
+  \item{x}{
+    an object of class \code{timeSeries}.
+  }
+  \item{method}{
+
+    a character string. Which method should be used to compute the
+    returns, one of "continuous", "discrete", or "compound", "simple".
+    The second pair of methods is a synonym for the first two methods.
+
+  }    
+  \item{percentage}{
+    
+    a logical value. By default \code{FALSE}, if \code{TRUE} the series
+    will be expressed in percentage changes.
+
+  }
+  \item{na.rm}{
+    a logical value. Should NAs be removed? By default \code{TRUE}.
+  }    
+  \item{trim}{
+    a logical value. Should the time series be trimmed? By Default 
+    \code{TRUE}.
+  }    
+  \item{\dots}{
+    arguments to be passed.
+  }
         
 }
-
 
 \value{
 
-    all functions return an object of class \code{timeSeries}.
+  an object of class \code{timeSeries}.
     
-    \code{returns0} returns an untrimmed series with the first
-    row of returns set to zero(s).
+  \code{returns0} returns an untrimmed series with the first
+  row of returns set to zero(s).
         
 }
 
-
 \note{
 
-    The functions \code{returnSeries}, \code{getReturns} are no longer
-    exported and will be removed in the near future. They are synonyms
-    for the function \code{returns} and their use was discouraged for
-    many years. Just use \code{returns}.
+  The functions \code{returnSeries} and \code{getReturns} will be
+  removed in the near future. They are synonyms for the function
+  \code{returns} and their use was discouraged for many years. Just use
+  \code{returns}.
+
+  The function \code{returnSeries} is no longer
+  exported. \code{getReturns} is exported only because we are waiting
+  for a package on CRAN to be updated.
+
 }
-    
+
+\seealso{
+  %\code{\link{returns}},
+  \code{\link{cumulated}},
+  \code{\link{drawdowns}},
+  \code{\link{splits}},
+  \code{\link{spreads}},
+  \code{\link{midquotes}},
+  \code{\link{index2wealth}}
+}
 
 \examples{
 ## Load Microsoft Data - 
@@ -101,6 +113,4 @@ returns0(x, \dots)
    returns(X, percentage = TRUE, trim = FALSE)
 }
 
-
 \keyword{chron}
-

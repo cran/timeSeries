@@ -1,27 +1,24 @@
 \name{units}
 
-
 \alias{getUnits}
 \alias{getUnits.default}
+
 \alias{setUnits<-}
 
 
 \title{Get and set unit names of a 'timeSeries'}
 
-
 \description{
 
-    Gets and sets the column names of a \code{"timeSeries"} object. The
-    column names are also called units or unit names.
+  Gets and sets the column names of a \code{"timeSeries"} object. The
+  column names are also called units or unit names.
     
 }
-
 
 \usage{
 getUnits(x)         
 setUnits(x) <- value
 }
-
 
 \arguments{
 
@@ -33,11 +30,9 @@ setUnits(x) <- value
   }
 }
 
-
 \seealso{
   \code{\link{timeSeries}}
 }
-
 
 \examples{
 ## A Dummy 'timeSeries' Object
@@ -52,6 +47,4 @@ setUnits(x) <- value
    head(tS)
 }
 
-
 \keyword{programming}
-

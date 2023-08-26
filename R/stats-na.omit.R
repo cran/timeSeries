@@ -16,7 +16,7 @@
 ################################################################################
 # FUNCTION:                 DESCRIPTION:
 #  na.omit,timeSeries        Handles missing values in objects
-#  .naOmitMatrix             Internal function called from na.omit,timeSeries
+#  .naOmitMatrix             Internal function called from na.omit.timeSeries
 # OLD FUNCTIONS:            DESCRIPTION:
 #  removeNA                  Remove NAs from a matrix object
 #  substituteNA              Substitute NAs by zero, the column mean or median
@@ -26,7 +26,7 @@
 
 # DW:
 # I think we should deprecate the following functions:
-# removeNA, substituteNA, and interpNa since the function 
+# removeNA, substituteNA, and interpNA since the function 
 # na.omit() can already handle all these cases.
 
 
@@ -37,15 +37,15 @@
 
 ################################################################################
 
-
+## 2023-05-28 GNB: added argument 'FUN'
 .na.omit.timeSeries <- 
     function(object, method = c("r", "s", "z", "ir", "iz", "ie"),
-        interp = c("before", "linear", "after"), ...)
+        interp = c("before", "linear", "after"), FUN, ...)
 {
     # Description
     #   Handles NAs in timeSeries objects
 
-    # Detials:
+    # Details:
     #   Linear Interpolation is done by the function approx.
     #   Spline interpolation like in zoo is not yet supported.
 
@@ -70,7 +70,18 @@
 
     # Skip ?
     if (method == "s") return(object)
-
+    if(!missing(FUN)) { # GNB
+        FUN <- match.fun(FUN)
+        data <- object@.Data
+        data <- apply(data, 2,
+                      function(z) {
+                          z[is.na(z)] = FUN(z, na.rm = TRUE)
+                          z
+                      })
+        object@.Data <- data
+        return(object)
+    }
+    
     # Handle NAs:
     if (method == "r") {
         # Remove NAs:
@@ -145,8 +156,8 @@
 
 setMethod("na.omit", "timeSeries", function(object, 
     method = c("r", "s", "z", "ir", "iz", "ie"),
-    interp = c("before", "linear", "after"), ...)
-.na.omit.timeSeries(object, method, interp, ...))
+    interp = c("before", "linear", "after"), FUN, ...)
+.na.omit.timeSeries(object, method, interp, FUN, ...))
 
           
 # until UseMethod dispatches S4 methods in 'base' functions
@@ -251,6 +262,10 @@ removeNA <-
 
     # FUNCTION:
 
+    .Deprecated("na.omit", package = "timeSeries",
+                msg = c("'removeNA' is deprecated.\n",
+                   "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
+
     na.omit(x, ...)
 }
 
@@ -273,6 +288,9 @@ substituteNA <-
     #       used. Choices are "zeros", "mean", or "constant"
 
     # FUNCTION:
+    .Deprecated("na.omit", msg = c("'substituteNA' is deprecated.\n",
+                   "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
+
     if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
         x <- as(x, "matrix")
 
@@ -319,6 +337,9 @@ interpNA <-
     #   values are interpolated.
 
     # FUNCTION:
+    .Deprecated("na.omit", msg = c("'interpNA' is deprecated.\n",
+                   "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
+
     if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
         x <- as(x, "matrix")
 
@@ -352,4 +373,3 @@ interpNA <-
 
 
 ################################################################################
-

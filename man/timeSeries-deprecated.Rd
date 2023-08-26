@@ -1,8 +1,8 @@
 \name{timeSeries-deprecated}
 
-\alias{seriesData}
+\alias{seriesData} % removed
 
-\alias{.time.timeSeries}
+%\alias{.time.timeSeries}
 
 
 
@@ -23,8 +23,8 @@
     %     }
 
 
-    \code{.time.timeSeries} \tab Extracts the time(s) from a
-    'timeSeries', use \code{\link{time}} instead. \cr
+    % \code{.time.timeSeries} \tab Extracts the time(s) from a
+    % 'timeSeries', use \code{\link{time}} instead. \cr
 
     
     % \code{seriesPositions} \tab Extracts positions slot from a 'timeSeries', \cr

@@ -4,10 +4,10 @@
 \alias{dummyDailySeries}
 \alias{dummyMonthlySeries}
 
-\alias{dummySeries} % deprecated
+\alias{dummySeries} % deprecated; now removed
 
 
-\title{Dummy time series}
+\title{Create dummy time series}
 
 \description{
   Create dummy daily and monthly time series for examples and exploration.

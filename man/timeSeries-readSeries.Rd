@@ -85,6 +85,13 @@ readSeries(file, header = TRUE, sep = ";", zone = "",
   an object of class \code{"timeSeries"}
 }
 
+\seealso{
+  \code{\link{as.timeSeries}},
+  \code{\link{timeSeries}},
+  \code{\link{dummyMonthlySeries}},
+  \code{\link{dummyDailySeries}}
+}
+
 \examples{
 ## full path to an example file
 fn <- system.file("extdata/msft.csv", package = "timeSeries")

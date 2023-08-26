@@ -1,3 +1,73 @@
+## timeSeries 4031.107
+
+- refactored the 'timeSeries' methods for `head` and `tail`.
+
+- fixed a bug in the 'timeSeries' method for `stats::na.contiguous`, which
+  caused the wrong stretch to be returned in the case of tied longest stretches
+  one of whom starts at the beginning of the series. Similar bug was present in
+  `stats::na.contiguous.default`, see my bug report to R-devel from 2023-06-02
+  and the discussion there
+  (https://stat.ethz.ch/pipermail/r-devel/2023-June/082642.html)
+
+- removed deprecated functions `spreadSeries`, `midquoteSeries`, and
+  `durationSeries`.  Use `spreads`, `midquotes`, and `durations`, respectively.
+
+- removed deprecated function `colStdevs`, use `colSds()` instead.
+
+- removed deprecated function `.description`, use `description()` instead.
+
+- removed deprecated 'timeSeries' method for function `cut()`, use `window()`
+  instead. The method was not compatible with the generic function `cut()`. Now
+  applying `cut(x)` on a 'timeSeries' object `x` will work on the underlying
+  time series data.
+
+- replaced the S4 methods for `zoo::coredata` and `zoo::'coredata<-'`. The ones
+  for `zoo::'coredata<-'` were not working at all, since `zoo::'coredata<-'` is
+  an S3 generic and the methods dispatch on two arguments. It is also a mistery
+  why the methods for the unexported S4 generics in 'timeSeries' were associated
+  with the corresponding 'zoo' generics.
+
+  If `zoo` is not attached, the calls need to be prefixed with `zoo::` or,
+  alternatively, since the new methods are exported, they can be called directly
+  as `coredata.timeSeries()` and ``coredata.'timeSeries<-'() <- value`.
+
+- added a default method for `time<-` to improve its interaction with 'zoo'.
+
+- added 'zoo' to 'Suggests:'.
+
+- removed the deprecated `dummySeries`, use `dummyMonthlySeries` instead.
+
+- added argument `FUN` to the `timeSeries` method for `na.omit` to allow it to
+  compute replacement values using functions, such as `mean`, `median`, or user
+  defined.
+
+- formally deprecated `removeNA`, `interpNA`, and `substituteNA`. These had been
+  informally deprecated in the documentation for a long time.
+
+- the help page for `orderStatistics` erroneously claimed that the input should
+  be an univariate `timeSeries` object, while it is explicitly written to cover
+  the multivariate case.
+
+- moved package 'methods' back to 'Depends' to avoid subtle problems when
+  'methods' is loaded but not attached. For example, it seems that 'Math'
+  methods for 'structure' are not seen for `cummin` and other `cumXXX`
+  functions, when called on time series objects (the other math functions work
+  ok).
+
+- `cumsum`, `cumprod`, `cummin`, and `cummax` now work on the columns of the
+  'timeSeries' object and keep its class and other attributes. This is a
+  breaking change since previously the return value was numeric vector, the
+  result of applying the base R functions to the data part of the object. This
+  was not particularly useful, especilly for multivariate time series.  With
+  this change all functions from the S4 `Math` group return 'timeSeries' when
+  their argument is 'timeSeries' object.
+
+- stopped exporting some internal functions that were accidentally used by other
+  packages (after those packages were updated on CRAN).
+
+- Numerous improvements to the documentation and further changes in the code.
+
+
 ## timeSeries 4030.106
 
 - removed UTF8 characters from NAMESPACE (fixes CRAN warning to that effect).
@@ -32,10 +102,6 @@
 - The functions `returnSeries` and `getReturns` are no longer exported and will
   be removed in the near future. They are synonyms for the function `returns`
   and their use was discouraged for many years. Just use `returns`.
-
-- The functions `spreadSeries` and `midquoteSeries` are no longer exported and
-  will be removed in the near future. Just use their synonyms `spreads` and
-  `midquotes`, respectively.
 
 - function `cut` is now formally deprecated. Use `window` instead.
 

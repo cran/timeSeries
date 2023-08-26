@@ -5,33 +5,34 @@
 \title{Order statistics}
 
 \description{
-    
-    Computes order statistics of a \code{"timeSeries"}. 
+    Computes the order statistics of a \code{"timeSeries"} object. 
 }
-
 
 \usage{
 orderStatistics(x)
 }
 
-
 \arguments{
-
-    \item{x}{
-        an univariate \code{"timeSeries"} object.
-        }
-
+  \item{x}{
+    a \code{"timeSeries"} object.
+  }
 }
 
+\details{
 
-\value{
-
-    Function \code{orderStatistics} returns the order statistics of
-    an univariate \code{"timeSeries"} object. The output is an object of
-    class \code{"list"}.
+  \code{orderStatistics} computes the order statistics for each column of a
+  \code{"timeSeries"} object. The output is a named list with the order
+  statistics for each column in a separate component.
    
 }
 
+\value{
+
+  a named list, in which each component is an
+  univariate \code{"timeSeries"} containing the order statistics of the
+  corresponding column of the input time series.
+
+}
 
 \examples{
 ## Load Swiss Pension Fund Benchmark Data -  
@@ -45,6 +46,5 @@ orderStatistics(x)
    OS <- orderStatistics(X)[[1]]
    OS[1:N, ]
 }
-
 
 \keyword{chron}

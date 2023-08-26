@@ -1,5 +1,8 @@
 \name{isRegular}
 
+\alias{isRegular,timeSeries-method}
+\alias{isRegular.timeSeries}
+
 \alias{isDaily,timeSeries-method}
 \alias{isDaily.timeSeries}
 
@@ -9,22 +12,17 @@
 \alias{isQuarterly,timeSeries-method}
 \alias{isQuarterly.timeSeries}
 
-\alias{isRegular,timeSeries-method}
-\alias{isRegular.timeSeries}
-
 \alias{frequency,timeSeries-method}
 \alias{frequency.timeSeries}
-
 
 
 \title{Checks if a time series is regular}
 
 \description{
 
-    Checks if a time series is regular. 
+  Checks if a time series is regular. 
     
 }
-
 
 \usage{
 \S4method{isDaily}{timeSeries}(x)
@@ -36,16 +34,14 @@
 \S4method{frequency}{timeSeries}(x, \dots)
 }
 
-
 \arguments{
 
-    \item{x}{  
-        an R object of class 'timeSeries'.
-    }
-    \item{\dots}{
-        arguments to be passed.
-    }
-
+  \item{x}{  
+    an R object of class 'timeSeries'.
+  }
+  \item{\dots}{
+    arguments to be passed.
+  }
 }
 
 \details{
@@ -75,7 +71,6 @@
   Note that with the above definitions a monthly series is also a daily
   series, a quarterly series is also a monthly series. On the other
   hand, a daily series is not regular!
-
   
   NOT yet implemented is the case of weekly series.
   
@@ -91,7 +86,6 @@
   
 }
 
-
 \examples{
 data(MSFT)
 isRegular(MSFT)
@@ -105,6 +99,4 @@ pres <- as.timeSeries(presidents)
 isRegular(pres)
 }
 
-
 \keyword{chron}
-

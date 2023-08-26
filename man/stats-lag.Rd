@@ -7,18 +7,15 @@
 
 \title{Lag a 'timeSeries' object}
 
-
 \description{
     
   Compute a lagged version of a \code{"timeSeries"} object.
    
 }
 
-
 \usage{
 \S4method{lag}{timeSeries}(x, k = 1, trim = FALSE, units = NULL, \dots)
 }
-
 
 \arguments{
          
@@ -50,16 +47,13 @@
 }
 
 \value{
-
-  the lagged object of class \code{"timeSeries"}.
-        
+  an object of class \code{"timeSeries"}
 }
 
 \seealso{
   \code{\link[stats]{lag}} for \verb{stats::lag},
   \code{\link{diff}}
 }
-
 
 \examples{
 ## Load Micsrosoft Data Set -
@@ -69,6 +63,4 @@
    lag(x, k = -1:1)
 }
 
-
 \keyword{chron}
-
