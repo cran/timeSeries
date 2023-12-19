@@ -1,7 +1,7 @@
 655dcc268ec612659050ace08950239c *ChangeLog
-10fa04cb0861f547f70226c1882a8c23 *DESCRIPTION
+369c94870b363581ee71b8349cd70bf6 *DESCRIPTION
 3cf1914d2fdd9200747dc14f4f18f372 *NAMESPACE
-5cb4eca7618581b6c86154657aa9d12b *NEWS.md
+cac4211fe77be0ce1d338f6c803a788b *NEWS.md
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 d3edf10575203354ea8dd35002dfc85d *R/AllGeneric.R
 265850ce81bf120965f0fbff81a08847 *R/aaa-Deprecated.R
@@ -75,7 +75,7 @@ c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 2d76dbcbae420743ba74789ec629faac *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
 219eb2bb1a7f10e4b401d7a8cb318bfa *README.md
-45778a1d4c5ecb3aa91677c525930ce6 *build/vignette.rds
+54f12188944daf719a2023b3e8c6b83e *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 fef224cc858248dc279e326ed178f294 *data/USDCHF.rda
@@ -86,7 +86,7 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 42c009f44681cda423255f55b4236125 *inst/_pkgdown.yml
 26f1e7c7b1bfa86789532fed789ad211 *inst/doc/timeSeriesPlot.R
 085e8932df19f10701373f78fa9b5d1d *inst/doc/timeSeriesPlot.Rnw
-428b8f1eebeba3200a36ef8446c150e7 *inst/doc/timeSeriesPlot.pdf
+1b353c6b8e5192040c47af123973f31d *inst/doc/timeSeriesPlot.pdf
 0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
 63a08580cf247052d3e8c939e75e2928 *inst/extdata/msft.csv
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
@@ -171,7 +171,7 @@ b51c826bab54dda9ba212918ecbb6999 *man/internals.Rd
 c70c22e1b172a27f19477b13b4991427 *man/methods-comment.Rd
 dc181c5bb7fc9cd851bde301e988498a *man/methods-is.Rd
 553caa6015f8d0968fc2379873df944c *man/methods-mathOps.Rd
-747718d82c75bd611a05f2e566319874 *man/methods-plot.Rd
+9c430192ce0b16685a5ae22be28fb53a *man/methods-plot.Rd
 bd305584e55769289ec57c66917172af *man/methods-show.Rd
 3a9f64c02bacc430c88dd1c29bea386e *man/methods-stats.Rd
 d124ec6de752732c11c3415d0be57601 *man/statistics-colCumsums.Rd

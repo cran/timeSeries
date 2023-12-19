@@ -163,7 +163,7 @@
         factor 5 over 2.
         }
     \item{eps.correct}{
-       an integer code, one of {0,1,2}. If
+       an integer code, one of 0, 1, or 2. If
        non-0, a correction is made at the boundaries.
        }
     \item{\dots}{
