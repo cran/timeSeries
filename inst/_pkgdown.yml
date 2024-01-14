@@ -30,7 +30,7 @@ reference:
       - "lines,timeSeries-method"
       - "points,timeSeries-method"
       - pretty.timeSeries
-      - "print-methods"
+      - "print.timeSeries"
       - str
       - is.timeSeries
       - is.signalSeries
@@ -40,7 +40,7 @@ reference:
       - isMonthly.timeSeries
       - isQuarterly.timeSeries
       - isRegular
-      - "is.na,timeSeries-method"
+      - "is.na"
       - "is.unsorted,timeSeries-method"
   - title: "Subset 'timeSeries' objects"
     desc: >

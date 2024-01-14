@@ -1,7 +1,6 @@
 \name{lag}
 \alias{lag}
 
-\alias{lag,timeSeries-method}
 \alias{lag.timeSeries}
 
 
@@ -14,7 +13,7 @@
 }
 
 \usage{
-\S4method{lag}{timeSeries}(x, k = 1, trim = FALSE, units = NULL, \dots)
+\method{lag}{timeSeries}(x, k = 1, trim = FALSE, units = NULL, \dots)
 }
 
 \arguments{
@@ -56,11 +55,11 @@
 }
 
 \examples{
-## Load Micsrosoft Data Set -
-   x = MSFT[1:20, "Open"]
+## Load Micsrosoft Data Set
+x <- MSFT[1:20, "Open"]
    
-## Lag the 'timeSeries' Object:
-   lag(x, k = -1:1)
+## Lag the 'timeSeries' Object
+lag(x, k = -1:1)
 }
 
 \keyword{chron}

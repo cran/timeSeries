@@ -249,7 +249,7 @@ Class \code{"\linkS4class{vector}"}, by class "structure", distance 2, with expl
   reporting bugs but most methods that need explanation are documented
   with the corresponding functions and looking at their help pages is recommended.
 
-  There are short explanations for Methods for functions that are not supposed to be
+  There are short explanations for methods for functions that are not supposed to be
   called directly. 
   
   \describe{

@@ -29,7 +29,7 @@ countMonthlyRecords(x)
   \item{period,by}{
 
     character strings specifying the rollling period composed by the
-    length of the period and its unit. Examples: \code{"3m"}
+    length of the period and its unit. Examples: \code{"3m"},
     \code{"6m"}, \code{"12m"}, and \code{"24m"} represent quarterly,
     semi-annual, annual and bi-annual shifts, respectively.  It is the
     responsibility of the user to determine proper start of the series.
@@ -80,8 +80,13 @@ countMonthlyRecords(x)
     
 }
 
+\seealso{
+  \code{\link{isMonthly}},
+  \code{\link{isRegular}}
+}
+
 \examples{
-## Load Microsoft Daily Data Set
+## load Microsoft daily dataset
 x <- MSFT 
 
 ## count monthly records
@@ -96,13 +101,13 @@ diy <- rollMonthlySeries(x[ , 1], period = "1m", by = "1m", FUN = NROW)
 all.equal(diy,  counts)
 
    
-## quaterly non-overlapping time periods -
+## quaterly non-overlapping time periods
 windows <- rollMonthlyWindows(counts[-1, ], period = "3m", by = "3m") 
 windows
 ## nicely print results as a data.frame, each row is a time window
 data.frame(cbind(FROM = format(windows$from), TO = format(windows$to)))
    
-## Compute the average number of monthly trading days per quarter -  
+## compute the average number of monthly trading days per quarter
 rollMonthlySeries(counts[-1, ], period = "3m", by = "3m", FUN = mean)
 }
 

@@ -18,9 +18,9 @@
 #  lag,timeSeries            Lags a 'timeSeries' object
 ################################################################################
 
-
-setMethod("lag" , "timeSeries",
-    function(x, k = 1, trim = FALSE, units = NULL, ...)
+## GNB: made it an S3 method and removed the S4 one
+##     setMethod("lag" , "timeSeries",
+lag.timeSeries <- function(x, k = 1, trim = FALSE, units = NULL, ...)
 {
     # A function implemented by Diethelm Wuertz
 
@@ -128,12 +128,11 @@ setMethod("lag" , "timeSeries",
     # Return Value:
     ans
 
-})
+}
 
 
-# until UseMethod dispatches S4 methods in 'base' functions
-lag.timeSeries <- function(x, ...) timeSeries::lag(x, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## lag.timeSeries <- function(x, ...) timeSeries::lag(x, ...)
 
 
 ################################################################################
-

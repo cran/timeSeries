@@ -19,7 +19,7 @@
 ################################################################################
 
 
-.str.timeSeries <- 
+str.timeSeries <- 
     function(object, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -67,13 +67,8 @@
 }
 
 
-setMethod("str", "timeSeries",
-    function(object, ...) .str.timeSeries(object, ...))
+## setMethod("str", "timeSeries",
+##     function(object, ...) .str.timeSeries(object, ...))
 
     
-# until UseMethod dispatches S4 methods in 'base' functions
-str.timeSeries <- function (object, ...) .str.timeSeries(object, ...)
-
-
 ################################################################################
-

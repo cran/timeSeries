@@ -1,6 +1,6 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Version: 4032.108
+Version: 4032.109
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
 	   , person("Yohan", "Chalabi", role = "aut")
@@ -15,13 +15,12 @@ Imports: graphics, grDevices, stats, utils
 Suggests: RUnit, robustbase, xts, zoo, PerformanceAnalytics, fTrading
 LazyData: yes
 License: GPL (>= 2)
-URL:
+URL: https://geobosh.github.io/timeSeriesDoc/ (doc),
         https://r-forge.r-project.org/scm/viewvc.php/pkg/timeSeries/?root=rmetrics
-        (devel), https://www.rmetrics.org,
-        https://geobosh.github.io/timeSeriesDoc/ (doc)
+        (devel), https://www.rmetrics.org
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: no
-Packaged: 2023-12-19 14:27:12 UTC; georgi
+Packaged: 2024-01-14 10:27:34 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Tobias Setz [aut],
   Yohan Chalabi [aut],
@@ -29,4 +28,4 @@ Author: Diethelm Wuertz [aut] (original code),
   Georgi N. Boshnakov [cre, aut]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2023-12-19 16:40:02 UTC
+Date/Publication: 2024-01-14 16:00:02 UTC

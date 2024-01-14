@@ -17,9 +17,8 @@
 # FUNCTION:                 DESCRIPTION:
 #  show,timeSeries           Prints a 'timeSeries' object
 #  print,timeSeries          Prints a 'timeSeries' object
-#  .print.timeSeries         Called by function print,timeSerie
+#  .print.timeSeries         Called by function print,timeSeries
 ################################################################################
-
 
 setMethod("show", "timeSeries",
     function(object)
@@ -70,7 +69,8 @@ setMethod("show", "timeSeries",
 # ------------------------------------------------------------------------------
 
 
-.print.timeSeries <-
+## GNB: streamlined somewhat the calls and removed the S4 method
+print.timeSeries <-
     function(x, FinCenter = NULL, format = NULL,
     style = c("tS", "h", "ts"), by = c("month", "quarter"), ...)
 {
@@ -148,9 +148,8 @@ setMethod("show", "timeSeries",
 # ------------------------------------------------------------------------------
 
 
-setMethod("print", "timeSeries",
-    .print.timeSeries)
+## setMethod("print", "timeSeries",
+##     .print.timeSeries)
 
 
 ################################################################################
-

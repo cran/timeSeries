@@ -11,12 +11,15 @@
 \alias{as.matrix,timeSeries-method}
 \alias{as.data.frame,timeSeries-method}
 \alias{as.list,timeSeries-method}
-\alias{as.ts,timeSeries-method}
+%\alias{as.ts,timeSeries-method}
 
 % S3 versions of the above
 \alias{as.matrix.timeSeries}
 \alias{as.data.frame.timeSeries}
 \alias{as.list.timeSeries}
+
+
+\alias{as.ts}
 \alias{as.ts.timeSeries}
 
 % for as(x, "class") where x is the 1st element of the signature
@@ -49,8 +52,8 @@
 as.timeSeries(x, \dots)
 
 ## convert from 'timeSeries' to other classes
+\method{as.ts}{timeSeries}(x, \dots)
 \S4method{as.matrix}{timeSeries}(x, \dots)
-\S4method{as.ts}{timeSeries}(x, \dots)
 \S4method{as.data.frame}{timeSeries}(x, row.names = NULL, optional = FALSE, \dots)
 \S4method{as.list}{timeSeries}(x, \dots)
 }

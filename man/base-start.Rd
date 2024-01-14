@@ -1,14 +1,14 @@
 \name{start}  
 \alias{start}
-
-\alias{end}
-
-\alias{start,timeSeries-method}
 \alias{start.timeSeries}
 
-\alias{end,timeSeries-method}
+\alias{end}
 \alias{end.timeSeries}                   
-                                    
+
+%\alias{start,timeSeries-method}
+
+%\alias{end,timeSeries-method}
+
                                     
 \title{Start and end of a 'timeSeries'}
 
@@ -19,9 +19,9 @@
 }
 
 \usage{
-\S4method{start}{timeSeries}(x, \dots)
+\method{start}{timeSeries}(x, \dots)
 
-\S4method{end}{timeSeries}(x, \dots)
+\method{end}{timeSeries}(x, \dots)
 }
 
 \arguments{
@@ -40,13 +40,13 @@
 
 \examples{   
 \dontshow{set.seed(1234)}
-## Create a dummy \code{"timeSeries"} -    
-   tS <- dummyMonthlySeries()[, 1]
-   tS
+## Create a dummy \code{"timeSeries"}
+tS <- dummyMonthlySeries()[, 1]
+tS
    
-## Return start and end time stamp -
-   c(start(tS), end(tS))
-   range(time(tS))
+## Return start and end time stamp
+c(start(tS), end(tS))
+range(time(tS))
 }
 
 \keyword{chron}

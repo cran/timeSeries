@@ -94,13 +94,14 @@ diff.timeSeries <-
 
 # -----------------------------------------------------------------------------
 
-
-setMethod("diff", "timeSeries",
-          function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
-              diff.timeSeries(x, lag, diff, trim, pad, ...)
-          ##x <- getDataPart(x)
-          ##callGeneric()
-          )
+## 2024-01-06 GNB: removed the S4 method
+##
+## setMethod("diff", "timeSeries",
+##           function(x, lag = 1, diff = 1, trim = FALSE, pad = NA, ...)
+##               diff.timeSeries(x, lag, diff, trim, pad, ...)
+##           ##x <- getDataPart(x)
+##           ##callGeneric()
+##           )
 
 
 ## # until UseMethod dispatches S4 methods in 'base' functions

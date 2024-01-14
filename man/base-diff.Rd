@@ -1,7 +1,7 @@
 \name{diff}                     
 \alias{diff}
 
-\alias{diff,timeSeries-method}
+\alias{diff.timeSeries}
                                     
                                     
 \title{Difference a 'timeSeries' object}
@@ -11,7 +11,7 @@
 }
 
 \usage{
-\S4method{diff}{timeSeries}(x, lag = 1, diff = 1, trim = FALSE, pad = NA, \dots)
+\method{diff}{timeSeries}(x, lag = 1, diff = 1, trim = FALSE, pad = NA, \dots)
 }
 
 \arguments{
@@ -57,18 +57,18 @@
 }
 
 \examples{
-## Load Microsoft Data Set -
-   x <- MSFT[1:12, ]
-   x
+## load Microsoft dataset
+x <- MSFT[1:12, ]
+x
 
-## Compute Differences -
-   diff(x)   
+## compute differences
+diff(x)   
    
-## Trimmed Differences -
-   diff(x, trim = TRUE) 
+## trimmed differences
+diff(x, trim = TRUE) 
 
-## Padded Differences -
-   diff(x, trim = FALSE, pad = 0) 
+## padded differences
+diff(x, trim = FALSE, pad = 0) 
 }
 
 \keyword{chron}

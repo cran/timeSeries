@@ -1,7 +1,7 @@
 \name{str-methods}
 \alias{str-methods}
 \alias{str}
-\alias{str,timeSeries-method}
+\alias{str.timeSeries}
 
 
 \title{Display the structure of 'timeSeries' objects}
@@ -13,7 +13,7 @@
 }
 
 \usage{
-\S4method{str}{timeSeries}(object, \dots)
+\method{str}{timeSeries}(object, \dots)
 }
 
 \arguments{
@@ -34,13 +34,13 @@
 }
 
 \examples{
-## Load Microsoft Data Set -
-   data(MSFT)
-   X <- MSFT[1:12, 1:4]
-   colnames(X) <- abbreviate(colnames(X), 4)
+## Load Microsoft Data Set
+data(MSFT)
+X <- MSFT[1:12, 1:4]
+colnames(X) <- abbreviate(colnames(X), 4)
     
-## Display Structure - 
-   str(X)
+## Display Structure
+str(X)
 }
 
 \keyword{chron}

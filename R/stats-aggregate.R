@@ -22,8 +22,8 @@
 ################################################################################
 
 
-.aggregate.timeSeries <- 
-    function(x, by, FUN, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+aggregate.timeSeries <- function(x, by, FUN, ...)
 {
     # A function implemented by Yohan Chalabi and Diethelm Wuertz
 
@@ -97,12 +97,12 @@
 }
 
 
-setMethod("aggregate", "timeSeries", function(x, by, FUN, ...)
-          .aggregate.timeSeries(x, by, FUN, ...))
-
-          
-# until UseMethod dispatches S4 methods in 'base' functions
-aggregate.timeSeries <- function(x, ...) .aggregate.timeSeries(x, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+## setMethod("aggregate", "timeSeries", function(x, by, FUN, ...)
+##           .aggregate.timeSeries(x, by, FUN, ...))
+##         
+## # until UseMethod dispatches S4 methods in 'base' functions
+## aggregate.timeSeries <- function(x, ...) .aggregate.timeSeries(x, ...)
 
 
 ################################################################################

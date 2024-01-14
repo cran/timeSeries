@@ -1,7 +1,7 @@
 \name{print-methods}
 
 \alias{show,timeSeries-method}
-\alias{print,timeSeries-method}
+\alias{print.timeSeries}
 
 
 \title{Print 'timeSeries' objects}
@@ -13,8 +13,8 @@
 \usage{
 \S4method{show}{timeSeries}(object)
 
-\S4method{print}{timeSeries}(x, FinCenter = NULL, format = NULL,
-          style = c("tS", "h", "ts"), by = c("month", "quarter"), ...)
+\method{print}{timeSeries}(x, FinCenter = NULL, format = NULL,
+    style = c("tS", "h", "ts"), by = c("month", "quarter"), ...)
 }
 
 \arguments{
@@ -56,10 +56,10 @@
   by explicitly calling \code{print}.
 
   The default for \code{style} is \code{tS}. For univariate time series
-  the \code{style = "h"} causes the object to be printed as a vector
-  with the time stamps as labels. Finally, \code{style = "ts"} prints
-  like objects from base R class \code{"ts"}, which is suitable for
-  quarterly and monthly time series.
+  \code{style = "h"} causes the object to be printed as a vector with
+  the time stamps as labels. Finally, \code{style = "ts"} prints like
+  objects from base R class \code{"ts"}, which is suitable for quarterly
+  and monthly time series.
 
 }
 
@@ -68,24 +68,24 @@
 }
 
 \examples{
-## Load Micsrosoft Data - 
-   setRmetricsOptions(myFinCenter = "GMT")
-   LPP <- MSFT[1:12, 1:4]
+## Load Micsrosoft Data
+setRmetricsOptions(myFinCenter = "GMT")
+LPP <- MSFT[1:12, 1:4]
 
-## Abbreviate Column Names - 
-   colnames(LPP) <- abbreviate(colnames(LPP), 6)
+## Abbreviate Column Names
+colnames(LPP) <- abbreviate(colnames(LPP), 6)
    
-## Print Data Set -
-   print(LPP)
+## Print Data Set
+print(LPP)
    
-## Alternative Use, Show Data Set - 
-   show(LPP)
+## Alternative Use, Show Data Set
+LPP  # equivalently, show(LPP)
 
 ## a short subseries to demo 'print'
-   hC <- head(MSFT[ , "Close"])
-   class(hC)
-   print(hC)
-   print(hC, style = "h")
+hC <- head(MSFT[ , "Close"])
+class(hC)
+print(hC)
+print(hC, style = "h")
 }
 
 \keyword{chron}

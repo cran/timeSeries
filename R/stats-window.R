@@ -19,7 +19,7 @@
 ################################################################################
 
 
-.window.timeSeries <- 
+window.timeSeries <- 
     function(x, start, end, ...)
 {
     # A function implemented by Diethelm Wuertz and Yohan Chalabi
@@ -75,14 +75,11 @@
     ans
 }
 
-
-setMethod("window", "timeSeries",
-          function(x, start, end, ...) .window.timeSeries(x, start, end, ...))
+## (2024-01-05) GNB: stop making window() S4
+## setMethod("window", "timeSeries",
+##           function(x, start, end, ...) .window.timeSeries(x, start, end, ...))
 
           
-# until UseMethod dispatches S4 methods in 'base' functions
-window.timeSeries <- function(x, ...) .window.timeSeries(x, ...)
-
 
 ###############################################################################
 ## 2023-05-26 removed this cut method

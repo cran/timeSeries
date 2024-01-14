@@ -9,16 +9,13 @@
 
 \title{End-of-Period series, stats, and benchmarks}
 
-
 \description{
 
-    Computes periodical statistics back to a given period.
+  Computes periodical statistics back to a given period.
     
 }
 
-
 \usage{
-
 endOfPeriodSeries(x, 
     nYearsBack = c("1y", "2y", "3y", "5y", "10y", "YTD"))
 
@@ -27,9 +24,7 @@ endOfPeriodStats(x,
     
 endOfPeriodBenchmarks(x, benchmark = ncol(x),
     nYearsBack = c("1y", "2y", "3y", "5y", "10y", "YTD"))
-    
 }
-
 
 \arguments{
 
@@ -84,20 +79,20 @@ endOfPeriodBenchmarks(x, benchmark = ncol(x),
 }
  
 \examples{
-## Load Series: Column 1:3 Swiss Market, Column 8 (4) Benchmark
-   x <- 100 * LPP2005REC[, c(1:3, 8)]
-   colnames(x)
-   x <- daily2monthly(x)
-   x
+## load series: column 1:3 Swiss market, column 8 (4) benchmark
+x <- 100 * LPP2005REC[, c(1:3, 8)]
+colnames(x)
+x <- daily2monthly(x)
+x
    
 ## Get the Monthly Series - 
-   endOfPeriodSeries(x, nYearsBack="1y")
+endOfPeriodSeries(x, nYearsBack="1y")
    
-## Compute the Monthly Statistics - 
-   endOfPeriodStats(x, nYearsBack="1y")
+## Compute the Monthly Statistics
+endOfPeriodStats(x, nYearsBack="1y")
    
-## Compute the Benchmark - 
-   endOfPeriodBenchmarks(x, benchmark=4) 
+## Compute the Benchmark
+endOfPeriodBenchmarks(x, benchmark=4) 
 }
 
 \keyword{chron}

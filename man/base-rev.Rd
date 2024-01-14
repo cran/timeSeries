@@ -1,6 +1,5 @@
 \name{rev}     
 
-\alias{rev,timeSeries-method}
 \alias{rev.timeSeries}
                                                  
                                     
@@ -13,7 +12,7 @@
 }
 
 \usage{
-\S4method{rev}{timeSeries}(x)
+\method{rev}{timeSeries}(x)
 }
 
 \arguments{
@@ -28,11 +27,11 @@
 
 \examples{
 \dontshow{set.seed(1234)}
-## Create Dummy "timeSeries"  -
-   tS <- dummyMonthlySeries()
+## Create Dummy "timeSeries"
+tS <- dummyMonthlySeries()
    
-## Reverse Series -
-   rev(tS)
+## reverse series
+rev(tS)
 }
 
 \keyword{chron}

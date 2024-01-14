@@ -37,8 +37,11 @@ setMethod("isMonthly", "timeSeries", function(x) callGeneric(time(x)))
 setMethod("isRegular", "timeSeries", function(x) callGeneric(time(x)))
 
 
-setMethod("frequency", "timeSeries", function(x, ...) callGeneric(time(x), ...))
-
+## GNB: made the method S3
+## setMethod("frequency", "timeSeries", function(x, ...) callGeneric(time(x), ...))
+frequency.timeSeries <- function(x, ...) {
+    frequency(time(x), ...)
+}
 
 ################################################################################
 

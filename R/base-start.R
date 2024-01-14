@@ -34,7 +34,7 @@ start.timeSeries <- function(x, ...)
         NULL
 }
 
-setMethod("start" , "timeSeries", start.timeSeries)
+## setMethod("start" , "timeSeries", start.timeSeries)
 
 ## # until UseMethod dispatches S4 methods in 'base' functions
 ## start.timeSeries <- function(x, ...) .start.timeSeries(x, ...)
@@ -57,11 +57,10 @@ end.timeSeries <- function(x, ...)
         NULL
 }
 
-setMethod("end", "timeSeries", function(x, ...) end.timeSeries(x, ...))
+## setMethod("end", "timeSeries", function(x, ...) end.timeSeries(x, ...))
 
 ## # until UseMethod dispatches S4 methods in 'base' functions
 ## end.timeSeries <- function(x, ...) .end.timeSeries(x, ...)
 
 
 ################################################################################
-

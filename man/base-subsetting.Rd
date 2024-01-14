@@ -36,11 +36,11 @@
 
 
 \alias{head}
-\alias{head,timeSeries-method}
+%\alias{head,timeSeries-method}
 \alias{head.timeSeries}
 
 \alias{tail}
-\alias{tail,timeSeries-method}
+%\alias{tail,timeSeries-method}
 \alias{tail.timeSeries}
 
 \alias{outlier}
@@ -63,8 +63,8 @@
 % \method{[}{timeSeries}(x, i, j, drop)
 % \method{[}{timeSeries}(x, i, j) <- value
 \usage{
-\S4method{head}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
-\S4method{tail}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
+\method{head}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
+\method{tail}{timeSeries}(x, n = 6, recordIDs = FALSE, \dots)
 
 outlier(x, sd = 5, complement = TRUE, ...)
 }
@@ -136,28 +136,25 @@ outlier(x, sd = 5, complement = TRUE, ...)
         
 \value{
   All functions return an object of class \code{"timeSeries"}.
- 
 }
 
 \seealso{
   \code{\link{window}}
 }
 \examples{
-## Create an Artificial 'timeSeries' Object - 
-   setRmetricsOptions(myFinCenter = "GMT")
-   charvec <- timeCalendar()
-   set.seed(4711)
-   data <- matrix(exp(cumsum(rnorm(12, sd = 0.1))))
-   tS <- timeSeries(data, charvec, units = "tS")
-   tS
+## Create an Artificial 'timeSeries' Object
+setRmetricsOptions(myFinCenter = "GMT")
+charvec <- timeCalendar()
+set.seed(4711)
+data <- matrix(exp(cumsum(rnorm(12, sd = 0.1))))
+tS <- timeSeries(data, charvec, units = "tS")
+tS
    
-## Subset Series by Counts "[" - 
-   tS[1:3, ]
+## Subset Series by Counts "["
+tS[1:3, ]
        
-## Subset the Head of the Series - 
-   head(tS, 6)
+## Subset the Head of the Series
+head(tS, 6)
 }
 
-
 \keyword{chron}
-

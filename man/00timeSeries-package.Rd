@@ -61,8 +61,9 @@
     \code{\link[=apply,timeSeries-method]{rev}} \tab Reverts a \code{"timeSeries"} object \cr
     \code{\link{sample}} \tab Resamples a \code{"timeSeries"} object \cr
     \code{\link{scale}} \tab Scales a \code{"timeSeries"} object \cr
-    \code{\link[=sort,timeSeries-method]{sort}} \tab Sorts a \code{"timeSeries"} object \cr
-    \code{\link[=start,timeSeries-method]{start}} \tab Returns start date/time of a \code{"timeSeries"} \cr
+    \code{\link[=sort.timeSeries]{sort}} \tab Sorts a \code{"timeSeries"} object \cr
+    \code{\link[=start.timeSeries]{start}} \tab Returns start date/time of a \code{"timeSeries"} \cr
+    \code{\link[=end.timeSeries]{end}} \tab Returns end date/time of a \code{"timeSeries"} \cr    
     \code{\link[=apply,timeSeries-method]{end}} \tab Returns end date/time of a \code{"timeSeries"} \cr
     \code{\link[=t,timeSeries-method]{t}} \tab Returns the transpose of a \code{"timeSeries"}  object  \cr
     \code{\link[=attach,timeSeries-method]{attach}} \tab Attaches a \code{"timeSeries"} to the search path
@@ -79,8 +80,8 @@
     \code{[<-} \tab Assigns values to a subset \cr
     \code{$} \tab Subsets a \code{"timeSeries"} by column names \cr
     \code{$<-} \tab Replaces subset by column names \cr
-    \code{\link[=head,timeSeries-method]{head}} \tab Returns the head of a \code{"timeSeries"} \cr
-    \code{\link[=tail,timeSeries-method]{tail}} \tab Returns the tail of a time Series \cr
+    \code{\link[=head.timeSeries]{head}} \tab Returns the head of a \code{"timeSeries"} \cr
+    \code{\link[=tail.timeSeries]{tail}} \tab Returns the tail of a time Series \cr
     \code{\link{na.omit}} \tab Handles NAs in a \code{"timeSeries"} object \cr
     \code{\link{removeNA}} \tab removes NAs from a matrix object \cr
     \code{\link{substituteNA}} \tab substitutes NAs by zero, column mean or median \cr
@@ -101,7 +102,7 @@
     \code{sign} \tab Returns the signs of a \code{"timeSeries"} object \cr
     \code{\link{diff}} \tab Differences a \code{"timeSeries"} object \cr 
     \code{\link{scale}} \tab Centers and/or scales a \code{"timeSeries"} object \cr
-    \code{\link[=quantile,timeSeries-method]{quantile}} \tab Returns quantiles of an univariate \code{"timeSeries"}}
+    \code{\link[=quantile.timeSeries]{quantile}} \tab Returns quantiles of an univariate \code{"timeSeries"}}
 
 }
 

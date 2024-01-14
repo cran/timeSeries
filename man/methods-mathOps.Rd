@@ -28,11 +28,11 @@
 %\alias{\%*\%,timeSeries,ANY-method}
 %\alias{\%*\%,ANY,timeSeries-method}
 
-%\alias{quantile.timeSeries}
-\alias{quantile,timeSeries-method}
+\alias{quantile}
+\alias{quantile.timeSeries}
 
-%\alias{median.timeSeries}
-\alias{median,timeSeries-method}
+\alias{median}
+\alias{median.timeSeries}
 
 
 \title{Mathematical operations on 'timeSeries'}
@@ -48,8 +48,8 @@
 \S4method{Math}{timeSeries}(x)
 \S4method{Math2}{timeSeries}(x, digits)
 
-\S4method{quantile}{timeSeries}(x, \dots)
-\S4method{median}{timeSeries}(x, na.rm = FALSE, \dots)
+\method{quantile}{timeSeries}(x, \dots)
+\method{median}{timeSeries}(x, na.rm = FALSE, \dots)
 }
 
 
@@ -57,15 +57,6 @@
   \item{x}{
     an object of class \code{timeSeries}.
   }
-  %  \item{center, scale}{ 
-  %    [scale] - \cr
-  %    either a logical value or a numeric vector of length equal to
-  %    the number of columns of \code{x}.
-  %  }
-  %  \item{diff}{
-  %    an integer indicating the order of the difference. By default 1.
-  %  }
-    
   \item{digits}{
     number of digits to be used in 'round' or 'signif'.
   }
@@ -76,24 +67,11 @@
     (for the methods described on this page).
     
   }
-    
-  %  \item{lag}{   
-  %    an integer indicating which lag to use. By default 1.
-  %  }
 
   \item{na.rm}{
     a logical value: should missing values be removed?
   }
 
-  %  \item{pad}{
-  %    [diffSeries] - \cr
-  %    which value should get the padded values? By default \code{NA}.
-  %    Another choice often used would be zero.
-  %  } 
-  %  \item{trim}{
-  %    a logical value. By default \code{TRUE}, the first missing 
-  %    observation in the return series will be removed. 
-  %  }
   \item{\dots}{
     arguments to be passed.
   }
@@ -132,20 +110,31 @@
 }
 
 \examples{
-## Create an Artificial 'timeSeries' Object - 
-   setRmetricsOptions(myFinCenter = "GMT")
-   charvec = timeCalendar()
-   set.seed(4711)
-   data = matrix(exp(cumsum(rnorm(12, sd = 0.1))))
-   TS = timeSeries(data, charvec, units = "TS")
-   TS
+## create an artificial 'timeSeries' object
+setRmetricsOptions(myFinCenter = "GMT")
+charvec = timeCalendar()
+set.seed(4711)
+data = matrix(exp(cumsum(rnorm(12, sd = 0.1))))
+TS = timeSeries(data, charvec, units = "TS")
+TS
 
-## Mathematical Operations: | +/- * ^ ... - 
-   TS^2
-   TS[2:4]
-   OR = returns(TS)
-   OR
-   OR > 0
+## mathematical operations: | +/- * ^ ...
+TS^2
+TS[2:4]
+OR = returns(TS)
+OR
+OR > 0
+
+## median, quantile
+median(TS)
+quantile(TS)
+
+TS[3] <- NA # to demonstrate 'na.rm'
+median(TS)   # NA
+#quantile(TS) # error
+
+median(TS, na.rm = TRUE)   
+quantile(TS, na.rm = TRUE)
 }
 
 \keyword{chron}

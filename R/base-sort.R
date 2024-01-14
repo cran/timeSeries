@@ -35,7 +35,8 @@ sort.timeSeries <- function (x, decreasing = FALSE, ...)
   # FUNCTION:
   
   # check if really necessary to sort x
-  ## NB: is.unsorted can return NA
+    ## NB: is.unsorted can return NA
+
   if (!decreasing && !isTRUE(is.unsorted(x@positions))) return(x)
   
   if (length(x@positions)>0)
@@ -44,12 +45,11 @@ sort.timeSeries <- function (x, decreasing = FALSE, ...)
     x
 }
 
-setMethod("sort", "timeSeries", function (x, decreasing = FALSE, ...)
-    sort.timeSeries(x, decreasing = decreasing, ...))
+## setMethod("sort", "timeSeries", function (x, decreasing = FALSE, ...)
+##     sort.timeSeries(x, decreasing = decreasing, ...))
 
 ## # until UseMethod dispatches S4 methods in 'base' functions
 ## sort.timeSeries <- function(x, decreasing = FALSE, ...)
 ##   .sort.timeSeries(x, decreasing = decreasing, ...)
 
 ################################################################################
-

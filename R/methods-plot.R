@@ -24,7 +24,24 @@
 ################################################################################
 
 
+## 2024-01-11 GNB: streamlined S4/S3 combination
+##
+##   Keeping .plot.timeSeries for now since cached plot methods for timeSeries in fGarch,
+##   fBasics built with previous version of timeSeries cause test failure in fExtremes
+##   because .plot.timeSeries is not found! Took me some time to figure this out.
+##
+##   To remove .plot.timeSeries will need to rebuild at least some of the above packages with
+##   this version of timeSeries. Alternatively, new releases of those packages could require
+##   this version of timeSeries. Or maybe ask CRAN to rebuild those packages with this
+##   version of R? Indeed, this is the case. Actually, it seems not necessary to rebuild
+##   fExtremes (which is good, I don't manage it), it looks like the imported offending
+##   method comes from fGarch (which defines plot methods and exports them.
+##
+##   To summarize: keep .plot.timeSeries for now, remove it when the above packages are
+##   updated and/or rebuilt with timeSeries > 4032.108. Preferably, updated versions of those
+##   packages would require timeSeries > 4032.108.
 .plot.timeSeries <-
+plot.timeSeries <-
   function(x, y, FinCenter = NULL,
            plot.type = c("multiple", "single"),
            format = "auto", at = pretty(x),
@@ -93,26 +110,27 @@
                     format = format, at = at, widths = widths, heights = heights, ...)
   }
 
-
+## setMethod("plot", "timeSeries",
+##           function(x, y, FinCenter = NULL,
+##                    plot.type = c("multiple", "single"),
+##                    format = "auto", at = pretty(x),
+##                    widths = 1, heights = 1,
+##                    xy.labels, xy.lines, panel = lines, nc, yax.flip = FALSE,
+##                    mar.multi = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1),
+##                    oma.multi = c(6, 0, 5, 0), axes = TRUE, ...)
+##             .plot.timeSeries(x = x, y = y, FinCenter = FinCenter,
+##                              plot.type = plot.type,
+##                              format = format, at = at,
+##                              widths = widths, heights = heights,
+##                              xy.labels=xy.labels, xy.lines=xy.lines, 
+##                              panel = panel, nc = nc, yax.flip = yax.flip,
+##                              mar.multi = mar.multi,
+##                              oma.multi = oma.multi, axes = axes, ...))
 setMethod("plot", "timeSeries",
-          function(x, y, FinCenter = NULL,
-                   plot.type = c("multiple", "single"),
-                   format = "auto", at = pretty(x),
-                   widths = 1, heights = 1,
-                   xy.labels, xy.lines, panel = lines, nc, yax.flip = FALSE,
-                   mar.multi = c(0, 5.1, 0, if (yax.flip) 5.1 else 2.1),
-                   oma.multi = c(6, 0, 5, 0), axes = TRUE, ...)
-            .plot.timeSeries(x = x, y = y, FinCenter = FinCenter,
-                             plot.type = plot.type,
-                             format = format, at = at,
-                             widths = widths, heights = heights,
-                             xy.labels=xy.labels, xy.lines=xy.lines, 
-                             panel = panel, nc = nc, yax.flip = yax.flip,
-                             mar.multi = mar.multi,
-                             oma.multi = oma.multi, axes = axes, ...))
+          plot.timeSeries)
 
-# until UseMethod dispatches S4 methods in 'base' functions
-plot.timeSeries <- function(x, y, ...) .plot.timeSeries(x, y, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## plot.timeSeries <- function(x, y, ...) .plot.timeSeries(x, y, ...)
 
 
 # ------------------------------------------------------------------------------
@@ -287,12 +305,13 @@ plot.timeSeries <- function(x, y, ...) .plot.timeSeries(x, y, ...)
 # ------------------------------------------------------------------------------
 
 
-.lines.timeSeries <- function(x, FinCenter = NULL, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+lines.timeSeries <- function(x, FinCenter = NULL, ...)
 {
   # A function implemented by Diethelm Wuertz and Yohan Chalabi
   
   # Description:
-  #   NEW Lines method for an object of class "timeSeries"
+  #   NEW lines method for an object of class "timeSeries"
   
   # Arguments:
   #   x - a "timeSeries" object
@@ -321,18 +340,20 @@ plot.timeSeries <- function(x, y, ...) .plot.timeSeries(x, y, ...)
 
 
 
-setMethod("lines", "timeSeries", function(x, FinCenter = NULL, ...)
-  .lines.timeSeries(x, FinCenter, ...))
-
-# until UseMethod dispatches S4 methods in 'base' functions
-lines.timeSeries <- function(x, FinCenter = NULL, ...)
-  .lines.timeSeries(x, FinCenter = FinCenter, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+## setMethod("lines", "timeSeries", function(x, FinCenter = NULL, ...)
+##   .lines.timeSeries(x, FinCenter, ...))
+## 
+## # until UseMethod dispatches S4 methods in 'base' functions
+## lines.timeSeries <- function(x, FinCenter = NULL, ...)
+##   .lines.timeSeries(x, FinCenter = FinCenter, ...)
 
 
 # ------------------------------------------------------------------------------
 
 
-.points.timeSeries <- function(x, FinCenter = NULL, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+points.timeSeries <- function(x, FinCenter = NULL, ...)
 {
   # A function implemented by Diethelm Wuertz and Yohan Chalabi
   
@@ -362,13 +383,14 @@ lines.timeSeries <- function(x, FinCenter = NULL, ...)
   invisible(x)
 }
 
-setMethod("points", "timeSeries",
-          function(x, FinCenter = NULL, ...)
-            .points.timeSeries(x, FinCenter = FinCenter, ...))
-
-# until UseMethod dispatches S4 methods in 'base' functions
-points.timeSeries <- function(x, FinCenter = NULL, ...)
-  .points.timeSeries(x, FinCenter = FinCenter, ...)
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+## setMethod("points", "timeSeries",
+##           function(x, FinCenter = NULL, ...)
+##             .points.timeSeries(x, FinCenter = FinCenter, ...))
+## 
+## # until UseMethod dispatches S4 methods in 'base' functions
+## points.timeSeries <- function(x, FinCenter = NULL, ...)
+##   .points.timeSeries(x, FinCenter = FinCenter, ...)
 
 
 ################################################################################
@@ -422,4 +444,3 @@ pretty.timeSeries <-
 
 
 ###############################################################################
-

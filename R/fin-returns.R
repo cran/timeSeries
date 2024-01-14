@@ -145,21 +145,21 @@ returns0 <-
 # DEPRECATED:
 
 
-returnSeries <-
-  function(...)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # FUNCTION:
-    # .Deprecated("returns", "timeSeries")
-
-    returns(...)
-}
+## returnSeries <-
+##   function(...)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # FUNCTION:
+##     # .Deprecated("returns", "timeSeries")
+## 
+##     returns(...)
+## }
 
 
 # -----------------------------------------------------------------------------
 
-
+## TODO: remove when fTrading is updated, see note in file NAMESPACE
 getReturns <-  
   function(...)
 {
@@ -177,4 +177,3 @@ getReturns <-
 
 
 ###############################################################################
-

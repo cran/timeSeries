@@ -38,7 +38,9 @@
 ################################################################################
 
 ## 2023-05-28 GNB: added argument 'FUN'
-.na.omit.timeSeries <- 
+## 2024-06-01 GNB: renamed .na.omit.timeSeries to na.omit.timeSeries;
+##                 dropped the S4 method
+na.omit.timeSeries <- 
     function(object, method = c("r", "s", "z", "ir", "iz", "ie"),
         interp = c("before", "linear", "after"), FUN, ...)
 {
@@ -154,14 +156,13 @@
 }
 
 
-setMethod("na.omit", "timeSeries", function(object, 
-    method = c("r", "s", "z", "ir", "iz", "ie"),
-    interp = c("before", "linear", "after"), FUN, ...)
-.na.omit.timeSeries(object, method, interp, FUN, ...))
-
+## setMethod("na.omit", "timeSeries", function(object, 
+##     method = c("r", "s", "z", "ir", "iz", "ie"),
+##     interp = c("before", "linear", "after"), FUN, ...)
+## .na.omit.timeSeries(object, method, interp, FUN, ...))
           
-# until UseMethod dispatches S4 methods in 'base' functions
-na.omit.timeSeries <- function(object, ...) .na.omit.timeSeries(object, ...)
+## # until UseMethod dispatches S4 methods in 'base' functions
+## na.omit.timeSeries <- function(object, ...) .na.omit.timeSeries(object, ...)
 
 
 # ------------------------------------------------------------------------------

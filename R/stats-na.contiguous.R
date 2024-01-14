@@ -18,8 +18,8 @@
 #  na.contiguous,timeSeries  Finds the longest consecutive of non-missing values
 ################################################################################
 
-
-setMethod("na.contiguous", "timeSeries", 
+## 2024-01-06 GNB: converted the S4 method to an S3 method and removed the S4 one. 
+na.contiguous.timeSeries <- 
     function(object, ...)
 {
     # A function imlemented by Diethelm Wuertz and Yohan Chalabi
@@ -65,7 +65,7 @@ setMethod("na.contiguous", "timeSeries",
     
     # Return Value:
     object
-})
+}
 
 
 ################################################################################

@@ -53,19 +53,7 @@ time.timeSeries <-
         seq.int(NROW(x))
 }
 
-
-setMethod("time", "timeSeries",
-    function(x, ...) time.timeSeries(x, ...))
-
-          
-## ## GNB: swapped the definitions of .time.timeSeries and time.timeSeries
-## ##      and deprecated .time.timeSeries
-## .time.timeSeries <- function(x, ...) {
-##     # Deprecated:
-##     .Deprecated(new = "time", package = "timeSeries")
-##     
-##     time.timeSeries(x, ...)
-## }
+## setMethod("time", "timeSeries", time.timeSeries)
 
 
 # ------------------------------------------------------------------------------
@@ -105,17 +93,6 @@ function(x, value)
     # Return Value:
     x
 }
-
-
-# ------------------------------------------------------------------------------
-
-
-# setMethod("time<-", "timeSeries", function(x, value)
-#       {
-#           rownames(x) <- value
-#           # Return
-#           x
-#       })
 
 
 ###############################################################################

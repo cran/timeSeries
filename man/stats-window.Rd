@@ -14,7 +14,7 @@
 }
 
 \usage{
-\S4method{window}{timeSeries}(x, start, end, \dots)
+\method{window}{timeSeries}(x, start, end, \dots)
 }
 
 \arguments{
@@ -30,7 +30,6 @@
   }
 }
 
-
 \details{
 
   \code{window} extracts the subset of the \code{"timeSeries"} object
@@ -39,17 +38,17 @@
 }
 
 \seealso{
-  \code{\link[=head,timeSeries-method]{head}},
+  \code{\link[=head.timeSeries]{head}},
   \code{\link{outlier}}
 }
 
 \examples{
-## Load LPP Benchmark Returns -
-   x <- LPP2005REC[, 7:9]
-   range(time(x))
+## load LPP benchmark returns
+x <- LPP2005REC[, 7:9]
+range(time(x))
   
-## Extract Data for January 2006 - 
-   window(x, "2006-01-01", "2006-01-31")
+## extract data for January 2006
+window(x, "2006-01-01", "2006-01-31")
 }
 
 \keyword{chron}

@@ -18,8 +18,8 @@
 #  rev.timeSeries            Reverts a 'timeSeries' object in time
 ################################################################################
 
-
+## GNB: removed the S4 method
 rev.timeSeries <-  function(x) x[NROW(x):1,]
 
-setMethod("rev", "timeSeries", rev.timeSeries)
+## setMethod("rev", "timeSeries", rev.timeSeries)
 

@@ -308,8 +308,8 @@ setAs("timeSeries", "data.frame", function(from) as.data.frame(from))
 # ------------------------------------------------------------------------------
 
 
-.as.ts.timeSeries <- 
-    function(x, ...)
+## 2024-01-11 GNB: streamlined and removed the S4 method
+as.ts.timeSeries <- function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
 
@@ -365,15 +365,14 @@ setAs("timeSeries", "data.frame", function(from) as.data.frame(from))
     ans
 }
 
-
-setMethod("as.ts", "timeSeries", function(x, ...) .as.ts.timeSeries(x, ...))
-
-
-# until UseMethod dispatches S4 methods in 'base' functions
-as.ts.timeSeries <- function(x, ...) .as.ts.timeSeries(x, ...)
-
-
 setAs("timeSeries", "ts", function(from) as.ts(from))
+
+## GNB: 2024-01-11 GNB: streamlined and removed the S4 method
+## setMethod("as.ts", "timeSeries", function(x, ...) .as.ts.timeSeries(x, ...))
+##
+## # until UseMethod dispatches S4 methods in 'base' functions
+## as.ts.timeSeries <- function(x, ...) .as.ts.timeSeries(x, ...)
+
 
 
 # ------------------------------------------------------------------------------

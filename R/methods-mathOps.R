@@ -179,16 +179,28 @@ setMethod("cumsum", "timeSeries",  function(x) .cum_fun(x, cumsum))
 ## })
 
 # ------------------------------------------------------------------------------
-setMethod("quantile", "timeSeries", function(x, ...) {
+## GNB: make an S3 method, drop the S4 one
+##
+## setMethod("quantile", "timeSeries", function(x, ...) {
+##   x <- getDataPart(x)
+##   callGeneric()
+## })
+quantile.timeSeries <- function(x, ...) {
   x <- getDataPart(x)
-  callGeneric()
-})
+  NextMethod("quantile")
+}
 
 # ------------------------------------------------------------------------------
-setMethod("median", "timeSeries", function(x, na.rm, ...) {
+## GNB: make an S3 method, drop the S4 one
+##
+## setMethod("median", "timeSeries", function(x, na.rm, ...) {
+##   x <- getDataPart(x)
+##   callGeneric(x, na.rm=na.rm)
+## })
+median.timeSeries <- function(x, na.rm = FALSE, ...) {
   x <- getDataPart(x)
-  callGeneric(x, na.rm=na.rm)
-})
+  NextMethod("median")
+}
 
 
 ################################################################################
