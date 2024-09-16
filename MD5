@@ -1,7 +1,7 @@
 655dcc268ec612659050ace08950239c *ChangeLog
-0ae06c220aa0ab34ae4e32815e446a6a *DESCRIPTION
-d7bc50ff82487e41a270da9c12096ccc *NAMESPACE
-c784aaf52ae91c2b68b286528e831185 *NEWS.md
+3355e042c4987439fda3d25875dce265 *DESCRIPTION
+bbfcb1145bdd27ef7db4ab3b5b6fb99b *NAMESPACE
+48bbbb51e703497ee9dcaae6cc612937 *NEWS.md
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 d3edf10575203354ea8dd35002dfc85d *R/AllGeneric.R
 265850ce81bf120965f0fbff81a08847 *R/aaa-Deprecated.R
@@ -35,7 +35,7 @@ f2dc2572b00b06518008493859833ed3 *R/fin-runlengths.R
 2aefc803b5781c629297e053a4e8a791 *R/fin-spreads.R
 5dc45f885c86a7205b8d9ebaa8cf7038 *R/fin-turnpoints.R
 71580b37ec7a5f795a8fc6aeaa55d4f4 *R/fin-wealth.R
-d323ff3c3c55941073c83c995e675512 *R/methods-as.R
+1931fd0fdd6e64db95814455c6a002ff *R/methods-as.R
 58f5a50dfbf8669c239615e1ccdbf58f *R/methods-comment.R
 62c43cc67894dbf23483cbfef6396564 *R/methods-is.R
 8524c024939ea1297173fc1cbfbb5a1a *R/methods-mathOps.R
@@ -75,7 +75,7 @@ c4d5d58ff1dfb91f1c1db4e742d87c0c *R/utils-old2new.R
 0f096d915dbadb5091ff294062493040 *R/utils-structure.R
 e83fb0c03a5b5909b6be7103e364ec85 *R/zzz.R
 219eb2bb1a7f10e4b401d7a8cb318bfa *README.md
-54f12188944daf719a2023b3e8c6b83e *build/vignette.rds
+ad5954df07ed3ffcb8e3418c5c6d8839 *build/vignette.rds
 08783f26722d600f1d895921a23adb91 *data/LPP2005REC.rda
 99535a09b0b8189278aff6d651041d6f *data/MSFT.rda
 fef224cc858248dc279e326ed178f294 *data/USDCHF.rda
@@ -84,10 +84,10 @@ fef224cc858248dc279e326ed178f294 *data/USDCHF.rda
 df11bf613071e8b06eaeeccab8e9faac *inst/README
 68b329da9893e34099c7d8ad5cb9c940 *inst/THANKS
 6a055dde3c367d6039e57eca4b4c9658 *inst/_pkgdown.yml
-26f1e7c7b1bfa86789532fed789ad211 *inst/doc/timeSeriesPlot.R
+0c711050dac267c8360c6223150e6f65 *inst/doc/timeSeriesPlot.R
 085e8932df19f10701373f78fa9b5d1d *inst/doc/timeSeriesPlot.Rnw
-6d9af8bf2a2976ecbc3e7d0f020da874 *inst/doc/timeSeriesPlot.pdf
-0606ffb4675ae15060bd825afe8a7d16 *inst/doc/timeSeriesRefCard.pdf
+ecb14e5645649eaf0a7c6e0a347d3fdd *inst/doc/timeSeriesPlot.pdf
+e92864b05860be5900b2298dc4060141 *inst/doc/timeSeriesRefCard.pdf
 63a08580cf247052d3e8c939e75e2928 *inst/extdata/msft.csv
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 7322559e6dae10dc40a67c7434c2e30d *inst/extensionsTests/alignWrappers.R
@@ -95,7 +95,7 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 30e3c046e97879e7293ce8cf5397b165 *inst/extensionsTests/chicPlots.R
 df134f2efe48f0a98c3728ffa6227404 *inst/extensionsTests/endpointsWrappers.R
 6ff348d414cad9dba24940f24d066584 *inst/extensionsTests/xtsWrappers.R
-208fe0557b8016098ffc7813db644c1d *inst/pkgdown.yml
+0501268cc50c5a033c5cfcd8bc2f8b85 *inst/pkgdown.yml
 c6df0a8aafc7cfa9f914919f7f043ff3 *inst/unitTests/Makefile
 89dc29af114e6a2a3c80a502b4f4c95b *inst/unitTests/runTests.R
 63d0f736e1454c6745cb7aad063ef759 *inst/unitTests/runit.NA.R

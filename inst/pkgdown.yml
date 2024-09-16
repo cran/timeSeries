@@ -2,7 +2,7 @@ pandoc: 2.9.2.1
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles: {}
-last_built: 2024-01-07T10:47Z
+last_built: 2024-01-14T19:35Z
 urls:
   reference: https://geobosh.github.io/timeSeriesDoc/reference
   article: https://geobosh.github.io/timeSeriesDoc/articles

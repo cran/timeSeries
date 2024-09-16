@@ -164,7 +164,7 @@ setAs("data.frame", "timeSeries", function(from) as.timeSeries(from))
 # ------------------------------------------------------------------------------
 
 
-as.timeSeries.character <- 
+as.timeSeries.character <-
     function(x, ...)
 {   # A function implemented by Diethelm Wuertz and Yohan Chalabi
 
@@ -215,7 +215,7 @@ as.timeSeries.zoo <-
 # Since 2.9.0 must define proper S4 methods
 
 
-.as.matrix.timeSeries <- 
+.as.matrix.timeSeries <-
     function(x, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -247,7 +247,7 @@ as.timeSeries.zoo <-
 setMethod("as.matrix", "timeSeries",
           function(x, ...) .as.matrix.timeSeries(x, ...))
 
-          
+
 # until UseMethod dispatches S4 methods in 'base' functions
 as.matrix.timeSeries <- function(x, ...) .as.matrix.timeSeries(x, ...)
 
@@ -258,7 +258,7 @@ setAs("timeSeries", "matrix", function(from) as.matrix(from))
 # ------------------------------------------------------------------------------
 
 
-.as.data.frame.timeSeries <- 
+.as.data.frame.timeSeries <-
     function(x, row.names = NULL, optional = FALSE, ...)
 {
     # A function implemented by Diethelm Wuertz
@@ -297,7 +297,7 @@ setMethod("as.data.frame", "timeSeries",
     function(x, row.names = NULL, optional = FALSE, ...)
           .as.data.frame.timeSeries(x, row.names = row.names, optional = optional, ...))
 
-          
+
 # until UseMethod dispatches S4 methods in 'base' functions
 as.data.frame.timeSeries <- function(x, ...) .as.data.frame.timeSeries(x, ...)
 
@@ -338,8 +338,10 @@ as.ts.timeSeries <- function(x, ...)
 
     # check if monthly or quarterly data
     td <- time(x)
-    m <- c(timeDate::months(td)) #-> c() to remove attributes
-    # (m[1] -1) -> shift vector to match first entry in m
+    ## m <- c(timeDate::months(td)) #-> c() to remove attributes
+    m <- c(months(td)) #-> c() to remove attributes
+
+    ## (m[1] -1) -> shift vector to match first entry in m
     monthly <- seq(from = m[1]-1, length.out=length(m)) %% 12 + 1
     quarterly <- seq(from = m[1]-1, by = 3, length=length(m)) %% 12 + 1
 
@@ -378,7 +380,7 @@ setAs("timeSeries", "ts", function(from) as.ts(from))
 # ------------------------------------------------------------------------------
 
 
-# YC: 
+# YC:
 # Unneeded since timeSeries inherits from the structure class
 
 
@@ -388,11 +390,11 @@ setAs("timeSeries", "ts", function(from) as.ts(from))
 # ------------------------------------------------------------------------------
 
 
-# YC: 
+# YC:
 # Important for functions like lapply and sapply to work properly
 
 
-.as.list.timeSeries <- 
+.as.list.timeSeries <-
     function(x, ...)
 {
     data <- getDataPart(x)
@@ -407,7 +409,7 @@ setAs("timeSeries", "ts", function(from) as.ts(from))
 setMethod("as.list", "timeSeries",
           function(x, ...) .as.list.timeSeries(x, ...))
 
-          
+
 # until UseMethod dispatches S4 methods in 'base' functions
 as.list.timeSeries <- function(x, ...) .as.list.timeSeries(x, ...)
 

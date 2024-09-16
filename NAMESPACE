@@ -7,8 +7,10 @@ import("methods") # , show
 
 importFrom("grDevices", col2rgb, rgb , xy.coords)
 
-if(packageVersion("timeDate") <= '4032.109')
+if(packageVersion("timeDate") <= '4032.109') {
     importFrom("timeDate", frequency)
+    importFrom("timeDate", months)
+}
 if(packageVersion("timeDate") > '4032.109')
     importFrom("stats", frequency)
 
@@ -24,10 +26,10 @@ importFrom("stats",
            )
 
 importFrom("graphics", # Note: lines, plot, points imported from timeDate
-           axTicks, axis, axis.POSIXct, 
-           box, grid, layout, mtext, par, 
-           plot.default, plot.new, plot.window, 
-           segments, text, title                  
+           axTicks, axis, axis.POSIXct,
+           box, grid, layout, mtext, par,
+           plot.default, plot.new, plot.window,
+           segments, text, title
            )
 
 importFrom("utils",
@@ -45,11 +47,11 @@ importFrom("timeDate",
            isDaily, isMonthly, isQuarterly, isRegular,
            align,
            ##---- end of generics for which we define/export methods
-           getRmetricsOptions, setRmetricsOptions, 
-           finCenter, "finCenter<-", 
+           getRmetricsOptions, setRmetricsOptions,
+           finCenter, "finCenter<-",
            as.timeDate, atoms, dayOfWeek, isWeekday,
            timeCalendar, timeDate, timeSequence,
-           timeFirstDayInMonth, timeFirstDayInQuarter, 
+           timeFirstDayInMonth, timeFirstDayInQuarter,
            timeLastDayInMonth, timeLastDayInQuarter,
            kurtosis, skewness
            )
@@ -89,14 +91,14 @@ S3method("na.omit",  "timeSeries")
 S3method("plot",     "timeSeries")
 S3method("points",   "timeSeries")
 S3method("pretty",   "timeSeries")
-S3method("print",     timeSeries) 
-S3method("print",     timeSeries_summary) 
+S3method("print",     timeSeries)
+S3method("print",     timeSeries_summary)
 S3method("rbind",    "timeSeries")
 S3method("rev",      "timeSeries")
 S3method("scale",    "timeSeries")
 S3method("sort",     "timeSeries")
 S3method("start",    "timeSeries")
-S3method("summary",  "timeSeries") 
+S3method("summary",  "timeSeries")
 S3method("str",      "timeSeries")
 S3method("tail",     "timeSeries")
 S3method("window",   "timeSeries")
@@ -132,7 +134,7 @@ exportClasses("index_timeSeries",
 
 exportMethods(
     "$", "$<-", "+", "-", "Ops", "[",
-    
+
     ## from timeDate
     "align",
     "finCenter", "finCenter<-",
@@ -182,7 +184,7 @@ exportMethods(
 
 export(
     ".colorwheelPalette", # used in the vignette
-    
+
     "alignDailySeries",
     "applySeries",
     "as.timeSeries",
@@ -253,10 +255,10 @@ export(
     ## "is.na", # primitive
 
     ## "frequency",
-    "aggregate", "as.ts",  # stats, reexport 
+    "aggregate", "as.ts",  # stats, reexport
     ## graphics
     "lines", "points", # graphics, reexport
-    
+
     "na.omit",
     "lag",
     "window"

@@ -1,3 +1,10 @@
+## timeSeries 4041.110
+
+- this is a technical update, there are no user visible changes (there was an
+  explicit call to `timeDate::months` in the code, but the upcoming v4041.110 of
+  timeDate doesn't export `months` anymore).
+
+
 ## timeSeries 4032.109
 
 - deprecated function `returnSeries` is now defunct, use `returns` instead.
