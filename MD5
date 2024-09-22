@@ -1,7 +1,7 @@
 655dcc268ec612659050ace08950239c *ChangeLog
-3355e042c4987439fda3d25875dce265 *DESCRIPTION
-bbfcb1145bdd27ef7db4ab3b5b6fb99b *NAMESPACE
-48bbbb51e703497ee9dcaae6cc612937 *NEWS.md
+4e7f47b4c79d7bb1e5b03e584d07f952 *DESCRIPTION
+b675ab8c374afac17200a221c1ca7b0a *NAMESPACE
+de668bb2f60edb91d9d3f0ea543b5189 *NEWS.md
 7417a25041ce9a1531aa2dd338eba8fe *R/AllClass.R
 d3edf10575203354ea8dd35002dfc85d *R/AllGeneric.R
 265850ce81bf120965f0fbff81a08847 *R/aaa-Deprecated.R
@@ -86,8 +86,8 @@ df11bf613071e8b06eaeeccab8e9faac *inst/README
 6a055dde3c367d6039e57eca4b4c9658 *inst/_pkgdown.yml
 0c711050dac267c8360c6223150e6f65 *inst/doc/timeSeriesPlot.R
 085e8932df19f10701373f78fa9b5d1d *inst/doc/timeSeriesPlot.Rnw
-ecb14e5645649eaf0a7c6e0a347d3fdd *inst/doc/timeSeriesPlot.pdf
-e92864b05860be5900b2298dc4060141 *inst/doc/timeSeriesRefCard.pdf
+af826c7587348cfd403a713a1715f2f2 *inst/doc/timeSeriesPlot.pdf
+6e6eedfa17815b7f3c70d8f5cae4a02a *inst/doc/timeSeriesRefCard.pdf
 63a08580cf247052d3e8c939e75e2928 *inst/extdata/msft.csv
 00240e3af8ce216961a315a1c0dbeb79 *inst/extensionsTests/aggregateWrappers.R
 7322559e6dae10dc40a67c7434c2e30d *inst/extensionsTests/alignWrappers.R

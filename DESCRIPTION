@@ -1,6 +1,6 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Version: 4041.110
+Version: 4041.111
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
 	   , person("Yohan", "Chalabi", role = "aut")
@@ -10,7 +10,7 @@ Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 Description: 'S4' classes and various tools for financial time series:
   Basic functions such as scaling and sorting, subsetting,
   mathematical operations and statistical functions.
-Depends: R (>= 2.10), timeDate (>= 2150.95), methods
+Depends: R (>= 2.10), timeDate (>= 4041.110), methods
 Imports: graphics, grDevices, stats, utils
 Suggests: RUnit, robustbase, xts, zoo, PerformanceAnalytics, fTrading
 LazyData: yes
@@ -20,7 +20,7 @@ URL: https://geobosh.github.io/timeSeriesDoc/ (doc),
         (devel), https://www.rmetrics.org
 BugReports: https://r-forge.r-project.org/projects/rmetrics
 NeedsCompilation: no
-Packaged: 2024-09-16 15:51:50 UTC; georgi
+Packaged: 2024-09-21 13:05:35 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Tobias Setz [aut],
   Yohan Chalabi [aut],
@@ -28,4 +28,4 @@ Author: Diethelm Wuertz [aut] (original code),
   Georgi N. Boshnakov [cre, aut]
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2024-09-16 18:40:02 UTC
+Date/Publication: 2024-09-22 10:10:03 UTC

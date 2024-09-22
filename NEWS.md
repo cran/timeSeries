@@ -1,3 +1,12 @@
+## timeSeries 4041.111
+
+- now 'timeSeries' depends on 'timeDate' version 4041.110 or later.  If you have
+  an older version of 'timeSeries' and it stops working after updating
+  'timeDate', install the latest version of 'timeSeries'.
+  
+  The incompatibility was necessitated by the need to fix a bug.
+
+
 ## timeSeries 4041.110
 
 - this is a technical update, there are no user visible changes (there was an

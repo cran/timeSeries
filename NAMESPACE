@@ -7,20 +7,12 @@ import("methods") # , show
 
 importFrom("grDevices", col2rgb, rgb , xy.coords)
 
-if(packageVersion("timeDate") <= '4032.109') {
-    importFrom("timeDate", frequency)
-    importFrom("timeDate", months)
-}
-if(packageVersion("timeDate") > '4032.109')
-    importFrom("stats", frequency)
-
-
 importFrom("stats",
            approx, approxfun, spline, splinefun,
            var, cor, dist, hclust, qt, rnorm, runif, runmed,
            ts, is.mts, deltat,
            ## for these, we provide methods:
-           start, end, time, window, lag, filter,
+           start, end, time, window, lag, filter, frequency,
            aggregate, as.ts,
            median, quantile, na.contiguous, na.omit
            )
