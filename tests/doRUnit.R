@@ -1,7 +1,7 @@
 #### doRUnit.R --- Run RUnit tests
 ####------------------------------------------------------------------------
 
-### Origianlly follows Gregor Gojanc's example in CRAN package  'gdata'
+### Originally follows Gregor Gojanc's example in CRAN package  'gdata'
 ### and the corresponding section in the R Wiki:
 ###  http://wiki.r-project.org/rwiki/doku.php?id=developers:runit
 

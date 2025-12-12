@@ -123,30 +123,29 @@ turnsStats <-
 
 ################################################################################
 
+## removed on 2025-12-12 by GNB
+##
+## .turnpoints2 <-
+## function(...)
+## {
+##     # Deprecated:
+##     .Deprecated(new = "turns", package = "timeSeries")
+##     
+##     # Return Value:
+##     turns(...)
+## }
 
-.turnpoints2 <-
-function(...)
-{
-    # Deprecated:
-    .Deprecated(new = "turns", package = "timeSeries")
-    
-    # Return Value:
-    turns(...)
-}
-
-
-# -----------------------------------------------------------------------------
-
-
-.turnpointsStats <-
-function(...)
-{
-    # Deprecated:
-    .Deprecated(new = "turnsStats", package = "timeSeries")
-    
-    # Return Value:
-    turnsStats(...)
-}
+## removed on 2025-12-12 by GNB
+## 
+## .turnpointsStats <-
+## function(...)
+## {
+##     # Deprecated:
+##     .Deprecated(new = "turnsStats", package = "timeSeries")
+##     
+##     # Return Value:
+##     turnsStats(...)
+## }
 
 
 ################################################################################

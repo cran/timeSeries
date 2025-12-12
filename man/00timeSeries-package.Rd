@@ -83,9 +83,9 @@
     \code{\link[=head.timeSeries]{head}} \tab Returns the head of a \code{"timeSeries"} \cr
     \code{\link[=tail.timeSeries]{tail}} \tab Returns the tail of a time Series \cr
     \code{\link{na.omit}} \tab Handles NAs in a \code{"timeSeries"} object \cr
-    \code{\link{removeNA}} \tab removes NAs from a matrix object \cr
-    \code{\link{substituteNA}} \tab substitutes NAs by zero, column mean or median \cr
-    \code{\link{interpNA}} \tab interpolates NAs using R's "approx" function }
+    \code{removeNA} \tab removes NAs from a matrix object \cr
+    \code{substituteNA} \tab substitutes NAs by zero, column mean or median \cr
+    \code{interpNA} \tab interpolates NAs using R's "approx" function }
     
 }
 

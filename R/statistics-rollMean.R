@@ -343,67 +343,68 @@ rollMedian <-
 
 ################################################################################
 
+## removed on 2025-12-12 by GNB
+##
+## .rollmean.timeSeries <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("rollMean")
+##     
+##     # Return Value:
+##     rollMean(...)
+## }
+## 
 
-.rollmean.timeSeries <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("rollMean")
-    
-    # Return Value:
-    rollMean(...)
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.rollmin.timeSeries <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("rollMin")
-    
-    # Return Value:
-    rollMin(...)
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.rollmax.timeSeries <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("rollMax")
-    
-    # Return Value:
-    rollMax(...)
-}
+## removed on 2025-12-12 by GNB
+## 
+## .rollmin.timeSeries <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("rollMin")
+##     
+##     # Return Value:
+##     rollMin(...)
+## }
 
 
 # ------------------------------------------------------------------------------
 
+## removed on 2025-12-12 by GNB
+##
+## .rollmax.timeSeries <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("rollMax")
+##     
+##     # Return Value:
+##     rollMax(...)
+## }
 
-.rollmedian.timeSeries <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("rollMedian")
-    
-    # Return Value:
-    rollMedian(...)
-}
+
+# ------------------------------------------------------------------------------
+
+## removed on 2025-12-12 by GNB
+##
+## .rollmedian.timeSeries <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("rollMedian")
+##     
+##     # Return Value:
+##     rollMedian(...)
+## }
 
 
 ################################################################################
-

@@ -188,13 +188,13 @@ if(FALSE){
 ## Remove Rows with NAs
 removeNA(X)
    
-## subsitute NA's by zeros or column means
-substituteNA(X, type = "zeros")
-substituteNA(X, type = "mean")
-   
-## interpolate NA's linearily
-interpNA(X, method = "linear")
-# Note the corner missing value cannot be interpolated!
+## ## subsitute NA's by zeros or column means
+## substituteNA(X, type = "zeros")
+## substituteNA(X, type = "mean")
+##    
+## ## interpolate NA's linearily
+## interpNA(X, method = "linear")
+## # Note the corner missing value cannot be interpolated!
    
 ## take previous values in a column
 interpNA(X, method = "before")

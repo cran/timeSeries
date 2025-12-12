@@ -1,3 +1,18 @@
+## timeSeries 4052.112
+
+- removed deprecated functions `interpNA` and `substituteNA`.  Use `na.omit`
+  instead, see `?na.omit.timeSeries` for details. (The deprecated `removeNA` is
+  kept for now, since it is used in a package.)
+
+- removed a number of unexported deprecated functions starting with a '.', which
+  had exported variants without the starting '.'.
+
+- removed the unnecessary tabular environment in 'timeSeries-deprecated.Rd'.
+
+- corrected minor typo's (e.g., changed a `getRmetricsOption` to
+  `getRmetricsOptions` in an error message).
+
+
 ## timeSeries 4041.111
 
 - now 'timeSeries' depends on 'timeDate' version 4041.110 or later.  If you have
@@ -9,9 +24,12 @@
 
 ## timeSeries 4041.110
 
-- this is a technical update, there are no user visible changes (there was an
-  explicit call to `timeDate::months` in the code, but the upcoming v4041.110 of
-  timeDate doesn't export `months` anymore).
+- this is a technical update, there are no user visible changes. 
+
+- There was an explicit call to `timeDate::months` in the code, but the upcoming
+  v4041.110 of timeDate doesn't export `months` anymore (in package code call
+  `stats::months` or import `months` from `stats` and use `months` without the
+  package prefix).
 
 
 ## timeSeries 4032.109
@@ -138,7 +156,8 @@
   be removed in the near future. They are synonyms for the function `returns`
   and their use was discouraged for many years. Just use `returns`.
 
-- function `cut` is now formally deprecated. Use `window` instead.
+- 'timeSeries' method for function `cut()` is now formally deprecated. Use
+  `window` instead.
 
 - deprecated function `seriesData` is now defunct. Use `as.matrix()` instead.
 

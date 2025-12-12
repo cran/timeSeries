@@ -197,51 +197,48 @@ smoothSpline <-
 
 ################################################################################
 
+## removed on 2025-12-12 by GNB
+##
+## .supsmuSmoother <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("smoothSupsmu")
+##     
+##     # Return Value:
+##     smoothSupsmu(...)
+## }
 
-.supsmuSmoother <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("smoothSupsmu")
-    
-    # Return Value:
-    smoothSupsmu(...)
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.lowessSmoother <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("smoothLowess")
-    
-    # Return Value:
-    smoothLowess(...)
-}
-
-
-# ------------------------------------------------------------------------------
+## removed on 2025-12-12 by GNB
+##
+## .lowessSmoother <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("smoothLowess")
+##     
+##     # Return Value:
+##     smoothLowess(...)
+## }
 
 
-.splineSmoother <-
-    function(...)
-{
-    # FUNCTION:
-    
-    # Deprecated:
-    .Deprecated("smoothSpline")
-    
-    # Return Value:
-    smoothSpline(...)
-}
+## removed on 2025-12-12 by GNB
+##
+## .splineSmoother <-
+##     function(...)
+## {
+##     # FUNCTION:
+##     
+##     # Deprecated:
+##     .Deprecated("smoothSpline")
+##     
+##     # Return Value:
+##     smoothSpline(...)
+## }
 
 
 ################################################################################
-

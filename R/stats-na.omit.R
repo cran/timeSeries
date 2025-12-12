@@ -273,104 +273,106 @@ removeNA <-
 
 # ------------------------------------------------------------------------------
 
-
-substituteNA <- 
-    function(x, type = c("zeros", "mean", "median"), ...)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Imputes missing data by zeros, the median or the
-    #   mean values of all matrix elements
-
-    # Arguments:
-    #   x - an object which can be transformed to a matrix
-    #   type - method specifies the substitution method to be
-    #       used. Choices are "zeros", "mean", or "constant"
-
-    # FUNCTION:
-    .Deprecated("na.omit", msg = c("'substituteNA' is deprecated.\n",
-                   "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
-
-    if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
-        x <- as(x, "matrix")
-
-    # Type:
-    type <- match.arg(type)
-    ans <- switch(type,
-        "zeros" = apply(x, 2, function(z) {
-            z[is.na(z)] <- 0
-            z}),
-        "median" = apply(x, 2, function(z) {
-            z[is.na(z)] = median(z, na.rm = TRUE)
-            z}),
-        "mean" = apply(x, 2, function(z) {
-            z[is.na(z)] = mean(z, na.rm = TRUE)
-            z}))
-
-    # Return Value:
-    ans
-}
+## removed on 2025-12-12
+##
+## substituteNA <- 
+##     function(x, type = c("zeros", "mean", "median"), ...)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # Description:
+##     #   Imputes missing data by zeros, the median or the
+##     #   mean values of all matrix elements
+## 
+##     # Arguments:
+##     #   x - an object which can be transformed to a matrix
+##     #   type - method specifies the substitution method to be
+##     #       used. Choices are "zeros", "mean", or "constant"
+## 
+##     # FUNCTION:
+##     .Deprecated("na.omit", msg = c("'substituteNA' is deprecated.\n",
+##                    "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
+## 
+##     if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
+##         x <- as(x, "matrix")
+## 
+##     # Type:
+##     type <- match.arg(type)
+##     ans <- switch(type,
+##         "zeros" = apply(x, 2, function(z) {
+##             z[is.na(z)] <- 0
+##             z}),
+##         "median" = apply(x, 2, function(z) {
+##             z[is.na(z)] = median(z, na.rm = TRUE)
+##             z}),
+##         "mean" = apply(x, 2, function(z) {
+##             z[is.na(z)] = mean(z, na.rm = TRUE)
+##             z}))
+## 
+##     # Return Value:
+##     ans
+## }
 
 
 # ------------------------------------------------------------------------------
 
-
-interpNA <- 
-    function(x, method = c("linear", "before", "after"), ...)
-{
-    # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Interpolates missing values in a matrix object
-
-    # Arguments:
-    #   x - a numeric vector or time series object of class 'ts'.
-    #   method - the method how to interpolate the vector, one of
-    #       the applied vector strings: "linear", "before" or
-    #       after.
-
-    # Details:
-    #   To interpolate the function 'approx' is used.
-
-    # Value:
-    #   Returns a vector or time series object where the missing
-    #   values are interpolated.
-
-    # FUNCTION:
-    .Deprecated("na.omit", msg = c("'interpNA' is deprecated.\n",
-                   "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
-
-    if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
-        x <- as(x, "matrix")
-
-    # Internal Function:
-    interpVectorNA <- function(x, method, f) {
-        n <- length(x)
-        idx <- (1:n)[!is.na(x)]
-        x <- approx(idx, x[idx], 1:n, method = method, f = f)$y
-        x}
-
-    # Select Method:
-    method = method[1];
-    f = 0
-    if (method == "before") {
-        method = "constant"
-        f = 0
-    }
-    if (method == "after") {
-        method = "constant"
-        f = 1
-    }
-
-    # For each Column:
-    for (i in 1:ncol(x)) {
-        x[, i] = interpVectorNA(x[, i], method, f)
-    }
-
-    # Return Value:
-    x
-}
+## removed on 2025-12-12
+##
+## interpNA <- 
+##     function(x, method = c("linear", "before", "after"), ...)
+## {
+##     # A function implemented by Diethelm Wuertz
+## 
+##     # Description:
+##     #   Interpolates missing values in a matrix object
+## 
+##     # Arguments:
+##     #   x - a numeric vector or time series object of class 'ts'.
+##     #   method - the method how to interpolate the vector, one of
+##     #       the applied vector strings: "linear", "before" or
+##     #       after.
+## 
+##     # Details:
+##     #   To interpolate the function 'approx' is used.
+## 
+##     # Value:
+##     #   Returns a vector or time series object where the missing
+##     #   values are interpolated.
+## 
+##     # FUNCTION:
+##     .Deprecated("na.omit", msg = c("'interpNA' is deprecated.\n",
+##                    "Use 'na.omit' instead.", " See help('na.omit.timeSeries').\n")) # GNB
+## 
+##     if (!inherits(x, "matrix") && !inherits(x, "timeSeries"))
+##         x <- as(x, "matrix")
+## 
+##     # Internal Function:
+##     interpVectorNA <- function(x, method, f) {
+##         n <- length(x)
+##         idx <- (1:n)[!is.na(x)]
+##         x <- approx(idx, x[idx], 1:n, method = method, f = f)$y
+##         x}
+## 
+##     # Select Method:
+##     method = method[1];
+##     f = 0
+##     if (method == "before") {
+##         method = "constant"
+##         f = 0
+##     }
+##     if (method == "after") {
+##         method = "constant"
+##         f = 1
+##     }
+## 
+##     # For each Column:
+##     for (i in 1:ncol(x)) {
+##         x[, i] = interpVectorNA(x[, i], method, f)
+##     }
+## 
+##     # Return Value:
+##     x
+## }
 
 
 ################################################################################

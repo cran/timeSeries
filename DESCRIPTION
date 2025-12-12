@@ -1,12 +1,14 @@
 Package: timeSeries
 Title: Financial Time Series Objects (Rmetrics)
-Version: 4041.111
+Version: 4052.112
 Authors@R: c(person("Diethelm", "Wuertz", role="aut", comment = "original code")
 	   , person("Tobias", "Setz", role = c("aut"), email = "tobias.setz@live.com")
 	   , person("Yohan", "Chalabi", role = "aut")
-	   , person("Martin","Maechler", role="ctb", email="maechler@stat.math.ethz.ch", comment = c(ORCID = "0000-0002-8685-9910"))
+	   , person("Martin","Maechler", role="ctb", email="maechler@stat.math.ethz.ch",
+	            comment = c(ORCID = "0000-0002-8685-9910"))
 	   , person(given = c("Georgi", "N."), family = "Boshnakov", 
-                    role = c("cre", "aut"), email = "georgi.boshnakov@manchester.ac.uk") )
+                    role = c("cre", "aut"), email = "georgi.boshnakov@manchester.ac.uk",
+		    comment = c(ORCID = "0000-0003-2839-346X")) )
 Description: 'S4' classes and various tools for financial time series:
   Basic functions such as scaling and sorting, subsetting,
   mathematical operations and statistical functions.
@@ -16,16 +18,17 @@ Suggests: RUnit, robustbase, xts, zoo, PerformanceAnalytics, fTrading
 LazyData: yes
 License: GPL (>= 2)
 URL: https://geobosh.github.io/timeSeriesDoc/ (doc),
-        https://r-forge.r-project.org/scm/viewvc.php/pkg/timeSeries/?root=rmetrics
-        (devel), https://www.rmetrics.org
-BugReports: https://r-forge.r-project.org/projects/rmetrics
+        https://CRAN.R-project.org/package=timeSeries,
+        https://www.rmetrics.org
+BugReports: https://r-forge.r-project.org/tracker/?atid=633&group_id=156&func=browse
 NeedsCompilation: no
-Packaged: 2024-09-21 13:05:35 UTC; georgi
+Packaged: 2025-12-12 12:45:32 UTC; georgi
 Author: Diethelm Wuertz [aut] (original code),
   Tobias Setz [aut],
   Yohan Chalabi [aut],
-  Martin Maechler [ctb] (<https://orcid.org/0000-0002-8685-9910>),
-  Georgi N. Boshnakov [cre, aut]
+  Martin Maechler [ctb] (ORCID: <https://orcid.org/0000-0002-8685-9910>),
+  Georgi N. Boshnakov [cre, aut] (ORCID:
+    <https://orcid.org/0000-0003-2839-346X>)
 Maintainer: Georgi N. Boshnakov <georgi.boshnakov@manchester.ac.uk>
 Repository: CRAN
-Date/Publication: 2024-09-22 10:10:03 UTC
+Date/Publication: 2025-12-12 16:00:03 UTC

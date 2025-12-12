@@ -1,19 +1,12 @@
 \name{timeSeries-deprecated}
 
-\alias{seriesData} % removed
-
 \alias{removeNA}
-\alias{substituteNA}
-\alias{interpNA}
-
 
 
 \title{Deprecated functions in 'timeSeries' package}
 
 \usage{
 removeNA(x, \dots)
-substituteNA(x, type = c("zeros", "mean", "median"), \dots)
-interpNA(x, method = c("linear", "before", "after"), \dots)
 }
 
 \arguments{
@@ -26,19 +19,6 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
 
   }
 
-  \item{method}{
-    for \code{interpNA}, how to interpolate the matrix column
-    by column, see Section \sQuote{Details}.
-
-  }
-  \item{type}{
-    Three alternative methods are provided to remove NAs from the
-    data: 
-    \code{type="zeros"} replaces the missing values with zeros,
-    \code{type="mean"} replaces the missing values with the column mean,
-    \code{type="median"} replaces the missing values with the column
-    median.
-  }
   \item{\dots}{
     arguments to be passed to the function \code{as.matrix}.
   }
@@ -46,10 +26,9 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
 
 \description{
   
-  \tabular{ll}{
-
     \code{seriesData} (removed) extracts data slot from a 'timeSeries'.
-    use \code{\link{as.matrix}} instead. \cr
+    use \code{\link{as.matrix}} instead.
+
     % \item{object}{
     %     [is][seriesData][seriesPositions][show][summary] -    
     %     an object of class \code{timeSeries}.
@@ -62,7 +41,6 @@ interpNA(x, method = c("linear", "before", "after"), \dots)
     
     % \code{seriesPositions} \tab Extracts positions slot from a 'timeSeries', \cr
     % \code{newPositions<-} \tab Modifies positions of a 'timeSeries' object, \cr
-  }
 
 }
 
